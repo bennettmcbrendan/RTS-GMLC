@@ -18,7 +18,7 @@ params:
   Solutions.directory:
     label: Pick directory with solutions (this should be fullpathto..HERE/Model ..
       Solution/.db)
-    value: //plexossql/Data/bmcbenne/RTS-GMLC-decomp/RTS-GMLC/RTS_Data/FormattedData/PLEXOS/byGen/V7.4
+    value: //plexossql/Data/bmcbenne/RTS-GMLC-geodecomp/RTS-GMLC/RTS_Data/FormattedData/PLEXOS/
     input: select
   intervals.per.day:
     choices:
@@ -165,6 +165,25 @@ error_handler <- function(query){
   return(result)
 }
 
+# size of text in plots
+large.text.size <- 10.5
+small.text.size <- 9.1666
+text.plot = 11
+
+# plot theme
+plot_theme <- 
+    theme(legend.key = element_rect(color = "grey80", size = 0.8), 
+          legend.key.size = grid::unit(1.0, "lines"),
+          legend.text = element_text(size = small.text.size), 
+          legend.title = element_blank(), 
+          axis.text = element_text(size = small.text.size), 
+          axis.text.x = element_text(size = small.text.size),
+          axis.title = element_text(size = large.text.size, face = "bold"),
+          axis.title.x= element_text(size=large.text.size, vjust = 1.2, face = "bold"),
+          axis.title.y = element_text(size=large.text.size, vjust = 1.2, face = "bold"),
+          strip.text = element_text(size=small.text.size),
+          panel.spacing = unit(0.5, "lines"))
+
 ```
 
 
@@ -226,7 +245,7 @@ message('starting 2')
                         FROM Generator_Generation 
                         WHERE phase_id IS 4")) %>% 
                         dplyr::mutate(scenario = scenario.names.rt[i]) %>% 
-                        collect()),rt.solution.dbs[i])))
+                        collect(n = Inf)),rt.solution.dbs[i])))
   }
 
 # 3) total available capacity
@@ -397,32 +416,296 @@ message('starting 6')
     
     # 9) interval line flow
   
-   interval.da.flow <- data.table()
+    interval.da.flow <- data.table()
+  
   for(i in 1:length(scenario.names.da)){
-     interval.da.flow <- error_handler(rbind(interval.da.flow,
-                                        data.table(tbl(src_sqlite(da.solution.dbs[i]), 
-                                        sql("SELECT key, name, category, time_from, time_to, value, property, region 
-                                        FROM Line_Flow 
-                                        WHERE phase_id IS 4")) %>% 
-                                        filter(phase_id == 4) %>% select(one_of(column.names[-1])) %>% 
-                                        dplyr::mutate(scenario = scenario.names.da[i]) %>% 
-                                        collect(n = Inf))))
+    
+    interval.da.flow <- error_handler(rbind(interval.da.flow,
+                        expand_time(data.table(tbl(src_sqlite(da.solution.dbs[i]), 
+                        sql("SELECT key, name, category, time_from, time_to, value, property, region 
+                        FROM Line_Flow 
+                        WHERE phase_id IS 4")) %>% 
+                        dplyr::mutate(scenario = scenario.names.da[i]) %>% 
+                        collect(n = Inf)),da.solution.dbs[i])))
   }
     
-    interval.rt.flow <- data.table()
+     interval.rt.flow <- data.table()
+  
   for(i in 1:length(scenario.names.rt)){
-     interval.rt.flow <- error_handler(rbind(interval.rt.flow,
+    
+    interval.rt.flow <- error_handler(rbind(interval.rt.flow,
+                        expand_time(data.table(tbl(src_sqlite(rt.solution.dbs[i]), 
+                        sql("SELECT key, name, category, time_from, time_to, value, property, region 
+                        FROM Line_Flow 
+                        WHERE phase_id IS 4")) %>% 
+                        dplyr::mutate(scenario = scenario.names.rt[i]) %>% 
+                        collect(n = Inf)),rt.solution.dbs[i])))
+  }
+     
+     # 10) Line limits
+     
+    line.rt.limits <- data.table()
+    
+    for(i in 1:length(scenario.names.rt)){
+            line.rt.limits <- error_handler(rbind(line.rt.limits,
                                         data.table(tbl(src_sqlite(rt.solution.dbs[i]), 
-                                        sql("SELECT key, name, category, time_from, time_to, value, property, region 
-                                        FROM Line_Flow 
-                                        WHERE phase_id IS 4")) %>% 
+                                        sql("SELECT * FROM year WHERE collection IS 
+                                        'Line' AND property IS 'Export Limit'")) %>% 
                                         filter(phase_id == 4) %>% select(one_of(column.names[-1])) %>% 
                                         dplyr::mutate(scenario = scenario.names.rt[i]) %>% 
                                         collect(n = Inf))))
+    }
+    
+    for(i in 1:length(scenario.names.rt)){
+            line.rt.limits <- error_handler(rbind(line.rt.limits,
+                                        data.table(tbl(src_sqlite(rt.solution.dbs[i]), 
+                                        sql("SELECT * FROM year WHERE collection IS 
+                                        'Line' AND property IS 'Import Limit'")) %>% 
+                                        filter(phase_id == 4) %>% select(one_of(column.names[-1])) %>% 
+                                        dplyr::mutate(scenario = scenario.names.rt[i]) %>% 
+                                        collect(n = Inf))))
+    }
+    
+    line.rt.limits = data.table(dcast(line.rt.limits,scenario + name + category ~ property,value.var = 'value'))
+    
+    # 11) interval region load
+    
+     interval.da.load <- data.table()
+  
+  for(i in 1:length(scenario.names.da)){
+    
+    interval.da.load <- error_handler(rbind(interval.da.load,
+                        expand_time(data.table(tbl(src_sqlite(da.solution.dbs[i]), 
+                        sql("SELECT key, name, category, time_from, time_to, value, property 
+                        FROM Region_Load 
+                        WHERE phase_id IS 4")) %>% 
+                        dplyr::mutate(scenario = scenario.names.da[i]) %>% 
+                        collect(n = Inf)),da.solution.dbs[i])))
   }
+ 
+  interval.rt.load <- data.table()
+  
+  for(i in 1:length(scenario.names.rt)){
+    
+    interval.rt.load <- error_handler(rbind(interval.rt.load,
+                        expand_time(data.table(tbl(src_sqlite(rt.solution.dbs[i]), 
+                        sql("SELECT key, name, category, time_from, time_to, value, property 
+                        FROM Region_Load 
+                        WHERE phase_id IS 4")) %>% 
+                        dplyr::mutate(scenario = scenario.names.rt[i]) %>% 
+                        collect(n = Inf)),rt.solution.dbs[i])))
+  }
+    
+    
+    # 12) interval units out
+    
+     interval.da.units.out <- data.table()
+  
+  for(i in 1:length(scenario.names.da)){
+    
+    interval.da.units.out <- error_handler(rbind(interval.da.units.out,
+                        expand_time(data.table(tbl(src_sqlite(da.solution.dbs[i]), 
+                        sql("SELECT key, name, category, time_from, time_to, value, property, region 
+                        FROM Generator_UnitsOut 
+                        WHERE phase_id IS 4")) %>% 
+                        dplyr::mutate(scenario = scenario.names.da[i]) %>% 
+                        collect(n = Inf)),da.solution.dbs[i])))
+  }
+ 
+  interval.rt.units.out <- data.table()
+  
+  for(i in 1:length(scenario.names.rt)){
+    
+    interval.rt.units.out <- error_handler(rbind(interval.rt.units.out,
+                        expand_time(data.table(tbl(src_sqlite(rt.solution.dbs[i]), 
+                        sql("SELECT key, name, category, time_from, time_to, value, property, region 
+                        FROM Generator_UnitsOut 
+                        WHERE phase_id IS 4")) %>% 
+                        dplyr::mutate(scenario = scenario.names.rt[i]) %>% 
+                        collect(n = Inf)),rt.solution.dbs[i])))
+  }
+  
+  # 13) interval da reserve provision
+  
+  interval.da.reserve.provision <- data.table()
+
+  for(i in 1:length(scenario.names.da)){
+  
+    interval.da.reserve.provision <- rbind(interval.da.reserve.provision,
+                                expand_time(data.table(tbl(src_sqlite(da.solution.dbs[i]), 
+                                sql("SELECT * 
+                                FROM ReserveGenerators_Provision 
+                                WHERE phase_id IS 4")) %>% 
+                                dplyr::mutate(scenario = scenario.names.da[i]) %>% 
+                                collect(n = Inf)),da.solution.dbs[i]))
+  }
+  
+  # 14) interval da reserve shortage
+  
+    interval.da.reserve.shortage <- data.table()
+
+  for(i in 1:length(scenario.names.da)){
+  
+    interval.da.reserve.shortage <- rbind(interval.da.reserve.shortage,
+                                expand_time(data.table(tbl(src_sqlite(da.solution.dbs[i]), 
+                                sql("SELECT * 
+                                FROM Reserve_Shortage 
+                                WHERE phase_id IS 4")) %>% 
+                                dplyr::mutate(scenario = scenario.names.da[i]) %>% 
+                                collect(n = Inf)),da.solution.dbs[i]))
+}
+    
+    
 
 ```
 
+
+# Sanity checks
+
+```{r sanity-checks,include = FALSE,eval = TRUE}
+
+# 1) is generation outside the focus region the same in stages A and B
+
+sanity.check.gen = interval.da.generation[scenario %in% c("Day Ahead LP",
+                                                          "Day Ahead Region 1",
+                                                          "Day Ahead Region 2",
+                                                          "Day Ahead Region 3")]
+
+sanity.check.gen = data.table(dcast(sanity.check.gen,name + time + region ~ scenario,
+                                    value.var = 'value'))
+
+sanity.check.gen[,`Day Ahead Region 1`:=`Day Ahead Region 1` - `Day Ahead LP`]
+sanity.check.gen[,`Day Ahead Region 2`:=`Day Ahead Region 2` - `Day Ahead LP`]
+sanity.check.gen[,`Day Ahead Region 3`:=`Day Ahead Region 3` - `Day Ahead LP`]
+
+sanity.check.fixed.gen = copy(sanity.check.gen[grepl('HYDRO|RTPV',name)])
+
+sanity.check.gen = sanity.check.gen[((region %in% c(2,3)) & `Day Ahead Region 1` > 10^(-6))|
+                                    ((region %in% c(1,3)) & `Day Ahead Region 2` > 10^(-6))|
+                                    ((region %in% c(1,2)) & `Day Ahead Region 3` > 10^(-6))]
+
+if(nrow(sanity.check.gen) > 0){
+  message("Non-focus generation is different between stages A and B")
+}
+
+# 1a) RTPV and hydro in focus region
+
+sanity.check.fixed.gen = sanity.check.fixed.gen[((region %in% c(1)) & `Day Ahead Region 1` > 0)|
+                                    ((region %in% c(2)) & `Day Ahead Region 2` > 0)|
+                                    ((region %in% c(3)) & `Day Ahead Region 3` > 0)]
+
+if(nrow(sanity.check.fixed.gen) > 0){
+  message("Focus region hydro and RTPV generation differs between stages A and B")
+}
+
+# 2) is load the same in stages A and B
+
+sanity.check.load = interval.da.load[scenario %in% c("Day Ahead LP",
+                                                          "Day Ahead Region 1",
+                                                          "Day Ahead Region 2",
+                                                          "Day Ahead Region 3")]
+
+sanity.check.load = data.table(dcast(sanity.check.load,name + time ~ scenario,
+                                    value.var = 'value'))
+
+sanity.check.load[,`Day Ahead Region 1`:=`Day Ahead Region 1` - `Day Ahead LP`]
+sanity.check.load[,`Day Ahead Region 2`:=`Day Ahead Region 2` - `Day Ahead LP`]
+sanity.check.load[,`Day Ahead Region 3`:=`Day Ahead Region 3` - `Day Ahead LP`]
+
+sanity.check.load = sanity.check.load[(name %in% c(2,3) & (`Day Ahead Region 1` > 10^(-6)))|
+                                      (name %in% c(1,3) & (`Day Ahead Region 2` > 10^(-6)))|
+                                      (name %in% c(1,2) & (`Day Ahead Region 3` > 10^(-6)))]
+
+if(nrow(sanity.check.load) > 0){
+  message("Non-focus load is different between stages A and B")
+}
+
+# 3) are outages the same in stages A, B and C
+
+sanity.check.da.outages = interval.da.units.out[scenario %in% c("Day Ahead LP",
+                                                          "Day Ahead Region 1",
+                                                          "Day Ahead Region 2",
+                                                          "Day Ahead Region 3")]
+
+sanity.check.da.outages = data.table(dcast(sanity.check.da.outages,name + time + region ~ scenario,
+                                    value.var = 'value'))
+
+sanity.check.da.outages[,month:=month(time)]
+sanity.check.da.outages[,day:=day(time)]
+sanity.check.da.outages[,hour:=hour(time)]
+sanity.check.da.outages[,time:=NULL]
+
+sanity.check.rt.outages = interval.rt.units.out[scenario %in% c("Real Time Decomp")]
+
+sanity.check.rt.outages = data.table(dcast(sanity.check.rt.outages,name + time + region ~ scenario,
+                                    value.var = 'value'))
+
+sanity.check.rt.outages[,month:=month(time)]
+sanity.check.rt.outages[,day:=day(time)]
+sanity.check.rt.outages[,hour:=hour(time)]
+
+# note that we forget to check one day of DA outages because of look-ahead
+sanity.check.outages = merge(sanity.check.da.outages,
+                             sanity.check.rt.outages,
+                             by = c('name','region','month','day','hour'))
+
+sanity.check.outages = sanity.check.outages[(`Day Ahead LP` != `Real Time Decomp`)|
+                                            (region == 1 & (`Day Ahead LP` != `Day Ahead Region 1`))|
+                                            (region == 2 & (`Day Ahead LP` != `Day Ahead Region 2`))|
+                                            (region == 3 & (`Day Ahead LP` != `Day Ahead Region 3`))]
+
+rm(sanity.check.rt.outages,sanity.check.da.outages)
+
+if(nrow(sanity.check.outages) > 0){
+  message("Outages differ between stage A, focus regions of stage B and stage C")
+}
+
+# 4) are reserves served in focus regions the same as LP?
+
+sanity.check.reserves = copy(interval.da.reserve.provision[scenario %in% c("Day Ahead LP",
+                                                          "Day Ahead Region 1",
+                                                          "Day Ahead Region 2",
+                                                          "Day Ahead Region 3")])
+
+sanity.check.reserves[,value:=round(value,3)]
+
+sanity.check.reserves = sanity.check.reserves[,lapply(.SD,sum),by = c('time','parent','region','scenario'),
+                                              .SDcols = 'value']
+
+sanity.check.reserves[,reserve.region := gsub("[^0-9]","",parent)]
+
+# check that reserve products operate in correct stages, regions
+if(nrow(sanity.check.reserves[(reserve.region != region) &
+                              !grepl('LP',scenario)]) > 0){
+  message('stage B reserve products (R1,R2,R3) operate outside of their designated regions')
+}
+if(nrow(sanity.check.reserves[(reserve.region != "") &
+                              grepl('LP',scenario)]) > 0){
+  message('stage B reserve products (R1,R2,R3) operate in stage A')
+}
+
+sanity.check.reserves[,parent := gsub("_R[0-9]","",parent)]
+
+sanity.check.reserves = data.table(dcast(sanity.check.reserves,parent + time + region ~ scenario,
+                                    value.var = 'value'))
+
+sanity.check.reserves = sanity.check.reserves[(region == 1 & abs(`Day Ahead LP`-`Day Ahead Region 1`)>10^(-1))|
+                                            (region == 2 & abs(`Day Ahead LP`-`Day Ahead Region 2`)>10^(-1))|
+                                            (region == 3 & abs(`Day Ahead LP`-`Day Ahead Region 3`)>10^(-1))]
+
+
+if(nrow(sanity.check.reserves) > 0){
+  message(paste0("Reserves served in focus regions during stage B do not match reserves served in cooresponding",
+                 "regions during stage A. Could just be because some stage B reserves are unserved"))
+}
+
+write.csv(sanity.check.reserves,'sanity_check_reserves.csv',row.names = FALSE)
+
+```
+
+
+
+# Metrics: RT
 
 ```{r metrics-table-rt, include=FALSE,eval = TRUE, fig.width=6, fig.height=3}
 
@@ -471,7 +754,7 @@ kable(metrics.rt)
 ```
 
 
-
+# Metrics: DA
 
 ```{r metrics-table-da, include=FALSE,eval = TRUE, fig.width=6, fig.height=3}
 
@@ -516,6 +799,7 @@ kable(metrics.da)
 
 ```
 
+# Unit commitment plot
 
 ```{r commit-plot, include=FALSE,eval = TRUE, fig.width=6, fig.height=3}
 
@@ -524,25 +808,58 @@ int.rt.gen = interval.rt.generation[grepl('Nuclear|Coal',category)]
 
 int.rt.gen[,commit:= ifelse(value > 0.0001,100,0)]
 
-int.commit = merge(int.rt.gen[scenario == 'Real Time Decomp',.(name,region,category,time,decomp.commit = commit)],
-                   int.rt.gen[scenario == 'Real Time',.(name,region,category,time,normal.commit = commit)],
+int.commit = merge(int.rt.gen[scenario == 'Real Time Decomp',.(name,region,category,time,
+                                                        `Fraction of time committed - GeoDecomp` = commit)],
+                   int.rt.gen[scenario == 'Real Time',.(name,region,category,time,
+                                                        `Fraction of time committed - SingleOpt` = commit)],
                    by = c('name','region','category','time'))
 
-int.commit[,diff.commit:=ifelse(normal.commit == decomp.commit,0,100)]
+int.commit[,commit.diff:=ifelse(`Fraction of time committed - GeoDecomp` == 
+                                `Fraction of time committed - SingleOpt`,0,100)]
+int.commit[,fill.group:= 'Discrepancy in unit commitment']
+
 int.commit[,month:=month.abb[month(time)]]
 
-int.commit = int.commit[,lapply(.SD,mean),by = c('month','name','category'),
-                        .SDcols = c("diff.commit","normal.commit","decomp.commit")]
+month.time = unique(int.commit[day(time) == 1 &
+                               hour(time) == 0 &
+                               minute(time) == 0,
+                    .(month,time)])
 
-int.commit$month = factor(int.commit$month,levels = month.abb)
+int.commit = int.commit[,lapply(.SD,mean),by = c('month','name','category','fill.group'),
+                        .SDcols = c("Fraction of time committed - SingleOpt",
+                                    "Fraction of time committed - GeoDecomp",
+                                    "commit.diff")]
 
-p <- ggplot() + geom_bar(data = int.commit,aes(x = month,y = diff.commit),color = 'black',fill = 'steelblue3',
+int.commit = merge(int.commit,month.time,by = 'month')
+
+int.commit = data.table(melt(int.commit, id.vars = c("time", "name","category","fill.group",
+                                                     "commit.diff"),
+                 measure.vars = c("Fraction of time committed - SingleOpt",
+                                  "Fraction of time committed - GeoDecomp")))
+
+int.commit.diff = unique(int.commit[,.(time,
+                                      name,
+                                      fill.group,
+                                      commit.diff)])
+
+p <- ggplot() + geom_bar(data = int.commit.diff,
+                                aes(x = time,
+                                y = commit.diff,
+                                fill = fill.group,
+                                group = 1),
+                         color = 'black',
                          stat = 'identity') + 
-      geom_line(data = int.commit,aes(x = month,y = normal.commit,group = 1),color = 'black') + 
-      geom_line(data = int.commit,aes(x = month,y = decomp.commit,group = 1),color = 'firebrick') +
-      facet_wrap(~name,scales = 'fixed') + 
-      labs(x = 'month',y = 'Percent difference in commitment between GeoDecomp and SingleOpt')
+      scale_fill_manual(values = c('Discrepancy in unit commitment' = 'steelblue3')) + 
+      geom_line(data = int.commit,aes(x = time,y = value, color = variable)) + 
+      scale_color_manual(values = c("Fraction of time committed - SingleOpt" = "black",
+                                    "Fraction of time committed - GeoDecomp" = "firebrick")) +
+      facet_wrap(~name,scales = 'fixed',ncol = 2) + 
+      scale_x_datetime(labels = date_format("%b"),breaks=date_breaks('3 months'), expand = c(0, 0)) +
+      labs(x = 'month',y = 'Percent') + plot_theme +
+      theme(legend.position = 'bottom', legend.direction = 'vertical')
 
+
+ggsave("commit_plot.png",p,height = 12,width = 6.5)
 
 ```
 
@@ -552,10 +869,304 @@ p
 
 ```
 
+
+# Unit commitment plot - simple
+
+```{r commit-plot-abb, include=FALSE,eval = TRUE, fig.width=6, fig.height=3}
+
+
+int.rt.gen = interval.rt.generation[grepl('Nuclear|Coal',category)]
+
+
+int.rt.gen[,commit:= ifelse(value > 0.0001,100,0)]
+
+int.commit = merge(int.rt.gen[scenario == 'Real Time Decomp',.(name,region,category,time,
+                                                        `Fraction of time committed - GeoDecomp` = commit)],
+                   int.rt.gen[scenario == 'Real Time',.(name,region,category,time,
+                                                        `Fraction of time committed - SingleOpt` = commit)],
+                   by = c('name','region','category','time'))
+
+int.commit[,commit.diff:=ifelse(`Fraction of time committed - GeoDecomp` == 
+                                `Fraction of time committed - SingleOpt`,0,100)]
+int.commit[,fill.group:= 'Discrepancy in unit commitment']
+
+int.commit[,month:=month.abb[month(time)]]
+int.commit[,category:=paste0(category," - region ",region)]
+
+month.time = unique(int.commit[day(time) == 1 &
+                               hour(time) == 0 &
+                               minute(time) == 0,
+                    .(month,time)])
+
+int.commit = int.commit[,lapply(.SD,mean),by = c('month','category','fill.group'),
+                        .SDcols = c("Fraction of time committed - SingleOpt",
+                                    "Fraction of time committed - GeoDecomp",
+                                    "commit.diff")]
+
+int.commit = merge(int.commit,month.time,by = 'month')
+
+int.commit = data.table(melt(int.commit, id.vars = c("time","category","fill.group",
+                                                     "commit.diff"),
+                 measure.vars = c("Fraction of time committed - SingleOpt",
+                                  "Fraction of time committed - GeoDecomp")))
+
+int.commit.diff = unique(int.commit[,.(time,
+                                      category,
+                                      fill.group,
+                                      commit.diff)])
+
+p <- ggplot() + geom_bar(data = int.commit.diff,
+                                aes(x = time,
+                                y = commit.diff,
+                                fill = fill.group,
+                                group = 1),
+                         color = 'black',
+                         stat = 'identity') + 
+      scale_fill_manual(values = c('Discrepancy in unit commitment' = 'steelblue3')) + 
+      geom_line(data = int.commit,aes(x = time,y = value, color = variable)) + 
+      scale_color_manual(values = c("Fraction of time committed - SingleOpt" = "black",
+                                    "Fraction of time committed - GeoDecomp" = "firebrick")) +
+      facet_wrap(~category,scales = 'fixed',ncol = 1) + 
+      scale_x_datetime(labels = date_format("%b"),breaks=date_breaks('1 month'), expand = c(0, 0)) +
+      labs(x = 'month',y = 'Percent') + plot_theme +
+      theme(legend.position = 'bottom', legend.direction = 'vertical')
+
+
+ggsave("commit_plot.png",p,height = 5,width = 6.5)
+
+```
+
+```{r commit-plot-abb-print, include=FALSE,eval = TRUE, fig.width = 9, fig.height=7}
+
+p
+
+```
+
+
+# Interface timeseries
+
+```{r interface-timeseries, include=FALSE,eval = TRUE, fig.width=6, fig.height=3}
+
+
+flows.table = copy(interval.rt.flow[category %in% c("Interregion_AC","Interregion_DC")])
+
+scenario.colors <- c("Day Ahead MIP" = "gray80", 
+                     "Day Ahead LP" = "orange3",
+                     "Day Ahead Region 1" = "skyblue",
+                     "Day Ahead Region 2" = "steelblue3",
+                     "Day Ahead Region 3" = "navyblue",
+                     "Real Time" = "gray80", 
+                     "Real Time Decomp" = "orange3")
+
+
+p <- ggplot() + geom_line(data = flows.table,
+      aes(x = time,y = value, color = scenario),size = 0.4,alpha = 0.5) + 
+      scale_color_manual(values = scenario.colors) + plot_theme + 
+      facet_grid(name~.,scales = 'free') +
+      labs(x = 'Time',y = 'Flows (MW)') + 
+    guides(color = guide_legend(override.aes = list(size=3,alpha = 1)))
+
+
+```
+
+
+```{r interface-timeseries-print, include=FALSE,eval = TRUE, fig.width=6, fig.height=9}
+
+p
+# ggsave('interface_timeseres.png',p,height = 5,width = 6.5)
+
+```
+
+
+# Mean average flow error
+
+```{r mean-average-flow-error, include=FALSE, eval = TRUE}
+
+flows.table = data.table(dcast(interval.rt.flow[category %in% c("Interregion_AC","Interregion_DC")],
+                               name + time ~ scenario,
+                               value.var = 'value'))
+flows.table[,MAE := abs(get(scenario.order.rt[1]) - get(scenario.order.rt[2]))]
+
+MAE.table = flows.table[,lapply(.SD,mean),by = c('name'),.SDcols = 'MAE']
+
+MAE.table = merge(MAE.table,unique(line.rt.limits[,.(name,`Export Limit`)]),
+                    by = c('name'))
+
+MAE.table[,NMAE:=MAE/`Export Limit`]
+
+
+MAE.table[,MAE:=round(MAE,2)]
+MAE.table[,NMAE:=round(NMAE,2)]
+
+```
+
+
+```{r mean-average-flow-error-print, include=TRUE, eval = TRUE}
+
+kable(MAE.table)
+
+```
+
+
+# RMSE
+
+
+```{r normalized-RMSE, include=FALSE, eval = TRUE}
+
+flows.table = data.table(dcast(interval.rt.flow[category %in% c("Interregion_AC","Interregion_DC")],
+                               name + time ~ scenario,
+                               value.var = 'value'))
+flows.table[,RMSE := abs(get(scenario.order.rt[1]) - get(scenario.order.rt[2]))^2]
+
+RMSE.table = flows.table[,lapply(.SD,mean),by = c('name'),.SDcols = 'RMSE']
+
+
+# doesn't matter here if we use import or export limit but should be careful copying to other scripts
+RMSE.table = merge(RMSE.table,
+                    unique(line.rt.limits[,.(name,`Export Limit`)]),
+                    by = c('name'))
+
+RMSE.table[,NRMSE:=RMSE/`Export Limit`]
+
+RMSE.table[,NRMSE:=round(NRMSE,2)]
+RMSE.table[,RMSE:=round(RMSE,2)]
+
+```
+
+
+```{r normalized-RMSE-print, include=TRUE, eval = TRUE}
+
+kable(RMSE.table)
+
+```
+
+
+
+
+# Sign error percent
+
+```{r sign-error-percent, include=FALSE, eval = TRUE}
+
+flows.table = data.table(dcast(interval.rt.flow[category %in% c("Interregion_AC","Interregion_DC")],
+                               name + time ~ scenario,
+                               value.var = 'value'))
+flows.table[,sign.error := ifelse(sign(get(scenario.order.rt[1])) == sign(get(scenario.order.rt[2])),0,1)]
+
+sign.table = flows.table[,lapply(.SD,mean),by = c('name'),.SDcols = 'sign.error']
+
+sign.table[,sign.error:=100*round(sign.error,4)]
+
+```
+
+
+```{r sign-error-percent-print, include=TRUE, eval = TRUE}
+
+kable(sign.table)
+
+```
+
+# KSI plot
+
 ```{r KSI-plot, include=FALSE,eval = TRUE, fig.width=6, fig.height=3}
+
+flow.table = interval.rt.flow[category %in% c("Interregion_AC","Interregion_DC")]
+series.length = length(unique(flow.table[,time]))
+KSI.step = 0.01
+
+# relies on not having different line limits between scenarios
+flow.range = unique(line.rt.limits[category %in% c("Interregion_AC","Interregion_DC"),
+                            .(name,`Export Limit`,`Import Limit`)])
+
+flow.range.table = data.table()
+
+for(i in 1:nrow(unique(flow.range[,.(name)]))){
+    
+    flow.temp = merge(flow.range,
+                       data.table(name = flow.range[i,name],
+                                  value = seq(flow.range[i,`Import Limit`],
+                                              flow.range[i,`Export Limit`],
+                                              KSI.step)),
+                       by = c('name'))
+    
+    flow.range.table = rbind(flow.range.table,flow.temp)
+    
+}
+
+flow.range.table = flow.range.table[,.(name,value)]
+    
+flow.table.1 = flow.table[scenario == scenario.names.rt[1]][,.(name,value)]
+flow.table.2 = flow.table[scenario == scenario.names.rt[2]][,.(name,value)]
+
+flow.table.1[,rank:=frank(value,ties.method = 'first')/series.length,by = c('name')]
+flow.table.2[,rank:=frank(value,ties.method = 'first')/series.length,by = c('name')]
+
+setkeyv(flow.range.table,c('name','value'))
+setkeyv(flow.table.1,c('name','value'))
+setkeyv(flow.table.2,c('name','value'))
+
+KSI.table.1 = flow.table.1[flow.range.table,roll = "nearest"]
+KSI.table.2 = flow.table.2[flow.range.table,roll = "nearest"]
+
+KSI.table.1 = unique(KSI.table.1[,rank:= max(rank),by = c('value','name')])
+KSI.table.2 = unique(KSI.table.2[,rank:= max(rank),by = c('value','name')])
+
+setnames(KSI.table.1,'rank',scenario.names.rt[1])
+setnames(KSI.table.2,'rank',scenario.names.rt[2])
+
+KSI.table = merge(KSI.table.1,KSI.table.2,by = c('name','value'))
+KSI.table[,Dn := abs(get(scenario.names.rt[1]) - get(scenario.names.rt[2]))]
+
+D.stat.table = KSI.table[,lapply(.SD,max),by = 'name',.SDcols = 'Dn']
+D.stat.table[,V.critical:= 1.63/sqrt(series.length)]
+D.stat.table[,percent:=100*Dn/V.critical]
+
+# integrate trapezoidally
+KSI.stat.table = merge(KSI.table, flow.range, by = 'name')
+KSI.stat.table = merge(KSI.stat.table,D.stat.table[,.(name,V.critical)],by = 'name')
+KSI.stat.table[,flow.range:= `Export Limit` - `Import Limit`]
+KSI.stat.table[value == `Import Limit` |
+              value == `Export Limit`,
+              Dn:=0.5*Dn]
+
+KSI.stat.table = KSI.stat.table[,lapply(.SD,sum),by = c('name','flow.range','V.critical'),.SDcols = 'Dn']
+KSI.stat.table[,KSI:=Dn*KSI.step]
+KSI.stat.table[,Dn:=NULL]
+KSI.stat.table[,KSI.Per:=KSI/V.critical/flow.range*100]
+
+KSI.plot.table = data.table(melt(KSI.table,id.vars = c("name","value"),
+                                 measure.vars = scenario.names.rt))
+setnames(KSI.plot.table,'variable','scenario')
+
+setnames(KSI.plot.table,c("value.1","variable"),c("p","scenario"))
+
+p <- ggplot() + geom_point(data = KSI.plot.table,aes(x = value,y = p,color = scenario),size = 0.15) + 
+    geom_vline(data = flow.range, aes(xintercept = `Import Limit`),size = 0.15,color = 'black') + 
+    geom_vline(data = flow.range, aes(xintercept = `Export Limit`),size = 0.15,color = 'black') + 
+    scale_color_manual(values = c("Real Time" = "gray80","Real Time Decomp" = "orange3")) +
+    facet_grid(name ~ .,scales = 'fixed') + 
+    labs(x = 'flow',y = 'p') +
+    guides(colour = guide_legend(override.aes = list(size=2)))
+
 
 
 
 ```
+
+
+```{r KSI-plot-print, include=FALSE,eval = TRUE, fig.width=6, fig.height=3}
+
+kable(KSI.stat.table)
+kable(D.stat.table)
+print(p)
+
+# ggsave('KSI_plot.png',p,height = 5,width = 6.5)
+
+```
+
+
+
+
+
+
 
 
