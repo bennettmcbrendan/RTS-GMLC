@@ -92,12 +92,12 @@ scenario.order.da <- copy(scenario.names.da)
 scenario.order.rt <- copy(scenario.names.rt)
     
 scenario.colors <- c("Day Ahead MIP" = "#969696", 
-                     "Day Ahead LP" = "#orange3",
+                     "Day Ahead LP" = "#firebrick",
                      "Day Ahead Region 1" = "skyblue",
                      "Day Ahead Region 2" = "steelblue3",
                      "Day Ahead Region 3" = "navyblue",
                      "Real Time" = "#969696", 
-                     "Real Time Decomp" = "#orange3")
+                     "Real Time Decomp" = "#firebrick")
 
 # # process plexos solutions with rplexos if not already done so ----
 da.solution.paths <- sapply(da.solutions, function(x) file.path(solutions.dir,x))
@@ -166,9 +166,9 @@ error_handler <- function(query){
 }
 
 # size of text in plots
-large.text.size <- 10.5
-small.text.size <- 9.1666
-text.plot = 11
+large.text.size <- 7.875
+small.text.size <- 6.87495
+text.plot = 11*(0.75)
 
 # plot theme
 plot_theme <- 
@@ -856,7 +856,7 @@ p <- ggplot() + geom_bar(data = int.commit.diff,
       facet_wrap(~name,scales = 'fixed',ncol = 2) + 
       scale_x_datetime(labels = date_format("%b"),breaks=date_breaks('3 months'), expand = c(0, 0)) +
       labs(x = 'month',y = 'Percent') + plot_theme +
-      theme(legend.position = 'bottom', legend.direction = 'vertical')
+      theme(legend.position = 'bottom', legend.direction = 'vertical',legend.box = 'vertical')
 
 
 ggsave("commit_plot.png",p,height = 12,width = 6.5)
@@ -872,7 +872,7 @@ p
 
 # Unit commitment plot - simple
 
-```{r commit-plot-abb, include=FALSE,eval = TRUE, fig.width=6, fig.height=3}
+```{r commit-plot-abb, include=FALSE,eval = TRUE, fig.width=3.5, fig.height=3}
 
 
 int.rt.gen = interval.rt.generation[grepl('Nuclear|Coal',category)]
@@ -929,10 +929,11 @@ p <- ggplot() + geom_bar(data = int.commit.diff,
       facet_wrap(~category,scales = 'fixed',ncol = 1) + 
       scale_x_datetime(labels = date_format("%b"),breaks=date_breaks('1 month'), expand = c(0, 0)) +
       labs(x = 'month',y = 'Percent') + plot_theme +
-      theme(legend.position = 'bottom', legend.direction = 'vertical')
+      theme(legend.position = 'bottom', legend.direction = 'vertical',legend.box = 'vertical',
+            legend.spacing.y = unit(0, "cm"))
 
 
-ggsave("commit_plot.png",p,height = 5,width = 6.5)
+ggsave("commit-plot-print.png",p,height = 5,width = 3.5)
 
 ```
 
@@ -950,21 +951,15 @@ p
 
 flows.table = copy(interval.rt.flow[category %in% c("Interregion_AC","Interregion_DC")])
 
-scenario.colors <- c("Day Ahead MIP" = "gray80", 
-                     "Day Ahead LP" = "orange3",
-                     "Day Ahead Region 1" = "skyblue",
-                     "Day Ahead Region 2" = "steelblue3",
-                     "Day Ahead Region 3" = "navyblue",
-                     "Real Time" = "gray80", 
-                     "Real Time Decomp" = "orange3")
-
-
 p <- ggplot() + geom_line(data = flows.table,
       aes(x = time,y = value, color = scenario),size = 0.4,alpha = 0.5) + 
-      scale_color_manual(values = scenario.colors) + plot_theme + 
+      scale_color_manual(values = scenario.colors) + 
+      scale_x_datetime(labels = date_format("%b"),breaks=date_breaks('4 months'), expand = c(0, 0)) +
+      plot_theme + 
       facet_grid(name~.,scales = 'free') +
       labs(x = 'Time',y = 'Flows (MW)') + 
-    guides(color = guide_legend(override.aes = list(size=3,alpha = 1)))
+    guides(color = guide_legend(override.aes = list(size=3,alpha = 1))) + 
+    theme(legend.position = 'bottom')
 
 
 ```
@@ -973,7 +968,7 @@ p <- ggplot() + geom_line(data = flows.table,
 ```{r interface-timeseries-print, include=FALSE,eval = TRUE, fig.width=6, fig.height=9}
 
 p
-# ggsave('interface_timeseres.png',p,height = 5,width = 6.5)
+ggsave('interface-timeseries-print.png',p,height = 5,width = 3.5)
 
 ```
 
@@ -1069,52 +1064,73 @@ kable(sign.table)
 
 ```{r KSI-plot, include=FALSE,eval = TRUE, fig.width=6, fig.height=3}
 
-flow.table = interval.rt.flow[category %in% c("Interregion_AC","Interregion_DC")]
-series.length = length(unique(flow.table[,time]))
-KSI.step = 0.01
+KSI_calcluation = function(KSI.step = 0.01,line.filter = c(),category.filter = c("Interregion_AC","Interregion_DC")){
+  
+  series.length = length(unique(flow.table[,time]))
+  
+  # relies on not having different line limits between scenarios
+  flow.range = unique(line.rt.limits[,.(name,category,`Export Limit`,`Import Limit`)])
+  
+  flow.table = copy(interval.rt.flow)
+  
+  if(length(line.filter)>0){
+    flow.range = flow.range[name %in% line.filter]
+    flow.table = flow.table[name %in% line.filter]
+  }
+  if(length(category.filter)>0){
+    flow.range = flow.range[category %in% category.filter]
+    flow.table = flow.table[category %in% category.filter]
+  }
+  flow.range[,category:=NULL]
 
-# relies on not having different line limits between scenarios
-flow.range = unique(line.rt.limits[category %in% c("Interregion_AC","Interregion_DC"),
-                            .(name,`Export Limit`,`Import Limit`)])
+  flow.range.table = data.table()
 
-flow.range.table = data.table()
-
-for(i in 1:nrow(unique(flow.range[,.(name)]))){
+  for(i in 1:nrow(unique(flow.range[,.(name)]))){
     
-    flow.temp = merge(flow.range,
+      flow.temp = merge(flow.range,
                        data.table(name = flow.range[i,name],
                                   value = seq(flow.range[i,`Import Limit`],
                                               flow.range[i,`Export Limit`],
                                               KSI.step)),
                        by = c('name'))
     
-    flow.range.table = rbind(flow.range.table,flow.temp)
+      flow.range.table = rbind(flow.range.table,flow.temp)
     
+  }
+
+  flow.range.table = flow.range.table[,.(name,value)]
+    
+  flow.table.1 = flow.table[scenario == scenario.names.rt[1]][,.(name,value)]
+  flow.table.2 = flow.table[scenario == scenario.names.rt[2]][,.(name,value)]
+  
+  flow.table.1[,rank:=frank(value,ties.method = 'first')/series.length,by = c('name')]
+  flow.table.2[,rank:=frank(value,ties.method = 'first')/series.length,by = c('name')]
+  
+  setkeyv(flow.range.table,c('name','value'))
+  setkeyv(flow.table.1,c('name','value'))
+  setkeyv(flow.table.2,c('name','value'))
+  
+  # rolling join to equate discrete flow.range.table 'values' to their nearest CDF value
+  KSI.table.1 = flow.table.1[flow.range.table,roll = "nearest"]
+  KSI.table.2 = flow.table.2[flow.range.table,roll = "nearest"]
+  
+  # see near_join_example.R for an explanation of how we deal with duplicated flow range values in the join
+  # now each flow range value cooresponds to exactly one probability
+  KSI.table.1 = unique(KSI.table.1[,rank:= max(rank),by = c('value','name')])
+  KSI.table.2 = unique(KSI.table.2[,rank:= max(rank),by = c('value','name')])
+  
+  setnames(KSI.table.1,'rank',scenario.names.rt[1])
+  setnames(KSI.table.2,'rank',scenario.names.rt[2])
+  
+  KSI.table = merge(KSI.table.1,KSI.table.2,by = c('name','value'))
+  KSI.table[,Dn := abs(get(scenario.names.rt[1]) - get(scenario.names.rt[2]))]
+  
+  list(KSI.table = KSI.table, flow.range = flow.range)
 }
 
-flow.range.table = flow.range.table[,.(name,value)]
-    
-flow.table.1 = flow.table[scenario == scenario.names.rt[1]][,.(name,value)]
-flow.table.2 = flow.table[scenario == scenario.names.rt[2]][,.(name,value)]
-
-flow.table.1[,rank:=frank(value,ties.method = 'first')/series.length,by = c('name')]
-flow.table.2[,rank:=frank(value,ties.method = 'first')/series.length,by = c('name')]
-
-setkeyv(flow.range.table,c('name','value'))
-setkeyv(flow.table.1,c('name','value'))
-setkeyv(flow.table.2,c('name','value'))
-
-KSI.table.1 = flow.table.1[flow.range.table,roll = "nearest"]
-KSI.table.2 = flow.table.2[flow.range.table,roll = "nearest"]
-
-KSI.table.1 = unique(KSI.table.1[,rank:= max(rank),by = c('value','name')])
-KSI.table.2 = unique(KSI.table.2[,rank:= max(rank),by = c('value','name')])
-
-setnames(KSI.table.1,'rank',scenario.names.rt[1])
-setnames(KSI.table.2,'rank',scenario.names.rt[2])
-
-KSI.table = merge(KSI.table.1,KSI.table.2,by = c('name','value'))
-KSI.table[,Dn := abs(get(scenario.names.rt[1]) - get(scenario.names.rt[2]))]
+KSI.cacluation = KSI_calcluation(line.filter = c(),category.filter = c("Interregion_AC","Interregion_DC"))
+KSI.table = KSI.cacluation[["KSI.table"]]
+flow.range = KSI.cacluation[["flow.range"]]
 
 D.stat.table = KSI.table[,lapply(.SD,max),by = 'name',.SDcols = 'Dn']
 D.stat.table[,V.critical:= 1.63/sqrt(series.length)]
@@ -1134,18 +1150,18 @@ KSI.stat.table[,Dn:=NULL]
 KSI.stat.table[,KSI.Per:=KSI/V.critical/flow.range*100]
 
 KSI.plot.table = data.table(melt(KSI.table,id.vars = c("name","value"),
-                                 measure.vars = scenario.names.rt))
-setnames(KSI.plot.table,'variable','scenario')
-
-setnames(KSI.plot.table,c("value.1","variable"),c("p","scenario"))
+                                 measure.vars = scenario.names.rt,
+                                 variable.name = 'scenario',
+                                 value.name = 'p'))
 
 p <- ggplot() + geom_point(data = KSI.plot.table,aes(x = value,y = p,color = scenario),size = 0.15) + 
     geom_vline(data = flow.range, aes(xintercept = `Import Limit`),size = 0.15,color = 'black') + 
     geom_vline(data = flow.range, aes(xintercept = `Export Limit`),size = 0.15,color = 'black') + 
-    scale_color_manual(values = c("Real Time" = "gray80","Real Time Decomp" = "orange3")) +
+    scale_color_manual(values = scenario.colors) +
     facet_grid(name ~ .,scales = 'fixed') + 
-    labs(x = 'flow',y = 'p') +
-    guides(colour = guide_legend(override.aes = list(size=2)))
+    labs(x = 'flow',y = 'p') + plot_theme +
+    guides(colour = guide_legend(override.aes = list(size=2))) + 
+    theme(legend.position = 'bottom')
 
 
 
@@ -1159,13 +1175,65 @@ kable(KSI.stat.table)
 kable(D.stat.table)
 print(p)
 
-# ggsave('KSI_plot.png',p,height = 5,width = 6.5)
+ggsave('KSI-plot-print.png',p,height = 5,width = 3.5)
 
 ```
 
 
 
+```{r KSI-combo, include=FALSE,eval = TRUE, fig.width=6, fig.height=3}
 
+KSI.cacluation = KSI_calcluation(line.filter = c("AB3"),category.filter = c("Interregion_AC","Interregion_DC"))
+KSI.table = KSI.cacluation[["KSI.table"]]
+flow.range = KSI.cacluation[["flow.range"]]
+
+KSI.plot.table = data.table(melt(KSI.table,id.vars = c("name","value"),
+                                 measure.vars = scenario.names.rt,
+                                 variable.name = 'scenario',
+                                 value.name = 'p'))
+
+flows.table = copy(interval.rt.flow[name == "AB3" &
+                                      category %in% c("Interregion_AC","Interregion_DC")])
+
+p1 <- ggplot() + geom_point(data = KSI.plot.table,aes(x = value,y = p,color = scenario),size = 0.15) + 
+    geom_vline(data = flow.range, aes(xintercept = `Import Limit`),size = 0.15,color = 'black') + 
+    geom_vline(data = flow.range, aes(xintercept = `Export Limit`),size = 0.15,color = 'black') + 
+    scale_color_manual(values = scenario.colors) +
+    facet_grid(name ~ .,scales = 'fixed') + 
+    labs(x = 'flow',y = 'p') + plot_theme +
+    guides(colour = guide_legend(override.aes = list(size=2))) + 
+    theme(legend.position = 'bottom')
+
+p2 <- ggplot() + geom_line(data = flows.table,
+      aes(x = time,y = value, color = scenario),size = 0.4,alpha = 0.5) + 
+      scale_color_manual(values = scenario.colors) + 
+      scale_x_datetime(labels = date_format("%b"),breaks=date_breaks('4 months'), expand = c(0, 0)) +
+      plot_theme + 
+      facet_grid(name~.,scales = 'free') +
+      labs(x = 'Time',y = 'Flows (MW)') + 
+      guides(color = guide_legend(override.aes = list(size=3,alpha = 1))) + 
+      theme(legend.position = 'none')
+
+p <- plot_grid(p2,p1,labels = c("", ""), ncol = 1,align = "v",
+                        rel_heights = c(1,1.2))
+
+
+
+
+```
+
+
+
+```{r KSI-combo-print, include=FALSE,eval = TRUE, fig.width=6, fig.height=3}
+
+print(p)
+
+ggsave("p1.png",p1,height = 3.5,width = 3.5)
+ggsave("p2.png",p2,height = 3.5,width = 3.5)
+
+ggsave('KSI-combo-print.png',p,height = 4.5,width = 3.5)
+
+```
 
 
 
