@@ -12,18 +12,15 @@ source("source_scripts/plot_parameters.R")
 # Inputs ----
 # ----------------------------------------------------------------------- |
 
-interfaces.to.plot <- c("PJM - MISO","PJM - NYISO","NYISO - ISO-NE")
-color.code = c("PJM - MISO" = 'navyblue',"PJM - NYISO" = 'forestgreen',"NYISO - ISO-NE" = 'firebrick')
-
 solutions.dir <- "//nrelqnap01d/PLEXOS/Projects/ERGIS/ERGIS Solutions/c_RT_loVG"
 
 # map of ERGIS to desired region names
 ERGIS.regions <- file.path("//plexossql/Data/bmcbenne/RTS-GMLC-geodecomp/RTS-GMLC",
-                           "RTS_Data/FormattedData/PLEXOS/ERGIS_regions.csv")
+                           "RTS_Data/FormattedData/PLEXOS/Analysis_scripts/ERGIS_regions.csv")
 
 # interface map
 ERGIS.interfaces <- file.path("//plexossql/Data/bmcbenne/RTS-GMLC-geodecomp/RTS-GMLC",
-                           "RTS_Data/FormattedData/PLEXOS/ERGIS_interfaces.csv")
+                           "RTS_Data/FormattedData/PLEXOS/Analysis_scripts/ERGIS_interfaces.csv")
 
 # ----------------------------------------------------------------------- |
 # Setup queries ----
@@ -149,10 +146,43 @@ int.comparison = data.table(dcast(int.comparison,time + Interface ~ variable,val
 # ----------------------------------------------------------------------- |
 # Plot ----
 # ----------------------------------------------------------------------- |
-
-p <- ggplot() + geom_point(data = int.comparison,aes(x = Interchange,y = Price,color = Interface),size = 0.3) + 
+stop()
+p <- ggplot() + geom_point(data = int.comparison,aes(x = Interchange,y = Price,color = Interface),
+                           size = 0.3,alpha = 0.4) + 
   scale_color_manual(values = color.code) + 
+  geom_vline(xintercept = 0,size = 0.3,color = 'black') +
+  geom_hline(yintercept = 0,size = 0.3,color = 'black') +
   facet_grid(.~Interface) + plot_theme + labs(x = 'Interchange (MW)',y = 'LMP difference (USD)') +
+  theme(legend.position = 'none')
+
+# add quadrants
+int.comparison[,c('quad.1','quad.2','quad.3','quad.4'):=0]
+int.comparison[Price > 0 & Interchange > 0,quad.1:=1]
+int.comparison[Price >= 0 & Interchange <= 0,quad.2:=1]
+int.comparison[Price < 0 & Interchange < 0,quad.3:=1]
+int.comparison[Price <= 0 & Interchange >= 0,quad.4:=1]
+
+quadrants = int.comparison[,lapply(.SD,mean),by = c('Interface'),
+                           .SDcols = c('quad.1','quad.2','quad.3','quad.4')]
+
+quadrants = quadrants[,lapply(.SD,function(x) paste0(round(x*100,1),"%")),by = c('Interface'),
+                           .SDcols = c('quad.1','quad.2','quad.3','quad.4')]
+
+quadrants = data.table(melt(quadrants,id.vars = 'Interface'))
+quadrants[variable == 'quad.1',x:=4500]
+quadrants[variable == 'quad.1',y:=50]
+quadrants[variable == 'quad.2',x:=-5000]
+quadrants[variable == 'quad.2',y:=50]
+quadrants[variable == 'quad.3',x:=-5000]
+quadrants[variable == 'quad.3',y:=-50]
+quadrants[variable == 'quad.4',x:=4500]
+quadrants[variable == 'quad.4',y:=-50]
+quadrants[variable %in% c('quad.1','quad.3'),efficient:="no"]
+quadrants[variable %in% c('quad.2','quad.4'),efficient:="yes"]
+
+p <- p + geom_label(data = quadrants,aes(x = x,y = y,label = value,fill = efficient),
+                    color = 'black',size = 3) +
+  scale_fill_manual(values = c('no' = 'gray80','yes' = 'goldenrod')) + 
   theme(legend.position = 'none')
 
 setwd(wd)

@@ -1,0 +1,4 @@
+Interface,ISO.From,ISO.To,color
+PJM - MISO,PJM,MISO,navyblue
+PJM - NYISO,PJM,NYISO,forestgreen
+NYISO - ISO-NE,NYISO,ISO-NE,firebrick
