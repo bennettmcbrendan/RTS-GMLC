@@ -22,6 +22,10 @@ ERGIS.regions <- file.path("//plexossql/Data/bmcbenne/RTS-GMLC-geodecomp/RTS-GML
 ERGIS.interfaces <- file.path("//plexossql/Data/bmcbenne/RTS-GMLC-geodecomp/RTS-GMLC",
                            "RTS_Data/FormattedData/PLEXOS/Analysis_scripts/ERGIS_interfaces.csv")
 
+# Clayton's EIA scrubbed data
+ISO.data <- file.path("//plexossql/Data/bmcbenne/RTS-GMLC-geodecomp/RTS-GMLC",
+                      "RTS_Data/FormattedData/PLEXOS/Analysis_scripts/real-world-iso-efficiency-data.csv")
+
 # ----------------------------------------------------------------------- |
 # Setup queries ----
 # ----------------------------------------------------------------------- |
@@ -40,6 +44,8 @@ ISO.From = ERGIS.interfaces[,ISO.From]
 ISO.To = ERGIS.interfaces[,ISO.To]
 color.code = ERGIS.interfaces[,color]
 names(color.code) = interfaces.to.plot
+
+ISO.data = fread(ISO.data)
 
 # ----------------------------------------------------------------------- |
 # Queries ----
@@ -89,7 +95,7 @@ int.region.NI = int.region.NI[scenario == min.scenario]
 
 
 # ----------------------------------------------------------------------- |
-# Calculations ----
+# Calculations ERGIS results ----
 # ----------------------------------------------------------------------- |
 
 # prices
@@ -142,6 +148,20 @@ int.comparison = data.table(melt(int.comparison, id.vars = c("time","var"),
 setnames(int.comparison,c('var','variable'),c('variable','Interface'))
 
 int.comparison = data.table(dcast(int.comparison,time + Interface ~ variable,value.var = 'value'))
+int.comparison[,scenario:='ERGIS results (Nondecomposed)']
+
+# ----------------------------------------------------------------------- |
+# Calculations real data ----
+# ----------------------------------------------------------------------- |
+
+ISO.data = ISO.data[,.(time = timestamp,Interface = interface, Price = dLMP, 
+                       Interchange = interfaceflows,scenario = "ISO data (\"Decomposed\")")]
+ISO.data[,Interface:=gsub("PJM-MISO","PJM - MISO",Interface)]
+ISO.data[,Interface:=gsub("PJM-NYISO","PJM - NYISO",Interface)]
+ISO.data[,Interface:=gsub("NYISO-ISONE","NYISO - ISO-NE",Interface)]
+
+int.comparison = rbind(int.comparison[,.(Interface,Interchange,Price,scenario)],
+                       ISO.data[,.(Interface,Interchange,Price,scenario)])
 
 # ----------------------------------------------------------------------- |
 # Plot ----
@@ -152,7 +172,7 @@ p <- ggplot() + geom_point(data = int.comparison,aes(x = Interchange,y = Price,c
   scale_color_manual(values = color.code) + 
   geom_vline(xintercept = 0,size = 0.3,color = 'black') +
   geom_hline(yintercept = 0,size = 0.3,color = 'black') +
-  facet_grid(.~Interface) + plot_theme + labs(x = 'Interchange (MW)',y = 'LMP difference (USD)') +
+  facet_grid(scenario~Interface) + plot_theme + labs(x = 'Interchange (MW)',y = 'LMP difference (USD)') +
   theme(legend.position = 'none')
 
 # add quadrants
@@ -162,13 +182,13 @@ int.comparison[Price >= 0 & Interchange <= 0,quad.2:=1]
 int.comparison[Price < 0 & Interchange < 0,quad.3:=1]
 int.comparison[Price <= 0 & Interchange >= 0,quad.4:=1]
 
-quadrants = int.comparison[,lapply(.SD,mean),by = c('Interface'),
+quadrants = int.comparison[,lapply(.SD,mean),by = c('Interface','scenario'),
                            .SDcols = c('quad.1','quad.2','quad.3','quad.4')]
 
-quadrants = quadrants[,lapply(.SD,function(x) paste0(round(x*100,1),"%")),by = c('Interface'),
+quadrants = quadrants[,lapply(.SD,function(x) paste0(round(x*100,1),"%")),by = c('Interface','scenario'),
                            .SDcols = c('quad.1','quad.2','quad.3','quad.4')]
 
-quadrants = data.table(melt(quadrants,id.vars = 'Interface'))
+quadrants = data.table(melt(quadrants,id.vars = c('Interface','scenario')))
 quadrants[variable == 'quad.1',x:=4500]
 quadrants[variable == 'quad.1',y:=50]
 quadrants[variable == 'quad.2',x:=-5000]
@@ -186,7 +206,7 @@ p <- p + geom_label(data = quadrants,aes(x = x,y = y,label = value,fill = effici
   theme(legend.position = 'none')
 
 setwd(wd)
-ggsave('ERGIS_efficiencies.png',p,height = 4,width = 6.5)
+ggsave('ERGIS_efficiencies.png',p,height = 5.5,width = 6.5)
 
 
 
