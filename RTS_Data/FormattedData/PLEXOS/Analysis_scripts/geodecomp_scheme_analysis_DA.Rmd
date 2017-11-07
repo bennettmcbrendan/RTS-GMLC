@@ -1,0 +1,1087 @@
+---
+title: "GeoDecomp Scheme Analysis"
+author: "NREL"
+date: '`r format(Sys.time(), "%d %B, %Y")`'
+output:
+  word_document:
+    fig_caption: yes
+    pandoc_args: ["--smart"]
+    toc: yes
+    toc_depth: 4
+  html_document:
+    toc: yes
+    toc_depth: 4
+params:
+  Output.directory:
+    label: Pick directory to drop csvs that are written out
+    value: //plexossql/Data/bmcbenne/RTS-GMLC-decomp/RTS-GMLC/RTS_Data/FormattedData/PLEXOS/Analysis_scripts/csvs
+  Solutions.directory:
+    label: Pick directory with solutions (this should be fullpathto..HERE/Model ..
+      Solution/.db)
+    value: //plexossql/Data/bmcbenne/RTS-GMLC-geodecomp/RTS-GMLC/RTS_Data/FormattedData/PLEXOS/MIP_0.1
+    input: select
+  intervals.per.day:
+    choices:
+    - 288
+    - 96
+    - 24
+    input: select
+    label: Intervals per day
+    value: 288
+  month:
+    label: 'Month Range: (e.g., c(2:5) is Feb-May)'
+    value: c(1:12)
+always_allow_html: yes
+---
+
+
+```{r setOptions, echo=FALSE, warning=FALSE, message=FALSE, error=FALSE, cache=FALSE}
+
+# load packages
+pacman::p_load(gridExtra, rgdal, ggmap, Cairo, rgeos, maptools, lubridate, plyr, gdata, stringr, tidyr, rplexos, RSQLite, magrittr, dbplyr, lubridate, rmarkdown, scales, cowplot, data.table, fasttime,Hmisc, plotly, xtable, knitr, rmarkdown,grid,dplyr)
+
+# Set up default options for chunks, turn off error or warning messages.
+knitr::opts_chunk$set(cache = TRUE,
+                      echo=FALSE, 
+                      comment=NA, 
+                      include = FALSE, 
+                      warning=FALSE, 
+                      error=TRUE, 
+                      message=FALSE,
+                      cache.lazy = FALSE,
+                      dpi = 300,
+                      dev=c('png','svg'), fig.keep = 'all', cache = TRUE)
+
+theme_set(theme_bw())
+
+output.dir = paste(params$Output.directory, sep = "/")
+dir.create(output.dir, recursive = TRUE, showWarnings = FALSE)
+
+solutions.dir = params$Solutions.directory
+
+
+```
+
+
+```{r query-inputs}
+
+#------------------------------------------------------------------------------|
+# input solution folders and scenario names ----
+#------------------------------------------------------------------------------|
+
+LP.solutions = c('Model DAY_AHEAD_A Solution')
+
+decomposed.solutions = c('Model DAY_AHEAD_B1 Solution',
+                 'Model DAY_AHEAD_B2 Solution',
+                 'Model DAY_AHEAD_B3 Solution')
+
+nondecomposed.solutions = c('Model DAY_AHEAD Solution')
+
+scenario.names.LP <- c("LP")
+
+scenario.names.decomposed = c('1','2','3')
+
+scenario.names.nondecomposed <- c("Nondecomposed")
+
+scenario.colors <- c("Nondecomposed" = "#969696", 
+                     "LP" = "#firebrick",
+                     "1" = "skyblue",
+                     "2" = "steelblue3",
+                     "3" = "navyblue")
+
+# # process plexos solutions with rplexos if not already done so ----
+LP.solution.paths <- sapply(LP.solutions, function(x) file.path(solutions.dir,x))
+decomposed.solution.paths <- sapply(decomposed.solutions, function(x) file.path(solutions.dir,x))
+nondecomposed.solution.paths <- sapply(nondecomposed.solutions, function(x) file.path(solutions.dir,x))
+
+# paths to LP -rplexos.db
+LP.solution.dbs <- sapply(LP.solution.paths, function(x){
+  file.path(x, list.files(x, pattern = "-rplexos.db"))})
+
+LP.solution.logs <- sapply(LP.solution.paths, function(x){
+  file.path(x, list.files(x, pattern = "Log.txt"))})
+
+print(paste("LP files exist?", file.exists(LP.solution.dbs)))
+# paths to decomposed -rplexos.db
+decomposed.solution.dbs <- sapply(decomposed.solution.paths, function(x){
+  file.path(x, list.files(x, pattern = "-rplexos.db"))})
+
+decomposed.solution.logs <- sapply(decomposed.solution.paths, function(x){
+  file.path(x, list.files(x, pattern = "Log.txt"))})
+
+print(paste("Decomposed files exist?", file.exists(decomposed.solution.dbs)))
+
+# paths to nondecomposed -rplexos.db
+nondecomposed.solution.dbs <- sapply(nondecomposed.solution.paths, function(x){
+  file.path(x, list.files(x, pattern = "-rplexos.db"))})
+
+nondecomposed.solution.logs <- sapply(nondecomposed.solution.paths, function(x){
+  file.path(x, list.files(x, pattern = "Log.txt"))})
+
+print(paste("Nonecomposed files exist?", file.exists(nondecomposed.solution.dbs)))
+
+# set column names for query tables
+column.names <- c("scenario", "collection", 
+                  "property", "unit", "name", "parent", 
+                  "category", "time", "value")
+
+#------------------------------------------------------------------------------|
+# define sql query functions ----
+#------------------------------------------------------------------------------|
+
+# expand_time function
+expand_time = function(data, db.path, phaseid = 4, look.ahead = 0) {
+  setnames(data, "time_from", "time")
+  data$time = ymd_hms(data$time)
+  datadt = data.table(data, key = "key,time")
+  
+  # get time from database being queried
+  timedt = data.table(tbl(src_sqlite(db.path), sql("SELECT * FROM time")) %>% 
+                        filter(phase_id == phaseid) %>% collect())
+  timedt$time = ymd_hms(timedt$time)  #R format time
+  
+  # drop extra look ahead days
+  keep.days = unique(timedt[,.(day = floor_date(time, unit = "day"))])
+  keep.days = keep.days[1:(nrow(keep.days) - look.ahead)]
+  timedt = timedt[floor_date(time, unit = "day") %in% keep.days$day,]
+  
+  # Expand data
+  cj2 = CJ(key = unique(datadt$key), time = timedt$time)
+  cj3 = datadt[cj2, roll = TRUE]
+  
+  # Restore timezone (UTC)
+  attributes(cj3$time) = attributes(timedt$time)
+  cj3 = cj3[, `:=`(time_to, NULL)]
+  
+  cj3
+}
+
+# error handling function
+error_handler <- function(query){
+  result <- tryCatch(query,error = function(cond) { return('ERROR') } )
+  if(class(result)[1] != "character"){
+    if(nrow(result) == 0) {result <- 'ERROR'}
+  }
+  return(result)
+}
+
+# size of text in plots
+large.text.size <- 7.875
+small.text.size <- 6.87495
+text.plot = 11*(0.75)
+
+# plot theme
+plot_theme <- 
+    theme(legend.key = element_rect(color = "grey80", size = 0.8), 
+          legend.key.size = grid::unit(1.0, "lines"),
+          legend.text = element_text(size = small.text.size), 
+          legend.title = element_blank(), 
+          axis.text = element_text(size = small.text.size), 
+          axis.text.x = element_text(size = small.text.size),
+          axis.title = element_text(size = large.text.size, face = "bold"),
+          axis.title.x= element_text(size=large.text.size, vjust = 1.2, face = "bold"),
+          axis.title.y = element_text(size=large.text.size, vjust = 1.2, face = "bold"),
+          strip.text = element_text(size=small.text.size),
+          panel.spacing = unit(0.5, "lines"))
+
+```
+
+
+```{r queries, eval = TRUE}
+
+# if you have problems with query only taking first 100,000 lines, get latest version of Rcpp, dbplyr and dplyr.
+# think it also may help to load dbplyr before dplyr
+
+# 1) total generation
+
+message('starting 1')
+
+total.decomposed.generation <- data.table()
+  for(i in 1:length(scenario.names.decomposed)){
+    total.decomposed.generation = error_handler(rbind(total.decomposed.generation,
+                                        data.table(tbl(src_sqlite(decomposed.solution.dbs[i]), 
+                                        sql("SELECT * FROM year WHERE collection IS 
+                                        'Generator' AND property IS 'Generation'")) %>% 
+                                        filter(phase_id == 4) %>% select(one_of(c(column.names[-1],"region"))) %>% 
+                                        dplyr::mutate(scenario = scenario.names.decomposed[i]) %>% 
+                                        collect(n = Inf))))
+  }
+
+total.nondecomposed.generation <- data.table()
+  for(i in 1:length(scenario.names.nondecomposed)){
+    total.nondecomposed.generation = error_handler(rbind(total.nondecomposed.generation,
+                                        data.table(tbl(src_sqlite(nondecomposed.solution.dbs[i]), 
+                                        sql("SELECT * FROM year WHERE collection IS 
+                                        'Generator' AND property IS 'Generation'")) %>% 
+                                        filter(phase_id == 4) %>% select(one_of(c(column.names[-1],"region"))) %>% 
+                                        dplyr::mutate(scenario = scenario.names.nondecomposed[i]) %>% 
+                                        collect(n = Inf))))
+  }
+
+total.LP.generation <- data.table()
+  for(i in 1:length(scenario.names.LP)){
+    total.LP.generation = error_handler(rbind(total.LP.generation,
+                                        data.table(tbl(src_sqlite(LP.solution.dbs[i]), 
+                                        sql("SELECT * FROM year WHERE collection IS 
+                                        'Generator' AND property IS 'Generation'")) %>% 
+                                        filter(phase_id == 4) %>% select(one_of(c(column.names[-1],"region"))) %>% 
+                                        dplyr::mutate(scenario = scenario.names.LP[i]) %>% 
+                                        collect(n = Inf))))
+  }
+
+# 2) interval generation
+
+message('starting 2')
+
+ interval.decomposed.generation <- data.table()
+  
+  for(i in 1:length(scenario.names.decomposed)){
+    
+    interval.decomposed.generation <- error_handler(rbind(interval.decomposed.generation,
+                        expand_time(data.table(tbl(src_sqlite(decomposed.solution.dbs[i]), 
+                        sql("SELECT key, name, category, time_from, time_to, value, property, region 
+                        FROM Generator_Generation 
+                        WHERE phase_id IS 4")) %>% 
+                        dplyr::mutate(scenario = scenario.names.decomposed[i]) %>% 
+                        collect(n = Inf)),decomposed.solution.dbs[i])))
+  }
+ 
+  interval.nondecomposed.generation <- data.table()
+  
+  for(i in 1:length(scenario.names.nondecomposed)){
+    
+    interval.nondecomposed.generation <- error_handler(rbind(interval.nondecomposed.generation,
+                        expand_time(data.table(tbl(src_sqlite(nondecomposed.solution.dbs[i]), 
+                        sql("SELECT key, name, category, time_from, time_to, value, property, region 
+                        FROM Generator_Generation 
+                        WHERE phase_id IS 4")) %>% 
+                        dplyr::mutate(scenario = scenario.names.nondecomposed[i]) %>% 
+                        collect(n = Inf)),nondecomposed.solution.dbs[i])))
+  }
+  
+  interval.LP.generation <- data.table()
+  
+  for(i in 1:length(scenario.names.LP)){
+    
+    interval.LP.generation <- error_handler(rbind(interval.LP.generation,
+                        expand_time(data.table(tbl(src_sqlite(LP.solution.dbs[i]), 
+                        sql("SELECT key, name, category, time_from, time_to, value, property, region 
+                        FROM Generator_Generation 
+                        WHERE phase_id IS 4")) %>% 
+                        dplyr::mutate(scenario = scenario.names.LP[i]) %>% 
+                        collect(n = Inf)),LP.solution.dbs[i])))
+  }
+
+# 3) total available capacity
+
+message('starting 3')
+
+total.decomposed.avail.cap <- data.table()
+  for(i in 1:length(scenario.names.decomposed)){
+    total.decomposed.avail.cap = error_handler(rbind(total.decomposed.avail.cap,
+                                        data.table(tbl(src_sqlite(decomposed.solution.dbs[i]), 
+                                        sql("SELECT * FROM year WHERE collection IS 
+                                        'Generator' AND property IS 'Available Energy'")) %>% 
+                                        filter(phase_id == 4) %>% select(one_of(c(column.names[-1],"region"))) %>% 
+                                        dplyr::mutate(scenario = scenario.names.decomposed[i]) %>% 
+                                        collect(n = Inf))))
+  }
+
+total.nondecomposed.avail.cap <- data.table()
+  for(i in 1:length(scenario.names.nondecomposed)){
+    total.nondecomposed.avail.cap = error_handler(rbind(total.nondecomposed.avail.cap,
+                                        data.table(tbl(src_sqlite(nondecomposed.solution.dbs[i]), 
+                                        sql("SELECT * FROM year WHERE collection IS 
+                                        'Generator' AND property IS 'Available Energy'")) %>% 
+                                        filter(phase_id == 4) %>% select(one_of(c(column.names[-1],"region"))) %>% 
+                                        dplyr::mutate(scenario = scenario.names.nondecomposed[i]) %>% 
+                                        collect(n = Inf))))
+  }
+
+  
+
+# 4) interval available capacity
+
+message('starting 4')
+
+ interval.decomposed.avail.cap <- data.table()
+  
+  for(i in 1:length(scenario.names.decomposed)){
+    
+    interval.decomposed.avail.cap <- error_handler(rbind(interval.decomposed.avail.cap,
+                        expand_time(data.table(tbl(src_sqlite(decomposed.solution.dbs[i]), 
+                        sql("SELECT key, name, category, time_from, time_to, value, property, region 
+                        FROM Generator_AvailableCapacity 
+                        WHERE phase_id IS 4")) %>% 
+                        dplyr::mutate(scenario = scenario.names.decomposed[i]) %>% 
+                        collect(n = Inf)),decomposed.solution.dbs[i])))
+  }
+ 
+  interval.nondecomposed.avail.cap <- data.table()
+  
+  for(i in 1:length(scenario.names.nondecomposed)){
+    
+    interval.nondecomposed.avail.cap <- error_handler(rbind(interval.nondecomposed.avail.cap,
+                        expand_time(data.table(tbl(src_sqlite(nondecomposed.solution.dbs[i]), 
+                        sql("SELECT key, name, category, time_from, time_to, value, property, region 
+                        FROM Generator_AvailableCapacity 
+                        WHERE phase_id IS 4")) %>% 
+                        dplyr::mutate(scenario = scenario.names.nondecomposed[i]) %>% 
+                        collect(n = Inf)),nondecomposed.solution.dbs[i])))
+  }
+
+
+# 5) total production cost
+
+message('starting 5')
+
+total.decomposed.cost <- data.table()
+  for(i in 1:length(scenario.names.decomposed)){
+    total.decomposed.cost = error_handler(rbind(total.decomposed.cost,
+                                        data.table(tbl(src_sqlite(decomposed.solution.dbs[i]), 
+                                        sql("SELECT * FROM year WHERE collection IS 
+                                        'Generator' AND property IS 'Total Generation Cost'")) %>% 
+                                        filter(phase_id == 4) %>% select(one_of(c(column.names[-1],"region"))) %>% 
+                                        dplyr::mutate(scenario = scenario.names.decomposed[i]) %>% 
+                                        collect(n = Inf))))
+  }
+
+total.nondecomposed.cost <- data.table()
+  for(i in 1:length(scenario.names.nondecomposed)){
+    total.nondecomposed.cost = error_handler(rbind(total.nondecomposed.cost,
+                                        data.table(tbl(src_sqlite(nondecomposed.solution.dbs[i]), 
+                                        sql("SELECT * FROM year WHERE collection IS 
+                                        'Generator' AND property IS 'Total Generation Cost'")) %>% 
+                                        filter(phase_id == 4) %>% select(one_of(c(column.names[-1],"region"))) %>% 
+                                        dplyr::mutate(scenario = scenario.names.nondecomposed[i]) %>% 
+                                        collect(n = Inf))))
+  }
+
+total.LP.cost <- data.table()
+  for(i in 1:length(scenario.names.LP)){
+    total.LP.cost = error_handler(rbind(total.LP.cost,
+                                        data.table(tbl(src_sqlite(LP.solution.dbs[i]), 
+                                        sql("SELECT * FROM year WHERE collection IS 
+                                        'Generator' AND property IS 'Total Generation Cost'")) %>% 
+                                        filter(phase_id == 4) %>% select(one_of(c(column.names[-1],"region"))) %>% 
+                                        dplyr::mutate(scenario = scenario.names.LP[i]) %>% 
+                                        collect(n = Inf))))
+  }
+
+# 6) interval production cost
+
+message('starting 6')
+
+ interval.decomposed.cost <- data.table()
+  
+  for(i in 1:length(scenario.names.decomposed)){
+    
+    interval.decomposed.cost <- error_handler(rbind(interval.decomposed.cost,
+                        expand_time(data.table(tbl(src_sqlite(decomposed.solution.dbs[i]), 
+                        sql("SELECT key, name, category, time_from, time_to, value, property, region 
+                        FROM Generator_GenerationCost 
+                        WHERE phase_id IS 4")) %>% 
+                        dplyr::mutate(scenario = scenario.names.decomposed[i]) %>% 
+                        collect(n = Inf)),decomposed.solution.dbs[i])))
+  }
+ 
+  interval.nondecomposed.cost <- data.table()
+  
+  for(i in 1:length(scenario.names.nondecomposed)){
+    
+    interval.nondecomposed.cost <- error_handler(rbind(interval.nondecomposed.cost,
+                        expand_time(data.table(tbl(src_sqlite(nondecomposed.solution.dbs[i]), 
+                        sql("SELECT key, name, category, time_from, time_to, value, property, region 
+                        FROM Generator_GenerationCost 
+                        WHERE phase_id IS 4")) %>% 
+                        dplyr::mutate(scenario = scenario.names.nondecomposed[i]) %>% 
+                        collect(n = Inf)),nondecomposed.solution.dbs[i])))
+  }
+
+
+  # 7) total unserved energy
+  
+    total.decomposed.use <- data.table()
+  for(i in 1:length(scenario.names.decomposed)){
+     total.decomposed.use <- error_handler(rbind(total.decomposed.use,
+                                        data.table(tbl(src_sqlite(decomposed.solution.dbs[i]), 
+                                        sql("SELECT * FROM year WHERE collection IS 
+                                        'Region' AND property IS 'Unserved Energy'")) %>% 
+                                        filter(phase_id == 4) %>% select(one_of(column.names[-1])) %>% 
+                                        dplyr::mutate(scenario = scenario.names.decomposed[i]) %>% 
+                                        collect(n = Inf))))
+  }
+    
+    total.nondecomposed.use <- data.table()
+  for(i in 1:length(scenario.names.nondecomposed)){
+     total.nondecomposed.use <- error_handler(rbind(total.nondecomposed.use,
+                                        data.table(tbl(src_sqlite(nondecomposed.solution.dbs[i]), 
+                                        sql("SELECT * FROM year WHERE collection IS 
+                                        'Region' AND property IS 'Unserved Energy'")) %>% 
+                                        filter(phase_id == 4) %>% select(one_of(column.names[-1])) %>% 
+                                        dplyr::mutate(scenario = scenario.names.nondecomposed[i]) %>% 
+                                        collect(n = Inf))))
+  }
+    
+       total.LP.use <- data.table()
+  for(i in 1:length(scenario.names.LP)){
+     total.LP.use <- error_handler(rbind(total.LP.use,
+                                        data.table(tbl(src_sqlite(LP.solution.dbs[i]), 
+                                        sql("SELECT * FROM year WHERE collection IS 
+                                        'Region' AND property IS 'Unserved Energy'")) %>% 
+                                        filter(phase_id == 4) %>% select(one_of(column.names[-1])) %>% 
+                                        dplyr::mutate(scenario = scenario.names.LP[i]) %>% 
+                                        collect(n = Inf))))
+  }
+  
+  
+  # 8) total dump energy
+  
+   total.decomposed.dump <- data.table()
+  for(i in 1:length(scenario.names.decomposed)){
+     total.decomposed.dump <- error_handler(rbind(total.decomposed.dump,
+                                        data.table(tbl(src_sqlite(decomposed.solution.dbs[i]), 
+                                        sql("SELECT * FROM year WHERE collection IS 
+                                        'Region' AND property IS 'Dump Energy'")) %>% 
+                                        filter(phase_id == 4) %>% select(one_of(column.names[-1])) %>% 
+                                        dplyr::mutate(scenario = scenario.names.decomposed[i]) %>% 
+                                        collect(n = Inf))))
+  }
+    
+    total.nondecomposed.dump <- data.table()
+  for(i in 1:length(scenario.names.nondecomposed)){
+     total.nondecomposed.dump <- error_handler(rbind(total.nondecomposed.dump,
+                                        data.table(tbl(src_sqlite(nondecomposed.solution.dbs[i]), 
+                                        sql("SELECT * FROM year WHERE collection IS 
+                                        'Region' AND property IS 'Dump Energy'")) %>% 
+                                        filter(phase_id == 4) %>% select(one_of(column.names[-1])) %>% 
+                                        dplyr::mutate(scenario = scenario.names.nondecomposed[i]) %>% 
+                                        collect(n = Inf))))
+  }
+    
+     total.LP.dump <- data.table()
+  for(i in 1:length(scenario.names.LP)){
+     total.LP.dump <- error_handler(rbind(total.LP.dump,
+                                        data.table(tbl(src_sqlite(LP.solution.dbs[i]), 
+                                        sql("SELECT * FROM year WHERE collection IS 
+                                        'Region' AND property IS 'Dump Energy'")) %>% 
+                                        filter(phase_id == 4) %>% select(one_of(column.names[-1])) %>% 
+                                        dplyr::mutate(scenario = scenario.names.LP[i]) %>% 
+                                        collect(n = Inf))))
+  }
+    
+    
+    # 9) interval line flow
+  
+    interval.decomposed.flow <- data.table()
+  
+  for(i in 1:length(scenario.names.decomposed)){
+    
+    interval.decomposed.flow <- error_handler(rbind(interval.decomposed.flow,
+                        expand_time(data.table(tbl(src_sqlite(decomposed.solution.dbs[i]), 
+                        sql("SELECT key, name, category, time_from, time_to, value, property, region 
+                        FROM Line_Flow 
+                        WHERE phase_id IS 4")) %>% 
+                        dplyr::mutate(scenario = scenario.names.decomposed[i]) %>% 
+                        collect(n = Inf)),decomposed.solution.dbs[i])))
+  }
+    
+     interval.nondecomposed.flow <- data.table()
+  
+  for(i in 1:length(scenario.names.nondecomposed)){
+    
+    interval.nondecomposed.flow <- error_handler(rbind(interval.nondecomposed.flow,
+                        expand_time(data.table(tbl(src_sqlite(nondecomposed.solution.dbs[i]), 
+                        sql("SELECT key, name, category, time_from, time_to, value, property, region 
+                        FROM Line_Flow 
+                        WHERE phase_id IS 4")) %>% 
+                        dplyr::mutate(scenario = scenario.names.nondecomposed[i]) %>% 
+                        collect(n = Inf)),nondecomposed.solution.dbs[i])))
+  }
+     
+     # 10) Line limits
+     
+    line.nondecomposed.limits <- data.table()
+    
+    for(i in 1:length(scenario.names.nondecomposed)){
+            line.nondecomposed.limits <- error_handler(rbind(line.nondecomposed.limits,
+                                        data.table(tbl(src_sqlite(nondecomposed.solution.dbs[i]), 
+                                        sql("SELECT * FROM year WHERE collection IS 
+                                        'Line' AND property IS 'Export Limit'")) %>% 
+                                        filter(phase_id == 4) %>% select(one_of(column.names[-1])) %>% 
+                                        dplyr::mutate(scenario = scenario.names.nondecomposed[i]) %>% 
+                                        collect(n = Inf))))
+    }
+    
+    for(i in 1:length(scenario.names.nondecomposed)){
+            line.nondecomposed.limits <- error_handler(rbind(line.nondecomposed.limits,
+                                        data.table(tbl(src_sqlite(nondecomposed.solution.dbs[i]), 
+                                        sql("SELECT * FROM year WHERE collection IS 
+                                        'Line' AND property IS 'Import Limit'")) %>% 
+                                        filter(phase_id == 4) %>% select(one_of(column.names[-1])) %>% 
+                                        dplyr::mutate(scenario = scenario.names.nondecomposed[i]) %>% 
+                                        collect(n = Inf))))
+    }
+    
+    line.nondecomposed.limits = data.table(dcast(line.nondecomposed.limits,scenario + name + category ~ property,value.var = 'value'))
+    
+    # 11) interval region load
+    
+     interval.decomposed.load <- data.table()
+  
+  for(i in 1:length(scenario.names.decomposed)){
+    
+    interval.decomposed.load <- error_handler(rbind(interval.decomposed.load,
+                        expand_time(data.table(tbl(src_sqlite(decomposed.solution.dbs[i]), 
+                        sql("SELECT key, name, category, time_from, time_to, value, property 
+                        FROM Region_Load 
+                        WHERE phase_id IS 4")) %>% 
+                        dplyr::mutate(scenario = scenario.names.decomposed[i]) %>% 
+                        collect(n = Inf)),decomposed.solution.dbs[i])))
+  }
+ 
+  interval.nondecomposed.load <- data.table()
+  
+  for(i in 1:length(scenario.names.nondecomposed)){
+    
+    interval.nondecomposed.load <- error_handler(rbind(interval.nondecomposed.load,
+                        expand_time(data.table(tbl(src_sqlite(nondecomposed.solution.dbs[i]), 
+                        sql("SELECT key, name, category, time_from, time_to, value, property 
+                        FROM Region_Load 
+                        WHERE phase_id IS 4")) %>% 
+                        dplyr::mutate(scenario = scenario.names.nondecomposed[i]) %>% 
+                        collect(n = Inf)),nondecomposed.solution.dbs[i])))
+  }
+  
+  interval.LP.load <- data.table()
+  
+  for(i in 1:length(scenario.names.LP)){
+    
+    interval.LP.load <- error_handler(rbind(interval.LP.load,
+                        expand_time(data.table(tbl(src_sqlite(LP.solution.dbs[i]), 
+                        sql("SELECT key, name, category, time_from, time_to, value, property 
+                        FROM Region_Load 
+                        WHERE phase_id IS 4")) %>% 
+                        dplyr::mutate(scenario = scenario.names.LP[i]) %>% 
+                        collect(n = Inf)),LP.solution.dbs[i])))
+  }
+    
+    
+    
+    # 12) interval units out
+    
+     interval.decomposed.units.out <- data.table()
+  
+  for(i in 1:length(scenario.names.decomposed)){
+    
+    interval.decomposed.units.out <- error_handler(rbind(interval.decomposed.units.out,
+                        expand_time(data.table(tbl(src_sqlite(decomposed.solution.dbs[i]), 
+                        sql("SELECT key, name, category, time_from, time_to, value, property, region 
+                        FROM Generator_UnitsOut 
+                        WHERE phase_id IS 4")) %>% 
+                        dplyr::mutate(scenario = scenario.names.decomposed[i]) %>% 
+                        collect(n = Inf)),decomposed.solution.dbs[i])))
+  }
+ 
+  interval.nondecomposed.units.out <- data.table()
+  
+  for(i in 1:length(scenario.names.nondecomposed)){
+    
+    interval.nondecomposed.units.out <- error_handler(rbind(interval.nondecomposed.units.out,
+                        expand_time(data.table(tbl(src_sqlite(nondecomposed.solution.dbs[i]), 
+                        sql("SELECT key, name, category, time_from, time_to, value, property, region 
+                        FROM Generator_UnitsOut 
+                        WHERE phase_id IS 4")) %>% 
+                        dplyr::mutate(scenario = scenario.names.nondecomposed[i]) %>% 
+                        collect(n = Inf)),nondecomposed.solution.dbs[i])))
+  }
+  
+   interval.LP.units.out <- data.table()
+  
+  for(i in 1:length(scenario.names.LP)){
+    
+    interval.LP.units.out <- error_handler(rbind(interval.LP.units.out,
+                        expand_time(data.table(tbl(src_sqlite(LP.solution.dbs[i]), 
+                        sql("SELECT key, name, category, time_from, time_to, value, property, region 
+                        FROM Generator_UnitsOut 
+                        WHERE phase_id IS 4")) %>% 
+                        dplyr::mutate(scenario = scenario.names.LP[i]) %>% 
+                        collect(n = Inf)),LP.solution.dbs[i])))
+  }
+  
+  # 13) interval da reserve provision
+  
+  interval.decomposed.reserve.provision <- data.table()
+
+  for(i in 1:length(scenario.names.decomposed)){
+  
+    interval.decomposed.reserve.provision <- rbind(interval.decomposed.reserve.provision,
+                                expand_time(data.table(tbl(src_sqlite(decomposed.solution.dbs[i]), 
+                                sql("SELECT * 
+                                FROM ReserveGenerators_Provision 
+                                WHERE phase_id IS 4")) %>% 
+                                dplyr::mutate(scenario = scenario.names.decomposed[i]) %>% 
+                                collect(n = Inf)),decomposed.solution.dbs[i]))
+  }
+  
+  # 14) interval da reserve shortage
+  
+    interval.decomposed.reserve.shortage <- data.table()
+
+  for(i in 1:length(scenario.names.decomposed)){
+  
+    interval.decomposed.reserve.shortage <- rbind(interval.decomposed.reserve.shortage,
+                                expand_time(data.table(tbl(src_sqlite(decomposed.solution.dbs[i]), 
+                                sql("SELECT * 
+                                FROM Reserve_Shortage 
+                                WHERE phase_id IS 4")) %>% 
+                                dplyr::mutate(scenario = scenario.names.decomposed[i]) %>% 
+                                collect(n = Inf)),decomposed.solution.dbs[i]))
+  }
+    
+    interval.LP.reserve.provision <- data.table()
+
+  for(i in 1:length(scenario.names.LP)){
+  
+    interval.LP.reserve.provision <- rbind(interval.LP.reserve.provision,
+                                expand_time(data.table(tbl(src_sqlite(LP.solution.dbs[i]), 
+                                sql("SELECT * 
+                                FROM ReserveGenerators_Provision 
+                                WHERE phase_id IS 4")) %>% 
+                                dplyr::mutate(scenario = scenario.names.LP[i]) %>% 
+                                collect(n = Inf)),LP.solution.dbs[i]))
+  }
+    
+    # 15) matpower flows
+    
+decomposed.flows = "//nrelqnap01d/PLEXOS/Projects/GMLC-MSPCM/geo-decomp-matpower-solns/flow_decomposed.csv"
+nondecomposed.flows = "//nrelqnap01d/PLEXOS/Projects/GMLC-MSPCM/geo-decomp-matpower-solns/flow_non-decomposed.csv"
+
+decomposed.flows = fread(decomposed.flows)
+nondecomposed.flows = fread(nondecomposed.flows)
+
+# decomposed flow
+names(decomposed.flows) = paste0(decomposed.flows[1,],"_",decomposed.flows[2,],"_",seq(length(decomposed.flows[1,])))
+setnames(decomposed.flows,names(decomposed.flows)[grepl("NaN",names(decomposed.flows))],"Period")
+decomposed.flows = decomposed.flows[!(is.nan(Period))]
+
+decomposed.flows = data.table(melt(decomposed.flows,id.vars = "Period",
+                            measure.vars = names(decomposed.flows)[!grepl("Period",names(decomposed.flows))]))
+decomposed.flows[,c("Node.From","Node.To"):=tstrsplit(as.character(variable),"_")[1:2]]
+decomposed.flows[,scenario:="Decomposed"]
+decomposed.flows[,variable:=NULL]
+
+# nondecomposed flow
+names(nondecomposed.flows) = paste0(nondecomposed.flows[1,],"_",nondecomposed.flows[2,],"_",seq(length(nondecomposed.flows[1,])))
+setnames(nondecomposed.flows,names(nondecomposed.flows)[grepl("NaN",names(nondecomposed.flows))],"Period")
+nondecomposed.flows = nondecomposed.flows[!(is.nan(Period))]
+
+nondecomposed.flows = data.table(melt(nondecomposed.flows,id.vars = "Period",
+                                       measure.vars = names(nondecomposed.flows)[!grepl("Period",names(nondecomposed.flows))]))
+nondecomposed.flows[,c("Node.From","Node.To"):=tstrsplit(as.character(variable),"_")[1:2]]
+nondecomposed.flows[,scenario:="Non-decomposed"]
+nondecomposed.flows[,variable:=NULL]
+
+flow.data = rbind(decomposed.flows,nondecomposed.flows)
+
+flow.data[,Region.From:=substr(Node.From,1,1)]
+flow.data[,Region.To:=substr(Node.To,1,1)]
+flow.data = flow.data[!(Region.From==Region.To)]
+flow.data[,Interface:=paste0(pmin(Region.From,Region.To)," - ",pmax(Region.From,Region.To))]
+
+flow.data[Region.From>Region.To,value:=(-1)*value]
+flow.data = flow.data[,lapply(.SD,sum),by = c('Interface','Period','scenario'),.SDcols = 'value']
+setnames(flow.data,'value','Flow')
+
+interface.limits = line.nondecomposed.limits[grepl("Interregion",category)]
+interface.limits[grepl("AB",name),Interface:="1 - 2"]
+interface.limits[grepl("CA",name),Interface:="1 - 3"]
+interface.limits[grepl("CB",name),Interface:="2 - 3"]
+interface.limits = interface.limits[,lapply(.SD,sum),by = "Interface",
+                                    .SDcols = c("Import Limit","Export Limit")]
+
+flow.data = merge(flow.data,interface.limits,by = "Interface")
+    
+    
+
+```
+
+
+# Sanity checks
+
+```{r sanity-checks,include = FALSE,eval = TRUE}
+
+# 1) is generation outside the focus region the same in stages A and B
+
+sanity.check.gen = rbind(interval.decomposed.generation,
+                         interval.LP.generation)
+
+sanity.check.gen = data.table(dcast(sanity.check.gen,name + time + region ~ scenario,
+                                    value.var = 'value'))
+
+sanity.check.gen[,`1`:=`1` - `LP`]
+sanity.check.gen[,`2`:=`2` - `LP`]
+sanity.check.gen[,`3`:=`3` - `LP`]
+
+sanity.check.fixed.gen = copy(sanity.check.gen[grepl('HYDRO|RTPV',name)])
+
+sanity.check.gen = sanity.check.gen[((region %in% c(2,3)) & `1` > 10^(-6))|
+                                    ((region %in% c(1,3)) & `2` > 10^(-6))|
+                                    ((region %in% c(1,2)) & `3` > 10^(-6))]
+
+if(nrow(sanity.check.gen) > 0){
+  message("Non-focus generation is different between stages A and B")
+}
+
+# 1a) RTPV and hydro in focus region
+
+sanity.check.fixed.gen = sanity.check.fixed.gen[((region %in% c(1)) & `1` > 0)|
+                                    ((region %in% c(2)) & `2` > 0)|
+                                    ((region %in% c(3)) & `3` > 0)]
+
+if(nrow(sanity.check.fixed.gen) > 0){
+  message("Focus region hydro and RTPV generation differs between stages A and B")
+}
+
+# 2) is load the same in stages A and B
+
+sanity.check.load = rbind(interval.decomposed.load,
+                         interval.LP.load)
+
+sanity.check.load = data.table(dcast(sanity.check.load,name + time ~ scenario,
+                                    value.var = 'value'))
+
+sanity.check.load[,`1`:=`1` - `LP`]
+sanity.check.load[,`2`:=`2` - `LP`]
+sanity.check.load[,`3`:=`3` - `LP`]
+
+sanity.check.load = sanity.check.load[(name %in% c(2,3) & (`1` > 10^(-6)))|
+                                      (name %in% c(1,3) & (`2` > 10^(-6)))|
+                                      (name %in% c(1,2) & (`3` > 10^(-6)))]
+
+if(nrow(sanity.check.load) > 0){
+  message("Non-focus load is different between stages A and B")
+}
+
+# 3) are outages the same in stages A, B
+
+sanity.check.outages = rbind(interval.decomposed.units.out,
+                             interval.LP.units.out)
+
+sanity.check.outages = data.table(dcast(sanity.check.outages,name + time + region ~ scenario,
+                                    value.var = 'value'))
+
+sanity.check.outages = sanity.check.outages[(region %in% c(1) & `1` != `LP`)|
+                                            (region %in% c(2) & `2` != `LP`)|
+                                            (region %in% c(3) & `3` != `LP`)]
+
+if(nrow(sanity.check.outages) > 0){
+  message("Focus region outages differ between stages A and B")
+}
+
+# 4) are reserves served in focus regions the same as LP?
+
+int.reserve.provision = interval.decomposed.reserve.provision[,
+                          lapply(.SD,sum),by = c('parent','time'),
+                          .SDcols = 'value']
+
+int.reserve.shortage = interval.decomposed.reserve.shortage[,
+                          lapply(.SD,sum),by = c('name','time'),
+                          .SDcols = 'value']
+
+setnames(int.reserve.provision,c('parent','value'),c('name','provision'))
+setnames(int.reserve.shortage,c('value'),c('shortage'))
+
+sanity.check.reserves = merge(int.reserve.provision,
+                              int.reserve.shortage,
+                              by = c('name','time'))
+
+sanity.check.reserves[,value:=provision + shortage]
+
+# compare to LP
+int.reserve.provision = interval.LP.reserve.provision[,
+                          lapply(.SD,sum),by = c('parent','region','time'),
+                          .SDcols = 'value']
+setnames(int.reserve.provision,c('parent','value'),c('name','requirement'))
+int.reserve.provision[,name:=paste0(name,"_R",region)]
+int.reserve.provision[,region:=NULL]
+
+sanity.check.reserves = merge(sanity.check.reserves,
+                              int.reserve.provision,
+                              by = c('name','time'))
+
+
+sanity.check.reserves = sanity.check.reserves[abs(value-requirement)>10^(-2)]
+
+if(nrow(sanity.check.reserves) > 0){
+  message("Reserves served in Stage A do not match reserves required in Stage B")
+}
+
+rm(sanity.check.gen,sanity.check.fixed.gen,sanity.check.load,sanity.check.outages,sanity.check.reserves)
+
+```
+
+
+# Metrics
+
+```{r metrics-table, include=FALSE,eval = TRUE, fig.width=6, fig.height=3}
+
+
+metrics.table.use = rbind(total.decomposed.use[name == scenario,
+                                           lapply(.SD,sum),by=c('scenario'),.SDcols = 'value'],
+                      total.nondecomposed.use[,lapply(.SD,sum),by=c('scenario'),.SDcols = 'value'],
+                      total.LP.use[,lapply(.SD,sum),by=c('scenario'),.SDcols = 'value'])
+setnames(metrics.table.use,'value','Unserved Energy (GWh)')
+
+metrics.table.dump = rbind(total.decomposed.dump[name == scenario,
+                                           lapply(.SD,sum),by=c('scenario'),.SDcols = 'value'],
+                      total.nondecomposed.dump[,lapply(.SD,sum),by=c('scenario'),.SDcols = 'value'],
+                      total.LP.dump[,lapply(.SD,sum),by=c('scenario'),.SDcols = 'value'])
+setnames(metrics.table.dump,'value','Dump Energy (GWh)')
+
+metrics.table.cost = rbind(total.decomposed.cost[region == scenario,
+                                           lapply(.SD,sum),by=c('scenario'),.SDcols = 'value'],
+                      total.nondecomposed.cost[,lapply(.SD,sum),by=c('scenario'),.SDcols = 'value'],
+                      total.LP.cost[,lapply(.SD,sum),by=c('scenario'),.SDcols = 'value'])
+setnames(metrics.table.cost,'value','Production Cost (000s)')
+
+gen.table = rbind(total.decomposed.generation[region == scenario,
+                                        lapply(.SD,sum),by=c('scenario','category'),.SDcols = 'value'],
+              total.nondecomposed.generation[,lapply(.SD,sum),by=c('scenario','category'),.SDcols = 'value'],
+              total.LP.generation[,lapply(.SD,sum),by=c('scenario','category'),.SDcols = 'value'])
+
+gen.table[,category:=paste0(category,' (GWh)')]
+gen.table = data.table(dcast(gen.table,
+                                scenario ~ category,value.var = 'value'))
+
+metrics.table = merge(metrics.table.use,metrics.table.dump,by = 'scenario')
+metrics.table = merge(metrics.table,metrics.table.cost,by = 'scenario')
+metrics.table = merge(metrics.table,gen.table,by = 'scenario')
+
+rm(metrics.table.use,metrics.table.dump,metrics.table.cost,gen.table)
+
+scenario.names.all = c(scenario.names.LP,scenario.names.nondecomposed,scenario.names.decomposed)
+all.solution.logs = c(LP.solution.logs,nondecomposed.solution.logs,decomposed.solution.logs)
+for(i in 1:length(scenario.names.all)){
+
+    log.txt <- readLines(all.solution.logs[i])
+
+    log.txt = log.txt[length(log.txt)]
+    
+    log.txt = strsplit(log.txt,'Time: ')[[1]][2]
+    
+    metrics.table[scenario == scenario.names.all[i],Time:=log.txt]
+
+}
+
+```
+
+
+```{r metrics-table-print, include=TRUE,eval = TRUE, fig.width=6, fig.height=3}
+
+kable(metrics.table)
+
+
+```
+
+# Unit commitment plot
+
+```{r commit-plot, include=FALSE,eval = TRUE, fig.width=3.5, fig.height=3.5}
+
+
+int.gen = rbind(interval.decomposed.generation[region == scenario & 
+                                    grepl('Nuclear|Coal|Gas|Oil',category),
+                                    .(scenario = 'Decomposed',time,name,category,region,value)],
+                
+                interval.nondecomposed.generation[grepl('Nuclear|Coal|Gas|Oil',category),
+                                    .(scenario = 'Non-decomposed',time,name,category,region,value)])
+
+int.gen[grepl('Gas',category),category:='Gas']
+int.gen[grepl('Oil',category),category:='Oil']
+
+int.gen[,commit:= ifelse(value > 0.0001,100,0)]
+
+int.gen = data.table(dcast(int.gen,time + name + category + region ~ scenario,
+                           value.var = 'commit'))
+
+int.gen[,commit.diff:=ifelse(`Decomposed` == `Non-decomposed`,
+                             0,100)]
+
+int.gen[,month:=month.abb[month(time)]]
+int.gen[,fill.group:= 'Discrepancy in unit commitment']
+
+# get time
+month.time = unique(int.gen[day(time) == 1 &
+                               hour(time) == 0 &
+                               minute(time) == 0,
+                    .(month,time)])
+
+int.gen = int.gen[,lapply(.SD,mean),by = c('month','category','fill.group'),
+                        .SDcols = c("Decomposed",
+                                    "Non-decomposed",
+                                    "commit.diff")]
+
+int.gen = merge(int.gen,month.time,by = 'month')
+
+int.gen = data.table(melt(int.gen,id.vars = c('month','time','category','fill.group','commit.diff'),
+                          measure.vars = c('Decomposed','Non-decomposed')))
+
+int.gen[,variable:=paste0('Fraction of time committed - ',variable)]
+
+category.order = c('Oil','Gas','Coal','Nuclear')
+int.gen$category = factor(int.gen$category,levels = category.order)
+
+p <- ggplot() + geom_bar(data = unique(int.gen[,.(time,commit.diff,fill.group,category)]),
+                                aes(x = time,
+                                y = commit.diff,
+                                fill = fill.group,
+                                group = 1),
+                         color = 'black',
+                         stat = 'identity') + 
+      scale_fill_manual(values = c('Discrepancy in unit commitment' = 'steelblue3')) + 
+      geom_line(data = int.gen,aes(x = time,y = value, linetype = variable)) + 
+      scale_linetype_manual(values = c("Fraction of time committed - Decomposed" = "dashed",
+                                    "Fraction of time committed - Non-decomposed" = "solid")) +
+      facet_wrap(~category,scales = 'free',ncol = 1) + 
+      scale_x_datetime(labels = date_format("%b"),breaks=date_breaks('1 month'), expand = c(0, 0)) +
+      labs(x = 'month',y = 'Percent') + plot_theme +
+      theme(legend.position = 'bottom', legend.direction = 'vertical',legend.box = 'vertical',
+            legend.spacing.y = unit(0, "cm"))
+
+
+ggsave("commit_plot.png",p,height = 5,width = 3.5)
+
+```
+
+```{r commit-plot-print, include=TRUE,eval = TRUE, fig.width = 3.5, fig.height=3.5}
+
+p
+
+```
+
+# Starts table
+
+```{r starts-table, include=FALSE,eval = TRUE, fig.width=3.5, fig.height=3.5}
+
+
+int.gen = rbind(interval.decomposed.generation[region == scenario & 
+                                    grepl('Nuclear|Coal|Gas|Oil',category),
+                                    .(scenario = 'Decomposed',time,name,category,region,value)],
+                
+                interval.nondecomposed.generation[grepl('Nuclear|Coal|Gas|Oil',category),
+                                    .(scenario = 'Non-decomposed',time,name,category,region,value)])
+
+int.gen[value>0.0001,value:=1]
+int.gen[,value.shift:=shift(value,type = 'lead'),by = c('name','category','scenario')]
+int.gen = int.gen[!is.na(value.shift)]
+int.gen[,start:=ifelse(value.shift-value == 1,1,0)]
+
+starts.table = int.gen[,lapply(.SD,sum),by = c('scenario','category'),
+                       .SDcols = c('start')]
+
+```
+
+```{r starts-table-print, include=TRUE,eval = TRUE, fig.width=3.5, fig.height=3.5}
+
+kable(starts.table)
+
+```
+
+
+# KSI plot
+
+```{r KSI-plot, include=FALSE,eval = TRUE, fig.width=6, fig.height=3}
+
+series.length = 8760
+KSI.step = 0.01
+
+KSI_calcluation = function(){
+  
+  scenario.names.KSI = unique(flow.data[,scenario])
+  
+  # relies on not having different line limits between scenarios
+  flow.range = unique(interface.limits[,.(Interface,`Export Limit`,`Import Limit`)])
+  
+  # flow.table = copy(interval.rt.flow)
+
+  flow.range.table = data.table()
+
+  for(i in 1:nrow(unique(flow.range[,.(Interface)]))){
+    
+      flow.temp = merge(flow.range,
+                       data.table(Interface = flow.range[i,Interface],
+                                  value = seq(flow.range[i,`Import Limit`],
+                                              flow.range[i,`Export Limit`],
+                                              KSI.step)),
+                       by = c('Interface'))
+    
+      flow.range.table = rbind(flow.range.table,flow.temp)
+    
+  }
+
+  flow.range.table = flow.range.table[,.(Interface,value)]
+    
+  flow.table.1 = flow.data[scenario == scenario.names.KSI[1]][,.(Interface,value = Flow)]
+  flow.table.2 = flow.data[scenario == scenario.names.KSI[2]][,.(Interface,value = Flow)]
+  
+  flow.table.1[,rank:=frank(value,ties.method = 'first')/series.length,by = c('Interface')]
+  flow.table.2[,rank:=frank(value,ties.method = 'first')/series.length,by = c('Interface')]
+  
+  setkeyv(flow.range.table,c('Interface','value'))
+  setkeyv(flow.table.1,c('Interface','value'))
+  setkeyv(flow.table.2,c('Interface','value'))
+  
+  # rolling join to equate discrete flow.range.table 'values' to their nearest CDF value
+  KSI.table.1 = flow.table.1[flow.range.table,roll = "nearest"]
+  KSI.table.2 = flow.table.2[flow.range.table,roll = "nearest"]
+  
+  # see near_join_example.R for an explanation of how we deal with duplicated flow range values in the join
+  # now each flow range value cooresponds to exactly one probability
+  KSI.table.1 = unique(KSI.table.1[,rank:= max(rank),by = c('value','Interface')])
+  KSI.table.2 = unique(KSI.table.2[,rank:= max(rank),by = c('value','Interface')])
+  
+  setnames(KSI.table.1,'rank',scenario.names.KSI[1])
+  setnames(KSI.table.2,'rank',scenario.names.KSI[2])
+  
+  KSI.table = merge(KSI.table.1,KSI.table.2,by = c('Interface','value'))
+  KSI.table[,Dn := abs(get(scenario.names.KSI[1]) - get(scenario.names.KSI[2]))]
+  
+  list(KSI.table = KSI.table, flow.range = flow.range)
+}
+
+KSI.cacluation = KSI_calcluation()
+KSI.table = KSI.cacluation[["KSI.table"]]
+flow.range = KSI.cacluation[["flow.range"]]
+
+D.stat.table = KSI.table[,lapply(.SD,max),by = 'Interface',.SDcols = 'Dn']
+D.stat.table[,V.critical:= 1.63/sqrt(series.length)]
+D.stat.table[,percent:=100*Dn/V.critical]
+
+# integrate trapezoidally
+KSI.stat.table = merge(KSI.table, flow.range, by = 'Interface')
+KSI.stat.table = merge(KSI.stat.table,D.stat.table[,.(Interface,V.critical)],by = 'Interface')
+KSI.stat.table[,flow.range:= `Export Limit` - `Import Limit`]
+KSI.stat.table[value == `Import Limit` |
+              value == `Export Limit`,
+              Dn:=0.5*Dn]
+
+KSI.stat.table = KSI.stat.table[,lapply(.SD,sum),by = c('Interface','flow.range','V.critical'),.SDcols = 'Dn']
+KSI.stat.table[,KSI:=Dn*KSI.step]
+KSI.stat.table[,Dn:=NULL]
+KSI.stat.table[,KSI.Per:=KSI/V.critical/flow.range*100]
+
+
+
+
+```
+
+
+```{r KSI-plot-print, include=TRUE,eval = TRUE, fig.width=6, fig.height=3}
+
+kable(KSI.stat.table)
+kable(D.stat.table)
+
+
+```
+
+

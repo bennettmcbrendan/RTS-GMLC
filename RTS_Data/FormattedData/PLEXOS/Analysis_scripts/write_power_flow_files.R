@@ -2,27 +2,45 @@
 # ----------------------------------------------------------------- |
 # Inputs ----
 # ----------------------------------------------------------------- |
+
+# switch to write power flow files for decomposed vs. non-decomposed solutions
+decomposed = FALSE
+
 pacman::p_load(rplexos, RSQLite, magrittr, dplyr, lubridate, 
                rmarkdown, scales, cowplot, data.table, fasttime,
                Hmisc, gridExtra, rgdal, ggmap, Cairo, rgeos, maptools, 
                lubridate, plyr, gdata, stringr, tidyr, dtplyr, knitr,grid)
 
-wd = "//plexossql/Data/bmcbenne/RTS-GMLC-geodecomp/RTS-GMLC/RTS_Data/FormattedData/PLEXOS"
+wd = "//plexossql/Data/bmcbenne/RTS-GMLC-geodecomp/RTS-GMLC/RTS_Data/FormattedData/PLEXOS/MIP_0.1"
 setwd(wd)
 
-solution.dbs = solution.dbs = c(file.path(wd,"Model DAY_AHEAD_B1 Solution",
-                                        "Model DAY_AHEAD_B1 Solution-rplexos.db"),
-                                file.path(wd,"Model DAY_AHEAD_B2 Solution",
-                                          "Model DAY_AHEAD_B2 Solution-rplexos.db"),
-                                file.path(wd,"Model DAY_AHEAD_B3 Solution",
-                                          "Model DAY_AHEAD_B3 Solution-rplexos.db"))
+if(decomposed){
+  
+  solution.dbs = solution.dbs = c(file.path(wd,"Model DAY_AHEAD_B1 Solution",
+                                          "Model DAY_AHEAD_B1 Solution-rplexos.db"),
+                                  file.path(wd,"Model DAY_AHEAD_B2 Solution",
+                                            "Model DAY_AHEAD_B2 Solution-rplexos.db"),
+                                  file.path(wd,"Model DAY_AHEAD_B3 Solution",
+                                            "Model DAY_AHEAD_B3 Solution-rplexos.db"))
+    
+    
+  scenario.names = c("1","2","3")
+  output.dir = paste0("//nrelqnap01d/PLEXOS/Projects/GMLC-MSPCM/geo-decomp-data-decomposed")
+  
+}else{
+  
+  solution.dbs = solution.dbs = c(file.path(wd,"Model DAY_AHEAD Solution",
+                                            "Model DAY_AHEAD Solution-rplexos.db"))
   
   
-scenario.names = c("1","2","3")
+  scenario.names = c("Nondecomposed")
+  output.dir = paste0("//nrelqnap01d/PLEXOS/Projects/GMLC-MSPCM/geo-decomp-data-nd")
+  
+}
 
-mapping.table = fread("../../SourceData/gen.csv")[,.(name = `GEN UID`,bus = `Bus ID`)]
+mapping.table = fread("../../../SourceData/gen.csv")[,.(name = `GEN UID`,bus = `Bus ID`)]
   
-output.dir = "//nrelqnap01d/PLEXOS/Projects/GMLC-MSPCM/geo-decomp-data"
+
 
 
 # ----------------------------------------------------------------- |
@@ -130,8 +148,10 @@ for(i in 1:length(scenario.names)){
 
 # extract desired region-scenario pairs
 
-interval.node.load = interval.node.load[region == scenario]
-interval.gen.generation = interval.gen.generation[region == scenario]
+if(decomposed){
+  interval.node.load = interval.node.load[region == scenario]
+  interval.gen.generation = interval.gen.generation[region == scenario]
+}
 
 # ----------------------------------------------------------------- |
 # Warnings ----
