@@ -1,4 +1,7 @@
 
+wd = dirname(parent.frame(2)$ofile)
+setwd(wd)
+
 # ---------------------------------------------------------------------------- |
 # seams ST step plot ----
 # ---------------------------------------------------------------------------- |
@@ -6,7 +9,7 @@
 
 # ST times
 ST.times <- file.path("//plexossql/Data/bmcbenne/RTS-GMLC-geodecomp/RTS-GMLC",
-                           "RTS_Data/FormattedData/PLEXOS/Analysis_scripts/ST_time_hpc.csv")
+                           "RTS_Data/FormattedData/PLEXOS/Analysis_scripts/data/ST_time_hpc.csv")
 
 ST.times = fread(ST.times)
 
@@ -54,10 +57,10 @@ ggsave('ST-time-hpc.png',p,height = 3,width = 3.5)
 # ---------------------------------------------------------------------------- |
   
 ST.times.01 <- file.path("//plexossql/Data/bmcbenne/RTS-GMLC-geodecomp/RTS-GMLC",
-                      "RTS_Data/FormattedData/PLEXOS/Analysis_scripts/ST_time_rts_win_01.csv")
+                      "RTS_Data/FormattedData/PLEXOS/Analysis_scripts/data/ST_time_rts_win_01.csv")
 
 ST.times.05 <- file.path("//plexossql/Data/bmcbenne/RTS-GMLC-geodecomp/RTS-GMLC",
-                         "RTS_Data/FormattedData/PLEXOS/Analysis_scripts/ST_time_rts_win_05.csv")
+                         "RTS_Data/FormattedData/PLEXOS/Analysis_scripts/data/ST_time_rts_win_05.csv")
 
 
 ST.times.01 = fread(ST.times.01)

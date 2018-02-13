@@ -1,0 +1,3356 @@
+Generator,category,region
+1_1_AES_Shady_Point_LLC,Boiler (Coal),SPP
+1_1_Big_Bend,Boiler (Coal),SE
+1_1_Big_Cajun_2,Boiler (Coal),MISO
+1_1_Brandon_Shores,Boiler (Coal),PJM
+1_1_Bull_Run,Boiler (Coal),SE
+1_1_C_D_McIntosh_Jr,Boiler (Coal),SE
+1_1_C_P_Crane,Boiler (Coal),PJM
+1_1_Colbert,Boiler (Coal),SE
+1_1_Coleson_Cove__NBPO_,Boiler (Coal),CAN
+1_1_Cooper,Boiler (Coal),PJM
+1_1_Cross,Boiler (Coal),SE
+1_1_Crystal_River,Boiler (Coal),SE
+1_1_Cumberland__TN_,Boiler (Coal),SE
+1_1_Dalhousie,Boiler (Coal),CAN
+1_1_Deerhaven_Generating_Station,Boiler (Coal),SE
+1_1_Dunkirk_Generating_Plant,Boiler (Coal),NE
+1_1_E_D_Edwards,Boiler (Coal),MISO
+1_1_Gallatin__TN_,Boiler (Coal),SE
+1_1_H_L_Spurlock,Boiler (Coal),PJM
+1_1_Harrington,Boiler (Coal),SPP
+1_1_Independence_Steam_Electric_Station,Boiler (Coal),MISO
+1_1_Jeffrey_Energy_Center,Boiler (Coal),SPP
+1_1_John_Twitty_Energy_Center,Boiler (Coal),SPP
+1_1_Kingston,Boiler (Coal),SE
+1_1_Lawrence_Energy_Center,Boiler (Coal),SPP
+1_1_McIntosh,Boiler (Coal),SE
+1_1_Milton_R_Young,Boiler (Coal),MISO
+1_1_Morgantown_Generating_Plant,Boiler (Coal),PJM
+1_1_Muskogee,Boiler (Coal),SPP
+1_1_Nanticoke__OPG_,Boiler (Coal),CAN
+1_1_Nearman_Creek,Boiler (Coal),SPP
+1_1_Nelson_Industrial_Steam,Boiler (Coal),MISO
+1_1_New_Madrid,Boiler (Coal),SE
+1_1_Paulsboro_Refinery,Boiler (Coal),PJM
+1_1_Quindaro,Boiler (Coal),SPP
+1_1_R_S_Nelson,Boiler (Coal),MISO
+1_1_Roxboro,Boiler (Coal),SE
+1_1_Seminole__FL_,Boiler (Coal),SE
+1_1_Shawnee,Boiler (Coal),SE
+1_1_Sooner,Boiler (Coal),SPP
+1_1_St_Johns_River_Power_Park,Boiler (Coal),SE
+1_1_Stanton_Energy_Center,Boiler (Coal),SE
+1_1_TalenEnergy_Montour,Boiler (Coal),PJM
+1_1_Thomas_Hill,Boiler (Coal),SE
+1_1_Thunder_Bay__OPG_,Boiler (Coal),CAN
+1_1_Tolk,Boiler (Coal),SPP
+1_1_W_H_Zimmer,Boiler (Coal),PJM
+1_1_Welsh,Boiler (Coal),SPP
+1_1_White_Bluff,Boiler (Coal),MISO
+1_1_Williams,Boiler (Coal),SE
+1_1_Winyah,Boiler (Coal),SE
+1_2_Cumberland__TN_,Boiler (Coal),SE
+1_2_Dunkirk_Generating_Plant,Boiler (Coal),NE
+1_2_John_Twitty_Energy_Center,Boiler (Coal),SPP
+1_2_Silver_Bay_Power,Boiler (Coal),MISO
+1_3_Silver_Bay_Power,Boiler (Coal),MISO
+1_A_B_Brown,Boiler (Coal),MISO
+1_A_Dan_E_Karn,Boiler (Coal),MISO
+1_AES_Petersburg,Boiler (Coal),MISO
+1_AES_Warrior_Run_Cogeneration_Facility,Boiler (Coal),PJM
+1_AG_Processing_Inc,Boiler (Coal),SPP
+1_Allen_S_King,Boiler (Coal),MISO
+1_Antelope_Valley,Boiler (Coal),SPP
+1_Archer_Daniels_Midland_Columbus,Boiler (Coal),SPP
+1_Asbury,Boiler (Coal),SPP
+1_Atikokan,Boiler (Coal),CAN
+1_B_Dan_E_Karn,Boiler (Coal),MISO
+1_Baldwin_Energy_Complex,Boiler (Coal),MISO
+1_Belews_Creek,Boiler (Coal),SE
+1_Belle_River,Boiler (Coal),MISO
+1_Belledune__NBPO_,Boiler (Coal),CAN
+1_Big_Stone,Boiler (Coal),MISO
+1_Biron_Mill,Boiler (Coal),MISO
+1_Boundary_Dam,Boiler (Coal),CAN
+1_Bowen,Boiler (Coal),SE
+1_Burlington__IA_,Boiler (Coal),MISO
+1_Cambria_Cogen,Boiler (Coal),PJM
+1_Cardinal,Boiler (Coal),PJM
+1_Cayuga,Boiler (Coal),MISO
+1_Cayuga_Operating_Company,Boiler (Coal),NE
+1_Chambers_Cogeneration_LP,Boiler (Coal),PJM
+1_Charles_R_Lowman,Boiler (Coal),SE
+1_Chester_Operations,Boiler (Coal),PJM
+1_Cheswick_Power_Plant,Boiler (Coal),PJM
+1_Clifty_Creek,Boiler (Coal),PJM
+1_Clover,Boiler (Coal),PJM
+1_Coal_Creek,Boiler (Coal),MISO
+1_Coffeen,Boiler (Coal),MISO
+1_Columbia__WI_,Boiler (Coal),MISO
+1_Colver_Power_Project,Boiler (Coal),PJM
+1_Cope,Boiler (Coal),SE
+1_Courtenay_Bay,Boiler (Coal),CAN
+1_Coyote,Boiler (Coal),MISO
+1_D_B_Wilson,Boiler (Coal),MISO
+1_Dallman,Boiler (Coal),MISO
+1_Dolet_Hills,Boiler (Coal),MISO
+1_Duck_Creek,Boiler (Coal),MISO
+1_E_W_Brown,Boiler (Coal),SE
+1_Elizabethtown_Power_LLC,Boiler (Coal),SE
+1_Erickson_Station,Boiler (Coal),MISO
+1_FirstEnergy_Bruce_Mansfield,Boiler (Coal),PJM
+1_FirstEnergy_Fort_Martin_Power_Station,Boiler (Coal),PJM
+1_FirstEnergy_Harrison_Power_Station,Boiler (Coal),PJM
+1_FirstEnergy_Pleasants_Power_Station,Boiler (Coal),PJM
+1_Flint_Creek,Boiler (Coal),SPP
+1_Foster_Wheeler_Penn_Resources,Boiler (Coal),PJM
+1_Gerald_Gentleman,Boiler (Coal),SPP
+1_Ghent,Boiler (Coal),SE
+1_Gibson,Boiler (Coal),MISO
+1_Grant_Town_Power_Plant,Boiler (Coal),PJM
+1_Greene_County,Boiler (Coal),SE
+1_H_Chalk_Point_LLC,Boiler (Coal),PJM
+1_H_Conemaugh,Boiler (Coal),PJM
+1_H_Dickerson,Boiler (Coal),PJM
+1_H_Keystone,Boiler (Coal),PJM
+1_H_Sioux,Boiler (Coal),MISO
+1_H_South_Oak_Creek,Boiler (Coal),MISO
+1_H_Waukegan,Boiler (Coal),PJM
+1_Hammond,Boiler (Coal),SE
+1_Hibbing,Boiler (Coal),MISO
+1_Holcomb,Boiler (Coal),SPP
+1_Homer_City_Generating_Station,Boiler (Coal),PJM
+1_Homer_City_Modular___Nug,Boiler (Coal),PJM
+1_Hugo,Boiler (Coal),SPP
+1_Iatan,Boiler (Coal),SPP
+1_Indian_River_Generating_Station,Boiler (Coal),PJM
+1_J_M_Stuart,Boiler (Coal),PJM
+1_James_H_Miller_Jr,Boiler (Coal),SE
+1_John_E_Amos,Boiler (Coal),PJM
+1_John_W_Turk_Jr_Power_Plant,Boiler (Coal),SPP
+1_Joppa_Steam,Boiler (Coal),MISO
+1_Kenneth_C_Coleman,Boiler (Coal),MISO
+1_Kincaid_Generation_LLC,Boiler (Coal),PJM
+1_Kline_Township_Cogen_Facility,Boiler (Coal),PJM
+1_Kyger_Creek,Boiler (Coal),PJM
+1_L_Belews_Creek,Boiler (Coal),SE
+1_L_Chalk_Point_LLC,Boiler (Coal),PJM
+1_L_Conemaugh,Boiler (Coal),PJM
+1_L_Dickerson,Boiler (Coal),PJM
+1_L_G_G_Allen,Boiler (Coal),SE
+1_L_Keystone,Boiler (Coal),PJM
+1_L_Marshall__NC_,Boiler (Coal),SE
+1_L_Sioux,Boiler (Coal),MISO
+1_L_South_Oak_Creek,Boiler (Coal),MISO
+1_L_Waukegan,Boiler (Coal),PJM
+1_La_Cygne,Boiler (Coal),SPP
+1_Labadie,Boiler (Coal),MISO
+1_Lake_Charles_Plant,Boiler (Coal),MISO
+1_Laramie_River_Station,Boiler (Coal),SPP
+1_Leland_Olds,Boiler (Coal),SPP
+1_Lewis___Clark,Boiler (Coal),MISO
+1_Lingan,Boiler (Coal),CAN
+1_Logan_Generating_Company_LP,Boiler (Coal),PJM
+1_Longview_Power_Plant,Boiler (Coal),PJM
+1_Louisa,Boiler (Coal),MISO
+1_Lumberton,Boiler (Coal),SE
+1_Marshall__NC_,Boiler (Coal),SE
+1_Mayo,Boiler (Coal),SE
+1_Mecklenburg_Power_Station,Boiler (Coal),PJM
+1_Merom,Boiler (Coal),MISO
+1_Merrimack,Boiler (Coal),NE
+1_Mill_Creek__KY_,Boiler (Coal),SE
+1_MillerCoors_Trenton_Brewery,Boiler (Coal),PJM
+1_Mitchell__WV_,Boiler (Coal),PJM
+1_Monroe__MI_,Boiler (Coal),MISO
+1_Morgantown_Energy_Facility,Boiler (Coal),PJM
+1_Nebraska_City,Boiler (Coal),SPP
+1_Newton,Boiler (Coal),MISO
+1_Northampton_Generating_Company_LP,Boiler (Coal),PJM
+1_Ottumwa,Boiler (Coal),MISO
+1_P_H_Glatfelter,Boiler (Coal),PJM
+1_Panther_Creek_Energy_Facility,Boiler (Coal),PJM
+1_Paradise,Boiler (Coal),SE
+1_Pirkey,Boiler (Coal),SPP
+1_Platte,Boiler (Coal),SPP
+1_Pleasant_Prairie,Boiler (Coal),MISO
+1_Plum_Point_Energy_Station,Boiler (Coal),MISO
+1_Poplar_River,Boiler (Coal),CAN
+1_Prairie_State_Generating_Station,Boiler (Coal),MISO
+1_Pt__Aconi,Boiler (Coal),CAN
+1_R_D_Green,Boiler (Coal),MISO
+1_R_D_Morrow,Boiler (Coal),MISO
+1_R_M_Heskett,Boiler (Coal),MISO
+1_Red_Hills_Generating_Facility,Boiler (Coal),SE
+1_Rush_Island,Boiler (Coal),MISO
+1_Scherer,Boiler (Coal),SE
+1_Scrubgrass_Generating_Company_LP,Boiler (Coal),PJM
+1_Seward,Boiler (Coal),PJM
+1_Shand,Boiler (Coal),CAN
+1_Sheldon,Boiler (Coal),SPP
+1_Sherburne_County,Boiler (Coal),MISO
+1_Shiras,Boiler (Coal),MISO
+1_Sikeston_Power_Station,Boiler (Coal),SPP
+1_Somerset_Operating_Co_LLC,Boiler (Coal),NE
+1_Spiritwood_Station,Boiler (Coal),MISO
+1_St_Nicholas_Cogen_Project,Boiler (Coal),PJM
+1_TES_Filer_City_Station,Boiler (Coal),MISO
+1_Trimble_County,Boiler (Coal),SE
+1_Victor_J_Daniel_Jr,Boiler (Coal),SE
+1_Virginia_City_Hybrid_Energy_Center,Boiler (Coal),PJM
+1_Wansley,Boiler (Coal),SE
+1_Warrick,Boiler (Coal),MISO
+1_Wateree,Boiler (Coal),SE
+1_Westwood_Generation_LLC,Boiler (Coal),PJM
+1_Wheelabrator_Frackville_Energy,Boiler (Coal),PJM
+1_Whelan_Energy_Center,Boiler (Coal),SPP
+10_Gorgas,Boiler (Coal),SE
+11_Greenfield_Activated_Carbon,Boiler (Coal),MISO
+12_Greenfield_Activated_Carbon,Boiler (Coal),MISO
+12_Michigan_City,Boiler (Coal),MISO
+17_R_M_Schahfer,Boiler (Coal),MISO
+18_R_M_Schahfer,Boiler (Coal),MISO
+1H_Brunner_Island,Boiler (Coal),PJM
+1H_General_James_M_Gavin,Boiler (Coal),PJM
+1H_Mountaineer,Boiler (Coal),PJM
+1H_Rockport,Boiler (Coal),PJM
+1L_Brunner_Island,Boiler (Coal),PJM
+1R_General_James_M_Gavin,Boiler (Coal),PJM
+1R_Mountaineer,Boiler (Coal),PJM
+1R_Rockport,Boiler (Coal),PJM
+2_1_AES_Shady_Point_LLC,Boiler (Coal),SPP
+2_1_Big_Bend,Boiler (Coal),SE
+2_1_Big_Cajun_2,Boiler (Coal),MISO
+2_1_Brame_Energy_Center,Boiler (Coal),MISO
+2_1_Brandon_Shores,Boiler (Coal),PJM
+2_1_Bull_Run,Boiler (Coal),SE
+2_1_C_P_Crane,Boiler (Coal),PJM
+2_1_Colbert,Boiler (Coal),SE
+2_1_Coleson_Cove__NBPO_,Boiler (Coal),CAN
+2_1_Cooper,Boiler (Coal),PJM
+2_1_Cross,Boiler (Coal),SE
+2_1_Crystal_River,Boiler (Coal),SE
+2_1_Cumberland__TN_,Boiler (Coal),SE
+2_1_Dalhousie,Boiler (Coal),CAN
+2_1_Dunkirk_Generating_Plant,Boiler (Coal),NE
+2_1_E_D_Edwards,Boiler (Coal),MISO
+2_1_Gallatin__TN_,Boiler (Coal),SE
+2_1_H_L_Spurlock,Boiler (Coal),PJM
+2_1_Harrington,Boiler (Coal),SPP
+2_1_Independence_Steam_Electric_Station,Boiler (Coal),MISO
+2_1_Jeffrey_Energy_Center,Boiler (Coal),SPP
+2_1_Kingston,Boiler (Coal),SE
+2_1_Lawrence_Energy_Center,Boiler (Coal),SPP
+2_1_Milton_R_Young,Boiler (Coal),MISO
+2_1_Morgantown_Generating_Plant,Boiler (Coal),PJM
+2_1_Muskogee,Boiler (Coal),SPP
+2_1_Nanticoke__OPG_,Boiler (Coal),CAN
+2_1_Nelson_Industrial_Steam,Boiler (Coal),MISO
+2_1_New_Madrid,Boiler (Coal),SE
+2_1_Northeastern,Boiler (Coal),SPP
+2_1_Quindaro,Boiler (Coal),SPP
+2_1_Roxboro,Boiler (Coal),SE
+2_1_Seminole__FL_,Boiler (Coal),SE
+2_1_Shawnee,Boiler (Coal),SE
+2_1_Sooner,Boiler (Coal),SPP
+2_1_St_Johns_River_Power_Park,Boiler (Coal),SE
+2_1_Stanton_Energy_Center,Boiler (Coal),SE
+2_1_TalenEnergy_Montour,Boiler (Coal),PJM
+2_1_Thomas_Hill,Boiler (Coal),SE
+2_1_Thunder_Bay__OPG_,Boiler (Coal),CAN
+2_1_Tolk,Boiler (Coal),SPP
+2_1_W_H_Zimmer,Boiler (Coal),PJM
+2_1_Welsh,Boiler (Coal),SPP
+2_1_White_Bluff,Boiler (Coal),MISO
+2_1_Winyah,Boiler (Coal),SE
+2_2_Cumberland__TN_,Boiler (Coal),SE
+2_2_Dunkirk_Generating_Plant,Boiler (Coal),NE
+2_2_Silver_Bay_Power,Boiler (Coal),MISO
+2_3_Silver_Bay_Power,Boiler (Coal),MISO
+2_A_B_Brown,Boiler (Coal),MISO
+2_A_Dan_E_Karn,Boiler (Coal),MISO
+2_AES_Petersburg,Boiler (Coal),MISO
+2_Antelope_Valley,Boiler (Coal),SPP
+2_B_Dan_E_Karn,Boiler (Coal),MISO
+2_Baldwin_Energy_Complex,Boiler (Coal),MISO
+2_Belews_Creek,Boiler (Coal),SE
+2_Belle_River,Boiler (Coal),MISO
+2_Boundary_Dam,Boiler (Coal),CAN
+2_Bowen,Boiler (Coal),SE
+2_Cardinal,Boiler (Coal),PJM
+2_Cayuga,Boiler (Coal),MISO
+2_Cayuga_Operating_Company,Boiler (Coal),NE
+2_Charles_R_Lowman,Boiler (Coal),SE
+2_Clay_Boswell,Boiler (Coal),MISO
+2_Clifty_Creek,Boiler (Coal),PJM
+2_Clover,Boiler (Coal),PJM
+2_Coal_Creek,Boiler (Coal),MISO
+2_Coffeen,Boiler (Coal),MISO
+2_Columbia__WI_,Boiler (Coal),MISO
+2_Dallman,Boiler (Coal),MISO
+2_E_W_Brown,Boiler (Coal),SE
+2_East_Bend,Boiler (Coal),PJM
+2_Elmer_Smith,Boiler (Coal),SE
+2_F_B_Culley,Boiler (Coal),MISO
+2_FirstEnergy_Bruce_Mansfield,Boiler (Coal),PJM
+2_FirstEnergy_Fort_Martin_Power_Station,Boiler (Coal),PJM
+2_FirstEnergy_Harrison_Power_Station,Boiler (Coal),PJM
+2_FirstEnergy_Pleasants_Power_Station,Boiler (Coal),PJM
+2_Gerald_Gentleman,Boiler (Coal),SPP
+2_Ghent,Boiler (Coal),SE
+2_Gibson,Boiler (Coal),MISO
+2_GREC,Boiler (Coal),SPP
+2_Greene_County,Boiler (Coal),SE
+2_H_Chalk_Point_LLC,Boiler (Coal),PJM
+2_H_Conemaugh,Boiler (Coal),PJM
+2_H_Dickerson,Boiler (Coal),PJM
+2_H_Keystone,Boiler (Coal),PJM
+2_H_Sioux,Boiler (Coal),MISO
+2_H_South_Oak_Creek,Boiler (Coal),MISO
+2_H_Waukegan,Boiler (Coal),PJM
+2_Hammond,Boiler (Coal),SE
+2_Holcomb,Boiler (Coal),SPP
+2_Homer_City_Generating_Station,Boiler (Coal),PJM
+2_Iatan,Boiler (Coal),SPP
+2_J_H_Campbell,Boiler (Coal),MISO
+2_J_M_Stuart,Boiler (Coal),PJM
+2_James_H_Miller_Jr,Boiler (Coal),SE
+2_John_E_Amos,Boiler (Coal),PJM
+2_Joppa_Steam,Boiler (Coal),MISO
+2_Kenneth_C_Coleman,Boiler (Coal),MISO
+2_Killen_Station,Boiler (Coal),PJM
+2_Kincaid_Generation_LLC,Boiler (Coal),PJM
+2_Kyger_Creek,Boiler (Coal),PJM
+2_L_Belews_Creek,Boiler (Coal),SE
+2_L_Chalk_Point_LLC,Boiler (Coal),PJM
+2_L_Conemaugh,Boiler (Coal),PJM
+2_L_Dickerson,Boiler (Coal),PJM
+2_L_G_G_Allen,Boiler (Coal),SE
+2_L_Keystone,Boiler (Coal),PJM
+2_L_Marshall__NC_,Boiler (Coal),SE
+2_L_Sioux,Boiler (Coal),MISO
+2_L_South_Oak_Creek,Boiler (Coal),MISO
+2_L_Waukegan,Boiler (Coal),PJM
+2_La_Cygne,Boiler (Coal),SPP
+2_Labadie,Boiler (Coal),MISO
+2_Leland_Olds,Boiler (Coal),SPP
+2_Lingan,Boiler (Coal),CAN
+2_Marshall__NC_,Boiler (Coal),SE
+2_Mecklenburg_Power_Station,Boiler (Coal),PJM
+2_Merom,Boiler (Coal),MISO
+2_Merrimack,Boiler (Coal),NE
+2_Mill_Creek__KY_,Boiler (Coal),SE
+2_Mitchell__WV_,Boiler (Coal),PJM
+2_Monroe__MI_,Boiler (Coal),MISO
+2_Nebraska_City,Boiler (Coal),SPP
+2_Paradise,Boiler (Coal),SE
+2_Pleasant_Prairie,Boiler (Coal),MISO
+2_Poplar_River,Boiler (Coal),CAN
+2_Prairie_State_Generating_Station,Boiler (Coal),MISO
+2_Pt__Tupper,Boiler (Coal),CAN
+2_R_D_Green,Boiler (Coal),MISO
+2_R_D_Morrow,Boiler (Coal),MISO
+2_R_Gallagher,Boiler (Coal),MISO
+2_Rush_Island,Boiler (Coal),MISO
+2_Scherer,Boiler (Coal),SE
+2_Sheldon,Boiler (Coal),SPP
+2_Shiras,Boiler (Coal),MISO
+2_Trimble_County,Boiler (Coal),SE
+2_Victor_J_Daniel_Jr,Boiler (Coal),SE
+2_Wansley,Boiler (Coal),SE
+2_Warrick,Boiler (Coal),MISO
+2_Wateree,Boiler (Coal),SE
+2_Whelan_Energy_Center,Boiler (Coal),SPP
+2H_Brunner_Island,Boiler (Coal),PJM
+2H_General_James_M_Gavin,Boiler (Coal),PJM
+2H_Rockport,Boiler (Coal),PJM
+2L_Brunner_Island,Boiler (Coal),PJM
+2R_General_James_M_Gavin,Boiler (Coal),PJM
+2R_Rockport,Boiler (Coal),PJM
+3_1_Big_Bend,Boiler (Coal),SE
+3_1_Big_Cajun_2,Boiler (Coal),MISO
+3_1_Brame_Energy_Center,Boiler (Coal),MISO
+3_1_Coleson_Cove__NBPO_,Boiler (Coal),CAN
+3_1_Cross,Boiler (Coal),SE
+3_1_Dunkirk_Generating_Plant,Boiler (Coal),NE
+3_1_Gallatin__TN_,Boiler (Coal),SE
+3_1_H_L_Spurlock,Boiler (Coal),PJM
+3_1_Harrington,Boiler (Coal),SPP
+3_1_Jeffrey_Energy_Center,Boiler (Coal),SPP
+3_1_Kingston,Boiler (Coal),SE
+3_1_Muskogee,Boiler (Coal),SPP
+3_1_Nanticoke__OPG_,Boiler (Coal),CAN
+3_1_Roxboro,Boiler (Coal),SE
+3_1_Shawnee,Boiler (Coal),SE
+3_1_Thomas_Hill,Boiler (Coal),SE
+3_1_Winyah,Boiler (Coal),SE
+3_2_Dunkirk_Generating_Plant,Boiler (Coal),NE
+3_2_Silver_Bay_Power,Boiler (Coal),MISO
+3_AES_Petersburg,Boiler (Coal),MISO
+3_Baldwin_Energy_Complex,Boiler (Coal),MISO
+3_Blue_Valley,Boiler (Coal),SPP
+3_Boundary_Dam,Boiler (Coal),CAN
+3_Bowen,Boiler (Coal),SE
+3_Bridgeport_Station,Boiler (Coal),NE
+3_Brunner_Island,Boiler (Coal),PJM
+3_Cardinal,Boiler (Coal),PJM
+3_Charles_R_Lowman,Boiler (Coal),SE
+3_Chesterfield,Boiler (Coal),PJM
+3_Clay_Boswell,Boiler (Coal),MISO
+3_Clifty_Creek,Boiler (Coal),PJM
+3_Dallman,Boiler (Coal),MISO
+3_E_W_Brown,Boiler (Coal),SE
+3_F_B_Culley,Boiler (Coal),MISO
+3_FirstEnergy_Bruce_Mansfield,Boiler (Coal),PJM
+3_FirstEnergy_Harrison_Power_Station,Boiler (Coal),PJM
+3_G_G_Allen,Boiler (Coal),SE
+3_Genoa,Boiler (Coal),MISO
+3_George_Neal_North,Boiler (Coal),MISO
+3_Ghent,Boiler (Coal),SE
+3_Gibson,Boiler (Coal),MISO
+3_H_Dickerson,Boiler (Coal),PJM
+3_H_South_Oak_Creek,Boiler (Coal),MISO
+3_Hammond,Boiler (Coal),SE
+3_HMP_L_Station_Two_Henderson,Boiler (Coal),MISO
+3_Homer_City_Generating_Station,Boiler (Coal),PJM
+3_J_B_Sims,Boiler (Coal),MISO
+3_J_H_Campbell,Boiler (Coal),MISO
+3_J_M_Stuart,Boiler (Coal),PJM
+3_James_H_Miller_Jr,Boiler (Coal),SE
+3_James_River_Power_Station,Boiler (Coal),SPP
+3_Joppa_Steam,Boiler (Coal),MISO
+3_Kenneth_C_Coleman,Boiler (Coal),MISO
+3_Kyger_Creek,Boiler (Coal),PJM
+3_L_Dickerson,Boiler (Coal),PJM
+3_L_G_G_Allen,Boiler (Coal),SE
+3_L_South_Oak_Creek,Boiler (Coal),MISO
+3_Labadie,Boiler (Coal),MISO
+3_Lingan,Boiler (Coal),CAN
+3_Marshall__NC_,Boiler (Coal),SE
+3_Mill_Creek__KY_,Boiler (Coal),SE
+3_Monroe__MI_,Boiler (Coal),MISO
+3_Mt_Storm,Boiler (Coal),PJM
+3_Scherer,Boiler (Coal),SE
+3_Sherburne_County,Boiler (Coal),MISO
+3_Shiras,Boiler (Coal),MISO
+3_Sibley,Boiler (Coal),SPP
+3_Taconite_Harbor_Energy_Center,Boiler (Coal),MISO
+3_Walter_Scott_Jr_Energy_Center,Boiler (Coal),MISO
+3_Warrick,Boiler (Coal),MISO
+3_Weston,Boiler (Coal),MISO
+3_Willmar,Boiler (Coal),MISO
+30_Seminole__FL_,Boiler (Coal),SE
+31_Ebensburg_Power,Boiler (Coal),PJM
+3H_John_E_Amos,Boiler (Coal),PJM
+3R_John_E_Amos,Boiler (Coal),PJM
+4_1_Big_Bend,Boiler (Coal),SE
+4_1_Cross,Boiler (Coal),SE
+4_1_Gallatin__TN_,Boiler (Coal),SE
+4_1_H_L_Spurlock,Boiler (Coal),PJM
+4_1_Kingston,Boiler (Coal),SE
+4_1_Nanticoke__OPG_,Boiler (Coal),CAN
+4_1_Roxboro,Boiler (Coal),SE
+4_1_Shawnee,Boiler (Coal),SE
+4_1_Winyah,Boiler (Coal),SE
+4_AES_Petersburg,Boiler (Coal),MISO
+4_Barry,Boiler (Coal),SE
+4_Boundary_Dam,Boiler (Coal),CAN
+4_Bowen,Boiler (Coal),SE
+4_Chesterfield,Boiler (Coal),PJM
+4_Clay_Boswell,Boiler (Coal),MISO
+4_Clifty_Creek,Boiler (Coal),PJM
+4_Conesville,Boiler (Coal),PJM
+4_Dallman,Boiler (Coal),MISO
+4_G_G_Allen,Boiler (Coal),SE
+4_George_Neal_South,Boiler (Coal),MISO
+4_Ghent,Boiler (Coal),SE
+4_Gibson,Boiler (Coal),MISO
+4_Hammond,Boiler (Coal),SE
+4_HMP_L_Station_Two_Henderson,Boiler (Coal),MISO
+4_Indian_River_Generating_Station,Boiler (Coal),PJM
+4_J_M_Stuart,Boiler (Coal),PJM
+4_James_H_Miller_Jr,Boiler (Coal),SE
+4_James_River_Power_Station,Boiler (Coal),SPP
+4_Joppa_Steam,Boiler (Coal),MISO
+4_Kaukauna_Paper_Mill,Boiler (Coal),MISO
+4_Kyger_Creek,Boiler (Coal),PJM
+4_Labadie,Boiler (Coal),MISO
+4_Lansing,Boiler (Coal),MISO
+4_Lingan,Boiler (Coal),CAN
+4_Marion,Boiler (Coal),MISO
+4_Marshall__NC_,Boiler (Coal),SE
+4_Mill_Creek__KY_,Boiler (Coal),SE
+4_Monroe__MI_,Boiler (Coal),MISO
+4_North_Omaha,Boiler (Coal),SPP
+4_Prairie_Creek,Boiler (Coal),MISO
+4_R_Gallagher,Boiler (Coal),MISO
+4_Scherer,Boiler (Coal),SE
+4_Walter_Scott_Jr_Energy_Center,Boiler (Coal),MISO
+4_Warrick,Boiler (Coal),MISO
+4_Weston,Boiler (Coal),MISO
+5_1_Kingston,Boiler (Coal),SE
+5_1_Shawnee,Boiler (Coal),SE
+5_Barry,Boiler (Coal),SE
+5_Biron_Mill,Boiler (Coal),MISO
+5_Boundary_Dam,Boiler (Coal),CAN
+5_Brandon,Boiler (Coal),CAN
+5_Chesterfield,Boiler (Coal),PJM
+5_Clifty_Creek,Boiler (Coal),PJM
+5_Conesville,Boiler (Coal),PJM
+5_Crist,Boiler (Coal),SE
+5_E_C_Gaston,Boiler (Coal),SE
+5_Edgewater,Boiler (Coal),MISO
+5_FirstEnergy_W_H_Sammis,Boiler (Coal),PJM
+5_G_G_Allen,Boiler (Coal),SE
+5_Gibson,Boiler (Coal),MISO
+5_Hawthorn,Boiler (Coal),SPP
+5_James_E__Rogers_Energy_Complex,Boiler (Coal),SE
+5_James_River_Power_Station,Boiler (Coal),SPP
+5_Joppa_Steam,Boiler (Coal),MISO
+5_Kyger_Creek,Boiler (Coal),PJM
+5_North_Omaha,Boiler (Coal),SPP
+5_Powerton,Boiler (Coal),PJM
+5_Riverside,Boiler (Coal),MISO
+5_Robert_A_Reid,Boiler (Coal),MISO
+5_Trenton__NSPI_,Boiler (Coal),CAN
+6_1_Kingston,Boiler (Coal),SE
+6_1_Shawnee,Boiler (Coal),SE
+6_Archer_Daniels_Midland_Cedar_Rapids,Boiler (Coal),MISO
+6_Boundary_Dam,Boiler (Coal),CAN
+6_Chesterfield,Boiler (Coal),PJM
+6_Clifty_Creek,Boiler (Coal),PJM
+6_Conesville,Boiler (Coal),PJM
+6_Crist,Boiler (Coal),SE
+6_FirstEnergy_W_H_Sammis,Boiler (Coal),PJM
+6_Havana,Boiler (Coal),MISO
+6_James_De_Young,Boiler (Coal),MISO
+6_James_E__Rogers_Energy_Complex,Boiler (Coal),SE
+6_John_P_Madgett,Boiler (Coal),MISO
+6_Joppa_Steam,Boiler (Coal),MISO
+6_Powerton,Boiler (Coal),PJM
+6_Streeter_Station,Boiler (Coal),MISO
+6_Trenton__NSPI_,Boiler (Coal),CAN
+7_1_Kingston,Boiler (Coal),SE
+7_1_Shawnee,Boiler (Coal),SE
+7_Ames_Electric_Services_Power_Plant,Boiler (Coal),MISO
+7_Columbia__MO_,Boiler (Coal),MISO
+7_Crist,Boiler (Coal),SE
+7_FirstEnergy_W_H_Sammis,Boiler (Coal),PJM
+7_Lon_Wright,Boiler (Coal),SPP
+7_Miami_Fort,Boiler (Coal),PJM
+8_1_Kingston,Boiler (Coal),SE
+8_1_Shawnee,Boiler (Coal),SE
+8_Ames_Electric_Services_Power_Plant,Boiler (Coal),MISO
+8_Gorgas,Boiler (Coal),SE
+8_Lon_Wright,Boiler (Coal),SPP
+8_Miami_Fort,Boiler (Coal),PJM
+8_Muscatine_Plant__1,Boiler (Coal),MISO
+8_Pulliam,Boiler (Coal),MISO
+8_South_Oak_Creek,Boiler (Coal),MISO
+9_1_Kingston,Boiler (Coal),SE
+9_1_Shawnee,Boiler (Coal),SE
+9_Avon_Lake,Boiler (Coal),PJM
+9_Gorgas,Boiler (Coal),SE
+9_Manitowoc,Boiler (Coal),MISO
+9_Muscatine_Plant__1,Boiler (Coal),MISO
+A_Birchwood_Power,Boiler (Coal),PJM
+A_Edgecombe_Genco_LLC,Boiler (Coal),PJM
+A_J_H_Campbell,Boiler (Coal),MISO
+A_Muscatine_Plant__1,Boiler (Coal),MISO
+A_Spruance_Genco_LLC,Boiler (Coal),PJM
+B_Edgecombe_Genco_LLC,Boiler (Coal),PJM
+B_J_H_Campbell,Boiler (Coal),MISO
+B_Spruance_Genco_LLC,Boiler (Coal),PJM
+C_Spruance_Genco_LLC,Boiler (Coal),PJM
+D_Spruance_Genco_LLC,Boiler (Coal),PJM
+H_Hennepin_Power_Station,Boiler (Coal),MISO
+H_Herbert_A_Wagner,Boiler (Coal),PJM
+H1_Mt_Storm,Boiler (Coal),PJM
+H2_Mt_Storm,Boiler (Coal),PJM
+L_Hennepin_Power_Station,Boiler (Coal),MISO
+L_Herbert_A_Wagner,Boiler (Coal),PJM
+L1_Mt_Storm,Boiler (Coal),PJM
+L2_Mt_Storm,Boiler (Coal),PJM
+S1_FirstEnergy_Eastlake,Boiler (Coal),PJM
+S2_FirstEnergy_Eastlake,Boiler (Coal),PJM
+S3_FirstEnergy_Eastlake,Boiler (Coal),PJM
+S4_FirstEnergy_Eastlake,Boiler (Coal),PJM
+S5_FirstEnergy_Eastlake,Boiler (Coal),PJM
+SV_FirstEnergy_Lake_Shore,Boiler (Coal),PJM
+W1_Luke_Mill,Boiler (Coal),PJM
+1_1_,Boiler (Diesel Oil),SPP
+1_1_Covanta_Essex_Company,Boiler (Diesel Oil),PJM
+1_1_Covanta_Niagara_LP,Boiler (Diesel Oil),NE
+1_1_Eddystone_Generating_Station,Boiler (Diesel Oil),PJM
+1_1_Hillsborough_County_Resource_Recovery,Boiler (Diesel Oil),SE
+1_1_Lee_County_Solid_Waste_Energy,Boiler (Diesel Oil),SE
+1_1_Mosaic_New_Wales_Operations,Boiler (Diesel Oil),SE
+1_1_Pinellas_County_Resource_Recovery,Boiler (Diesel Oil),SE
+1_A_Wheelabrator_Portsmouth,Boiler (Diesel Oil),PJM
+1_ABBK_Biomass_Plant,Boiler (Diesel Oil),SPP
+1_B_Wheelabrator_Portsmouth,Boiler (Diesel Oil),PJM
+1_C_Wheelabrator_Portsmouth,Boiler (Diesel Oil),PJM
+1_Canal,Boiler (Diesel Oil),NE
+1_Cibro_Petroleum,Boiler (Diesel Oil),NE
+1_Covanta_Babylon_Inc,Boiler (Diesel Oil),NE
+1_Covanta_Bristol_Energy,Boiler (Diesel Oil),NE
+1_Covanta_Delaware_Valley,Boiler (Diesel Oil),PJM
+1_Covanta_Haverhill,Boiler (Diesel Oil),NE
+1_Covanta_Hempstead,Boiler (Diesel Oil),NE
+1_Covanta_Hennepin_Energy,Boiler (Diesel Oil),MISO
+1_Covanta_Lake_County_Energy,Boiler (Diesel Oil),SE
+1_Covanta_Plymouth_Renewable_Energy,Boiler (Diesel Oil),PJM
+1_Covanta_Southeastern_Connecticut_Company,Boiler (Diesel Oil),NE
+1_Covanta_Tulsa_Renewable_Energy_LLC,Boiler (Diesel Oil),SPP
+1_Covanta_Warren_Energy,Boiler (Diesel Oil),PJM
+1_Duluth_Paper_Mill,Boiler (Diesel Oil),MISO
+1_Dutchess_Cnty_Resource_Recovery_Facility,Boiler (Diesel Oil),NE
+1_Elk_River,Boiler (Diesel Oil),MISO
+1_Exeter_Energy_LP,Boiler (Diesel Oil),NE
+1_Fairless_Hills,Boiler (Diesel Oil),PJM
+1_Gazmont,Boiler (Diesel Oil),CAN
+1_Glen_Ullin_Station_6,Boiler (Diesel Oil),MISO
+1_Greater_Detroit_Resource_Recovery,Boiler (Diesel Oil),MISO
+1_Herbert_A_Wagner,Boiler (Diesel Oil),PJM
+1_Huntington_Resource_Recovery_Facility,Boiler (Diesel Oil),NE
+1_Kent_County_Waste_to_Energy_Facility,Boiler (Diesel Oil),MISO
+1_Lancaster_County_Resource_Recovery,Boiler (Diesel Oil),PJM
+1_MacArthur_Waste_to_Energy_Facility,Boiler (Diesel Oil),NE
+1_McKay_Bay_Facility,Boiler (Diesel Oil),SE
+1_Miami_Dade_County_Resource_Recovery_Fac,Boiler (Diesel Oil),SE
+1_Montgomery_County_Resource_Recovery,Boiler (Diesel Oil),PJM
+1_Mosaic_Co_Tampa_Facility,Boiler (Diesel Oil),SE
+1_Newington,Boiler (Diesel Oil),NE
+1_North_Bend_Carbon,Boiler (Diesel Oil),MISO
+1_Northern_Border_Pipeline_Heat_Recovery,Boiler (Diesel Oil),SPP
+1_Onondaga_County_Resource_Recovery,Boiler (Diesel Oil),NE
+1_OREG_3_Inc,Boiler (Diesel Oil),MISO
+1_Oswego_County_Energy_Recovery,Boiler (Diesel Oil),NE
+1_Palm_Beach_Renewable_Energy_Facility_1,Boiler (Diesel Oil),SE
+1_Pasco_Cnty_Solid_Waste_Resource_Recovery,Boiler (Diesel Oil),SE
+1_Penobscot_Energy_Recovery,Boiler (Diesel Oil),NE
+1_Pioneer_Valley_Resource_Recovery,Boiler (Diesel Oil),NE
+1_Red_Wing,Boiler (Diesel Oil),MISO
+1_Regional_Waste_Systems,Boiler (Diesel Oil),NE
+1_Roseton_Generating_Facility,Boiler (Diesel Oil),NE
+1_SEMASS_Resource_Recovery,Boiler (Diesel Oil),NE
+1_Swift_Creek_Chemical_Complex,Boiler (Diesel Oil),SE
+1_The_Mosaic_Company__Plant_City_Facility,Boiler (Diesel Oil),SE
+1_Wheelabrator_Baltimore_Refuse,Boiler (Diesel Oil),PJM
+1_Wheelabrator_Bridgeport,Boiler (Diesel Oil),NE
+1_Wheelabrator_Concord_Facility,Boiler (Diesel Oil),NE
+1_Wheelabrator_Falls,Boiler (Diesel Oil),PJM
+1_Wheelabrator_Gloucester_LP,Boiler (Diesel Oil),PJM
+1_Wheelabrator_Lisbon,Boiler (Diesel Oil),NE
+1_Wheelabrator_Millbury_Facility,Boiler (Diesel Oil),NE
+1_Wheelabrator_North_Andover,Boiler (Diesel Oil),NE
+1_Wheelabrator_Saugus,Boiler (Diesel Oil),NE
+1_Wheelabrator_South_Broward,Boiler (Diesel Oil),SE
+1_Wheelabrator_Westchester,Boiler (Diesel Oil),NE
+1_Wilmarth,Boiler (Diesel Oil),MISO
+1_York_County_Resource_Recovery,Boiler (Diesel Oil),PJM
+2_1_,Boiler (Diesel Oil),SPP
+2_1_Archbald_Power_Station,Boiler (Diesel Oil),PJM
+2_1_Covanta_Essex_Company,Boiler (Diesel Oil),PJM
+2_1_Covanta_Niagara_LP,Boiler (Diesel Oil),NE
+2_1_Eddystone_Generating_Station,Boiler (Diesel Oil),PJM
+2_1_Hillsborough_County_Resource_Recovery,Boiler (Diesel Oil),SE
+2_1_Lee_County_Solid_Waste_Energy,Boiler (Diesel Oil),SE
+2_1_Mosaic_New_Wales_Operations,Boiler (Diesel Oil),SE
+2_1_Pinellas_County_Resource_Recovery,Boiler (Diesel Oil),SE
+2_A_Wheelabrator_Portsmouth,Boiler (Diesel Oil),PJM
+2_B_Wheelabrator_Portsmouth,Boiler (Diesel Oil),PJM
+2_C_Wheelabrator_Portsmouth,Boiler (Diesel Oil),PJM
+2_Canal,Boiler (Diesel Oil),NE
+2_Covanta_Southeastern_Connecticut_Company,Boiler (Diesel Oil),NE
+2_Elk_River,Boiler (Diesel Oil),MISO
+2_Fairless_Hills,Boiler (Diesel Oil),PJM
+2_Palm_Beach_Renewable_Energy_Facility_2,Boiler (Diesel Oil),SE
+2_Roseton_Generating_Facility,Boiler (Diesel Oil),NE
+2_SEMASS_Resource_Recovery,Boiler (Diesel Oil),NE
+2_Wheelabrator_Concord_Facility,Boiler (Diesel Oil),NE
+2_Wheelabrator_Gloucester_LP,Boiler (Diesel Oil),PJM
+2_Wilmarth,Boiler (Diesel Oil),MISO
+3_1_,Boiler (Diesel Oil),SPP
+3_1_Mosaic_New_Wales_Operations,Boiler (Diesel Oil),SE
+3_Elk_River,Boiler (Diesel Oil),MISO
+3_Wheelabrator_Concord_Facility,Boiler (Diesel Oil),NE
+3_Wheelabrator_Hudson_Falls,Boiler (Diesel Oil),NE
+3_Yorktown,Boiler (Diesel Oil),PJM
+4_1_,Boiler (Diesel Oil),SPP
+4_Middletown,Boiler (Diesel Oil),NE
+4_Olmsted_Waste_Energy,Boiler (Diesel Oil),MISO
+4_Wheelabrator_Concord_Facility,Boiler (Diesel Oil),NE
+4_William_F_Wyman,Boiler (Diesel Oil),NE
+5_1_,Boiler (Diesel Oil),SPP
+5_Montville_Station,Boiler (Diesel Oil),NE
+5_Olmsted_Waste_Energy,Boiler (Diesel Oil),MISO
+5_Oswego_Harbor_Power,Boiler (Diesel Oil),NE
+5_Possum_Point,Boiler (Diesel Oil),PJM
+6_1_,Boiler (Diesel Oil),SPP
+6_Oswego_Harbor_Power,Boiler (Diesel Oil),NE
+8_Vienna_Operations,Boiler (Diesel Oil),PJM
+A_Bay_County_Waste_to_Energy,Boiler (Diesel Oil),SE
+A_Covanta_Alexandria_Arlington_Energy,Boiler (Diesel Oil),PJM
+A_Covanta_Fairfax_Energy,Boiler (Diesel Oil),PJM
+B_Covanta_Fairfax_Energy,Boiler (Diesel Oil),PJM
+1_1_Astoria_Generating_Station,Boiler (Natural Gas),NE
+1_1_Big_Cajun_1,Boiler (Natural Gas),MISO
+1_1_Brame_Energy_Center,Boiler (Natural Gas),MISO
+1_1_Cardinal_Power__Sithe_,Boiler (Natural Gas),CAN
+1_1_Chalk_Point_LLC,Boiler (Natural Gas),PJM
+1_1_Horseshoe_Lake,Boiler (Natural Gas),SPP
+1_1_Indian_River,Boiler (Natural Gas),SE
+1_1_Jones,Boiler (Natural Gas),SPP
+1_1_Lewis_Creek,Boiler (Natural Gas),MISO
+1_1_Louis_Doc_Bonin,Boiler (Natural Gas),MISO
+1_1_Mooreland,Boiler (Natural Gas),SPP
+1_1_Northeastern,Boiler (Natural Gas),SPP
+1_1_Northport,Boiler (Natural Gas),NE
+1_1_Ravenswood,Boiler (Natural Gas),NE
+1_1_Riverside__OK_,Boiler (Natural Gas),SPP
+1_1_Sabine,Boiler (Natural Gas),MISO
+1_1_Seminole__OK_,Boiler (Natural Gas),SPP
+1_1_Teche,Boiler (Natural Gas),MISO
+1_1_Vero_Beach_Municipal_Power_Plant,Boiler (Natural Gas),SE
+1_1_Waterford_1___2,Boiler (Natural Gas),MISO
+1_1_Wilkes,Boiler (Natural Gas),SPP
+1_1_Willow_Glen,Boiler (Natural Gas),MISO
+1_2_Astoria_Generating_Station,Boiler (Natural Gas),NE
+1_2_Ravenswood,Boiler (Natural Gas),NE
+1_3_,Boiler (Natural Gas),CAN
+1_3_C_W_Burdick,Boiler (Natural Gas),SPP
+1_3_Moselle,Boiler (Natural Gas),MISO
+1_4_,Boiler (Natural Gas),CAN
+1_A_Butler_Warner_Generation_Plant,Boiler (Natural Gas),SE
+1_Baxter_Wilson,Boiler (Natural Gas),MISO
+1_Borger_Plant,Boiler (Natural Gas),SPP
+1_Brighton_Beach,Boiler (Natural Gas),CAN
+1_Bucksport_Generation_LLC,Boiler (Natural Gas),NE
+1_Earl_F_Wisdom,Boiler (Natural Gas),SPP
+1_East_12th_Street,Boiler (Natural Gas),SPP
+1_Engineered_Carbons_Borger_Cogen,Boiler (Natural Gas),SPP
+1_Fort_Dodge,Boiler (Natural Gas),SPP
+1_Gerald_Andrus,Boiler (Natural Gas),MISO
+1_Greenwood__MI_,Boiler (Natural Gas),MISO
+1_Haverhill_North_Cogeneration_Facility,Boiler (Natural Gas),PJM
+1_Henderson,Boiler (Natural Gas),MISO
+1_Houma,Boiler (Natural Gas),MISO
+1_Kingsley_Falls,Boiler (Natural Gas),CAN
+1_Knox_Lee,Boiler (Natural Gas),SPP
+1_Lake_Catherine,Boiler (Natural Gas),MISO
+1_Malden_Mills,Boiler (Natural Gas),NE
+1_Mannington_Mills,Boiler (Natural Gas),PJM
+1_McClellan__AR_,Boiler (Natural Gas),MISO
+1_Middletown_Coke_Company__LLC,Boiler (Natural Gas),PJM
+1_MU_Combined_Heat_and_Power_Plant,Boiler (Natural Gas),MISO
+1_Murray_Gill,Boiler (Natural Gas),SPP
+1_Philadelphia_Refinery,Boiler (Natural Gas),PJM
+1_Selkirk__MH_,Boiler (Natural Gas),CAN
+1_Tufts_Cove,Boiler (Natural Gas),CAN
+1_Uncasville_Mill,Boiler (Natural Gas),NE
+1_Yale_Central_Power_Plant,Boiler (Natural Gas),NE
+12_1_Martin,Boiler (Natural Gas),SE
+13_1_Martin,Boiler (Natural Gas),SE
+1X_Franklin_Heating_Station,Boiler (Natural Gas),MISO
+2_1_Astoria_Generating_Station,Boiler (Natural Gas),NE
+2_1_Big_Cajun_1,Boiler (Natural Gas),MISO
+2_1_C_D_McIntosh_Jr,Boiler (Natural Gas),SE
+2_1_Chalk_Point_LLC,Boiler (Natural Gas),PJM
+2_1_Indian_River,Boiler (Natural Gas),SE
+2_1_Jones,Boiler (Natural Gas),SPP
+2_1_Lewis_Creek,Boiler (Natural Gas),MISO
+2_1_Louis_Doc_Bonin,Boiler (Natural Gas),MISO
+2_1_Manatee,Boiler (Natural Gas),SE
+2_1_Mooreland,Boiler (Natural Gas),SPP
+2_1_Nine_Mile_Point,Boiler (Natural Gas),MISO
+2_1_Northport,Boiler (Natural Gas),NE
+2_1_Paulsboro_Refinery,Boiler (Natural Gas),PJM
+2_1_R_S_Nelson,Boiler (Natural Gas),MISO
+2_1_Ravenswood,Boiler (Natural Gas),NE
+2_1_Riverside__OK_,Boiler (Natural Gas),SPP
+2_1_Sabine,Boiler (Natural Gas),MISO
+2_1_Seminole__OK_,Boiler (Natural Gas),SPP
+2_1_Waterford_1___2,Boiler (Natural Gas),MISO
+2_1_Wilkes,Boiler (Natural Gas),SPP
+2_1_Willow_Glen,Boiler (Natural Gas),MISO
+2_2_Astoria_Generating_Station,Boiler (Natural Gas),NE
+2_2_Ravenswood,Boiler (Natural Gas),NE
+2_Bowline_Point,Boiler (Natural Gas),NE
+2_Brighton_Beach,Boiler (Natural Gas),CAN
+2_Bucksport_Generation_LLC,Boiler (Natural Gas),NE
+2_Garden_City,Boiler (Natural Gas),SPP
+2_International_Paper_Hudson_River_Mill,Boiler (Natural Gas),NE
+2_Malden_Mills,Boiler (Natural Gas),NE
+2_Mannington_Mills,Boiler (Natural Gas),PJM
+2_Ottawa__TRACOG_,Boiler (Natural Gas),CAN
+2_Ponca,Boiler (Natural Gas),SPP
+2_Selkirk__MH_,Boiler (Natural Gas),CAN
+2_Seminole__OK_,Boiler (Natural Gas),SPP
+2_Tufts_Cove,Boiler (Natural Gas),CAN
+2_Ty_Cooke,Boiler (Natural Gas),SPP
+2_Yale_Central_Power_Plant,Boiler (Natural Gas),NE
+3_1_Astoria_Generating_Station,Boiler (Natural Gas),NE
+3_1_C_D_McIntosh_Jr,Boiler (Natural Gas),SE
+3_1_Gordon_Evans_Energy_Center,Boiler (Natural Gas),SPP
+3_1_Indian_River,Boiler (Natural Gas),SE
+3_1_Nine_Mile_Point,Boiler (Natural Gas),MISO
+3_1_Ravenswood,Boiler (Natural Gas),NE
+3_1_Seminole__OK_,Boiler (Natural Gas),SPP
+3_2_Astoria_Generating_Station,Boiler (Natural Gas),NE
+3_2_Ravenswood,Boiler (Natural Gas),NE
+3_Brighton_Beach,Boiler (Natural Gas),CAN
+3_Bucksport_Generation_LLC,Boiler (Natural Gas),NE
+3_Dan_E_Karn,Boiler (Natural Gas),MISO
+3_Edge_Moor,Boiler (Natural Gas),PJM
+3_Essential_Power_Massachusetts_LLC,Boiler (Natural Gas),NE
+3_Mannington_Mills,Boiler (Natural Gas),PJM
+3_McKee_Run,Boiler (Natural Gas),PJM
+3_TalenEnergy_Martins_Creek,Boiler (Natural Gas),PJM
+3_Trigen_St__Louis,Boiler (Natural Gas),MISO
+3_Tufts_Cove,Boiler (Natural Gas),CAN
+4_1_Astoria_Generating_Station,Boiler (Natural Gas),NE
+4_1_Gordon_Evans_Energy_Center,Boiler (Natural Gas),SPP
+4_1_Seminole__OK_,Boiler (Natural Gas),SPP
+4_2_Astoria_Generating_Station,Boiler (Natural Gas),NE
+4_Dan_E_Karn,Boiler (Natural Gas),MISO
+4_Delaware_City_Plant,Boiler (Natural Gas),PJM
+4_Edge_Moor,Boiler (Natural Gas),PJM
+4_TalenEnergy_Martins_Creek,Boiler (Natural Gas),PJM
+4_Tufts_Cove,Boiler (Natural Gas),CAN
+5_1_Gordon_Evans_Energy_Center,Boiler (Natural Gas),SPP
+5_Edge_Moor,Boiler (Natural Gas),PJM
+5_Tufts_Cove,Boiler (Natural Gas),CAN
+5_Wellington_1,Boiler (Natural Gas),SPP
+6_New_Ulm,Boiler (Natural Gas),MISO
+6_Tufts_Cove,Boiler (Natural Gas),CAN
+7_1_,Boiler (Natural Gas),NE
+7_Coffeyville,Boiler (Natural Gas),SPP
+7_Mystic_Generating_Station,Boiler (Natural Gas),NE
+7_Streeter_Station,Boiler (Natural Gas),MISO
+8_Columbia__MO_,Boiler (Natural Gas),MISO
+DV_Natchez,Boiler (Natural Gas),MISO
+S_Anson_Abenaki_Hydros,Boiler (Natural Gas),NE
+S1_Nelson_Energy_Center,Boiler (Natural Gas),PJM
+S2_Medical_Area_Total_Energy_Plant,Boiler (Natural Gas),NE
+S2_Nelson_Energy_Center,Boiler (Natural Gas),PJM
+S3_Medical_Area_Total_Energy_Plant,Boiler (Natural Gas),NE
+ST_L_V_Sutton_Steam,Boiler (Natural Gas),SE
+ST_Univ_Of_Connecticut___Storrs_Campus,Boiler (Natural Gas),NE
+SV_Nine_Mile_Point,Boiler (Natural Gas),MISO
+1_1_Androscoggin_Mill,Boiler (Wood),NE
+1_1_Cochrane__NOPO_,Boiler (Wood),CAN
+1_1_International_Paper_Eastover_Facility,Boiler (Wood),SE
+1_1_Thunder_Bay_Mill,Boiler (Wood),CAN
+1_Abercrombie_Point,Boiler (Wood),CAN
+1_Alexandria_Energy_Center,Boiler (Wood),NE
+1_Berlin_Biomass,Boiler (Wood),NE
+1_Bridgewater_Power_LP,Boiler (Wood),NE
+1_Brompton_Mill,Boiler (Wood),CAN
+1_Calstock_Power,Boiler (Wood),CAN
+1_Chapais_Energy_Centre,Boiler (Wood),CAN
+1_CPI_USA_NC_Roxboro,Boiler (Wood),SE
+1_CPI_USA_NC_Southport,Boiler (Wood),SE
+1_DG_Whitefield_LLC,Boiler (Wood),NE
+1_Dolbeau,Boiler (Wood),CAN
+1_Expera_Specialty_Solutions___Mosinee_Mill,Boiler (Wood),MISO
+1_Florence_Mill,Boiler (Wood),SE
+1_Gainesville_Renewable_Energy_Center,Boiler (Wood),SE
+1_Georgia_Pacific_Port_Hudson,Boiler (Wood),MISO
+1_Grayling_Generating_Station,Boiler (Wood),MISO
+1_Greenway_Renewable_Power,Boiler (Wood),SE
+1_Harden_Furniture,Boiler (Wood),NE
+1_Hillman_Power_LLC,Boiler (Wood),MISO
+1_J_C_McNeil,Boiler (Wood),NE
+1_John_H_Warden,Boiler (Wood),MISO
+1_Johnsonburg_Mill,Boiler (Wood),PJM
+1_Kaukauna_Paper_Mill,Boiler (Wood),MISO
+1_Koda_Biomass_Plant,Boiler (Wood),MISO
+1_Lavalley_Lumber_LLC,Boiler (Wood),NE
+1_Multitrade_of_Pittsylvania_LP,Boiler (Wood),PJM
+1_NA_2_,Boiler (Wood),CAN
+1_NA_2_Cochrane__NOPO_,Boiler (Wood),CAN
+1_Northstar_Biomass,Boiler (Wood),SE
+1_Okeelanta_Cogeneration,Boiler (Wood),SE
+1_Palmer_Renewable_Energy,Boiler (Wood),NE
+1_Piedmont_Green_Power,Boiler (Wood),SE
+1_Pinetree_Power,Boiler (Wood),NE
+1_Pinetree_Power_Fitchburg,Boiler (Wood),NE
+1_Pinetree_Power_Tamworth,Boiler (Wood),NE
+1_Plainfield_Renewable_Energy_LLC,Boiler (Wood),NE
+1_Plant_Carl,Boiler (Wood),SE
+1_Red_Shield_Envir_Old_Town_Facility,Boiler (Wood),NE
+1_ReEnergy_Black_River,Boiler (Wood),NE
+1_ReEnergy_Fort_Fairfield,Boiler (Wood),NE
+1_ReEnergy_Livermore_Falls,Boiler (Wood),NE
+1_ReEnergy_Stratton_LLC,Boiler (Wood),NE
+1_Ryegate_Power_Station,Boiler (Wood),NE
+1_Senneterre,Boiler (Wood),CAN
+1_Snider_Industries,Boiler (Wood),SPP
+1_Somerset_Plant,Boiler (Wood),NE
+1_Springfield_Power_LLC,Boiler (Wood),NE
+1_St__Felicien,Boiler (Wood),CAN
+1_St__George_Paper__NB_,Boiler (Wood),CAN
+1_Telogia_Power,Boiler (Wood),SE
+1_United_Corrstack_Paper,Boiler (Wood),PJM
+1_Viking_Energy_of_Lincoln,Boiler (Wood),MISO
+1_Viking_Energy_of_McBain,Boiler (Wood),MISO
+1_Westrock_Hodge__LA_,Boiler (Wood),MISO
+1_Weyerhaeuser_Columbus_MS,Boiler (Wood),SE
+1_Weyerhaeuser_New_Bern_NC,Boiler (Wood),SE
+1_Wheelabrator_Ridge_Energy,Boiler (Wood),SE
+1_Windsor__DOMTAR_,Boiler (Wood),CAN
+1_Wisconsin_Rapids_Pulp_Mill,Boiler (Wood),MISO
+1_Woodville_Renewable_Power_Project,Boiler (Wood),MISO
+1_WPS_Power_Niagara,Boiler (Wood),NE
+1_Yellow_Pine_Energy_Company_LLC,Boiler (Wood),SE
+10_1_,Boiler (Wood),CAN
+11_1_,Boiler (Wood),CAN
+12_1_,Boiler (Wood),CAN
+13_1_,Boiler (Wood),CAN
+14_1_,Boiler (Wood),CAN
+15_1_,Boiler (Wood),CAN
+16_1_,Boiler (Wood),CAN
+2_1_Androscoggin_Mill,Boiler (Wood),NE
+2_1_Cochrane__NOPO_,Boiler (Wood),CAN
+2_1_International_Paper_Eastover_Facility,Boiler (Wood),SE
+2_1_Thunder_Bay_Mill,Boiler (Wood),CAN
+2_2_,Boiler (Wood),CAN
+2_2_Cochrane__NOPO_,Boiler (Wood),CAN
+2_Brompton_Mill,Boiler (Wood),CAN
+2_Kaukauna_Paper_Mill,Boiler (Wood),MISO
+2_Multitrade_of_Pittsylvania_LP,Boiler (Wood),PJM
+2_P_H_Glatfelter,Boiler (Wood),PJM
+2_Somerset_Plant,Boiler (Wood),NE
+2_St__George_Paper__NB_,Boiler (Wood),CAN
+2_Weyerhaeuser_Columbus_MS,Boiler (Wood),SE
+2_Wisconsin_Rapids_Pulp_Mill,Boiler (Wood),MISO
+3_1_Androscoggin_Mill,Boiler (Wood),NE
+3_1_Cochrane__NOPO_,Boiler (Wood),CAN
+3_1_Thunder_Bay_Mill,Boiler (Wood),CAN
+3_2_,Boiler (Wood),CAN
+3_Cochrane__NOPO_,Boiler (Wood),CAN
+3_East_Millinocket_Mill,Boiler (Wood),NE
+3_International_Paper_Red_River_Mill,Boiler (Wood),MISO
+3_Kaukauna_Paper_Mill,Boiler (Wood),MISO
+3_Weyerhaeuser_Columbus_MS,Boiler (Wood),SE
+4_1_Thunder_Bay_Mill,Boiler (Wood),CAN
+4_2_,Boiler (Wood),CAN
+4_ReEnergy_Lyonsdale_Biomass,Boiler (Wood),NE
+4_Rumford_Cogeneration,Boiler (Wood),NE
+5_Finch_Paper,Boiler (Wood),NE
+6_Indeck_Jonesboro_Energy_Center,Boiler (Wood),NE
+6_Manitowoc,Boiler (Wood),MISO
+8_1_,Boiler (Wood),CAN
+9_1_,Boiler (Wood),CAN
+A_Androscoggin_Mill,Boiler (Wood),NE
+A_Covington_Facility,Boiler (Wood),PJM
+A_Halifax_County_Biomass,Boiler (Wood),PJM
+A_Hopewell_Mill,Boiler (Wood),PJM
+A_International_Paper_Franklin_Mill,Boiler (Wood),PJM
+A_International_Paper_Pensacola,Boiler (Wood),SE
+A_WestRock_Panama_City_Mill,Boiler (Wood),SE
+A_WestRock_West_Point_Mill,Boiler (Wood),PJM
+B_Androscoggin_Mill,Boiler (Wood),NE
+C_Androscoggin_Mill,Boiler (Wood),NE
+CT_Taylor_Gasification_WTE,Boiler (Wood),NE
+D_Androscoggin_Mill,Boiler (Wood),NE
+E_Androscoggin_Mill,Boiler (Wood),NE
+F_Androscoggin_Mill,Boiler (Wood),NE
+N_BROOKLYN_ENERGY_CENTRE,Boiler (Wood),CAN
+NA_1_2_Cochrane__NOPO_,Boiler (Wood),CAN
+ST_Taylor_Gasification_WTE,Boiler (Wood),NE
+1_1_Polk,Combined cycle (Coal),SE
+1_CSL_Gas_Recovery,Combined cycle (Diesel Oil),SE
+1_GRS_Arbor_Hills,Combined cycle (Diesel Oil),MISO
+1_Middlesex_Generating_Facility,Combined cycle (Diesel Oil),PJM
+S9_C9_Cleary_Flood,Combined cycle (Diesel Oil),NE
+1_1_2_Cogentrix_Lawrence,Combined cycle (Natural Gas),MISO
+1_1_Acadia_Energy_Center,Combined cycle (Natural Gas),MISO
+1_1_Algoma_Steel___St__Mary_s_Cogen_Plant,Combined cycle (Natural Gas),CAN
+1_1_Arvah_B_Hopkins,Combined cycle (Natural Gas),SE
+1_1_Astoria_Energy,Combined cycle (Natural Gas),NE
+1_1_Athens_Generating_Plant,Combined cycle (Natural Gas),NE
+1_1_Bethlehem_Power_Plant,Combined cycle (Natural Gas),PJM
+1_1_Bethpage_Power_Plant,Combined cycle (Natural Gas),NE
+1_1_Brooklyn_Navy_Yard_Cogeneration,Combined cycle (Natural Gas),NE
+1_1_Cane_Island,Combined cycle (Natural Gas),SE
+1_1_Cottonwood_Energy_Project,Combined cycle (Natural Gas),MISO
+1_1_Deer_Creek_Station,Combined cycle (Natural Gas),SPP
+1_1_Dow_St_Charles_Operations,Combined cycle (Natural Gas),MISO
+1_1_Fairless_Energy_Center,Combined cycle (Natural Gas),PJM
+1_1_Fort_Myers,Combined cycle (Natural Gas),SE
+1_1_Goreway,Combined cycle (Natural Gas),CAN
+1_1_H_L_Culbreath_Bayside_Power_Station,Combined cycle (Natural Gas),SE
+1_1_Hines_Energy_Complex,Combined cycle (Natural Gas),SE
+1_1_Kiamichi_Energy_Facility,Combined cycle (Natural Gas),SPP
+1_1_Kingston_Cogen,Combined cycle (Natural Gas),CAN
+1_1_Lagoon_Creek,Combined cycle (Natural Gas),SE
+1_1_Lauderdale,Combined cycle (Natural Gas),SE
+1_1_Magnolia_Power_Plant,Combined cycle (Natural Gas),SE
+1_1_Manatee,Combined cycle (Natural Gas),SE
+1_1_Martin,Combined cycle (Natural Gas),SE
+1_1_Milton_Clean_Energy_Centre,Combined cycle (Natural Gas),CAN
+1_1_NA,Combined cycle (Natural Gas),PJM
+1_1_Napanee_Generating_Station,Combined cycle (Natural Gas),CAN
+1_1_Nine_Mile_Point,Combined cycle (Natural Gas),MISO
+1_1_Oneta_Energy_Center,Combined cycle (Natural Gas),SPP
+1_1_Ouachita,Combined cycle (Natural Gas),MISO
+1_1_P_L_Bartow,Combined cycle (Natural Gas),SE
+1_1_Port_Everglades,Combined cycle (Natural Gas),SE
+1_1_Port_Washington_Generating_Station,Combined cycle (Natural Gas),MISO
+1_1_PSEG_Linden_Generating_Station,Combined cycle (Natural Gas),PJM
+1_1_Redbud_Power_Plant,Combined cycle (Natural Gas),SPP
+1_1_Sanford,Combined cycle (Natural Gas),SE
+1_1_Selkirk_Cogen,Combined cycle (Natural Gas),NE
+1_1_St__Clair_Power,Combined cycle (Natural Gas),CAN
+1_1_St_Francis_Energy_Facility,Combined cycle (Natural Gas),SE
+1_1_State_Line_Combined_Cycle,Combined cycle (Natural Gas),SPP
+1_1_Thorold,Combined cycle (Natural Gas),CAN
+1_1_Turkey_Point,Combined cycle (Natural Gas),SE
+1_1_Union_Power_Partners_LP,Combined cycle (Natural Gas),MISO
+1_1_West_County_Energy_Center,Combined cycle (Natural Gas),SE
+1_1_West_Windsor_Cogeneration_Facility,Combined cycle (Natural Gas),CAN
+1_10_NA,Combined cycle (Natural Gas),SE
+1_11_NA,Combined cycle (Natural Gas),SE
+1_12_NA,Combined cycle (Natural Gas),SE
+1_1A_1B_1C_Tenaska_Central_Alabama_Stn,Combined cycle (Natural Gas),SE
+1_1A_1B_Chattahoochee_Energy_Facility,Combined cycle (Natural Gas),SE
+1_1A_1B_Effingham_County_Power_Project,Combined cycle (Natural Gas),SE
+1_1A_1B_Hillabee_Energy_Center,Combined cycle (Natural Gas),SE
+1_1A_1B_Mid_Georgia_Cogeneration_Facility,Combined cycle (Natural Gas),SE
+1_1A_1B_Wansley_Unit_9,Combined cycle (Natural Gas),SE
+1_1A_General_Electric_Plastic,Combined cycle (Natural Gas),SE
+1_1A_Hog_Bayou_Energy_Center,Combined cycle (Natural Gas),SE
+1_1A_McIntosh_Combined_Cycle_Facility,Combined cycle (Natural Gas),SE
+1_1A_NA,Combined cycle (Natural Gas),SE
+1_1A_Santa_Rosa_Energy_Center,Combined cycle (Natural Gas),SE
+1_1A_Theodore_Cogen_Facility,Combined cycle (Natural Gas),SE
+1_1A_Washington_County_Cogeneration_Facility,Combined cycle (Natural Gas),SE
+1_1B_McIntosh_Combined_Cycle_Facility,Combined cycle (Natural Gas),SE
+1_1B_NA,Combined cycle (Natural Gas),SE
+1_1C_NA,Combined cycle (Natural Gas),SE
+1_2_3_4_5_6_7_9_8_Jackson_Generating_Station,Combined cycle (Natural Gas),MISO
+1_2_3_4_Hunterstown_Power_Plant,Combined cycle (Natural Gas),PJM
+1_2_3_4_Jasper,Combined cycle (Natural Gas),SE
+1_2_3_4_John_Sevier,Combined cycle (Natural Gas),SE
+1_2_3_4_Kendall_Square_Station,Combined cycle (Natural Gas),NE
+1_2_3_4_Lockport_Energy_Associates_LP,Combined cycle (Natural Gas),NE
+1_2_3_4_McWilliams,Combined cycle (Natural Gas),SE
+1_2_3_4_Parlin_Power_Plant,Combined cycle (Natural Gas),PJM
+1_2_3_4_Red_Oak_Power_LLC,Combined cycle (Natural Gas),PJM
+1_2_3_4_Sarnia_Joint_Venture,Combined cycle (Natural Gas),CAN
+1_2_3_Algonquin_Windsor_Locks,Combined cycle (Natural Gas),NE
+1_2_3_Beatrice,Combined cycle (Natural Gas),SPP
+1_2_3_Bellmeade_Power_Station,Combined cycle (Natural Gas),PJM
+1_2_3_Carr_Street_Generating_Station,Combined cycle (Natural Gas),NE
+1_2_3_Columbia_Energy_Center__SC_,Combined cycle (Natural Gas),SE
+1_2_3_Cordova_Energy,Combined cycle (Natural Gas),PJM
+1_2_3_Cory_Cogeneration_Station,Combined cycle (Natural Gas),CAN
+1_2_3_Eagle_Valley__IN_,Combined cycle (Natural Gas),MISO
+1_2_3_Fayette_Energy_Facility,Combined cycle (Natural Gas),PJM
+1_2_3_Fremont_Energy_Center,Combined cycle (Natural Gas),PJM
+1_2_3_Greater_Des_Moines,Combined cycle (Natural Gas),MISO
+1_2_3_Holland_Energy_Facility,Combined cycle (Natural Gas),MISO
+1_2_3_Meridian_Cogeneration_Project,Combined cycle (Natural Gas),CAN
+1_2_3_NAEA_Lakewood_LLC,Combined cycle (Natural Gas),PJM
+1_2_3_Ontelaunee_Energy_Center,Combined cycle (Natural Gas),PJM
+1_2_3_Quantum_Lake_Power_LP,Combined cycle (Natural Gas),SE
+1_2_3_Quantum_Pasco_Power_LP,Combined cycle (Natural Gas),SE
+1_2_3_Queen_Elizabeth,Combined cycle (Natural Gas),CAN
+1_2_3_Saranac_Facility,Combined cycle (Natural Gas),NE
+1_2_3_Sayreville_Cogeneration_Facility,Combined cycle (Natural Gas),PJM
+1_2_3_TalenEnergy_Ironwood_LLC,Combined cycle (Natural Gas),PJM
+1_2_3_Terry_Bundy_Generating_Station,Combined cycle (Natural Gas),SPP
+1_2_3_Vann_Power_Plant,Combined cycle (Natural Gas),SE
+1_2_Allegany_Cogen,Combined cycle (Natural Gas),NE
+1_2_Batavia_Power_Plant,Combined cycle (Natural Gas),NE
+1_2_Caledonia,Combined cycle (Natural Gas),SE
+1_2_Carthage_Energy_LLC,Combined cycle (Natural Gas),NE
+1_2_Castleton_Energy_Center,Combined cycle (Natural Gas),NE
+1_2_Faribault_Energy_Park,Combined cycle (Natural Gas),MISO
+1_2_Grays_Ferry_Cogeneration,Combined cycle (Natural Gas),PJM
+1_2_Harry_L__Oswald,Combined cycle (Natural Gas),MISO
+1_2_Indeck_Corinth_Energy_Center,Combined cycle (Natural Gas),NE
+1_2_Indeck_Olean_Energy_Center,Combined cycle (Natural Gas),NE
+1_2_Indeck_Oswego_Energy_Center,Combined cycle (Natural Gas),NE
+1_2_Indeck_Silver_Springs_Energy_Center,Combined cycle (Natural Gas),NE
+1_2_Indeck_Yerkes_Energy_Center,Combined cycle (Natural Gas),NE
+1_2_Kapuskasing__TCPL_,Combined cycle (Natural Gas),CAN
+1_2_LSP_Whitewater_LP,Combined cycle (Natural Gas),MISO
+1_2_Michigan_Power_LP,Combined cycle (Natural Gas),MISO
+1_2_Mississauga__TRACOG_,Combined cycle (Natural Gas),CAN
+1_2_NA,Combined cycle (Natural Gas),SE
+1_2_Nassau_Energy_Corp,Combined cycle (Natural Gas),NE
+1_2_North_Battleford_Energy_Centre,Combined cycle (Natural Gas),CAN
+1_2_North_Bay__TCPL_,Combined cycle (Natural Gas),CAN
+1_2_NRG_Energy_Center_Dover,Combined cycle (Natural Gas),PJM
+1_2_Pinelawn_Power_LLC,Combined cycle (Natural Gas),NE
+1_2_Redbud_Power_Plant,Combined cycle (Natural Gas),SPP
+1_2_Sanford,Combined cycle (Natural Gas),SE
+1_2_Tom_G_Smith,Combined cycle (Natural Gas),SE
+1_2_TVA_Southaven_Combined_Cycle,Combined cycle (Natural Gas),SE
+1_3_Iroquois_Falls_Cogeneration_Facility,Combined cycle (Natural Gas),CAN
+1_3_NA,Combined cycle (Natural Gas),CAN
+1_3_Sanford,Combined cycle (Natural Gas),SE
+1_30_Citrus_County_Combined_Cycle,Combined cycle (Natural Gas),SE
+1_30_NA,Combined cycle (Natural Gas),SE
+1_4_NA,Combined cycle (Natural Gas),PJM
+1_4_Sanford,Combined cycle (Natural Gas),SE
+1_5_NA,Combined cycle (Natural Gas),PJM
+1_500MW_CC,Combined cycle (Natural Gas),NE
+1_6_NA,Combined cycle (Natural Gas),PJM
+1_7_NA,Combined cycle (Natural Gas),PJM
+1_8_NA,Combined cycle (Natural Gas),PJM
+1_Ada_Cogeneration_LP,Combined cycle (Natural Gas),MISO
+1_ANP_Bellingham_Energy_Project,Combined cycle (Natural Gas),NE
+1_ANP_Blackstone_Energy_Project,Combined cycle (Natural Gas),NE
+1_Attala,Combined cycle (Natural Gas),MISO
+1_Bayside_Power_Generation_Project,Combined cycle (Natural Gas),CAN
+1_Becancour__TRNCANEN_,Combined cycle (Natural Gas),CAN
+1_Bergen_Generating_Station,Combined cycle (Natural Gas),PJM
+1_Berkshire_Power,Combined cycle (Natural Gas),NE
+1_Berrians_II,Combined cycle (Natural Gas),NE
+1_Bethlehem_Energy_Center,Combined cycle (Natural Gas),NE
+1_Binghamton_Cogen,Combined cycle (Natural Gas),NE
+1_Brandywine_Power_Facility,Combined cycle (Natural Gas),PJM
+1_Caithness_Long_Island_Energy_Center,Combined cycle (Natural Gas),NE
+1_Camden_Plant_Holding_LLC,Combined cycle (Natural Gas),PJM
+1_Cape_Canaveral,Combined cycle (Natural Gas),SE
+1_Carville_Energy_LLC,Combined cycle (Natural Gas),MISO
+1_Central_Energy_Plant,Combined cycle (Natural Gas),SE
+1_CH_Resources_Beaver_Falls,Combined cycle (Natural Gas),NE
+1_CH_Resources_Syracuse,Combined cycle (Natural Gas),NE
+1_Cherokee_County_Cogen,Combined cycle (Natural Gas),SE
+1_Choctaw_County,Combined cycle (Natural Gas),SE
+1_Chouteau,Combined cycle (Natural Gas),SE
+1_Comanche__OK_,Combined cycle (Natural Gas),SPP
+1_CPV_Valley_Energy_Center,Combined cycle (Natural Gas),NE
+1_Curtis_H_Stanton_Energy_Center,Combined cycle (Natural Gas),SE
+1_D_,Combined cycle (Natural Gas),SE
+1_Decatur_Energy_Center,Combined cycle (Natural Gas),SE
+1_Dell_Power_Station,Combined cycle (Natural Gas),SE
+1_Dighton_Power_Plant,Combined cycle (Natural Gas),NE
+1_Dogwood_Energy_Facility,Combined cycle (Natural Gas),SPP
+1_E_B_Harris_Electric_Generating_Plant,Combined cycle (Natural Gas),SE
+1_Eagle_Point_Power_Generation,Combined cycle (Natural Gas),PJM
+1_Eastman_Cogeneration_Facility,Combined cycle (Natural Gas),SPP
+1_Emery_Station,Combined cycle (Natural Gas),MISO
+1_Empire_Generating_Co_LLC,Combined cycle (Natural Gas),NE
+1_Fortistar_North_Tonawanda,Combined cycle (Natural Gas),NE
+1_Fox_Energy_Center,Combined cycle (Natural Gas),MISO
+1_FPL_Energy_Marcus_Hook_LP,Combined cycle (Natural Gas),PJM
+1_Fraser,Combined cycle (Natural Gas),CAN
+1_G_Green_Country_Energy_LLC,Combined cycle (Natural Gas),SPP
+1_Garrison_Energy_Center_LLC,Combined cycle (Natural Gas),PJM
+1_Gateway_Energy_Center,Combined cycle (Natural Gas),PJM
+1_Grand_Tower_Energy_Center_LLC,Combined cycle (Natural Gas),MISO
+1_Greenfield_Energy_Centre,Combined cycle (Natural Gas),CAN
+1_H_Allen_Franklin_Combined_Cycle,Combined cycle (Natural Gas),SE
+1_Hinds_Energy_Facility,Combined cycle (Natural Gas),MISO
+1_Hobbs_Generating_Station,Combined cycle (Natural Gas),SPP
+1_Hot_Spring_Generating_Facility,Combined cycle (Natural Gas),MISO
+1_J_Robert_Massengale,Combined cycle (Natural Gas),SPP
+1_John_R_Kelly,Combined cycle (Natural Gas),SE
+1_Kenilworth_Energy_Facility,Combined cycle (Natural Gas),PJM
+1_Kennedy_International_Airport_Cogen,Combined cycle (Natural Gas),NE
+1_L_L_Wilkins,Combined cycle (Natural Gas),MISO
+1_Lake_Road_Generating_Plant,Combined cycle (Natural Gas),NE
+1_Lake_Superior_Power,Combined cycle (Natural Gas),CAN
+1_Larsen_Memorial,Combined cycle (Natural Gas),SE
+1_Liberty_Electric_Power_Plant,Combined cycle (Natural Gas),PJM
+1_Linden_Cogen_Plant,Combined cycle (Natural Gas),NE
+1_Lower_Mount_Bethel_Energy,Combined cycle (Natural Gas),PJM
+1_LSU_Cogen,Combined cycle (Natural Gas),MISO
+1_Magnet_Cove,Combined cycle (Natural Gas),MISO
+1_Mankato_Energy_Center,Combined cycle (Natural Gas),MISO
+1_Massena_Energy_Facility,Combined cycle (Natural Gas),NE
+1_McAdams_Power_Station,Combined cycle (Natural Gas),MISO
+1_McClain_Energy_Facility,Combined cycle (Natural Gas),SPP
+1_Medina_Valley,Combined cycle (Natural Gas),MISO
+1_Milford_Power_Project,Combined cycle (Natural Gas),NE
+1_Morgan_Energy_Center,Combined cycle (Natural Gas),SE
+1_Mulberry_Cogeneration_Facility,Combined cycle (Natural Gas),SE
+1_Mustang_Station,Combined cycle (Natural Gas),SPP
+1_Newark_Bay_Cogeneration_Partnership_LP,Combined cycle (Natural Gas),PJM
+1_Newark_Energy_Center,Combined cycle (Natural Gas),PJM
+1_Nipigon_Power,Combined cycle (Natural Gas),CAN
+1_Oklahoma_Cogeneration_Project,Combined cycle (Natural Gas),SPP
+1_Orange_Cogeneration_Facility,Combined cycle (Natural Gas),SE
+1_Orlando_Cogen_LP,Combined cycle (Natural Gas),SE
+1_Osprey_Energy_Center_Power_Plant,Combined cycle (Natural Gas),SE
+1_Ottawa__TRACOG_,Combined cycle (Natural Gas),CAN
+1_Panda_Patriot_Generation_Plant,Combined cycle (Natural Gas),PJM
+1_Pearson_International_Airport,Combined cycle (Natural Gas),CAN
+1_Pedricktown_Cogeneration_Company_LP,Combined cycle (Natural Gas),PJM
+1_Perryville_Power_Station,Combined cycle (Natural Gas),MISO
+1_Pine_Bluff_Energy_Center,Combined cycle (Natural Gas),MISO
+1_Plaquemine_Cogeneration_Plant,Combined cycle (Natural Gas),MISO
+1_Quantum_Auburndale_Power_LP,Combined cycle (Natural Gas),SE
+1_Quantum_Choctaw_Power_LLC,Combined cycle (Natural Gas),SE
+1_Rensselaer_Cogen,Combined cycle (Natural Gas),NE
+1_Richard_M_Flynn,Combined cycle (Natural Gas),NE
+1_Riviera_Beach_Next_Generation_Clean_Energy,Combined cycle (Natural Gas),SE
+1_S_G_New_Covert_Generating_Facility,Combined cycle (Natural Gas),MISO
+1_S_Green_Country_Energy_LLC,Combined cycle (Natural Gas),SPP
+1_S_Hutchinson_Plant__2,Combined cycle (Natural Gas),MISO
+1_S_O_Purdom,Combined cycle (Natural Gas),SE
+1_S1_NA,Combined cycle (Natural Gas),SE
+1_Sabine_Cogen,Combined cycle (Natural Gas),MISO
+1_Sarnia__IMO_,Combined cycle (Natural Gas),CAN
+1_Sikorsky_Stratford,Combined cycle (Natural Gas),NE
+1_Sithe_Independence_Station,Combined cycle (Natural Gas),NE
+1_SRW_Cogen_LP,Combined cycle (Natural Gas),MISO
+1_Sterlington,Combined cycle (Natural Gas),MISO
+1_Taft_Cogeneration_Facility,Combined cycle (Natural Gas),MISO
+1_Tenaska_Frontier_Generation_Station,Combined cycle (Natural Gas),MISO
+1_Tenaska_Gateway_Generating_Station,Combined cycle (Natural Gas),SPP
+1_Thomas_A_Smith_Energy_Facility,Combined cycle (Natural Gas),SE
+1_Thomas_Fitzhugh,Combined cycle (Natural Gas),SPP
+1_Tiger_Bay,Combined cycle (Natural Gas),SE
+1_Treasure_Coast_Energy_Center,Combined cycle (Natural Gas),SE
+1_Trigen_St__Louis,Combined cycle (Natural Gas),MISO
+1_Tunis_Power,Combined cycle (Natural Gas),CAN
+1_Washington_Parish_Energy_Center,Combined cycle (Natural Gas),MISO
+1_West_Campus_Cogeneration_Facility,Combined cycle (Natural Gas),MISO
+1_West_Deptford_Energy_Station,Combined cycle (Natural Gas),PJM
+1_Whitby_Cogeneration,Combined cycle (Natural Gas),CAN
+1_York_Energy_Center,Combined cycle (Natural Gas),PJM
+1_York_Generation_Company_LLC,Combined cycle (Natural Gas),PJM
+10_1_Martin,Combined cycle (Natural Gas),SE
+10_1_NA,Combined cycle (Natural Gas),SE
+10_1_Union_Power_Partners_LP,Combined cycle (Natural Gas),MISO
+10_Bridgeport_Energy_Project,Combined cycle (Natural Gas),NE
+10_Manchester_Street,Combined cycle (Natural Gas),NE
+10_McIntosh_Combined_Cycle_Facility,Combined cycle (Natural Gas),SE
+11_1_Martin,Combined cycle (Natural Gas),SE
+11_1_NA,Combined cycle (Natural Gas),SE
+11_1_Union_Power_Partners_LP,Combined cycle (Natural Gas),MISO
+11_12_10_Buck,Combined cycle (Natural Gas),SE
+11_Manchester_Street,Combined cycle (Natural Gas),NE
+11_McIntosh_Combined_Cycle_Facility,Combined cycle (Natural Gas),SE
+12_1_NA,Combined cycle (Natural Gas),SE
+12_1_Union_Power_Partners_LP,Combined cycle (Natural Gas),MISO
+13_1_NA,Combined cycle (Natural Gas),SE
+14_1_NA,Combined cycle (Natural Gas),SE
+15_1_NA,Combined cycle (Natural Gas),SE
+16_1_NA,Combined cycle (Natural Gas),SPP
+17_1_,Combined cycle (Natural Gas),NE
+17_1_NA,Combined cycle (Natural Gas),SPP
+18_1_,Combined cycle (Natural Gas),PJM
+18_1_NA,Combined cycle (Natural Gas),CAN
+19_1_,Combined cycle (Natural Gas),SPP
+19_1_NA,Combined cycle (Natural Gas),CAN
+1A_1B_1C_1S_AEP_Waterford_Facility,Combined cycle (Natural Gas),PJM
+1A_1B_1S_Dresden_Energy_Facility,Combined cycle (Natural Gas),PJM
+1A_1B_1S_Washington_Energy_Facility,Combined cycle (Natural Gas),PJM
+1A_E_B_Harris_Electric_Generating_Plant,Combined cycle (Natural Gas),SE
+1A_H_Allen_Franklin_Combined_Cycle,Combined cycle (Natural Gas),SE
+1A_Hanging_Rock_Energy_Facility,Combined cycle (Natural Gas),PJM
+1A_Lawrenceburg_Energy_Facility,Combined cycle (Natural Gas),PJM
+1A_Thomas_A_Smith_Energy_Facility,Combined cycle (Natural Gas),SE
+1B_E_B_Harris_Electric_Generating_Plant,Combined cycle (Natural Gas),SE
+1B_H_Allen_Franklin_Combined_Cycle,Combined cycle (Natural Gas),SE
+1B_Hanging_Rock_Energy_Facility,Combined cycle (Natural Gas),PJM
+1B_Lawrenceburg_Energy_Facility,Combined cycle (Natural Gas),PJM
+1B_Thomas_A_Smith_Energy_Facility,Combined cycle (Natural Gas),SE
+1C_1S_2C_Lansing_BWL_REO_Town_Plant,Combined cycle (Natural Gas),MISO
+1S_Hanging_Rock_Energy_Facility,Combined cycle (Natural Gas),PJM
+1S_Lawrenceburg_Energy_Facility,Combined cycle (Natural Gas),PJM
+1S_NA,Combined cycle (Natural Gas),PJM
+1X_2X_3X_,Combined cycle (Natural Gas),SPP
+1X_NA,Combined cycle (Natural Gas),MISO
+2_1_2_Cogentrix_Lawrence,Combined cycle (Natural Gas),MISO
+2_1_Acadia_Energy_Center,Combined cycle (Natural Gas),MISO
+2_1_Algoma_Steel___St__Mary_s_Cogen_Plant,Combined cycle (Natural Gas),CAN
+2_1_Astoria_Energy,Combined cycle (Natural Gas),NE
+2_1_Athens_Generating_Plant,Combined cycle (Natural Gas),NE
+2_1_Batesville_Generation_Facility,Combined cycle (Natural Gas),MISO
+2_1_Bethlehem_Power_Plant,Combined cycle (Natural Gas),PJM
+2_1_Bethpage_Power_Plant,Combined cycle (Natural Gas),NE
+2_1_Brandy_Branch,Combined cycle (Natural Gas),SE
+2_1_Brooklyn_Navy_Yard_Cogeneration,Combined cycle (Natural Gas),NE
+2_1_Cane_Island,Combined cycle (Natural Gas),SE
+2_1_Cardinal_Power__Sithe_,Combined cycle (Natural Gas),CAN
+2_1_Cottonwood_Energy_Project,Combined cycle (Natural Gas),MISO
+2_1_Cumberland__NJ_,Combined cycle (Natural Gas),PJM
+2_1_Deer_Creek_Station,Combined cycle (Natural Gas),SPP
+2_1_Dow_St_Charles_Operations,Combined cycle (Natural Gas),MISO
+2_1_Fairless_Energy_Center,Combined cycle (Natural Gas),PJM
+2_1_Goreway,Combined cycle (Natural Gas),CAN
+2_1_H_L_Culbreath_Bayside_Power_Station,Combined cycle (Natural Gas),SE
+2_1_Hines_Energy_Complex,Combined cycle (Natural Gas),SE
+2_1_Keokuk___RA,Combined cycle (Natural Gas),MISO
+2_1_Kiamichi_Energy_Facility,Combined cycle (Natural Gas),SPP
+2_1_Kingston_Cogen,Combined cycle (Natural Gas),CAN
+2_1_Lauderdale,Combined cycle (Natural Gas),SE
+2_1_Magnolia_Power_Plant,Combined cycle (Natural Gas),SE
+2_1_Martin,Combined cycle (Natural Gas),SE
+2_1_Milton_Clean_Energy_Centre,Combined cycle (Natural Gas),CAN
+2_1_NA,Combined cycle (Natural Gas),PJM
+2_1_Napanee_Generating_Station,Combined cycle (Natural Gas),CAN
+2_1_Oneta_Energy_Center,Combined cycle (Natural Gas),SPP
+2_1_Ouachita,Combined cycle (Natural Gas),MISO
+2_1_Polk,Combined cycle (Natural Gas),SE
+2_1_Port_Everglades,Combined cycle (Natural Gas),SE
+2_1_Port_Washington_Generating_Station,Combined cycle (Natural Gas),MISO
+2_1_PSEG_Linden_Generating_Station,Combined cycle (Natural Gas),PJM
+2_1_Redbud_Power_Plant,Combined cycle (Natural Gas),SPP
+2_1_Sanford,Combined cycle (Natural Gas),SE
+2_1_Selkirk_Cogen,Combined cycle (Natural Gas),NE
+2_1_St__Clair_Power,Combined cycle (Natural Gas),CAN
+2_1_St_Francis_Energy_Facility,Combined cycle (Natural Gas),SE
+2_1_Thorold,Combined cycle (Natural Gas),CAN
+2_1_Union_Power_Partners_LP,Combined cycle (Natural Gas),MISO
+2_1_West_County_Energy_Center,Combined cycle (Natural Gas),SE
+2_1_West_Windsor_Cogeneration_Facility,Combined cycle (Natural Gas),CAN
+2_1A_McIntosh_Combined_Cycle_Facility,Combined cycle (Natural Gas),SE
+2_1A_NA,Combined cycle (Natural Gas),SE
+2_1B_McIntosh_Combined_Cycle_Facility,Combined cycle (Natural Gas),SE
+2_1B_NA,Combined cycle (Natural Gas),SE
+2_2_NA,Combined cycle (Natural Gas),SPP
+2_2_Redbud_Power_Plant,Combined cycle (Natural Gas),SPP
+2_2_Sanford,Combined cycle (Natural Gas),SE
+2_2A_2B_2C_Tenaska_Lindsay_Hill_Station,Combined cycle (Natural Gas),SE
+2_3_NA,Combined cycle (Natural Gas),CAN
+2_3_Sanford,Combined cycle (Natural Gas),SE
+2_3_Sterling_Power_Plant,Combined cycle (Natural Gas),NE
+2_30_Citrus_County_Combined_Cycle,Combined cycle (Natural Gas),SE
+2_30_NA,Combined cycle (Natural Gas),SE
+2_4_Sanford,Combined cycle (Natural Gas),SE
+2_Algoma_Steel___St__Mary_s_Cogen_Plant,Combined cycle (Natural Gas),CAN
+2_ANP_Bellingham_Energy_Project,Combined cycle (Natural Gas),NE
+2_ANP_Blackstone_Energy_Project,Combined cycle (Natural Gas),NE
+2_Bethpage_Power_Plant,Combined cycle (Natural Gas),NE
+2_Cornell_University_Central_Heat,Combined cycle (Natural Gas),NE
+2_D_,Combined cycle (Natural Gas),SE
+2_E_B_Harris_Electric_Generating_Plant,Combined cycle (Natural Gas),SE
+2_G_Green_Country_Energy_LLC,Combined cycle (Natural Gas),SPP
+2_Grand_Tower_Energy_Center_LLC,Combined cycle (Natural Gas),MISO
+2_H_Allen_Franklin_Combined_Cycle,Combined cycle (Natural Gas),SE
+2_Hartford_Hospital_Cogeneration,Combined cycle (Natural Gas),NE
+2_Lake_Road_Generating_Plant,Combined cycle (Natural Gas),NE
+2_Lauderdale,Combined cycle (Natural Gas),SE
+2_Medina_Valley,Combined cycle (Natural Gas),MISO
+2_Milford_Power_Project,Combined cycle (Natural Gas),NE
+2_Nipigon_Power,Combined cycle (Natural Gas),CAN
+2_S_G_New_Covert_Generating_Facility,Combined cycle (Natural Gas),MISO
+2_S_Green_Country_Energy_LLC,Combined cycle (Natural Gas),SPP
+2_S1_NA,Combined cycle (Natural Gas),CAN
+2_Selkirk_Cogen,Combined cycle (Natural Gas),NE
+2_Sithe_Independence_Station,Combined cycle (Natural Gas),NE
+2_Thomas_A_Smith_Energy_Facility,Combined cycle (Natural Gas),SE
+2_Trigen_St__Louis,Combined cycle (Natural Gas),MISO
+2_Tunis_Power,Combined cycle (Natural Gas),CAN
+2_York_Generation_Company_LLC,Combined cycle (Natural Gas),PJM
+20_1_,Combined cycle (Natural Gas),NE
+20_1_NA,Combined cycle (Natural Gas),CAN
+21_1_,Combined cycle (Natural Gas),SPP
+21_1_NA,Combined cycle (Natural Gas),CAN
+22_1_NA,Combined cycle (Natural Gas),CAN
+23_1_NA,Combined cycle (Natural Gas),SE
+24_1_NA,Combined cycle (Natural Gas),PJM
+25_1_NA,Combined cycle (Natural Gas),PJM
+26_1_NA,Combined cycle (Natural Gas),PJM
+27_1_NA,Combined cycle (Natural Gas),SE
+28_1_NA,Combined cycle (Natural Gas),CAN
+29_1_NA,Combined cycle (Natural Gas),PJM
+2A_E_B_Harris_Electric_Generating_Plant,Combined cycle (Natural Gas),SE
+2A_H_Allen_Franklin_Combined_Cycle,Combined cycle (Natural Gas),SE
+2A_Hanging_Rock_Energy_Facility,Combined cycle (Natural Gas),PJM
+2A_Lawrenceburg_Energy_Facility,Combined cycle (Natural Gas),PJM
+2A_Thomas_A_Smith_Energy_Facility,Combined cycle (Natural Gas),SE
+2B_E_B_Harris_Electric_Generating_Plant,Combined cycle (Natural Gas),SE
+2B_H_Allen_Franklin_Combined_Cycle,Combined cycle (Natural Gas),SE
+2B_Hanging_Rock_Energy_Facility,Combined cycle (Natural Gas),PJM
+2B_Lawrenceburg_Energy_Facility,Combined cycle (Natural Gas),PJM
+2B_Thomas_A_Smith_Energy_Facility,Combined cycle (Natural Gas),SE
+2S_Hanging_Rock_Energy_Facility,Combined cycle (Natural Gas),PJM
+2S_Lawrenceburg_Energy_Facility,Combined cycle (Natural Gas),PJM
+2X_NA,Combined cycle (Natural Gas),MISO
+2X_Saint_Marys_Hospital_Power_Plant,Combined cycle (Natural Gas),MISO
+3_1_2_Cogentrix_Lawrence,Combined cycle (Natural Gas),MISO
+3_1_2_Whiting_Clean_Energy,Combined cycle (Natural Gas),MISO
+3_1_Acadia_Energy_Center,Combined cycle (Natural Gas),MISO
+3_1_Astoria_Energy,Combined cycle (Natural Gas),NE
+3_1_Athens_Generating_Plant,Combined cycle (Natural Gas),NE
+3_1_Bethlehem_Power_Plant,Combined cycle (Natural Gas),PJM
+3_1_Brooklyn_Navy_Yard_Cogeneration,Combined cycle (Natural Gas),NE
+3_1_Cane_Island,Combined cycle (Natural Gas),SE
+3_1_Cardinal_Power__Sithe_,Combined cycle (Natural Gas),CAN
+3_1_Cottonwood_Energy_Project,Combined cycle (Natural Gas),MISO
+3_1_Goreway,Combined cycle (Natural Gas),CAN
+3_1_Hardee_Power_Station,Combined cycle (Natural Gas),SE
+3_1_Hines_Energy_Complex,Combined cycle (Natural Gas),SE
+3_1_John_S_Rainey,Combined cycle (Natural Gas),SE
+3_1_Kiamichi_Energy_Facility,Combined cycle (Natural Gas),SPP
+3_1_Kingston_Cogen,Combined cycle (Natural Gas),CAN
+3_1_Lauderdale,Combined cycle (Natural Gas),SE
+3_1_Magnolia_Power_Plant,Combined cycle (Natural Gas),SE
+3_1_Martin,Combined cycle (Natural Gas),SE
+3_1_NA,Combined cycle (Natural Gas),PJM
+3_1_Napanee_Generating_Station,Combined cycle (Natural Gas),CAN
+3_1_Northeastern,Combined cycle (Natural Gas),SPP
+3_1_Oneta_Energy_Center,Combined cycle (Natural Gas),SPP
+3_1_Ouachita,Combined cycle (Natural Gas),MISO
+3_1_Port_Everglades,Combined cycle (Natural Gas),SE
+3_1_Port_Washington_Generating_Station,Combined cycle (Natural Gas),MISO
+3_1_PSEG_Linden_Generating_Station,Combined cycle (Natural Gas),PJM
+3_1_Redbud_Power_Plant,Combined cycle (Natural Gas),SPP
+3_1_Selkirk_Cogen,Combined cycle (Natural Gas),NE
+3_1_St__Clair_Power,Combined cycle (Natural Gas),CAN
+3_1_Union_Power_Partners_LP,Combined cycle (Natural Gas),MISO
+3_1_West_County_Energy_Center,Combined cycle (Natural Gas),SE
+3_1A_NA,Combined cycle (Natural Gas),PJM
+3_1B_NA,Combined cycle (Natural Gas),PJM
+3_2_NA,Combined cycle (Natural Gas),CAN
+3_2_Redbud_Power_Plant,Combined cycle (Natural Gas),SPP
+3_30_Citrus_County_Combined_Cycle,Combined cycle (Natural Gas),SE
+3_30_NA,Combined cycle (Natural Gas),SE
+3_3A_3B_Lansing_Smith,Combined cycle (Natural Gas),SE
+3_3A_3B_Victor_J_Daniel_Jr,Combined cycle (Natural Gas),SE
+3_4_5_1_2_Noblesville,Combined cycle (Natural Gas),MISO
+3_4_5_FirstEnergy_Allegheny_Energy,Combined cycle (Natural Gas),PJM
+3_4_Caledonia,Combined cycle (Natural Gas),SE
+3_4_TVA_Southaven_Combined_Cycle,Combined cycle (Natural Gas),SE
+3_Bethpage_Power_Plant,Combined cycle (Natural Gas),NE
+3_G_Green_Country_Energy_LLC,Combined cycle (Natural Gas),SPP
+3_H_Allen_Franklin_Combined_Cycle,Combined cycle (Natural Gas),SE
+3_Lake_Road_Generating_Plant,Combined cycle (Natural Gas),NE
+3_Medina_Valley,Combined cycle (Natural Gas),MISO
+3_S_G_New_Covert_Generating_Facility,Combined cycle (Natural Gas),MISO
+3_S_Green_Country_Energy_LLC,Combined cycle (Natural Gas),SPP
+3_S1_NA,Combined cycle (Natural Gas),MISO
+3_Sithe_Independence_Station,Combined cycle (Natural Gas),NE
+30_1_NA,Combined cycle (Natural Gas),PJM
+31_1_NA,Combined cycle (Natural Gas),PJM
+32_1_NA,Combined cycle (Natural Gas),CAN
+3A_H_Allen_Franklin_Combined_Cycle,Combined cycle (Natural Gas),SE
+3B_H_Allen_Franklin_Combined_Cycle,Combined cycle (Natural Gas),SE
+3X_NA,Combined cycle (Natural Gas),MISO
+4_1_2_3_5_6_7_8_Hay_Road,Combined cycle (Natural Gas),PJM
+4_1_Acadia_Energy_Center,Combined cycle (Natural Gas),MISO
+4_1_Anadarko_Plant,Combined cycle (Natural Gas),SPP
+4_1_Athens_Generating_Plant,Combined cycle (Natural Gas),NE
+4_1_Bethlehem_Power_Plant,Combined cycle (Natural Gas),PJM
+4_1_Bethpage_Power_Plant,Combined cycle (Natural Gas),NE
+4_1_C_D_McIntosh_Jr,Combined cycle (Natural Gas),SE
+4_1_Cane_Island,Combined cycle (Natural Gas),SE
+4_1_Cottonwood_Energy_Project,Combined cycle (Natural Gas),MISO
+4_1_Goreway,Combined cycle (Natural Gas),CAN
+4_1_Hines_Energy_Complex,Combined cycle (Natural Gas),SE
+4_1_Kiamichi_Energy_Facility,Combined cycle (Natural Gas),SPP
+4_1_Kingston_Cogen,Combined cycle (Natural Gas),CAN
+4_1_Lauderdale,Combined cycle (Natural Gas),SE
+4_1_Martin,Combined cycle (Natural Gas),SE
+4_1_Midulla_Generating_Station,Combined cycle (Natural Gas),SE
+4_1_NA,Combined cycle (Natural Gas),SPP
+4_1_Oneta_Energy_Center,Combined cycle (Natural Gas),SPP
+4_1_Ouachita,Combined cycle (Natural Gas),MISO
+4_1_Port_Everglades,Combined cycle (Natural Gas),SE
+4_1_Port_Washington_Generating_Station,Combined cycle (Natural Gas),MISO
+4_1_PSEG_Linden_Generating_Station,Combined cycle (Natural Gas),PJM
+4_1_Ravenswood,Combined cycle (Natural Gas),NE
+4_1_Redbud_Power_Plant,Combined cycle (Natural Gas),SPP
+4_1_Selkirk_Cogen,Combined cycle (Natural Gas),NE
+4_1_St__Clair_Power,Combined cycle (Natural Gas),CAN
+4_1_Union_Power_Partners_LP,Combined cycle (Natural Gas),MISO
+4_2_NA,Combined cycle (Natural Gas),CAN
+4_2_Redbud_Power_Plant,Combined cycle (Natural Gas),SPP
+4_3_Batesville_Generation_Facility,Combined cycle (Natural Gas),MISO
+4_30_Citrus_County_Combined_Cycle,Combined cycle (Natural Gas),SE
+4_30_NA,Combined cycle (Natural Gas),SE
+4_4A_4B_Victor_J_Daniel_Jr,Combined cycle (Natural Gas),SE
+4_5_6_Rowan,Combined cycle (Natural Gas),SE
+4_5_6_RS_Cogen,Combined cycle (Natural Gas),MISO
+4_5_8_6_7_Gilbert,Combined cycle (Natural Gas),PJM
+4_Brunot_Island,Combined cycle (Natural Gas),PJM
+4_Jack_McDonough,Combined cycle (Natural Gas),SE
+4_Medina_Valley,Combined cycle (Natural Gas),MISO
+4_Morris_Cogeneration_LLC,Combined cycle (Natural Gas),PJM
+4_Sithe_Independence_Station,Combined cycle (Natural Gas),NE
+4A_Jack_McDonough,Combined cycle (Natural Gas),SE
+4B_Jack_McDonough,Combined cycle (Natural Gas),SE
+5_1_Acadia_Energy_Center,Combined cycle (Natural Gas),MISO
+5_1_Anadarko_Plant,Combined cycle (Natural Gas),SPP
+5_1_Athens_Generating_Plant,Combined cycle (Natural Gas),NE
+5_1_Bethlehem_Power_Plant,Combined cycle (Natural Gas),PJM
+5_1_Cane_Island,Combined cycle (Natural Gas),SE
+5_1_Hines_Energy_Complex,Combined cycle (Natural Gas),SE
+5_1_Kiamichi_Energy_Facility,Combined cycle (Natural Gas),SPP
+5_1_Kingston_Cogen,Combined cycle (Natural Gas),CAN
+5_1_Lauderdale,Combined cycle (Natural Gas),SE
+5_1_Martin,Combined cycle (Natural Gas),SE
+5_1_NA,Combined cycle (Natural Gas),SE
+5_1_Oneta_Energy_Center,Combined cycle (Natural Gas),SPP
+5_1_Port_Washington_Generating_Station,Combined cycle (Natural Gas),MISO
+5_1_PSEG_Linden_Generating_Station,Combined cycle (Natural Gas),PJM
+5_1_Union_Power_Partners_LP,Combined cycle (Natural Gas),MISO
+5_30_Citrus_County_Combined_Cycle,Combined cycle (Natural Gas),SE
+5_6_Caledonia,Combined cycle (Natural Gas),SE
+5_6_Hunlock_Power_Station,Combined cycle (Natural Gas),PJM
+5_6_TVA_Southaven_Combined_Cycle,Combined cycle (Natural Gas),SE
+5_Black_Dog,Combined cycle (Natural Gas),MISO
+5_Jack_McDonough,Combined cycle (Natural Gas),SE
+5_Medina_Valley,Combined cycle (Natural Gas),MISO
+5_Sithe_Independence_Station,Combined cycle (Natural Gas),NE
+5A_Jack_McDonough,Combined cycle (Natural Gas),SE
+5B_Jack_McDonough,Combined cycle (Natural Gas),SE
+6_1_Acadia_Energy_Center,Combined cycle (Natural Gas),MISO
+6_1_Anadarko_Plant,Combined cycle (Natural Gas),SPP
+6_1_Athens_Generating_Plant,Combined cycle (Natural Gas),NE
+6_1_Bethlehem_Power_Plant,Combined cycle (Natural Gas),PJM
+6_1_Cane_Island,Combined cycle (Natural Gas),SE
+6_1_Hines_Energy_Complex,Combined cycle (Natural Gas),SE
+6_1_Kiamichi_Energy_Facility,Combined cycle (Natural Gas),SPP
+6_1_Kingston_Cogen,Combined cycle (Natural Gas),CAN
+6_1_Martin,Combined cycle (Natural Gas),SE
+6_1_NA,Combined cycle (Natural Gas),SE
+6_1_Oneta_Energy_Center,Combined cycle (Natural Gas),SPP
+6_1_Port_Washington_Generating_Station,Combined cycle (Natural Gas),MISO
+6_1_PSEG_Linden_Generating_Station,Combined cycle (Natural Gas),PJM
+6_1_Union_Power_Partners_LP,Combined cycle (Natural Gas),MISO
+6_30_Citrus_County_Combined_Cycle,Combined cycle (Natural Gas),SE
+6_5_Batesville_Generation_Facility,Combined cycle (Natural Gas),MISO
+6_Barry,Combined cycle (Natural Gas),SE
+6_Jack_McDonough,Combined cycle (Natural Gas),SE
+6_Sithe_Independence_Station,Combined cycle (Natural Gas),NE
+6_Wansley_Combined_Cycle,Combined cycle (Natural Gas),SE
+6A_6B_6S_Possum_Point,Combined cycle (Natural Gas),PJM
+6A_Barry,Combined cycle (Natural Gas),SE
+6A_Jack_McDonough,Combined cycle (Natural Gas),SE
+6A_Wansley_Combined_Cycle,Combined cycle (Natural Gas),SE
+6B_Barry,Combined cycle (Natural Gas),SE
+6B_Jack_McDonough,Combined cycle (Natural Gas),SE
+6B_Wansley_Combined_Cycle,Combined cycle (Natural Gas),SE
+7_1_Bethlehem_Power_Plant,Combined cycle (Natural Gas),PJM
+7_1_Hines_Energy_Complex,Combined cycle (Natural Gas),SE
+7_1_Martin,Combined cycle (Natural Gas),SE
+7_1_NA,Combined cycle (Natural Gas),SE
+7_1_Union_Power_Partners_LP,Combined cycle (Natural Gas),MISO
+7_8_9_High_Bridge,Combined cycle (Natural Gas),MISO
+7_Barry,Combined cycle (Natural Gas),SE
+7_Wansley_Combined_Cycle,Combined cycle (Natural Gas),SE
+7A_7B_7C_Cane_Run,Combined cycle (Natural Gas),SE
+7A_Barry,Combined cycle (Natural Gas),SE
+7A_Wansley_Combined_Cycle,Combined cycle (Natural Gas),SE
+7B_Barry,Combined cycle (Natural Gas),SE
+7B_Wansley_Combined_Cycle,Combined cycle (Natural Gas),SE
+8_1_Hines_Energy_Complex,Combined cycle (Natural Gas),SE
+8_1_Martin,Combined cycle (Natural Gas),SE
+8_1_NA,Combined cycle (Natural Gas),SE
+8_1_Union_Power_Partners_LP,Combined cycle (Natural Gas),MISO
+8_8A_8B_Yates,Combined cycle (Natural Gas),SE
+8_9_7_Dan_River,Combined cycle (Natural Gas),SE
+8_Hutchinson_Plant__1,Combined cycle (Natural Gas),MISO
+8_Richmond__CPVI_,Combined cycle (Natural Gas),SE
+8A_Mystic_Generating_Station,Combined cycle (Natural Gas),NE
+8B_Mystic_Generating_Station,Combined cycle (Natural Gas),NE
+8C_Mystic_Generating_Station,Combined cycle (Natural Gas),NE
+9_1_Martin,Combined cycle (Natural Gas),SE
+9_1_NA,Combined cycle (Natural Gas),SE
+9_1_Union_Power_Partners_LP,Combined cycle (Natural Gas),MISO
+9_10_Riverside__MN_,Combined cycle (Natural Gas),MISO
+9_Hawthorn,Combined cycle (Natural Gas),SPP
+9_Manchester_Street,Combined cycle (Natural Gas),NE
+9A_Mystic_Generating_Station,Combined cycle (Natural Gas),NE
+9B_Mystic_Generating_Station,Combined cycle (Natural Gas),NE
+9C_Mystic_Generating_Station,Combined cycle (Natural Gas),NE
+A_B_C_D_Tenaska_Virginia_Generating_Station,Combined cycle (Natural Gas),PJM
+A_B_C_Zeeland_Generating_Station,Combined cycle (Natural Gas),MISO
+A_Bethlehem_Power_Plant,Combined cycle (Natural Gas),PJM
+A_Doswell_Energy_Center,Combined cycle (Natural Gas),PJM
+ATC_CCnew_699207,Combined cycle (Natural Gas),MISO
+ATC_CCnew_699389,Combined cycle (Natural Gas),MISO
+ATC_CCnew_699390,Combined cycle (Natural Gas),MISO
+B_Doswell_Energy_Center,Combined cycle (Natural Gas),PJM
+C_Doswell_Energy_Center,Combined cycle (Natural Gas),PJM
+C_S_LSP_Cottage_Grove_LP,Combined cycle (Natural Gas),MISO
+C1_C2_C3_S4_Pittsfield_Generating_LP,Combined cycle (Natural Gas),NE
+C1_C2_S1_Bellingham_Cogeneration_Facility,Combined cycle (Natural Gas),NE
+C1_C2_S1_Essential_Power_Newington_LLC,Combined cycle (Natural Gas),NE
+C1_C2_S1_Granite_Ridge,Combined cycle (Natural Gas),NE
+C1_C2_S1_Kleen_Energy_Systems_Project,Combined cycle (Natural Gas),NE
+C1_C2_S1_Maine_Independence_Station,Combined cycle (Natural Gas),NE
+C1_C2_S1_Ocean_State_Power,Combined cycle (Natural Gas),NE
+C1_C2_S1_Westbrook_Energy_Center_Power_Plant,Combined cycle (Natural Gas),NE
+C1_C2_ST_Kimberly_Clark_s_Energy_Project,Combined cycle (Natural Gas),NE
+C1_C3_Dartmouth_Power_Associates_LP,Combined cycle (Natural Gas),NE
+C1_NA,Combined cycle (Natural Gas),CAN
+C1_S1_C2_Masspower,Combined cycle (Natural Gas),NE
+C1_S1_C2_Rhode_Island_State_Energy_Center,Combined cycle (Natural Gas),NE
+C1_S1_Capital_District_Energy_Center,Combined cycle (Natural Gas),NE
+C1_S1_Kendall_County_Generation_Facility,Combined cycle (Natural Gas),PJM
+C1_S1_Milford_Power_LP,Combined cycle (Natural Gas),NE
+C1_S1_Millennium_Power,Combined cycle (Natural Gas),NE
+C1_S1_Pawtucket_Power_Associates,Combined cycle (Natural Gas),NE
+C1_S1_Rumford_Power__Inc,Combined cycle (Natural Gas),NE
+C1_S1_Tanner_Street_Generation,Combined cycle (Natural Gas),NE
+C1_S1_Tiverton_Power_Plant,Combined cycle (Natural Gas),NE
+C1_Univ_Of_Connecticut___Storrs_Campus,Combined cycle (Natural Gas),NE
+C2_NA,Combined cycle (Natural Gas),CAN
+C2_S2_Kendall_County_Generation_Facility,Combined cycle (Natural Gas),PJM
+C2_Univ_Of_Connecticut___Storrs_Campus,Combined cycle (Natural Gas),NE
+C3_C4_S2_Ocean_State_Power_II,Combined cycle (Natural Gas),NE
+C3_S3_Kendall_County_Generation_Facility,Combined cycle (Natural Gas),PJM
+C3_Univ_Of_Connecticut___Storrs_Campus,Combined cycle (Natural Gas),NE
+C4_S4_Kendall_County_Generation_Facility,Combined cycle (Natural Gas),PJM
+D_Doswell_Energy_Center,Combined cycle (Natural Gas),PJM
+E_Doswell_Energy_Center,Combined cycle (Natural Gas),PJM
+F_Doswell_Energy_Center,Combined cycle (Natural Gas),PJM
+G1_G2_G3_S_Hopewell_Cogeneration,Combined cycle (Natural Gas),PJM
+G1_G2_G3_S1_Brunswick_County_Power_Station,Combined cycle (Natural Gas),PJM
+G1_G2_G3_S1_Warren_County,Combined cycle (Natural Gas),PJM
+G1_G2_S1_Arsenal_Hill,Combined cycle (Natural Gas),SPP
+G1_G2_S1_Bear_Garden,Combined cycle (Natural Gas),PJM
+G1_G2_S1_Sugar_Creek_Power,Combined cycle (Natural Gas),MISO
+G1_Gordonsville_Energy_LP,Combined cycle (Natural Gas),PJM
+G1_S1_G2_Rosemary_Power_Station,Combined cycle (Natural Gas),PJM
+G2_Gordonsville_Energy_LP,Combined cycle (Natural Gas),PJM
+G7_S7_Chesterfield,Combined cycle (Natural Gas),PJM
+G8_S8_Chesterfield,Combined cycle (Natural Gas),PJM
+IA-E_CCnew_629046,Combined cycle (Natural Gas),MISO
+IA-E_CCnew_629070,Combined cycle (Natural Gas),MISO
+Midland_Cogen_Venture,Combined cycle (Natural Gas),MISO
+MN-SE_CCnew_600001,Combined cycle (Natural Gas),MISO
+MN-SE_CCnew_600007,Combined cycle (Natural Gas),MISO
+MN-SE_CCnew_600014,Combined cycle (Natural Gas),MISO
+NA_1_2_,Combined cycle (Natural Gas),CAN
+PJM-W_CCnew_274675_1,Combined cycle (Natural Gas),PJM
+PJM-W_CCnew_274675_2,Combined cycle (Natural Gas),PJM
+PJM-W_CCnew_274676,Combined cycle (Natural Gas),PJM
+PJM-W_CCnew_274687_1,Combined cycle (Natural Gas),PJM
+PJM-W_CCnew_274687_2,Combined cycle (Natural Gas),PJM
+S_GT_Combined_Locks_Energy_Center,Combined cycle (Natural Gas),MISO
+S1_C1_Brockton_Power,Combined cycle (Natural Gas),NE
+S1_C1_C2_Fore_River_Generating_Station,Combined cycle (Natural Gas),NE
+S1_Gordonsville_Energy_LP,Combined cycle (Natural Gas),PJM
+S2_Gordonsville_Energy_LP,Combined cycle (Natural Gas),PJM
+S5_NA,Combined cycle (Natural Gas),SE
+ST_C1_C2_Riverside_Energy_Center,Combined cycle (Natural Gas),MISO
+V1_Lawrence_County_NG,Combined cycle (Natural Gas),PJM
+V1_NA,Combined cycle (Natural Gas),PJM
+1_1_Arkansas_Nuclear_One,Nuclear,MISO
+1_1_Browns_Ferry,Nuclear,SE
+1_1_Bruce,Nuclear,CAN
+1_1_Brunswick_Nuclear,Nuclear,SE
+1_1_Calvert_Cliffs_Nuclear_Power_Plant,Nuclear,PJM
+1_1_Darlington__OPG_,Nuclear,CAN
+1_1_Fermi,Nuclear,MISO
+1_1_Limerick,Nuclear,PJM
+1_1_Peach_Bottom,Nuclear,PJM
+1_1_Pickering,Nuclear,CAN
+1_1_PSEG_Salem_Generating_Station,Nuclear,PJM
+1_1_Sequoyah,Nuclear,SE
+1_1_St_Lucie,Nuclear,SE
+1_Beaver_Valley,Nuclear,PJM
+1_Braidwood_Generation_Station,Nuclear,PJM
+1_Byron_Generating_Station,Nuclear,PJM
+1_Callaway,Nuclear,MISO
+1_Catawba,Nuclear,SE
+1_Clinton_Power_Station,Nuclear,MISO
+1_Cooper_Nuclear_Station,Nuclear,SPP
+1_Davis_Besse,Nuclear,PJM
+1_Donald_C_Cook,Nuclear,PJM
+1_Duane_Arnold_Energy_Center,Nuclear,MISO
+1_Edwin_I_Hatch,Nuclear,SE
+1_Grand_Gulf,Nuclear,MISO
+1_H_B_Robinson,Nuclear,SE
+1_Harris,Nuclear,SE
+1_Indian_Point_3,Nuclear,NE
+1_James_A_Fitzpatrick,Nuclear,NE
+1_Joseph_M_Farley,Nuclear,SE
+1_LaSalle_Generating_Station,Nuclear,PJM
+1_McGuire,Nuclear,SE
+1_Monticello_Nuclear_Facility,Nuclear,MISO
+1_Nine_Mile_Point_Nuclear_Station,Nuclear,NE
+1_North_Anna,Nuclear,PJM
+1_Oconee,Nuclear,SE
+1_Perry,Nuclear,PJM
+1_Point_Beach_Nuclear_Plant,Nuclear,MISO
+1_Point_Lepreau,Nuclear,CAN
+1_Prairie_Island,Nuclear,MISO
+1_PSEG_Hope_Creek_Generating_Station,Nuclear,PJM
+1_Quad_Cities_Generating_Station,Nuclear,PJM
+1_River_Bend,Nuclear,MISO
+1_Seabrook,Nuclear,NE
+1_Surry,Nuclear,PJM
+1_TalenEnergy_Susquehanna,Nuclear,PJM
+1_Three_Mile_Island,Nuclear,PJM
+1_V_C_Summer,Nuclear,SE
+1_Vogtle,Nuclear,SE
+1_Waterford_3,Nuclear,MISO
+1_Watts_Bar_Nuclear_Plant,Nuclear,SE
+1_Wolf_Creek_Generating_Station,Nuclear,SPP
+2_1_Arkansas_Nuclear_One,Nuclear,MISO
+2_1_Browns_Ferry,Nuclear,SE
+2_1_Bruce,Nuclear,CAN
+2_1_Brunswick_Nuclear,Nuclear,SE
+2_1_Calvert_Cliffs_Nuclear_Power_Plant,Nuclear,PJM
+2_1_Darlington__OPG_,Nuclear,CAN
+2_1_Fermi,Nuclear,MISO
+2_1_Limerick,Nuclear,PJM
+2_1_Peach_Bottom,Nuclear,PJM
+2_1_Pickering,Nuclear,CAN
+2_1_PSEG_Salem_Generating_Station,Nuclear,PJM
+2_1_Sequoyah,Nuclear,SE
+2_1_St_Lucie,Nuclear,SE
+2_1_Turkey_Point,Nuclear,SE
+2_Beaver_Valley,Nuclear,PJM
+2_Braidwood_Generation_Station,Nuclear,PJM
+2_Byron_Generating_Station,Nuclear,PJM
+2_Catawba,Nuclear,SE
+2_Donald_C_Cook,Nuclear,PJM
+2_Dresden_Generating_Station,Nuclear,PJM
+2_Edwin_I_Hatch,Nuclear,SE
+2_Indian_Point_2,Nuclear,NE
+2_Joseph_M_Farley,Nuclear,SE
+2_LaSalle_Generating_Station,Nuclear,PJM
+2_McGuire,Nuclear,SE
+2_Millstone,Nuclear,NE
+2_Nine_Mile_Point_Nuclear_Station,Nuclear,NE
+2_North_Anna,Nuclear,PJM
+2_Oconee,Nuclear,SE
+2_Point_Beach_Nuclear_Plant,Nuclear,MISO
+2_Prairie_Island,Nuclear,MISO
+2_Quad_Cities_Generating_Station,Nuclear,PJM
+2_Surry,Nuclear,PJM
+2_TalenEnergy_Susquehanna,Nuclear,PJM
+2_V_C_Summer,Nuclear,SE
+2_Vogtle,Nuclear,SE
+2_Watts_Bar_Nuclear_Plant,Nuclear,SE
+3_1_Browns_Ferry,Nuclear,SE
+3_1_Bruce,Nuclear,CAN
+3_1_Darlington__OPG_,Nuclear,CAN
+3_1_Pickering,Nuclear,CAN
+3_1_Turkey_Point,Nuclear,SE
+3_Dresden_Generating_Station,Nuclear,PJM
+3_Millstone,Nuclear,NE
+3_Oconee,Nuclear,SE
+3_V_C_Summer,Nuclear,SE
+3_Vogtle,Nuclear,SE
+4_1_Bruce,Nuclear,CAN
+4_1_Darlington__OPG_,Nuclear,CAN
+4_1_Pickering,Nuclear,CAN
+4_Vogtle,Nuclear,SE
+5_1_Bruce,Nuclear,CAN
+5_1_Pickering,Nuclear,CAN
+6_1_Bruce,Nuclear,CAN
+6_1_Pickering,Nuclear,CAN
+7_1_Bruce,Nuclear,CAN
+7_1_Pickering,Nuclear,CAN
+8_1_Bruce,Nuclear,CAN
+8_1_Pickering,Nuclear,CAN
+1_Benson_Power_Biomass_Plant,Stoker (Wood),MISO
+1_Cadillac_Renewable_Energy,Stoker (Wood),MISO
+1_Craven_County_Wood_Energy_LP,Stoker (Wood),SE
+1_Genesee_Power_Station_LP,Stoker (Wood),MISO
+1_1_Degray,Hydro:Hydro,MISO
+1_1_Hiwassee Dam,Hydro:Hydro,SE
+1_99 Islands,Hydro:Hydro,SE
+1_Abitibi Canyon,Hydro:Hydro,CAN
+1_Aguasabon,Hydro:Hydro,CAN
+1_Alcona,Hydro:Hydro,MISO
+1_Alexander,Hydro:Hydro,MISO
+1_Alexander (OPG),Hydro:Hydro,CAN
+1_Alice Falls Hydro Project,Hydro:Hydro,NE
+1_Allatoona,Hydro:Hydro,SE
+1_Allegan Dam,Hydro:Hydro,MISO
+1_Allegheny No 6 Hydro Statio,Hydro:Hydro,PJM
+1_Allens Falls,Hydro:Hydro,NE
+1_Amoskeag,Hydro:Hydro,NE
+1_Andrews Falls,Hydro:Hydro,CAN
+1_Anson Abenaki Hydros,Hydro:Hydro,NE
+1_Apalachia,Hydro:Hydro,SE
+1_Argyle,Hydro:Hydro,MISO
+1_Arnprior,Hydro:Hydro,CAN
+1_Ashokan,Hydro:Hydro,NE
+1_Aubrey Falls,Hydro:Hydro,CAN
+1_Ayers Island,Hydro:Hydro,NE
+1_Aziscohos Hydroelectric Pro,Hydro:Hydro,NE
+1_Bankhead Dam,Hydro:Hydro,SE
+1_Bar Mills,Hydro:Hydro,NE
+1_Barkley,Hydro:Hydro,SE
+1_Barnet Hydro,Hydro:Hydro,NE
+1_Barrett Chute,Hydro:Hydro,CAN
+1_Bartletts Ferry,Hydro:Hydro,SE
+1_Bear Creek Dam,Hydro:Hydro,SE
+1_Beauharnois,Hydro:Hydro,CAN
+1_Beaumont (HYQU),Hydro:Hydro,CAN
+1_Beaver Dam,Hydro:Hydro,SPP
+1_Beldens,Hydro:Hydro,NE
+1_Belfort,Hydro:Hydro,NE
+1_Bellows Falls,Hydro:Hydro,NE
+1_Benton Falls Associates,Hydro:Hydro,NE
+1_Berlin Gorham,Hydro:Hydro,NE
+1_Bersimis 1,Hydro:Hydro,CAN
+1_Bersimis 2,Hydro:Hydro,CAN
+1_Big Bend Dam,Hydro:Hydro,SPP
+1_Big Falls,Hydro:Hydro,MISO
+1_Big Quinnesec 61,Hydro:Hydro,MISO
+1_Big Quinnesec 92,Hydro:Hydro,MISO
+1_Black River,Hydro:Hydro,NE
+1_Blake,Hydro:Hydro,NE
+1_Blakely Mountain,Hydro:Hydro,MISO
+1_Blanchard,Hydro:Hydro,MISO
+1_Blewett,Hydro:Hydro,SE
+1_Blue Ridge,Hydro:Hydro,SE
+1_Bolton Falls,Hydro:Hydro,NE
+1_Bonny Eagle,Hydro:Hydro,NE
+1_Boone Dam,Hydro:Hydro,SE
+1_Boott Hydropower,Hydro:Hydro,NE
+1_Bridgewater,Hydro:Hydro,SE
+1_Broken Bow Dam,Hydro:Hydro,SPP
+1_Browns Falls,Hydro:Hydro,NE
+1_Brule,Hydro:Hydro,MISO
+1_Brunswick Hydro,Hydro:Hydro,NE
+1_Bryson (HYQU),Hydro:Hydro,CAN
+1_Buford,Hydro:Hydro,SE
+1_Bull Shoals,Hydro:Hydro,SPP
+1_Bulls Bridge,Hydro:Hydro,NE
+1_Buzzard Roost,Hydro:Hydro,SE
+1_Byllesby,Hydro:Hydro,MISO
+1_C H Corn Hydroelectric Faci,Hydro:Hydro,SE
+1_C W Tippy,Hydro:Hydro,MISO
+1_Cabot,Hydro:Hydro,NE
+1_Cadyville,Hydro:Hydro,NE
+1_Calderwood,Hydro:Hydro,SE
+1_Caldron Falls,Hydro:Hydro,MISO
+1_Calm Lake,Hydro:Hydro,CAN
+1_Cameron Falls,Hydro:Hydro,CAN
+1_Caribou Falls,Hydro:Hydro,CAN
+1_Carillon,Hydro:Hydro,CAN
+1_Carmichael Falls,Hydro:Hydro,CAN
+1_Carpenter,Hydro:Hydro,MISO
+1_Carters,Hydro:Hydro,SE
+1_Carver Falls,Hydro:Hydro,NE
+1_Castle Rock,Hydro:Hydro,MISO
+1_Cataract (MI),Hydro:Hydro,MISO
+1_Cataract Hydro,Hydro:Hydro,NE
+1_Cavendish,Hydro:Hydro,NE
+1_Cedar Cliff,Hydro:Hydro,SE
+1_Cedar Creek,Hydro:Hydro,SE
+1_Cedar Falls (WI),Hydro:Hydro,MISO
+1_Center Falls,Hydro:Hydro,NE
+1_Center Hill,Hydro:Hydro,SE
+1_Central Hudson High Falls,Hydro:Hydro,NE
+1_Chace Mill Winooski One,Hydro:Hydro,NE
+1_Chalk Hill,Hydro:Hydro,MISO
+1_Charles E Monty,Hydro:Hydro,NE
+1_Chasm,Hydro:Hydro,NE
+1_Chasm Hydro Partnership,Hydro:Hydro,NE
+1_Chats Falls,Hydro:Hydro,CAN
+1_Chatuge,Hydro:Hydro,SE
+1_Cheatham,Hydro:Hydro,SE
+1_Chelsea (HYQU),Hydro:Hydro,CAN
+1_Chenaux,Hydro:Hydro,CAN
+1_Cheoah,Hydro:Hydro,SE
+1_Cherokee Dam,Hydro:Hydro,SE
+1_Chickamauga,Hydro:Hydro,SE
+1_Chilhowee,Hydro:Hydro,SE
+1_Chippewa Falls,Hydro:Hydro,MISO
+1_Churchill Falls,Hydro:Hydro,CAN
+1_Chute-Des-Chats,Hydro:Hydro,CAN
+1_Chute-Hemmings,Hydro:Hydro,CAN
+1_Clam River Dam,Hydro:Hydro,MISO
+1_Clark Falls,Hydro:Hydro,NE
+1_Claytor,Hydro:Hydro,PJM
+1_Cobble Mountain,Hydro:Hydro,NE
+1_Colebrook Hydroelectric,Hydro:Hydro,NE
+1_Colton,Hydro:Hydro,NE
+1_Columbus,Hydro:Hydro,SPP
+1_Comerford,Hydro:Hydro,NE
+1_Conemaugh Hydro Plant,Hydro:Hydro,PJM
+1_Conowingo,Hydro:Hydro,PJM
+1_Cooke,Hydro:Hydro,MISO
+1_Cordell Hull,Hydro:Hydro,SE
+1_Cornell,Hydro:Hydro,MISO
+1_Cornell Hydro,Hydro:Hydro,NE
+1_Cowans Ford,Hydro:Hydro,SE
+1_Crescent,Hydro:Hydro,NE
+1_Croton,Hydro:Hydro,MISO
+1_Crystal Falls (OPG),Hydro:Hydro,CAN
+1_Curtis Palmer Hydroelectric,Hydro:Hydro,NE
+1_Dahowa Hydro,Hydro:Hydro,NE
+1_Dale Hollow,Hydro:Hydro,SE
+1_Dam 2,Hydro:Hydro,MISO
+1_Danbury Dam,Hydro:Hydro,MISO
+1_Dardanelle,Hydro:Hydro,SPP
+1_Dashville,Hydro:Hydro,NE
+1_Dearborn,Hydro:Hydro,SE
+1_Decew Falls,Hydro:Hydro,CAN
+1_Deep Creek,Hydro:Hydro,PJM
+1_Deer Rips,Hydro:Hydro,NE
+1_Dells,Hydro:Hydro,MISO
+1_Denison,Hydro:Hydro,SPP
+1_Derby Hydro,Hydro:Hydro,NE
+1_Des Joachims,Hydro:Hydro,CAN
+1_Dix Dam,Hydro:Hydro,SE
+1_Dodge Falls Associates,Hydro:Hydro,NE
+1_Dolgeville Hydro,Hydro:Hydro,NE
+1_Douglas Dam,Hydro:Hydro,SE
+1_E J West,Hydro:Hydro,NE
+1_Eagle,Hydro:Hydro,NE
+1_Ear Falls,Hydro:Hydro,CAN
+1_East Norfolk,Hydro:Hydro,NE
+1_Eastmain-1,Hydro:Hydro,CAN
+1_Eastman Falls,Hydro:Hydro,NE
+1_Edenville,Hydro:Hydro,MISO
+1_Edison Sault,Hydro:Hydro,MISO
+1_Ellis Hydro,Hydro:Hydro,SPP
+1_Ellsworth Hydro Station,Hydro:Hydro,NE
+1_Essex Junction 19,Hydro:Hydro,NE
+1_Eufaula Dam,Hydro:Hydro,SPP
+1_Fairfax Falls,Hydro:Hydro,NE
+1_Falls Village,Hydro:Hydro,NE
+1_Feeder Dam Hydro Plant,Hydro:Hydro,NE
+1_Fishing Creek,Hydro:Hydro,SE
+1_Five Channels,Hydro:Hydro,MISO
+1_Five Falls,Hydro:Hydro,NE
+1_Flambeau Hydroelectric Stat,Hydro:Hydro,MISO
+1_Flat Rock,Hydro:Hydro,NE
+1_Flint River,Hydro:Hydro,SE
+1_Fond Du Lac,Hydro:Hydro,MISO
+1_Fontana Dam,Hydro:Hydro,SE
+1_Foote,Hydro:Hydro,MISO
+1_Forestport,Hydro:Hydro,NE
+1_Fort Gibson,Hydro:Hydro,SPP
+1_Fort Loudoun,Hydro:Hydro,SE
+1_Fort Patrick Henry,Hydro:Hydro,SE
+1_Fort Randall,Hydro:Hydro,SPP
+1_Francis H. Clergue,Hydro:Hydro,CAN
+1_French Landing Dam,Hydro:Hydro,MISO
+1_Fulton Hydro,Hydro:Hydro,NE
+1_G.W. Rayner,Hydro:Hydro,CAN
+1_Gardners Falls,Hydro:Hydro,NE
+1_Garrison,Hydro:Hydro,SPP
+1_Gartshore Falls,Hydro:Hydro,CAN
+1_Garvins Falls,Hydro:Hydro,NE
+1_Gaston,Hydro:Hydro,PJM
+1_Gaston Shoals,Hydro:Hydro,SE
+1_Gavins Point,Hydro:Hydro,SPP
+1_Glen,Hydro:Hydro,NE
+1_Glen Park Hydroelectric Pro,Hydro:Hydro,NE
+1_Goodyear Lake Plant,Hydro:Hydro,NE
+1_Gorge 18,Hydro:Hydro,NE
+1_Grahamsville,Hydro:Hydro,NE
+1_Granby,Hydro:Hydro,NE
+1_Grand Rapids,Hydro:Hydro,MISO
+1_Grand Rapids (MH),Hydro:Hydro,CAN
+1_Grandfather Falls,Hydro:Hydro,MISO
+1_Grand-Mere,Hydro:Hydro,CAN
+1_Granite Falls,Hydro:Hydro,MISO
+1_Great Falls (MH),Hydro:Hydro,CAN
+1_Great Falls (SC),Hydro:Hydro,SE
+1_Great Falls (TN),Hydro:Hydro,SE
+1_Great Falls Hydro Project,Hydro:Hydro,PJM
+1_Great Lakes Hydro America -,Hydro:Hydro,NE
+1_Great Works Hydro,Hydro:Hydro,NE
+1_Greenup Hydro,Hydro:Hydro,PJM
+1_Greers Ferry Lake,Hydro:Hydro,SPP
+1_Gregg Falls,Hydro:Hydro,NE
+1_Gulf Island,Hydro:Hydro,NE
+1_Gull (Keeyask) Generating S,Hydro:Hydro,CAN
+1_Guntersville,Hydro:Hydro,SE
+1_H Neely Henry Dam,Hydro:Hydro,SE
+1_Hadley Falls,Hydro:Hydro,NE
+1_Hailesboro 4 Plant,Hydro:Hydro,NE
+1_Hannawa,Hydro:Hydro,NE
+1_Hardy,Hydro:Hydro,MISO
+1_Harmon,Hydro:Hydro,CAN
+1_Harriman,Hydro:Hydro,NE
+1_Harris (GLP),Hydro:Hydro,CAN
+1_Harris Dam,Hydro:Hydro,SE
+1_Harris Hydro,Hydro:Hydro,NE
+1_Hart Jaune,Hydro:Hydro,CAN
+1_Hartwell Lake,Hydro:Hydro,SE
+1_Hastings City Hydroelectric,Hydro:Hydro,MISO
+1_Hemlock Falls,Hydro:Hydro,MISO
+1_Herkimer,Hydro:Hydro,NE
+1_Heuvelton,Hydro:Hydro,NE
+1_High Dam,Hydro:Hydro,NE
+1_High Falls - Saranac NY,Hydro:Hydro,NE
+1_High Falls (WI),Hydro:Hydro,MISO
+1_High Rock Hydro,Hydro:Hydro,SE
+1_Highgate Falls,Hydro:Hydro,NE
+1_Higley,Hydro:Hydro,NE
+1_Hiram,Hydro:Hydro,NE
+1_Hodenpyl,Hydro:Hydro,MISO
+1_Hogg,Hydro:Hydro,CAN
+1_Holcombe,Hydro:Hydro,MISO
+1_Hollingsworth Falls,Hydro:Hydro,CAN
+1_Hollow Dam Power Partnershi,Hydro:Hydro,NE
+1_Holt Dam,Hydro:Hydro,SE
+1_Hooksett,Hydro:Hydro,NE
+1_Hudson Falls Hydroelectric,Hydro:Hydro,NE
+1_Hydraulic Race,Hydro:Hydro,NE
+1_Hydro Kennebec Project,Hydro:Hydro,NE
+1_Indian Orchard,Hydro:Hydro,NE
+1_Inghams,Hydro:Hydro,NE
+1_International Falls Power,Hydro:Hydro,MISO
+1_International Paper Jay Hyd,Hydro:Hydro,NE
+1_International Paper Livermo,Hydro:Hydro,NE
+1_International Paper Riley H,Hydro:Hydro,NE
+1_J P Priest,Hydro:Hydro,SE
+1_J Strom Thurmond,Hydro:Hydro,SE
+1_J Woodruff,Hydro:Hydro,SE
+1_Jackman,Hydro:Hydro,NE
+1_Jarvis (Hinckley),Hydro:Hydro,NE
+1_Jean-Lesage (Manic 2),Hydro:Hydro,CAN
+1_Jefferies,Hydro:Hydro,SE
+1_Jeffrey,Hydro:Hydro,SPP
+1_Jenpeg,Hydro:Hydro,CAN
+1_Jim Falls,Hydro:Hydro,MISO
+1_John H Kerr,Hydro:Hydro,PJM
+1_Johnson 1,Hydro:Hydro,SPP
+1_Johnson Falls,Hydro:Hydro,MISO
+1_Johnsonville Dam,Hydro:Hydro,NE
+1_Jones Bluff,Hydro:Hydro,SE
+1_Jordan Dam,Hydro:Hydro,SE
+1_Kakabeka Falls,Hydro:Hydro,CAN
+1_Kamargo,Hydro:Hydro,NE
+1_Kansas River Project,Hydro:Hydro,SPP
+1_Kaw Hydro,Hydro:Hydro,SPP
+1_Kelsey,Hydro:Hydro,CAN
+1_Kensico,Hydro:Hydro,NE
+1_Kent Falls,Hydro:Hydro,NE
+1_Kentucky Dam,Hydro:Hydro,SE
+1_Keokuk,Hydro:Hydro,MISO
+1_Keowee,Hydro:Hydro,SE
+1_Kettle,Hydro:Hydro,CAN
+1_Keystone Dam,Hydro:Hydro,SPP
+1_Kilbourn,Hydro:Hydro,MISO
+1_Kings Falls Hydroelectric,Hydro:Hydro,NE
+1_Kingsford,Hydro:Hydro,MISO
+1_Kingsley,Hydro:Hydro,SPP
+1_Kinneytown New Old,Hydro:Hydro,NE
+1_Kipling,Hydro:Hydro,CAN
+1_La Gabelle,Hydro:Hydro,CAN
+1_La Grande 1,Hydro:Hydro,CAN
+1_La Grande 2A,Hydro:Hydro,CAN
+1_La Grande 3,Hydro:Hydro,CAN
+1_La Grande 4,Hydro:Hydro,CAN
+1_La Romaine I,Hydro:Hydro,CAN
+1_La Romaine II,Hydro:Hydro,CAN
+1_La Romaine III,Hydro:Hydro,CAN
+1_La Tuque,Hydro:Hydro,CAN
+1_LAC Courte Oreilles Hydroel,Hydro:Hydro,MISO
+1_Lachute Hydro Lower,Hydro:Hydro,NE
+1_Ladysmith Dam,Hydro:Hydro,MISO
+1_Laforge 1 [LA 1],Hydro:Hydro,CAN
+1_Laforge 2 [LA 2],Hydro:Hydro,CAN
+1_Lake Lynn Hydro Station,Hydro:Hydro,PJM
+1_Laurel Dam,Hydro:Hydro,PJM
+1_Lawrence Hydroelectric Asso,Hydro:Hydro,NE
+1_Lay Dam,Hydro:Hydro,SE
+1_Leesville,Hydro:Hydro,PJM
+1_Les Cedres,Hydro:Hydro,CAN
+1_Lewis Smith Dam,Hydro:Hydro,SE
+1_Lighthouse Hill,Hydro:Hydro,NE
+1_Limestone (MH),Hydro:Hydro,CAN
+1_Little Falls (MN),Hydro:Hydro,MISO
+1_Little Falls Hydro,Hydro:Hydro,NE
+1_Little Long,Hydro:Hydro,CAN
+1_Lloyd Shoals,Hydro:Hydro,SE
+1_Lochmere Hydroelectric Plan,Hydro:Hydro,NE
+1_Lockwood Hydroelectric Faci,Hydro:Hydro,NE
+1_Logan Martin Dam,Hydro:Hydro,SE
+1_Long Spruce,Hydro:Hydro,CAN
+1_Lookout Shoals,Hydro:Hydro,SE
+1_Loud,Hydro:Hydro,MISO
+1_Lower Middlebury,Hydro:Hydro,NE
+1_Lower Notch,Hydro:Hydro,CAN
+1_Mackay,Hydro:Hydro,CAN
+1_Macomb,Hydro:Hydro,NE
+1_Manic 1,Hydro:Hydro,CAN
+1_Manic 5,Hydro:Hydro,CAN
+1_Manic 5-Pa,Hydro:Hydro,CAN
+1_Manitou Falls,Hydro:Hydro,CAN
+1_Markham,Hydro:Hydro,SPP
+1_Markland,Hydro:Hydro,MISO
+1_Marshall Dam,Hydro:Hydro,SE
+1_Marshfield 6,Hydro:Hydro,NE
+1_Martin Dam,Hydro:Hydro,SE
+1_Mascoma Hydro,Hydro:Hydro,NE
+1_McArthur,Hydro:Hydro,CAN
+1_McClure Dam,Hydro:Hydro,MISO
+1_McCormick,Hydro:Hydro,CAN
+1_Mcindoes,Hydro:Hydro,NE
+1_McPhail Falls,Hydro:Hydro,CAN
+1_Melton Hill,Hydro:Hydro,SE
+1_Menomonie,Hydro:Hydro,MISO
+1_Mercier Generating Station,Hydro:Hydro,CAN
+1_Merrill,Hydro:Hydro,MISO
+1_Michigamme Falls,Hydro:Hydro,MISO
+1_Middle Falls Hydro,Hydro:Hydro,NE
+1_Middlesex 2,Hydro:Hydro,NE
+1_Milford Hydro Station,Hydro:Hydro,NE
+1_Mill C,Hydro:Hydro,NE
+1_Millers Ferry,Hydro:Hydro,SE
+1_Milton,Hydro:Hydro,NE
+1_Minetto,Hydro:Hydro,NE
+1_Mio,Hydro:Hydro,MISO
+1_Mission Falls,Hydro:Hydro,CAN
+1_Mongaup,Hydro:Hydro,NE
+1_Monroe (NE),Hydro:Hydro,SPP
+1_Moose River,Hydro:Hydro,NE
+1_Morgan Falls,Hydro:Hydro,SE
+1_Morrisville,Hydro:Hydro,NE
+1_Moshier,Hydro:Hydro,NE
+1_Mountain Chute,Hydro:Hydro,CAN
+1_Mountain Island,Hydro:Hydro,SE
+1_Mt Ida Hydroelectric,Hydro:Hydro,NE
+1_Murray,Hydro:Hydro,MISO
+1_Nagagami,Hydro:Hydro,CAN
+1_Nantahala,Hydro:Hydro,SE
+1_Narrows (AR),Hydro:Hydro,SPP
+1_Neal Shoals,Hydro:Hydro,SE
+1_Neversink,Hydro:Hydro,NE
+1_New Martinsville Hannibal H,Hydro:Hydro,PJM
+1_Newport Hydro,Hydro:Hydro,NE
+1_Niagara Mill,Hydro:Hydro,MISO
+1_Nickajack,Hydro:Hydro,SE
+1_Norfolk,Hydro:Hydro,NE
+1_Norfork,Hydro:Hydro,SPP
+1_Normanskill Hydro Project,Hydro:Hydro,NE
+1_Norris Dam,Hydro:Hydro,SE
+1_North Gorham,Hydro:Hydro,NE
+1_North Highlands,Hydro:Hydro,SE
+1_North Platte,Hydro:Hydro,SPP
+1_Nottely,Hydro:Hydro,SE
+1_Oahe,Hydro:Hydro,SPP
+1_Oakdale Power Station,Hydro:Hydro,NE
+1_Ocoee 1,Hydro:Hydro,SE
+1_Ocoee 2,Hydro:Hydro,SE
+1_Ocoee 3,Hydro:Hydro,SE
+1_Ogdensburg,Hydro:Hydro,NE
+1_Ohio Falls,Hydro:Hydro,SE
+1_Old Hickory,Hydro:Hydro,SE
+1_Oliver Dam,Hydro:Hydro,SE
+1_Osage Dam,Hydro:Hydro,MISO
+1_Oswego Falls East,Hydro:Hydro,NE
+1_Otis Hydro,Hydro:Hydro,NE
+1_Otter Rapids (OPG),Hydro:Hydro,CAN
+1_Otto Holden,Hydro:Hydro,CAN
+1_Outardes 2,Hydro:Hydro,CAN
+1_Outardes 3,Hydro:Hydro,CAN
+1_Outardes 4,Hydro:Hydro,CAN
+1_Oxford Dam,Hydro:Hydro,SE
+1_Ozark,Hydro:Hydro,SPP
+1_Ozark Beach,Hydro:Hydro,SPP
+1_Parishville,Hydro:Hydro,NE
+1_Paugan,Hydro:Hydro,CAN
+1_Peavy Falls,Hydro:Hydro,MISO
+1_Pejepscot Hydroelectric Pro,Hydro:Hydro,NE
+1_Pensacola,Hydro:Hydro,SPP
+1_Petenwell,Hydro:Hydro,MISO
+1_Philadlephia,Hydro:Hydro,NE
+1_Philpott Lake,Hydro:Hydro,PJM
+1_Phoenix Hydro Project,Hydro:Hydro,NE
+1_Pickwick Landing Dam,Hydro:Hydro,SE
+1_Piercefield,Hydro:Hydro,NE
+1_Pillager,Hydro:Hydro,MISO
+1_Pine,Hydro:Hydro,MISO
+1_Pine Falls,Hydro:Hydro,CAN
+1_Pine Portage,Hydro:Hydro,CAN
+1_Piney,Hydro:Hydro,PJM
+1_Pointe du Bois,Hydro:Hydro,CAN
+1_Pontook Hydro Facility,Hydro:Hydro,NE
+1_Prairie Du Sac,Hydro:Hydro,MISO
+1_Premiere Chute,Hydro:Hydro,CAN
+1_Prickett,Hydro:Hydro,MISO
+1_Proctor,Hydro:Hydro,NE
+1_Prospect,Hydro:Hydro,NE
+1_Pyrites Plant,Hydro:Hydro,NE
+1_R.H. Saunders,Hydro:Hydro,CAN
+1_Racine,Hydro:Hydro,PJM
+1_Rainbow (CT),Hydro:Hydro,NE
+1_Rainbow Falls Hydro,Hydro:Hydro,NE
+1_Rapidan Hydro Facility,Hydro:Hydro,MISO
+1_Rapide 2,Hydro:Hydro,CAN
+1_Rapide 7,Hydro:Hydro,CAN
+1_Rapide-Blanc,Hydro:Hydro,CAN
+1_Rapide-Des-Iles,Hydro:Hydro,CAN
+1_Rapide-Des-Quinze,Hydro:Hydro,CAN
+1_Rapide-Farmers,Hydro:Hydro,CAN
+1_Raymondville,Hydro:Hydro,NE
+1_Red Rock Falls,Hydro:Hydro,CAN
+1_Remmel,Hydro:Hydro,MISO
+1_Ren-vesque (Manic 3),Hydro:Hydro,CAN
+1_Rhodhiss,Hydro:Hydro,SE
+1_Richard B Russell,Hydro:Hydro,SE
+1_Rio,Hydro:Hydro,NE
+1_Rivieres-Des-Prairies,Hydro:Hydro,CAN
+1_Roanoke Rapids,Hydro:Hydro,PJM
+1_Robert Moses Niagara,Hydro:Hydro,NE
+1_Robert Moses Power Dam,Hydro:Hydro,CAN
+1_Robert S Kerr,Hydro:Hydro,SPP
+1_Rochester 2,Hydro:Hydro,NE
+1_Rochester 5,Hydro:Hydro,NE
+1_Rocky Creek,Hydro:Hydro,SE
+1_Rogers,Hydro:Hydro,MISO
+1_S C Moore,Hydro:Hydro,NE
+1_Safe Harbor,Hydro:Hydro,PJM
+1_Saint Marys Falls,Hydro:Hydro,MISO
+1_Sainte-Marguerite 3,Hydro:Hydro,CAN
+1_Salisbury,Hydro:Hydro,NE
+1_Saluda Lexington,Hydro:Hydro,SE
+1_Sam Rayburn Dam,Hydro:Hydro,MISO
+1_Sandstone Rapids,Hydro:Hydro,MISO
+1_Sanford Dam,Hydro:Hydro,MISO
+1_Santeetlah,Hydro:Hydro,SE
+1_Saxon Falls,Hydro:Hydro,MISO
+1_Schaghticoke,Hydro:Hydro,NE
+1_School Street,Hydro:Hydro,NE
+1_Schuylerville,Hydro:Hydro,NE
+1_Scotland Dam,Hydro:Hydro,NE
+1_Scott Falls,Hydro:Hydro,CAN
+1_Searsburg,Hydro:Hydro,NE
+1_Secord,Hydro:Hydro,MISO
+1_Sept-Chutes,Hydro:Hydro,CAN
+1_Serpent River,Hydro:Hydro,CAN
+1_Seven Sisters,Hydro:Hydro,CAN
+1_Shawinigan 2,Hydro:Hydro,CAN
+1_Shawinigan 3,Hydro:Hydro,CAN
+1_Shawmut,Hydro:Hydro,NE
+1_Sheldon Springs Hydroelectr,Hydro:Hydro,NE
+1_Shepaug,Hydro:Hydro,NE
+1_Sherman,Hydro:Hydro,NE
+1_Sherman Island,Hydro:Hydro,NE
+1_Sidney A Murray Jr Hydroele,Hydro:Hydro,MISO
+1_Silver Falls,Hydro:Hydro,CAN
+1_Silver Lake (VT),Hydro:Hydro,NE
+1_Sinclair Dam,Hydro:Hydro,SE
+1_Sir Adam Beck 1,Hydro:Hydro,CAN
+1_Sir Adam Beck 2,Hydro:Hydro,CAN
+1_Skelton,Hydro:Hydro,NE
+1_Slave Falls,Hydro:Hydro,CAN
+1_Smallwood,Hydro:Hydro,MISO
+1_Smith (NH),Hydro:Hydro,NE
+1_Smoky Falls,Hydro:Hydro,CAN
+1_Soft Maple,Hydro:Hydro,NE
+1_South Colton,Hydro:Hydro,NE
+1_South Edwards,Hydro:Hydro,NE
+1_South Glens Falls Hydroelec,Hydro:Hydro,NE
+1_South Holston,Hydro:Hydro,SE
+1_Spier Falls,Hydro:Hydro,NE
+1_St Croix Falls,Hydro:Hydro,MISO
+1_St Stephen,Hydro:Hydro,SE
+1_Stark,Hydro:Hydro,NE
+1_Steephill Falls,Hydro:Hydro,CAN
+1_Stevens Point,Hydro:Hydro,MISO
+1_Stevenson,Hydro:Hydro,NE
+1_Stewarts Bridge,Hydro:Hydro,NE
+1_Stewartville,Hydro:Hydro,CAN
+1_Stillwater Hydro Electric P,Hydro:Hydro,NE
+1_Stillwater Reservoir Hydro,Hydro:Hydro,NE
+1_Stockton Hydro,Hydro:Hydro,SPP
+1_Sturgeon,Hydro:Hydro,NE
+1_Sturgeon Falls,Hydro:Hydro,CAN
+1_Sugar Island,Hydro:Hydro,NE
+1_Superior Falls,Hydro:Hydro,MISO
+1_Sylvan,Hydro:Hydro,MISO
+1_Table Rock,Hydro:Hydro,SPP
+1_Taftsville,Hydro:Hydro,NE
+1_TalenEnergy Holtwood,Hydro:Hydro,PJM
+1_TalenEnergy HW Wallenpaupac,Hydro:Hydro,PJM
+1_Tallulah Falls,Hydro:Hydro,SE
+1_Tenkiller Ferry,Hydro:Hydro,SPP
+1_Tennessee Creek,Hydro:Hydro,SE
+1_Terrora,Hydro:Hydro,SE
+1_Theresa Plant,Hydro:Hydro,NE
+1_Thorpe,Hydro:Hydro,SE
+1_Thurlow Dam,Hydro:Hydro,SE
+1_Tillery,Hydro:Hydro,SE
+1_Tims Ford,Hydro:Hydro,SE
+1_Toledo Bend,Hydro:Hydro,MISO
+1_Tomahawk,Hydro:Hydro,MISO
+1_Toulnustouc River,Hydro:Hydro,CAN
+1_Trenche,Hydro:Hydro,CAN
+1_Trenton Falls,Hydro:Hydro,NE
+1_Tuckertown Hydro,Hydro:Hydro,SE
+1_Tugalo,Hydro:Hydro,SE
+1_Turner Shoals,Hydro:Hydro,SE
+1_Turners Falls,Hydro:Hydro,NE
+1_Tuxedo,Hydro:Hydro,SE
+1_Twin Falls (MI),Hydro:Hydro,MISO
+1_Upper Mechanicville,Hydro:Hydro,NE
+1_Valerie Falls,Hydro:Hydro,CAN
+1_Varick,Hydro:Hydro,NE
+1_Vernon Dam,Hydro:Hydro,NE
+1_Victoria Dam,Hydro:Hydro,MISO
+1_Vischer Ferry,Hydro:Hydro,NE
+1_Walden,Hydro:Hydro,NE
+1_Walter Bouldin Dam,Hydro:Hydro,SE
+1_Walter F George,Hydro:Hydro,SE
+1_Walters,Hydro:Hydro,SE
+1_Wappinger Falls Hydroelectr,Hydro:Hydro,NE
+1_Warrensburg Hydroelectric,Hydro:Hydro,NE
+1_Warrior Ridge Hydro,Hydro:Hydro,PJM
+1_Watauga,Hydro:Hydro,SE
+1_Wateree Hydro,Hydro:Hydro,SE
+1_Waterport,Hydro:Hydro,NE
+1_Watertown,Hydro:Hydro,NE
+1_Watts Bar Hydro,Hydro:Hydro,SE
+1_Wausau,Hydro:Hydro,MISO
+1_Wawatay-Black River,Hydro:Hydro,CAN
+1_Way Dam,Hydro:Hydro,MISO
+1_Webber,Hydro:Hydro,MISO
+1_Webbers Falls,Hydro:Hydro,SPP
+1_Weiss Dam,Hydro:Hydro,SE
+1_Wells,Hydro:Hydro,CAN
+1_West Buxton,Hydro:Hydro,NE
+1_West Delaware Tunnel Plant,Hydro:Hydro,NE
+1_West Point (GA),Hydro:Hydro,SE
+1_Weston Hydro,Hydro:Hydro,NE
+1_Wheeler Dam,Hydro:Hydro,SE
+1_Whillock,Hydro:Hydro,MISO
+1_White Rapids,Hydro:Hydro,MISO
+1_White River (WI),Hydro:Hydro,MISO
+1_Whitedog Falls,Hydro:Hydro,CAN
+1_Wilbur,Hydro:Hydro,SE
+1_Wilder,Hydro:Hydro,NE
+1_William F Matson Generating,Hydro:Hydro,PJM
+1_Williams Hydro,Hydro:Hydro,NE
+1_Wilson Dam,Hydro:Hydro,SE
+1_Winton,Hydro:Hydro,MISO
+1_Wissota,Hydro:Hydro,MISO
+1_Wolf Creek,Hydro:Hydro,SE
+1_Worumbo Hydro Station,Hydro:Hydro,NE
+1_Wuskwatim,Hydro:Hydro,CAN
+1_Wylie,Hydro:Hydro,SE
+1_Wyman Hydro,Hydro:Hydro,NE
+1_Yates Dam,Hydro:Hydro,SE
+1_Yonah,Hydro:Hydro,SE
+1_York Haven,Hydro:Hydro,PJM
+1_Yough Hydro Power,Hydro:Hydro,PJM
+10_Beauharnois,Hydro:Hydro,CAN
+10_Keokuk,Hydro:Hydro,MISO
+10_Kettle,Hydro:Hydro,CAN
+10_Limestone (MH),Hydro:Hydro,CAN
+10_Long Spruce,Hydro:Hydro,CAN
+10_Pointe du Bois,Hydro:Hydro,CAN
+10_Safe Harbor,Hydro:Hydro,PJM
+10_Saint Marys Falls,Hydro:Hydro,MISO
+10_TalenEnergy Holtwood,Hydro:Hydro,PJM
+10_Vernon Dam,Hydro:Hydro,NE
+11_Beauharnois,Hydro:Hydro,CAN
+11_Keokuk,Hydro:Hydro,MISO
+11_Kettle,Hydro:Hydro,CAN
+11_Pointe du Bois,Hydro:Hydro,CAN
+11_Safe Harbor,Hydro:Hydro,PJM
+11_TalenEnergy Holtwood,Hydro:Hydro,PJM
+12_Beauharnois,Hydro:Hydro,CAN
+12_Keokuk,Hydro:Hydro,MISO
+12_Kettle,Hydro:Hydro,CAN
+12_Pointe du Bois,Hydro:Hydro,CAN
+12_Safe Harbor,Hydro:Hydro,PJM
+13_Beauharnois,Hydro:Hydro,CAN
+13_Great Lakes Hydro America -,Hydro:Hydro,NE
+13_Keokuk,Hydro:Hydro,MISO
+13_Pointe du Bois,Hydro:Hydro,CAN
+13_TalenEnergy Holtwood,Hydro:Hydro,PJM
+14_Beauharnois,Hydro:Hydro,CAN
+14_Keokuk,Hydro:Hydro,MISO
+14_Pointe du Bois,Hydro:Hydro,CAN
+15_Beauharnois,Hydro:Hydro,CAN
+15_Keokuk,Hydro:Hydro,MISO
+15_Pointe du Bois,Hydro:Hydro,CAN
+16_Beauharnois,Hydro:Hydro,CAN
+16_Great Lakes Hydro America -,Hydro:Hydro,NE
+16_Pointe du Bois,Hydro:Hydro,CAN
+17_Beauharnois,Hydro:Hydro,CAN
+18_Beauharnois,Hydro:Hydro,CAN
+18_Great Lakes Hydro America -,Hydro:Hydro,NE
+18_TalenEnergy Holtwood,Hydro:Hydro,PJM
+19_Beauharnois,Hydro:Hydro,CAN
+19_TalenEnergy Holtwood,Hydro:Hydro,PJM
+2_Abitibi Canyon,Hydro:Hydro,CAN
+2_Aguasabon,Hydro:Hydro,CAN
+2_Alcona,Hydro:Hydro,MISO
+2_Alexander (OPG),Hydro:Hydro,CAN
+2_Alice Falls Hydro Project,Hydro:Hydro,NE
+2_Allegan Dam,Hydro:Hydro,MISO
+2_Amoskeag,Hydro:Hydro,NE
+2_Andrews Falls,Hydro:Hydro,CAN
+2_Anson Abenaki Hydros,Hydro:Hydro,NE
+2_Bartletts Ferry,Hydro:Hydro,SE
+2_Beauharnois,Hydro:Hydro,CAN
+2_Beaver Dam,Hydro:Hydro,SPP
+2_Beldens,Hydro:Hydro,NE
+2_Belfort,Hydro:Hydro,NE
+2_Bellows Falls,Hydro:Hydro,NE
+2_Big Bend Dam,Hydro:Hydro,SPP
+2_Big Falls,Hydro:Hydro,MISO
+2_Big Quinnesec 61,Hydro:Hydro,MISO
+2_Big Quinnesec 92,Hydro:Hydro,MISO
+2_Black River,Hydro:Hydro,NE
+2_Blewett,Hydro:Hydro,SE
+2_Bolton Falls,Hydro:Hydro,NE
+2_Boott Hydropower,Hydro:Hydro,NE
+2_Bridgewater,Hydro:Hydro,SE
+2_Broken Bow Dam,Hydro:Hydro,SPP
+2_Brule,Hydro:Hydro,MISO
+2_Buford,Hydro:Hydro,SE
+2_Bull Shoals,Hydro:Hydro,SPP
+2_Buzzard Roost,Hydro:Hydro,SE
+2_C H Corn Hydroelectric Faci,Hydro:Hydro,SE
+2_C W Tippy,Hydro:Hydro,MISO
+2_Cabot,Hydro:Hydro,NE
+2_Cadyville,Hydro:Hydro,NE
+2_Calm Lake,Hydro:Hydro,CAN
+2_Cameron Falls,Hydro:Hydro,CAN
+2_Caribou Falls,Hydro:Hydro,CAN
+2_Carmichael Falls,Hydro:Hydro,CAN
+2_Carters,Hydro:Hydro,SE
+2_Carver Falls,Hydro:Hydro,NE
+2_Cavendish,Hydro:Hydro,NE
+2_Cedar Creek,Hydro:Hydro,SE
+2_Center Falls,Hydro:Hydro,NE
+2_Chace Mill Winooski One,Hydro:Hydro,NE
+2_Chasm,Hydro:Hydro,NE
+2_Chateaugay High Falls Hydro,Hydro:Hydro,NE
+2_Chats Falls,Hydro:Hydro,CAN
+2_Chenaux,Hydro:Hydro,CAN
+2_Cherokee Dam,Hydro:Hydro,SE
+2_Claytor,Hydro:Hydro,PJM
+2_Clement Dam Hydro LLC,Hydro:Hydro,NE
+2_Cobble Mountain,Hydro:Hydro,NE
+2_Colebrook Hydroelectric,Hydro:Hydro,NE
+2_Columbus,Hydro:Hydro,SPP
+2_Comerford,Hydro:Hydro,NE
+2_Conowingo,Hydro:Hydro,PJM
+2_Cooke,Hydro:Hydro,MISO
+2_Cowans Ford,Hydro:Hydro,SE
+2_Croton,Hydro:Hydro,MISO
+2_Crystal Falls (OPG),Hydro:Hydro,CAN
+2_Danbury Dam,Hydro:Hydro,MISO
+2_Dardanelle,Hydro:Hydro,SPP
+2_Dashville,Hydro:Hydro,NE
+2_Dearborn,Hydro:Hydro,SE
+2_Deep Creek,Hydro:Hydro,PJM
+2_Denison,Hydro:Hydro,SPP
+2_Dix Dam,Hydro:Hydro,SE
+2_Dolgeville Hydro,Hydro:Hydro,NE
+2_Ear Falls,Hydro:Hydro,CAN
+2_Eastman Falls,Hydro:Hydro,NE
+2_Essex Junction 19,Hydro:Hydro,NE
+2_Eufaula Dam,Hydro:Hydro,SPP
+2_Fairfax Falls,Hydro:Hydro,NE
+2_Fishing Creek,Hydro:Hydro,SE
+2_Five Channels,Hydro:Hydro,MISO
+2_Foote,Hydro:Hydro,MISO
+2_Fort Gibson,Hydro:Hydro,SPP
+2_Fort Patrick Henry,Hydro:Hydro,SE
+2_Fort Randall,Hydro:Hydro,SPP
+2_G.W. Rayner,Hydro:Hydro,CAN
+2_Garrison,Hydro:Hydro,SPP
+2_Gaston,Hydro:Hydro,PJM
+2_Gavins Point,Hydro:Hydro,SPP
+2_Grand Rapids,Hydro:Hydro,MISO
+2_Grand Rapids (MH),Hydro:Hydro,CAN
+2_Grandfather Falls,Hydro:Hydro,MISO
+2_Great Falls (MH),Hydro:Hydro,CAN
+2_Great Falls (SC),Hydro:Hydro,SE
+2_Great Falls (TN),Hydro:Hydro,SE
+2_Great Lakes Hydro America -,Hydro:Hydro,NE
+2_Greenup Hydro,Hydro:Hydro,PJM
+2_Greers Ferry Lake,Hydro:Hydro,SPP
+2_Gulf Island,Hydro:Hydro,NE
+2_Gull (Keeyask) Generating S,Hydro:Hydro,CAN
+2_Hadley Falls,Hydro:Hydro,NE
+2_Hannawa,Hydro:Hydro,NE
+2_Hardy,Hydro:Hydro,MISO
+2_Harmon,Hydro:Hydro,CAN
+2_Harriman,Hydro:Hydro,NE
+2_Harris Dam,Hydro:Hydro,SE
+2_Harris Hydro,Hydro:Hydro,NE
+2_Hartwell Lake,Hydro:Hydro,SE
+2_High Dam,Hydro:Hydro,NE
+2_High Falls - Saranac NY,Hydro:Hydro,NE
+2_High Rock Hydro,Hydro:Hydro,SE
+2_Highgate Falls,Hydro:Hydro,NE
+2_Hodenpyl,Hydro:Hydro,MISO
+2_Hydro Kennebec Project,Hydro:Hydro,NE
+2_International Falls Power,Hydro:Hydro,MISO
+2_Jarvis (Hinckley),Hydro:Hydro,NE
+2_Jenpeg,Hydro:Hydro,CAN
+2_Jim Falls,Hydro:Hydro,MISO
+2_John H Kerr,Hydro:Hydro,PJM
+2_Johnson 2,Hydro:Hydro,SPP
+2_Kakabeka Falls,Hydro:Hydro,CAN
+2_Kansas River Project,Hydro:Hydro,SPP
+2_Kelsey,Hydro:Hydro,CAN
+2_Kent Falls,Hydro:Hydro,NE
+2_Keokuk,Hydro:Hydro,MISO
+2_Keowee,Hydro:Hydro,SE
+2_Kettle,Hydro:Hydro,CAN
+2_Keystone Dam,Hydro:Hydro,SPP
+2_Kilbourn,Hydro:Hydro,MISO
+2_Kings Falls Hydroelectric,Hydro:Hydro,NE
+2_Kinneytown New Old,Hydro:Hydro,NE
+2_Kipling,Hydro:Hydro,CAN
+2_La Grande 2A,Hydro:Hydro,CAN
+2_La Grande 4,Hydro:Hydro,CAN
+2_La Tuque,Hydro:Hydro,CAN
+2_Lachute Hydro Upper,Hydro:Hydro,NE
+2_Lake Lynn Hydro Station,Hydro:Hydro,PJM
+2_Leesville,Hydro:Hydro,PJM
+2_Lewis Smith Dam,Hydro:Hydro,SE
+2_Lighthouse Hill,Hydro:Hydro,NE
+2_Limestone (MH),Hydro:Hydro,CAN
+2_Little Long,Hydro:Hydro,CAN
+2_Long Spruce,Hydro:Hydro,CAN
+2_Lookout Shoals,Hydro:Hydro,SE
+2_Loud,Hydro:Hydro,MISO
+2_Lower Middlebury,Hydro:Hydro,NE
+2_Mackay,Hydro:Hydro,CAN
+2_Manitou Falls,Hydro:Hydro,CAN
+2_Markham,Hydro:Hydro,SPP
+2_Markland,Hydro:Hydro,MISO
+2_Marshall Dam,Hydro:Hydro,SE
+2_Martin Dam,Hydro:Hydro,SE
+2_McArthur,Hydro:Hydro,CAN
+2_McCormick,Hydro:Hydro,CAN
+2_Mcindoes,Hydro:Hydro,NE
+2_Michigamme Falls,Hydro:Hydro,MISO
+2_Middle Falls Hydro,Hydro:Hydro,NE
+2_Middlesex 2,Hydro:Hydro,NE
+2_Mill C,Hydro:Hydro,NE
+2_Millers Ferry,Hydro:Hydro,SE
+2_Milton,Hydro:Hydro,NE
+2_Mio,Hydro:Hydro,MISO
+2_Morrisville,Hydro:Hydro,NE
+2_Mountain Island,Hydro:Hydro,SE
+2_Nagagami,Hydro:Hydro,CAN
+2_Niagara Mill,Hydro:Hydro,MISO
+2_Norfork,Hydro:Hydro,SPP
+2_North Platte,Hydro:Hydro,SPP
+2_Oahe,Hydro:Hydro,SPP
+2_Ocoee 1,Hydro:Hydro,SE
+2_Ocoee 2,Hydro:Hydro,SE
+2_Ogdensburg,Hydro:Hydro,NE
+2_Ohio Falls,Hydro:Hydro,SE
+2_Old Hickory,Hydro:Hydro,SE
+2_Oliver Dam,Hydro:Hydro,SE
+2_Osage Dam,Hydro:Hydro,MISO
+2_Oswego Falls West,Hydro:Hydro,NE
+2_Otis Hydro,Hydro:Hydro,NE
+2_Otter Rapids (OPG),Hydro:Hydro,CAN
+2_Otto Holden,Hydro:Hydro,CAN
+2_Oxford Dam,Hydro:Hydro,SE
+2_Ozark,Hydro:Hydro,SPP
+2_Ozark Beach,Hydro:Hydro,SPP
+2_Peavy Falls,Hydro:Hydro,MISO
+2_Pensacola,Hydro:Hydro,SPP
+2_Pine Falls,Hydro:Hydro,CAN
+2_Piney,Hydro:Hydro,PJM
+2_Pointe du Bois,Hydro:Hydro,CAN
+2_Prairie Du Sac,Hydro:Hydro,MISO
+2_Proctor,Hydro:Hydro,NE
+2_R.H. Saunders,Hydro:Hydro,CAN
+2_Racine,Hydro:Hydro,PJM
+2_Red Rock Falls,Hydro:Hydro,CAN
+2_Rhodhiss,Hydro:Hydro,SE
+2_Richard B Russell,Hydro:Hydro,SE
+2_Roanoke Rapids,Hydro:Hydro,PJM
+2_Robert Moses Niagara,Hydro:Hydro,NE
+2_Robert Moses Power Dam,Hydro:Hydro,CAN
+2_Robert S Kerr,Hydro:Hydro,SPP
+2_Rochester 2,Hydro:Hydro,NE
+2_Rochester 5,Hydro:Hydro,NE
+2_Rocky Creek,Hydro:Hydro,SE
+2_Rogers,Hydro:Hydro,MISO
+2_S C Moore,Hydro:Hydro,NE
+2_Safe Harbor,Hydro:Hydro,PJM
+2_Salisbury,Hydro:Hydro,NE
+2_Saluda Lexington,Hydro:Hydro,SE
+2_Schaghticoke,Hydro:Hydro,NE
+2_Schuylerville,Hydro:Hydro,NE
+2_Serpent River,Hydro:Hydro,CAN
+2_Seven Sisters,Hydro:Hydro,CAN
+2_Shawmut,Hydro:Hydro,NE
+2_Sheldon Springs Hydroelectr,Hydro:Hydro,NE
+2_Sherman Island,Hydro:Hydro,NE
+2_Sinclair Dam,Hydro:Hydro,SE
+2_Sir Adam Beck 2,Hydro:Hydro,CAN
+2_Skelton,Hydro:Hydro,NE
+2_Slave Falls,Hydro:Hydro,CAN
+2_Smith Mountain,Hydro:Hydro,PJM
+2_South Edwards,Hydro:Hydro,NE
+2_Stevens Creek,Hydro:Hydro,SE
+2_Stevenson,Hydro:Hydro,NE
+2_Stewarts Bridge,Hydro:Hydro,NE
+2_Stillwater Hydro Electric P,Hydro:Hydro,NE
+2_Sturgeon,Hydro:Hydro,NE
+2_Sturgeon Falls,Hydro:Hydro,CAN
+2_Sugar Island,Hydro:Hydro,NE
+2_Table Rock,Hydro:Hydro,SPP
+2_TalenEnergy Holtwood,Hydro:Hydro,PJM
+2_Tallulah Falls,Hydro:Hydro,SE
+2_Tenkiller Ferry,Hydro:Hydro,SPP
+2_Thorpe,Hydro:Hydro,SE
+2_Toledo Bend,Hydro:Hydro,MISO
+2_Trenton Falls,Hydro:Hydro,NE
+2_Tuckertown Hydro,Hydro:Hydro,SE
+2_Turner Shoals,Hydro:Hydro,SE
+2_Tuxedo,Hydro:Hydro,SE
+2_Twin Falls (MI),Hydro:Hydro,MISO
+2_Valerie Falls,Hydro:Hydro,CAN
+2_Valley Falls Hydroelectric,Hydro:Hydro,NE
+2_Vernon Dam,Hydro:Hydro,NE
+2_Victory Mills,Hydro:Hydro,NE
+2_Walter Bouldin Dam,Hydro:Hydro,SE
+2_Wateree Hydro,Hydro:Hydro,SE
+2_Wawatay-Black River,Hydro:Hydro,CAN
+2_Webber,Hydro:Hydro,MISO
+2_Webbers Falls,Hydro:Hydro,SPP
+2_Wells,Hydro:Hydro,CAN
+2_Weston Hydro,Hydro:Hydro,NE
+2_Wheeler Dam,Hydro:Hydro,SE
+2_White Rapids,Hydro:Hydro,MISO
+2_Whitedog Falls,Hydro:Hydro,CAN
+2_Wilbur,Hydro:Hydro,SE
+2_Wilder,Hydro:Hydro,NE
+2_Williams Hydro,Hydro:Hydro,NE
+2_Wilson Dam,Hydro:Hydro,SE
+2_Winton,Hydro:Hydro,MISO
+2_Wolf Creek,Hydro:Hydro,SE
+2_Wuskwatim,Hydro:Hydro,CAN
+2_Wylie,Hydro:Hydro,SE
+2_Wyman Hydro,Hydro:Hydro,NE
+20_Beauharnois,Hydro:Hydro,CAN
+21_Beauharnois,Hydro:Hydro,CAN
+22_Beauharnois,Hydro:Hydro,CAN
+23_Beauharnois,Hydro:Hydro,CAN
+24_Beauharnois,Hydro:Hydro,CAN
+25_Beauharnois,Hydro:Hydro,CAN
+26_Beauharnois,Hydro:Hydro,CAN
+27_Beauharnois,Hydro:Hydro,CAN
+28_Beauharnois,Hydro:Hydro,CAN
+29_Beauharnois,Hydro:Hydro,CAN
+2A_Deerfield 2,Hydro:Hydro,NE
+2B_Deerfield 2,Hydro:Hydro,NE
+2C_Deerfield 2,Hydro:Hydro,NE
+3_Alexander (OPG),Hydro:Hydro,CAN
+3_Allegan Dam,Hydro:Hydro,MISO
+3_Anson Abenaki Hydros,Hydro:Hydro,NE
+3_Bartletts Ferry,Hydro:Hydro,SE
+3_Beauharnois,Hydro:Hydro,CAN
+3_Bellows Falls,Hydro:Hydro,NE
+3_Big Bend Dam,Hydro:Hydro,SPP
+3_Big Falls,Hydro:Hydro,MISO
+3_Black River,Hydro:Hydro,NE
+3_Blewett,Hydro:Hydro,SE
+3_Buford,Hydro:Hydro,SE
+3_Bull Shoals,Hydro:Hydro,SPP
+3_Buzzard Roost,Hydro:Hydro,SE
+3_C W Tippy,Hydro:Hydro,MISO
+3_Cabot,Hydro:Hydro,NE
+3_Cadyville,Hydro:Hydro,NE
+3_Cameron Falls,Hydro:Hydro,CAN
+3_Caribou Falls,Hydro:Hydro,CAN
+3_Cavendish,Hydro:Hydro,NE
+3_Cedar Creek,Hydro:Hydro,SE
+3_Chace Mill Winooski One,Hydro:Hydro,NE
+3_Chasm,Hydro:Hydro,NE
+3_Cherokee Dam,Hydro:Hydro,SE
+3_Claytor,Hydro:Hydro,PJM
+3_Cobble Mountain,Hydro:Hydro,NE
+3_Columbus,Hydro:Hydro,SPP
+3_Comerford,Hydro:Hydro,NE
+3_Cooke,Hydro:Hydro,MISO
+3_Cowans Ford,Hydro:Hydro,SE
+3_Croton,Hydro:Hydro,MISO
+3_Crystal Falls (OPG),Hydro:Hydro,CAN
+3_Danbury Dam,Hydro:Hydro,MISO
+3_Dardanelle,Hydro:Hydro,SPP
+3_Dearborn,Hydro:Hydro,SE
+3_Dix Dam,Hydro:Hydro,SE
+3_Ear Falls,Hydro:Hydro,CAN
+3_Essex Junction 19,Hydro:Hydro,NE
+3_Eufaula Dam,Hydro:Hydro,SPP
+3_Fishing Creek,Hydro:Hydro,SE
+3_Foote,Hydro:Hydro,MISO
+3_Fort Gibson,Hydro:Hydro,SPP
+3_Fort Loudoun,Hydro:Hydro,SE
+3_Fort Miller Hydroelectric F,Hydro:Hydro,NE
+3_Fort Peck,Hydro:Hydro,SPP
+3_Fort Randall,Hydro:Hydro,SPP
+3_Garrison,Hydro:Hydro,SPP
+3_Gaston,Hydro:Hydro,PJM
+3_Gavins Point,Hydro:Hydro,SPP
+3_Goat Rock,Hydro:Hydro,SE
+3_Grand Rapids,Hydro:Hydro,MISO
+3_Grand Rapids (MH),Hydro:Hydro,CAN
+3_Great Falls (MH),Hydro:Hydro,CAN
+3_Great Falls (SC),Hydro:Hydro,SE
+3_Great Lakes Hydro America -,Hydro:Hydro,NE
+3_Greenup Hydro,Hydro:Hydro,PJM
+3_Gulf Island,Hydro:Hydro,NE
+3_Gull (Keeyask) Generating S,Hydro:Hydro,CAN
+3_Hardy,Hydro:Hydro,MISO
+3_Harriman,Hydro:Hydro,NE
+3_Harris Hydro,Hydro:Hydro,NE
+3_Hartwell Lake,Hydro:Hydro,SE
+3_High Dam,Hydro:Hydro,NE
+3_High Falls - Saranac NY,Hydro:Hydro,NE
+3_High Rock Hydro,Hydro:Hydro,SE
+3_Highgate Falls,Hydro:Hydro,NE
+3_Jenpeg,Hydro:Hydro,CAN
+3_John H Kerr,Hydro:Hydro,PJM
+3_Jordan Dam,Hydro:Hydro,SE
+3_Kakabeka Falls,Hydro:Hydro,CAN
+3_Kansas River Project,Hydro:Hydro,SPP
+3_Kelsey,Hydro:Hydro,CAN
+3_Kent Falls,Hydro:Hydro,NE
+3_Keokuk,Hydro:Hydro,MISO
+3_Kettle,Hydro:Hydro,CAN
+3_Kinneytown New Old,Hydro:Hydro,NE
+3_La Tuque,Hydro:Hydro,CAN
+3_Limestone (MH),Hydro:Hydro,CAN
+3_Long Spruce,Hydro:Hydro,CAN
+3_Lookout Shoals,Hydro:Hydro,SE
+3_Lower Middlebury,Hydro:Hydro,NE
+3_Lyonsdale Associates,Hydro:Hydro,NE
+3_Markham,Hydro:Hydro,SPP
+3_Markland,Hydro:Hydro,MISO
+3_Martin Dam,Hydro:Hydro,SE
+3_McArthur,Hydro:Hydro,CAN
+3_McCormick,Hydro:Hydro,CAN
+3_Mcindoes,Hydro:Hydro,NE
+3_Merrill,Hydro:Hydro,MISO
+3_Mill C,Hydro:Hydro,NE
+3_Millers Ferry,Hydro:Hydro,SE
+3_Mountain Island,Hydro:Hydro,SE
+3_Niagara Mill,Hydro:Hydro,MISO
+3_Oahe,Hydro:Hydro,SPP
+3_Ocoee 1,Hydro:Hydro,SE
+3_Ogdensburg,Hydro:Hydro,NE
+3_Ohio Falls,Hydro:Hydro,SE
+3_Oliver Dam,Hydro:Hydro,SE
+3_Osage Dam,Hydro:Hydro,MISO
+3_Ozark,Hydro:Hydro,SPP
+3_Ozark Beach,Hydro:Hydro,SPP
+3_Pensacola,Hydro:Hydro,SPP
+3_Pine Falls,Hydro:Hydro,CAN
+3_Piney,Hydro:Hydro,PJM
+3_Pointe du Bois,Hydro:Hydro,CAN
+3_Prairie Du Sac,Hydro:Hydro,MISO
+3_Proctor,Hydro:Hydro,NE
+3_Rhodhiss,Hydro:Hydro,SE
+3_Richard B Russell,Hydro:Hydro,SE
+3_Roanoke Rapids,Hydro:Hydro,PJM
+3_Robert Moses Niagara,Hydro:Hydro,NE
+3_Robert S Kerr,Hydro:Hydro,SPP
+3_Rocky Creek,Hydro:Hydro,SE
+3_Rogers,Hydro:Hydro,MISO
+3_S C Moore,Hydro:Hydro,NE
+3_Safe Harbor,Hydro:Hydro,PJM
+3_Saluda Lexington,Hydro:Hydro,SE
+3_Sappi Cloquet Mill,Hydro:Hydro,MISO
+3_Seven Sisters,Hydro:Hydro,CAN
+3_Shawmut,Hydro:Hydro,NE
+3_Sheldon Springs Hydroelectr,Hydro:Hydro,NE
+3_Sherman Island,Hydro:Hydro,NE
+3_Slave Falls,Hydro:Hydro,CAN
+3_South Edwards,Hydro:Hydro,NE
+3_Stevenson,Hydro:Hydro,NE
+3_Sturgeon,Hydro:Hydro,NE
+3_Table Rock,Hydro:Hydro,SPP
+3_TalenEnergy Holtwood,Hydro:Hydro,PJM
+3_Tallulah Falls,Hydro:Hydro,SE
+3_Thurlow Dam,Hydro:Hydro,SE
+3_Tuckertown Hydro,Hydro:Hydro,SE
+3_Tugalo,Hydro:Hydro,SE
+3_Vernon Dam,Hydro:Hydro,NE
+3_Wallace Dam,Hydro:Hydro,SE
+3_Walter Bouldin Dam,Hydro:Hydro,SE
+3_Walter F George,Hydro:Hydro,SE
+3_Wateree Hydro,Hydro:Hydro,SE
+3_Wawatay-Black River,Hydro:Hydro,CAN
+3_Webbers Falls,Hydro:Hydro,SPP
+3_Weston Hydro,Hydro:Hydro,NE
+3_Wheeler Dam,Hydro:Hydro,SE
+3_Whitedog Falls,Hydro:Hydro,CAN
+3_Wilbur,Hydro:Hydro,SE
+3_Wilder,Hydro:Hydro,NE
+3_Wuskwatim,Hydro:Hydro,CAN
+3_Wylie,Hydro:Hydro,SE
+3_Wyman Hydro,Hydro:Hydro,NE
+30_Beauharnois,Hydro:Hydro,CAN
+31_Beauharnois,Hydro:Hydro,CAN
+32_Beauharnois,Hydro:Hydro,CAN
+33_Beauharnois,Hydro:Hydro,CAN
+34_Beauharnois,Hydro:Hydro,CAN
+35_Beauharnois,Hydro:Hydro,CAN
+36_Beauharnois,Hydro:Hydro,CAN
+3A_Deerfield 3,Hydro:Hydro,NE
+3A_Saint Marys Falls,Hydro:Hydro,MISO
+3B_Deerfield 3,Hydro:Hydro,NE
+3C_Deerfield 3,Hydro:Hydro,NE
+4_Alexander (OPG),Hydro:Hydro,CAN
+4_Anson Abenaki Hydros,Hydro:Hydro,NE
+4_Bartletts Ferry,Hydro:Hydro,SE
+4_Beauharnois,Hydro:Hydro,CAN
+4_Big Bend Dam,Hydro:Hydro,SPP
+4_Blewett,Hydro:Hydro,SE
+4_Bull Shoals,Hydro:Hydro,SPP
+4_Cabot,Hydro:Hydro,NE
+4_Cherokee Dam,Hydro:Hydro,SE
+4_Claytor,Hydro:Hydro,PJM
+4_Comerford,Hydro:Hydro,NE
+4_Cowans Ford,Hydro:Hydro,SE
+4_Croton,Hydro:Hydro,MISO
+4_Crystal Falls (OPG),Hydro:Hydro,CAN
+4_Dardanelle,Hydro:Hydro,SPP
+4_Ear Falls,Hydro:Hydro,CAN
+4_Essex Junction 19,Hydro:Hydro,NE
+4_Finch Paper,Hydro:Hydro,NE
+4_Fishing Creek,Hydro:Hydro,SE
+4_Fort Gibson,Hydro:Hydro,SPP
+4_Fort Loudoun,Hydro:Hydro,SE
+4_Fort Miller Hydroelectric F,Hydro:Hydro,NE
+4_Fort Peck,Hydro:Hydro,SPP
+4_Fort Randall,Hydro:Hydro,SPP
+4_Garrison,Hydro:Hydro,SPP
+4_Gaston,Hydro:Hydro,PJM
+4_Goat Rock,Hydro:Hydro,SE
+4_Grand Rapids,Hydro:Hydro,MISO
+4_Grand Rapids (MH),Hydro:Hydro,CAN
+4_Great Falls (MH),Hydro:Hydro,CAN
+4_Great Falls (SC),Hydro:Hydro,SE
+4_Great Lakes Hydro America -,Hydro:Hydro,NE
+4_Gull (Keeyask) Generating S,Hydro:Hydro,CAN
+4_Harris Hydro,Hydro:Hydro,NE
+4_Hartwell Lake,Hydro:Hydro,SE
+4_High Dam,Hydro:Hydro,NE
+4_Highgate Falls,Hydro:Hydro,NE
+4_Hoot Lake,Hydro:Hydro,MISO
+4_Jenpeg,Hydro:Hydro,CAN
+4_Jim Falls,Hydro:Hydro,MISO
+4_John H Kerr,Hydro:Hydro,PJM
+4_Kakabeka Falls,Hydro:Hydro,CAN
+4_Kansas River Project,Hydro:Hydro,SPP
+4_Kelsey,Hydro:Hydro,CAN
+4_Keokuk,Hydro:Hydro,MISO
+4_Kettle,Hydro:Hydro,CAN
+4_La Tuque,Hydro:Hydro,CAN
+4_Lay Dam,Hydro:Hydro,SE
+4_Limestone (MH),Hydro:Hydro,CAN
+4_Long Spruce,Hydro:Hydro,CAN
+4_Markham,Hydro:Hydro,SPP
+4_Martin Dam,Hydro:Hydro,SE
+4_McArthur,Hydro:Hydro,CAN
+4_McCormick,Hydro:Hydro,CAN
+4_Mcindoes,Hydro:Hydro,NE
+4_Mitchell Dam,Hydro:Hydro,SE
+4_Moline_HY,Hydro:Hydro,MISO
+4_Mountain Island,Hydro:Hydro,SE
+4_Niagara Mill,Hydro:Hydro,MISO
+4_Oahe,Hydro:Hydro,SPP
+4_Ohio Falls,Hydro:Hydro,SE
+4_Oliver Dam,Hydro:Hydro,SE
+4_Osage Dam,Hydro:Hydro,MISO
+4_Ozark,Hydro:Hydro,SPP
+4_Ozark Beach,Hydro:Hydro,SPP
+4_Pensacola,Hydro:Hydro,SPP
+4_Pine Falls,Hydro:Hydro,CAN
+4_Pointe du Bois,Hydro:Hydro,CAN
+4_Proctor,Hydro:Hydro,NE
+4_Richard B Russell,Hydro:Hydro,SE
+4_Roanoke Rapids,Hydro:Hydro,PJM
+4_Robert Moses Niagara,Hydro:Hydro,NE
+4_Robert S Kerr,Hydro:Hydro,SPP
+4_Rocky Creek,Hydro:Hydro,SE
+4_Rogers,Hydro:Hydro,MISO
+4_S C Moore,Hydro:Hydro,NE
+4_Safe Harbor,Hydro:Hydro,PJM
+4_Saluda Lexington,Hydro:Hydro,SE
+4_Sappi Cloquet Mill,Hydro:Hydro,MISO
+4_Seven Sisters,Hydro:Hydro,CAN
+4_Shawmut,Hydro:Hydro,NE
+4_Sherman Island,Hydro:Hydro,NE
+4_Slave Falls,Hydro:Hydro,CAN
+4_Smith Mountain,Hydro:Hydro,PJM
+4_Stevenson,Hydro:Hydro,NE
+4_Table Rock,Hydro:Hydro,SPP
+4_TalenEnergy Holtwood,Hydro:Hydro,PJM
+4_Tallulah Falls,Hydro:Hydro,SE
+4_Vernon Dam,Hydro:Hydro,NE
+4_Wallace Dam,Hydro:Hydro,SE
+4_Wateree Hydro,Hydro:Hydro,SE
+4_Weston Hydro,Hydro:Hydro,NE
+4_Wylie,Hydro:Hydro,SE
+4A_Deerfield 4,Hydro:Hydro,NE
+4B_Deerfield 4,Hydro:Hydro,NE
+4C_Deerfield 4,Hydro:Hydro,NE
+5_Alexander (OPG),Hydro:Hydro,CAN
+5_Anson Abenaki Hydros,Hydro:Hydro,NE
+5_Bartletts Ferry,Hydro:Hydro,SE
+5_Beauharnois,Hydro:Hydro,CAN
+5_Big Bend Dam,Hydro:Hydro,SPP
+5_Blewett,Hydro:Hydro,SE
+5_Bull Shoals,Hydro:Hydro,SPP
+5_Cabot,Hydro:Hydro,NE
+5_Decew Falls,Hydro:Hydro,CAN
+5_Fishing Creek,Hydro:Hydro,SE
+5_Fort Peck,Hydro:Hydro,SPP
+5_Fort Randall,Hydro:Hydro,SPP
+5_Garrison,Hydro:Hydro,SPP
+5_Goat Rock,Hydro:Hydro,SE
+5_Grand Rapids,Hydro:Hydro,MISO
+5_Great Falls (MH),Hydro:Hydro,CAN
+5_Great Falls (SC),Hydro:Hydro,SE
+5_Great Lakes Hydro America -,Hydro:Hydro,NE
+5_Gull (Keeyask) Generating S,Hydro:Hydro,CAN
+5_Hartwell Lake,Hydro:Hydro,SE
+5_Jenpeg,Hydro:Hydro,CAN
+5_John H Kerr,Hydro:Hydro,PJM
+5_Kansas River Project,Hydro:Hydro,SPP
+5_Kelsey,Hydro:Hydro,CAN
+5_Keokuk,Hydro:Hydro,MISO
+5_Kettle,Hydro:Hydro,CAN
+5_Kimberly Mill,Hydro:Hydro,MISO
+5_La Tuque,Hydro:Hydro,CAN
+5_Limestone (MH),Hydro:Hydro,CAN
+5_Long Spruce,Hydro:Hydro,CAN
+5_McArthur,Hydro:Hydro,CAN
+5_McCormick,Hydro:Hydro,CAN
+5_Mitchell Dam,Hydro:Hydro,SE
+5_Niagara Mill,Hydro:Hydro,MISO
+5_Oahe,Hydro:Hydro,SPP
+5_Ohio Falls,Hydro:Hydro,SE
+5_Osage Dam,Hydro:Hydro,MISO
+5_Ozark,Hydro:Hydro,SPP
+5_Pensacola,Hydro:Hydro,SPP
+5_Pine Falls,Hydro:Hydro,CAN
+5_Pointe du Bois,Hydro:Hydro,CAN
+5_Proctor,Hydro:Hydro,NE
+5_Robert Moses Niagara,Hydro:Hydro,NE
+5_Rocky Creek,Hydro:Hydro,SE
+5_Safe Harbor,Hydro:Hydro,PJM
+5_Saluda Lexington,Hydro:Hydro,SE
+5_Seven Sisters,Hydro:Hydro,CAN
+5_Shawmut,Hydro:Hydro,NE
+5_Sherman Island,Hydro:Hydro,NE
+5_Slave Falls,Hydro:Hydro,CAN
+5_TalenEnergy Holtwood,Hydro:Hydro,PJM
+5_Tallulah Falls,Hydro:Hydro,SE
+5_Trenton Falls,Hydro:Hydro,NE
+5_Vernon Dam,Hydro:Hydro,NE
+5_Wateree Hydro,Hydro:Hydro,SE
+5A_Deerfield 5,Hydro:Hydro,NE
+5B_Deerfield 5,Hydro:Hydro,NE
+6_Bartletts Ferry,Hydro:Hydro,SE
+6_Beauharnois,Hydro:Hydro,CAN
+6_Big Bend Dam,Hydro:Hydro,SPP
+6_Blewett,Hydro:Hydro,SE
+6_Boatlock,Hydro:Hydro,NE
+6_Bull Shoals,Hydro:Hydro,SPP
+6_Cabot,Hydro:Hydro,NE
+6_Decew Falls,Hydro:Hydro,CAN
+6_Finch Paper,Hydro:Hydro,NE
+6_Fort Randall,Hydro:Hydro,SPP
+6_Goat Rock,Hydro:Hydro,SE
+6_Great Falls (MH),Hydro:Hydro,CAN
+6_Great Falls (SC),Hydro:Hydro,SE
+6_Great Lakes Hydro America -,Hydro:Hydro,NE
+6_Gull (Keeyask) Generating S,Hydro:Hydro,CAN
+6_Jenpeg,Hydro:Hydro,CAN
+6_John H Kerr,Hydro:Hydro,PJM
+6_Kansas River Project,Hydro:Hydro,SPP
+6_Kelsey,Hydro:Hydro,CAN
+6_Keokuk,Hydro:Hydro,MISO
+6_Kettle,Hydro:Hydro,CAN
+6_La Tuque,Hydro:Hydro,CAN
+6_Limestone (MH),Hydro:Hydro,CAN
+6_Long Spruce,Hydro:Hydro,CAN
+6_McArthur,Hydro:Hydro,CAN
+6_McCormick,Hydro:Hydro,CAN
+6_Mitchell Dam,Hydro:Hydro,SE
+6_Niagara Mill,Hydro:Hydro,MISO
+6_Oahe,Hydro:Hydro,SPP
+6_Ohio Falls,Hydro:Hydro,SE
+6_Osage Dam,Hydro:Hydro,MISO
+6_Pensacola,Hydro:Hydro,SPP
+6_Pine Falls,Hydro:Hydro,CAN
+6_Pointe du Bois,Hydro:Hydro,CAN
+6_Robert Moses Niagara,Hydro:Hydro,NE
+6_Rocky Creek,Hydro:Hydro,SE
+6_Safe Harbor,Hydro:Hydro,PJM
+6_Seven Sisters,Hydro:Hydro,CAN
+6_Shawmut,Hydro:Hydro,NE
+6_Sherman Island,Hydro:Hydro,NE
+6_Slave Falls,Hydro:Hydro,CAN
+6_TalenEnergy Holtwood,Hydro:Hydro,PJM
+6_Tallulah Falls,Hydro:Hydro,SE
+6_Thomson,Hydro:Hydro,MISO
+6_Trenton Falls,Hydro:Hydro,NE
+6_Vernon Dam,Hydro:Hydro,NE
+7_Beauharnois,Hydro:Hydro,CAN
+7_Big Bend Dam,Hydro:Hydro,SPP
+7_Bull Shoals,Hydro:Hydro,SPP
+7_Decew Falls,Hydro:Hydro,CAN
+7_Fort Randall,Hydro:Hydro,SPP
+7_Goat Rock,Hydro:Hydro,SE
+7_Great Falls (SC),Hydro:Hydro,SE
+7_Great Lakes Hydro America -,Hydro:Hydro,NE
+7_Gull (Keeyask) Generating S,Hydro:Hydro,CAN
+7_John H Kerr,Hydro:Hydro,PJM
+7_Kansas River Project,Hydro:Hydro,SPP
+7_Kelsey,Hydro:Hydro,CAN
+7_Keokuk,Hydro:Hydro,MISO
+7_Kettle,Hydro:Hydro,CAN
+7_Limestone (MH),Hydro:Hydro,CAN
+7_Long Spruce,Hydro:Hydro,CAN
+7_McArthur,Hydro:Hydro,CAN
+7_McCormick,Hydro:Hydro,CAN
+7_Mitchell Dam,Hydro:Hydro,SE
+7_Oahe,Hydro:Hydro,SPP
+7_Ohio Falls,Hydro:Hydro,SE
+7_Osage Dam,Hydro:Hydro,MISO
+7_Pointe du Bois,Hydro:Hydro,CAN
+7_Robert Moses Niagara,Hydro:Hydro,NE
+7_Rocky Creek,Hydro:Hydro,SE
+7_Safe Harbor,Hydro:Hydro,PJM
+7_Shawmut,Hydro:Hydro,NE
+7_Slave Falls,Hydro:Hydro,CAN
+7_TalenEnergy Holtwood,Hydro:Hydro,PJM
+7_Trenton Falls,Hydro:Hydro,NE
+7_Vernon Dam,Hydro:Hydro,NE
+8_Beauharnois,Hydro:Hydro,CAN
+8_Big Bend Dam,Hydro:Hydro,SPP
+8_Boatlock,Hydro:Hydro,NE
+8_Bull Shoals,Hydro:Hydro,SPP
+8_Decew Falls,Hydro:Hydro,CAN
+8_Fort Randall,Hydro:Hydro,SPP
+8_Goat Rock,Hydro:Hydro,SE
+8_Great Falls (SC),Hydro:Hydro,SE
+8_Kansas River Project,Hydro:Hydro,SPP
+8_Keokuk,Hydro:Hydro,MISO
+8_Kettle,Hydro:Hydro,CAN
+8_Limestone (MH),Hydro:Hydro,CAN
+8_Long Spruce,Hydro:Hydro,CAN
+8_McArthur,Hydro:Hydro,CAN
+8_Ohio Falls,Hydro:Hydro,SE
+8_Osage Dam,Hydro:Hydro,MISO
+8_Pointe du Bois,Hydro:Hydro,CAN
+8_Robert Moses Niagara,Hydro:Hydro,NE
+8_Rocky Creek,Hydro:Hydro,SE
+8_Safe Harbor,Hydro:Hydro,PJM
+8_Shawmut,Hydro:Hydro,NE
+8_Slave Falls,Hydro:Hydro,CAN
+8_TalenEnergy Holtwood,Hydro:Hydro,PJM
+8_Vernon Dam,Hydro:Hydro,NE
+8A_S D Warren Westbrook,Hydro:Hydro,NE
+8B_S D Warren Westbrook,Hydro:Hydro,NE
+9_Beauharnois,Hydro:Hydro,CAN
+9_International Falls Power,Hydro:Hydro,MISO
+9_Kansas River Project,Hydro:Hydro,SPP
+9_Keokuk,Hydro:Hydro,MISO
+9_Kettle,Hydro:Hydro,CAN
+9_Limestone (MH),Hydro:Hydro,CAN
+9_Long Spruce,Hydro:Hydro,CAN
+9_Pointe du Bois,Hydro:Hydro,CAN
+9_Robert Moses Niagara,Hydro:Hydro,NE
+9_Safe Harbor,Hydro:Hydro,PJM
+9_TalenEnergy Holtwood,Hydro:Hydro,PJM
+9_Vernon Dam,Hydro:Hydro,NE
+A_Parr Hydro,Hydro:Hydro,SE
+A_Robert Moses Niagara,Hydro:Hydro,NE
+B_Robert Moses Niagara,Hydro:Hydro,NE
+C_Robert Moses Niagara,Hydro:Hydro,NE
+D_Robert Moses Niagara,Hydro:Hydro,NE
+F1_Narrows (NC),Hydro:Hydro,SE
+F2_Narrows (NC),Hydro:Hydro,SE
+F3_Narrows (NC),Hydro:Hydro,SE
+H_Granite Falls,Hydro:Hydro,MISO
+H_Point A,Hydro:Hydro,SE
+H_Taylorville,Hydro:Hydro,NE
+H1_Biron,Hydro:Hydro,MISO
+H1_Du Bay,Hydro:Hydro,MISO
+H1_Kaukauna City Hydro,Hydro:Hydro,MISO
+H1_New Badger,Hydro:Hydro,MISO
+H1_Wisconsin Rapids,Hydro:Hydro,MISO
+H2_Combined Locks,Hydro:Hydro,MISO
+H2_Du Bay,Hydro:Hydro,MISO
+H2_Hoist,Hydro:Hydro,MISO
+H2_Kaukauna City Hydro,Hydro:Hydro,MISO
+H2_New Badger,Hydro:Hydro,MISO
+H3_Biron,Hydro:Hydro,MISO
+H3_Hoist,Hydro:Hydro,MISO
+H3_Wisconsin Rapids,Hydro:Hydro,MISO
+H4_Biron,Hydro:Hydro,MISO
+H4_Wisconsin Rapids,Hydro:Hydro,MISO
+H6_Biron,Hydro:Hydro,MISO
+H6_Wisconsin Rapids,Hydro:Hydro,MISO
+H7_Wisconsin Rapids,Hydro:Hydro,MISO
+H9_Wisconsin Rapids,Hydro:Hydro,MISO
+HY_Stevens Point,Hydro:Hydro,MISO
+I1_Sheldon Springs Hydroelectr,Hydro:Hydro,NE
+I2_Sheldon Springs Hydroelectr,Hydro:Hydro,NE
+I3_Sheldon Springs Hydroelectr,Hydro:Hydro,NE
+L1_Rumford Falls Hydro Facilit,Hydro:Hydro,NE
+L2_Rumford Falls Hydro Facilit,Hydro:Hydro,NE
+N1_Kansas River Project,Hydro:Hydro,SPP
+N1_Narrows (NC),Hydro:Hydro,SE
+N2_Kansas River Project,Hydro:Hydro,SPP
+N2_Narrows (NC),Hydro:Hydro,SE
+N3_Narrows (NC),Hydro:Hydro,SE
+N4_Narrows (NC),Hydro:Hydro,SE
+R_Anson Abenaki Hydros,Hydro:Hydro,NE
+S_Essex Junction 19,Hydro:Hydro,NE
+U1_Rumford Falls Hydro Facilit,Hydro:Hydro,NE
+U2_Rumford Falls Hydro Facilit,Hydro:Hydro,NE
+U3_Rumford Falls Hydro Facilit,Hydro:Hydro,NE
+U4_Rumford Falls Hydro Facilit,Hydro:Hydro,NE
+1_Arnold Falls,Hydro:Hydro,NE
+1_Auburn - Mill St.,Hydro:Hydro,NE
+1_Auburn - No. Div. St.,Hydro:Hydro,NE
+1_Autrain,Hydro:Hydro,MISO
+1_Avon (NSPI),Hydro:Hydro,CAN
+1_Baldwinsville,Hydro:Hydro,NE
+1_Beechwood,Hydro:Hydro,CAN
+1_Big Falls (NSPI),Hydro:Hydro,CAN
+1_Black Brook Dam,Hydro:Hydro,MISO
+1_Brisay,Hydro:Hydro,CAN
+1_Cameron Falls Nug,Hydro:Hydro,CAN
+1_Cannelton Hydroelectric Pla,Hydro:Hydro,MISO
+1_Churchill Falls Phase II,Hydro:Hydro,CAN
+1_Chute-Caron,Hydro:Hydro,CAN
+1_Chute-des-Passes,Hydro:Hydro,CAN
+1_Chute-du-Diable,Hydro:Hydro,CAN
+1_Chute-la-Savane,Hydro:Hydro,CAN
+1_Clark Mills Lower,Hydro:Hydro,NE
+1_Clarks Mill Upper,Hydro:Hydro,NE
+1_Cohoes Falls Project,Hydro:Hydro,NE
+1_Coteau Creek,Hydro:Hydro,CAN
+1_Cowie Falls,Hydro:Hydro,CAN
+1_Croton Falls,Hydro:Hydro,NE
+1_Cumberland (WI),Hydro:Hydro,MISO
+1_Deep Brook,Hydro:Hydro,CAN
+1_Delta,Hydro:Hydro,NE
+1_Denley Hydro,Hydro:Hydro,NE
+1_Dickie Brook,Hydro:Hydro,CAN
+1_Dufferin Falls Power Statio,Hydro:Hydro,CAN
+1_E.B. Campbell,Hydro:Hydro,CAN
+1_Ear Falls II,Hydro:Hydro,CAN
+1_Fourth Lake,Hydro:Hydro,CAN
+1_Fowler No 7 Mill,Hydro:Hydro,NE
+1_Gage,Hydro:Hydro,NE
+1_General Mills Inc,Hydro:Hydro,NE
+1_Glovers Mill,Hydro:Hydro,NE
+1_Gouverneur,Hydro:Hydro,NE
+1_Grand Falls,Hydro:Hydro,CAN
+1_Gulch,Hydro:Hydro,CAN
+1_Harmony,Hydro:Hydro,CAN
+1_Hatfield,Hydro:Hydro,MISO
+1_Hayward Hydro,Hydro:Hydro,MISO
+1_Healey Falls,Hydro:Hydro,CAN
+1_High Falls Power Station,Hydro:Hydro,CAN
+1_Hollow Bridge,Hydro:Hydro,CAN
+1_Hound Chute,Hydro:Hydro,CAN
+1_Indian Falls,Hydro:Hydro,NE
+1_Irving,Hydro:Hydro,MISO
+1_Island Falls,Hydro:Hydro,CAN
+1_Isle-Maligne,Hydro:Hydro,CAN
+1_La Sarre-1,Hydro:Hydro,CAN
+1_Lake Zumbro-RPU,Hydro:Hydro,MISO
+1_Lequille,Hydro:Hydro,CAN
+1_Lower Dam,Hydro:Hydro,MISO
+1_Lower Great Brook,Hydro:Hydro,CAN
+1_Lower Lake Falls,Hydro:Hydro,CAN
+1_Lower Sturgeon,Hydro:Hydro,CAN
+1_Lumsden,Hydro:Hydro,CAN
+1_Lyons Falls Hydroelectric,Hydro:Hydro,NE
+1_Mactaquac,Hydro:Hydro,CAN
+1_Magpie Hydroelectric Genera,Hydro:Hydro,CAN
+1_Malay Falls,Hydro:Hydro,CAN
+1_Masson Angers Power Station,Hydro:Hydro,CAN
+1_MCRC Renewable Power Partne,Hydro:Hydro,PJM
+1_Mechanicville,Hydro:Hydro,NE
+1_Merrillan,Hydro:Hydro,MISO
+1_Methals,Hydro:Hydro,CAN
+1_Milltown (NBPO),Hydro:Hydro,CAN
+1_Munising Mill Plant,Hydro:Hydro,MISO
+1_Nictaux,Hydro:Hydro,CAN
+1_Nipawin,Hydro:Hydro,CAN
+1_Norman Dam,Hydro:Hydro,CAN
+1_Ontario County Slf,Hydro:Hydro,NE
+1_Oswegatchie,Hydro:Hydro,NE
+1_Paradise (NSPI),Hydro:Hydro,CAN
+1_Peribonka,Hydro:Hydro,CAN
+1_Potsdam,Hydro:Hydro,NE
+1_Ridge,Hydro:Hydro,CAN
+1_Roseway,Hydro:Hydro,CAN
+1_Ruth Falls,Hydro:Hydro,CAN
+1_Salmon Hole,Hydro:Hydro,CAN
+1_Sandy Falls,Hydro:Hydro,CAN
+1_Sandy Hollow,Hydro:Hydro,NE
+1_Seneca Falls,Hydro:Hydro,NE
+1_Shipshaw,Hydro:Hydro,CAN
+1_Sissiboo,Hydro:Hydro,CAN
+1_Sisson,Hydro:Hydro,CAN
+1_Smelter Power,Hydro:Hydro,CAN
+1_St Cloud Hydroelectric Gene,Hydro:Hydro,MISO
+1_St Croix,Hydro:Hydro,CAN
+1_Stuyvesant Falls,Hydro:Hydro,NE
+1_Swinging Bridge 1,Hydro:Hydro,NE
+1_Tobique,Hydro:Hydro,CAN
+1_Tusket Hydro,Hydro:Hydro,CAN
+1_Umbata Falls,Hydro:Hydro,CAN
+1_Upper Beaver Falls Project,Hydro:Hydro,NE
+1_Upper Newton Falls,Hydro:Hydro,NE
+1_Waterford (ENTOPE),Hydro:Hydro,NE
+1_Waterloo,Hydro:Hydro,NE
+1_Wawaitin,Hydro:Hydro,CAN
+1_Weymouth,Hydro:Hydro,CAN
+1_White Rock (NSPI),Hydro:Hydro,CAN
+1_Winsor Dam Power Station,Hydro:Hydro,NE
+1_Wreck Cove,Hydro:Hydro,CAN
+2_Albany (ALHYAS),Hydro:Hydro,NE
+2_Auburn - No. Div. St.,Hydro:Hydro,NE
+2_Avon (NSPI),Hydro:Hydro,CAN
+2_Baldwinsville,Hydro:Hydro,NE
+2_Cannelton Hydroelectric Pla,Hydro:Hydro,MISO
+2_Chittenden Falls,Hydro:Hydro,NE
+2_Coteau Creek,Hydro:Hydro,CAN
+2_E.B. Campbell,Hydro:Hydro,CAN
+2_Fowler No 7 Mill,Hydro:Hydro,NE
+2_Gage,Hydro:Hydro,NE
+2_Gouverneur,Hydro:Hydro,NE
+2_Grand Falls,Hydro:Hydro,CAN
+2_Healey Falls,Hydro:Hydro,CAN
+2_Hound Chute,Hydro:Hydro,CAN
+2_Island Falls,Hydro:Hydro,CAN
+2_Lower Dam,Hydro:Hydro,MISO
+2_Lower Sturgeon,Hydro:Hydro,CAN
+2_Lyons Falls Hydroelectric,Hydro:Hydro,NE
+2_Mill Pond,Hydro:Hydro,NE
+2_Montgomery Worsted,Hydro:Hydro,NE
+2_Nipawin,Hydro:Hydro,CAN
+2_Ruth Falls,Hydro:Hydro,CAN
+2_Tobique,Hydro:Hydro,CAN
+2_Umbata Falls,Hydro:Hydro,CAN
+2_Upper Newton Falls,Hydro:Hydro,NE
+2_Wawaitin,Hydro:Hydro,CAN
+2_Weymouth,Hydro:Hydro,CAN
+2_Wreck Cove,Hydro:Hydro,CAN
+3_Baldwinsville,Hydro:Hydro,NE
+3_Cannelton Hydroelectric Pla,Hydro:Hydro,MISO
+3_Coteau Creek,Hydro:Hydro,CAN
+3_E.B. Campbell,Hydro:Hydro,CAN
+3_Felts Mills Hydro (Lower Pr,Hydro:Hydro,NE
+3_Healey Falls,Hydro:Hydro,CAN
+3_Island Falls,Hydro:Hydro,CAN
+3_Nipawin,Hydro:Hydro,CAN
+3_Ruth Falls,Hydro:Hydro,CAN
+4_E.B. Campbell,Hydro:Hydro,CAN
+4_Healey Falls,Hydro:Hydro,CAN
+4_Island Falls,Hydro:Hydro,CAN
+5_E.B. Campbell,Hydro:Hydro,CAN
+5_Island Falls,Hydro:Hydro,CAN
+6_E.B. Campbell,Hydro:Hydro,CAN
+6_Island Falls,Hydro:Hydro,CAN
+7_E.B. Campbell,Hydro:Hydro,CAN
+7_Island Falls,Hydro:Hydro,CAN
+8_E.B. Campbell,Hydro:Hydro,CAN
+A_Balcony Falls,Hydro:Hydro,PJM
+H1_Appleton,Hydro:Hydro,MISO
+H2_Appleton,Hydro:Hydro,MISO
+1_Bad Creek,Pumped Storage:Hydro,SE
+1_Bath County,Pumped Storage:Hydro,PJM
+1_Blenheim Gilboa,Pumped Storage:Hydro,NE
+1_Fairfield Pumped Storage,Pumped Storage:Hydro,SE
+1_Harry Truman,Pumped Storage:Hydro,SPP
+1_Jocassee,Pumped Storage:Hydro,SE
+1_Lewiston Niagara,Pumped Storage:Hydro,NE
+1_Ludington,Pumped Storage:Hydro,MISO
+1_Muddy Run,Pumped Storage:Hydro,PJM
+1_Raccoon Mountain,Pumped Storage:Hydro,SE
+1_Rocky Mountain Hydroelectri,Pumped Storage:Hydro,SE
+1_Rocky River (CT),Pumped Storage:Hydro,NE
+1_Salina,Pumped Storage:Hydro,SPP
+1_Sir Adam Beck Pumping,Pumped Storage:Hydro,CAN
+1_Smith Mountain,Pumped Storage:Hydro,PJM
+1_Taum Sauk,Pumped Storage:Hydro,MISO
+1_Wallace Dam,Pumped Storage:Hydro,SE
+1_Yards Creek,Pumped Storage:Hydro,PJM
+1G_FirstEnergy Seneca,Pumped Storage:Hydro,PJM
+2_1_Degray,Pumped Storage:Hydro,MISO
+2_1_Hiwassee Dam,Pumped Storage:Hydro,SE
+2_Bad Creek,Pumped Storage:Hydro,SE
+2_Bath County,Pumped Storage:Hydro,PJM
+2_Blenheim Gilboa,Pumped Storage:Hydro,NE
+2_Fairfield Pumped Storage,Pumped Storage:Hydro,SE
+2_Harry Truman,Pumped Storage:Hydro,SPP
+2_Jocassee,Pumped Storage:Hydro,SE
+2_Lewiston Niagara,Pumped Storage:Hydro,NE
+2_Ludington,Pumped Storage:Hydro,MISO
+2_Muddy Run,Pumped Storage:Hydro,PJM
+2_Rocky Mountain Hydroelectri,Pumped Storage:Hydro,SE
+2_Salina,Pumped Storage:Hydro,SPP
+2_Sir Adam Beck Pumping,Pumped Storage:Hydro,CAN
+2_Taum Sauk,Pumped Storage:Hydro,MISO
+2_Wallace Dam,Pumped Storage:Hydro,SE
+2_Yards Creek,Pumped Storage:Hydro,PJM
+2G_FirstEnergy Seneca,Pumped Storage:Hydro,PJM
+3_Bad Creek,Pumped Storage:Hydro,SE
+3_Bath County,Pumped Storage:Hydro,PJM
+3_Blenheim Gilboa,Pumped Storage:Hydro,NE
+3_Carters,Pumped Storage:Hydro,SE
+3_Fairfield Pumped Storage,Pumped Storage:Hydro,SE
+3_FirstEnergy Seneca,Pumped Storage:Hydro,PJM
+3_Harry Truman,Pumped Storage:Hydro,SPP
+3_Jocassee,Pumped Storage:Hydro,SE
+3_Lewiston Niagara,Pumped Storage:Hydro,NE
+3_Ludington,Pumped Storage:Hydro,MISO
+3_Rocky Mountain Hydroelectri,Pumped Storage:Hydro,SE
+3_Salina,Pumped Storage:Hydro,SPP
+3_Sir Adam Beck Pumping,Pumped Storage:Hydro,CAN
+3_Smith Mountain,Pumped Storage:Hydro,PJM
+3_Yards Creek,Pumped Storage:Hydro,PJM
+4_Bad Creek,Pumped Storage:Hydro,SE
+4_Bath County,Pumped Storage:Hydro,PJM
+4_Blenheim Gilboa,Pumped Storage:Hydro,NE
+4_Carters,Pumped Storage:Hydro,SE
+4_Fairfield Pumped Storage,Pumped Storage:Hydro,SE
+4_Harry Truman,Pumped Storage:Hydro,SPP
+4_Jocassee,Pumped Storage:Hydro,SE
+4_Lewiston Niagara,Pumped Storage:Hydro,NE
+4_Ludington,Pumped Storage:Hydro,MISO
+4_Salina,Pumped Storage:Hydro,SPP
+5_Bath County,Pumped Storage:Hydro,PJM
+5_Fairfield Pumped Storage,Pumped Storage:Hydro,SE
+5_Harry Truman,Pumped Storage:Hydro,SPP
+5_Lewiston Niagara,Pumped Storage:Hydro,NE
+5_Ludington,Pumped Storage:Hydro,MISO
+5_Richard B Russell,Pumped Storage:Hydro,SE
+5_Salina,Pumped Storage:Hydro,SPP
+5_Smith Mountain,Pumped Storage:Hydro,PJM
+5_Wallace Dam,Pumped Storage:Hydro,SE
+6_Bath County,Pumped Storage:Hydro,PJM
+6_Fairfield Pumped Storage,Pumped Storage:Hydro,SE
+6_Harry Truman,Pumped Storage:Hydro,SPP
+6_Lewiston Niagara,Pumped Storage:Hydro,NE
+6_Ludington,Pumped Storage:Hydro,MISO
+6_Richard B Russell,Pumped Storage:Hydro,SE
+6_Salina,Pumped Storage:Hydro,SPP
+6_Wallace Dam,Pumped Storage:Hydro,SE
+7_Fairfield Pumped Storage,Pumped Storage:Hydro,SE
+7_Lewiston Niagara,Pumped Storage:Hydro,NE
+7_Richard B Russell,Pumped Storage:Hydro,SE
+8_Fairfield Pumped Storage,Pumped Storage:Hydro,SE
+8_Lewiston Niagara,Pumped Storage:Hydro,NE
+8_Richard B Russell,Pumped Storage:Hydro,SE
+9_Lewiston Niagara,Pumped Storage:Hydro,NE
+B_Lewiston Niagara,Pumped Storage:Hydro,NE
+C_Lewiston Niagara,Pumped Storage:Hydro,NE
+G1_Bear Swamp,Pumped Storage:Hydro,NE
+G1_Northfield Mountain,Pumped Storage:Hydro,NE
+G2_Bear Swamp,Pumped Storage:Hydro,NE
+G2_Northfield Mountain,Pumped Storage:Hydro,NE
+G3_Northfield Mountain,Pumped Storage:Hydro,NE
+G4_Northfield Mountain,Pumped Storage:Hydro,NE
