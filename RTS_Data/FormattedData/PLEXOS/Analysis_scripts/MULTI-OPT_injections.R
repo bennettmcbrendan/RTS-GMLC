@@ -13,7 +13,7 @@ source("source_scripts/plot_parameters.R")
 # ----------------------------------------------------------------------- |
 
 solutions.dir <- "//nrelqnap01d/PLEXOS CEII/Projects/Interconnections_Seam_Plexos/Continental/a_SEAMS_stage_b_zip"
-output.dir <- "//nrelqnap01d/PLEXOS/Projects/GMLC-MSPCM/SEAMS-data-decomposed"
+output.dir <- "//nrelqnap01d/PLEXOS/Projects/GMLC-MSPCM/SEAMS-data-decomposed-short"
 
 # node LPF map - 98280 nodes
 node.LPFs <- file.path("//plexossql/Data/bmcbenne/RTS-GMLC-geodecomp/RTS-GMLC",
@@ -32,7 +32,7 @@ output = make_decomposition_key()
 generator.nodes = output[['generator.nodes']]
 node.regions = output[['node.regions']]
 decomposition.key = output[['generator.table']]
-
+stop()
 # ----------------------------------------------------------------------- |
 # Read Inputs ----
 # ----------------------------------------------------------------------- |
@@ -77,6 +77,7 @@ solution.dbs = list.files(recursive = TRUE)[grepl('-rplexos.db',
                                         list.files(recursive = TRUE))]
 
 solution.dbs = solution.dbs[grepl('base_',solution.dbs)]
+# solution.dbs = solution.dbs[grepl('_01|_02|_10',solution.dbs)]
 
 scenario.names = gsub(" Solution-rplexos.db","",solution.dbs)
 scenario.names = tstrsplit(scenario.names,"_base_")[[2]]
@@ -195,6 +196,7 @@ int.region.load[,min.scenario:=min(scenario.no),by = c('name','time','scenario.n
 int.region.load = int.region.load[scenario.no == min.scenario]
 
 gc()
+
 # ----------------------------------------------------------------------- |
 # Calculations on SEAMS results ----
 # ----------------------------------------------------------------------- |
@@ -206,18 +208,7 @@ gen.table = merge(int.gen.generation,GPFs[,.(name,Node,GPF = value)],
 
 gen.table[,generation:=GPF*value]
 
-time.vector = unique(gen.table[,time])
-
-setwd(output.dir)
-
-if(FALSE){
-for(i in seq(length(time.vector))){
-  
-  gen.temp = gen.table[time == time.vector[i],.(BUS = Node,GEN = name,VALUE = generation)]
-  write.csv(gen.temp,paste0('GEN_',i,".csv"),row.names = FALSE)
-  
-}
-}
+time.vector.gen = sort(unique(gen.table[,time]))
 
 # nodal withdrawals
 
@@ -270,27 +261,45 @@ pump.table = pump.table[,lapply(.SD,sum),by = c('Node','time'),.SDcols = c('pump
 
 load.table = merge(load.table,pump.table,all = TRUE,by = c('Node','time'))
 
-sum(pump.table[,pump])
-sum(load.table[,load])
-asdf.3 = load.table[demand<0]
-
 load.table[is.na(pump),pump:=0]
 load.table[is.na(load),load:=0]
 load.table[,demand:=load+pump]
 
-time.vector = unique(load.table[,time])
+sum(pump.table[,pump])
+sum(load.table[,load])
+asdf.3 = load.table[demand<0]
+
+time.vector.load = sort(unique(load.table[,time]))
 
 load.table[demand < 0,demand:=0] # machine precision
 
 setwd(output.dir)
 
-if(FALSE){
-for(i in seq(length(time.vector))){
-  
-  load.temp = load.table[time == time.vector[i],.(BUS = Node,VALUE = demand)]
-  write.csv(load.temp,paste0('LOAD_',i,".csv"),row.names = FALSE)
-  
+if(identical(time.vector.gen,time.vector.load)){
+    time.vector = copy(time.vector.gen)
+}else{
+    message('generation and load time vectors do not match')
 }
+
+diff.table = data.table(time = time.vector,
+                        gen.sum = 0,
+                        load.sum = 0,
+                        diff = 0)
+
+if(TRUE){
+    for(i in seq(length(time.vector))){
+      
+        load.temp = load.table[time == time.vector[i],.(BUS = Node,VALUE = demand)]
+        gen.temp = gen.table[time == time.vector[i],.(BUS = Node,GEN = name,VALUE = generation)]
+        
+        diff.table[time == time.vector[i],gen.sum:=sum(gen.temp[,VALUE])]
+        diff.table[time == time.vector[i],load.sum:=sum(load.temp[,VALUE])]
+        diff.table[time == time.vector[i],diff:=100*(gen.sum - load.sum)/load.sum]
+        
+        write.csv(load.temp,paste0('LOAD_',i,".csv"),row.names = FALSE)
+        write.csv(gen.temp,paste0('GEN_',i,".csv"),row.names = FALSE)
+        
+    }
 }
 
 

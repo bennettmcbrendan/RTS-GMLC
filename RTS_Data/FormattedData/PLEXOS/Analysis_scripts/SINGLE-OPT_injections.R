@@ -97,8 +97,6 @@ for (i in 1:length(scenario.names)) {
 model.ends = parse_date_time(model.timesteps$end, orders = "ymd H:M:S")
 model.ends = model.ends - 3600*24
 
-stop()
-
 # 2. interval generator generation
 
 interval.gen.generation <- data.table()
@@ -210,16 +208,7 @@ gen.table = merge(int.gen.generation,GPFs[,.(name,Node,GPF = value)],
 
 gen.table[,generation:=GPF*value]
 
-time.vector = unique(gen.table[,time])
-
-setwd(output.dir)
-
-for(i in seq(length(time.vector))){
-  
-  gen.temp = gen.table[time == time.vector[i],.(BUS = Node,GEN = name,VALUE = generation)]
-  write.csv(gen.temp,paste0('GEN_',i,".csv"),row.names = FALSE)
-  
-}
+time.vector.gen = sort(unique(gen.table[,time]))
 
 # nodal withdrawals
 
@@ -266,16 +255,34 @@ sum(pump.table[,pump])
 sum(load.table[,load])
 asdf.3 = load.table[demand<0]
 
-time.vector = unique(load.table[,time])
+time.vector.load = sort(unique(load.table[,time]))
 
 load.table[demand < 0,demand:=0] # machine precision
+
+if(identical(time.vector.gen,time.vector.load)){
+    time.vector = copy(time.vector.gen)
+}else{
+    message('generation and load time vectors do not match')
+}
+
+diff.table = data.table(time = time.vector,
+                        gen.sum = 0,
+                        load.sum = 0,
+                        diff = 0)
 
 setwd(output.dir)
 
 for(i in seq(length(time.vector))){
   
   load.temp = load.table[time == time.vector[i],.(BUS = Node,VALUE = demand)]
+  gen.temp = gen.table[time == time.vector[i],.(BUS = Node,GEN = name,VALUE = generation)]
+  
+  diff.table[time == time.vector[i],gen.sum:=sum(gen.temp[,VALUE])]
+  diff.table[time == time.vector[i],load.sum:=sum(load.temp[,VALUE])]
+  diff.table[time == time.vector[i],diff:=100*(gen.sum - load.sum)/load.sum]
+  
   write.csv(load.temp,paste0('LOAD_',i,".csv"),row.names = FALSE)
+  write.csv(gen.temp,paste0('GEN_',i,".csv"),row.names = FALSE)
   
 }
 
@@ -292,4 +299,7 @@ if(FALSE){
     
     write.csv(flow.table,'LINE_FLOWS_1.csv',row.names = FALSE)
 }
+
+
+
 
