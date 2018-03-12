@@ -50,10 +50,10 @@ add.quadrants = FALSE
 
 # scenario.names
 decomposed.names = c('1','2','3')
-nondecomposed.names = c('Non-decomposed')
+nondecomposed.names = c('Single-operator')
 
 # scenario.order
-scenario.order = c('Decomposed','Non-decomposed')
+scenario.order = c('Single-operator','Multi-operator')
 
 decomposed.flows = fread(decomposed.flows)
 nondecomposed.flows = fread(nondecomposed.flows)
@@ -150,7 +150,7 @@ decomposed.flows = decomposed.flows[!(is.nan(Period))]
 decomposed.flows = data.table(melt(decomposed.flows,id.vars = "Period",
                             measure.vars = names(decomposed.flows)[!grepl("Period",names(decomposed.flows))]))
 decomposed.flows[,c("Node.From","Node.To"):=tstrsplit(as.character(variable),"_")[1:2]]
-decomposed.flows[,scenario:="Decomposed"]
+decomposed.flows[,scenario:="Multi-operator"]
 decomposed.flows[,variable:=NULL]
 
 # nondecomposed flow
@@ -161,7 +161,7 @@ nondecomposed.flows = nondecomposed.flows[!(is.nan(Period))]
 nondecomposed.flows = data.table(melt(nondecomposed.flows,id.vars = "Period",
                                        measure.vars = names(nondecomposed.flows)[!grepl("Period",names(nondecomposed.flows))]))
 nondecomposed.flows[,c("Node.From","Node.To"):=tstrsplit(as.character(variable),"_")[1:2]]
-nondecomposed.flows[,scenario:="Non-decomposed"]
+nondecomposed.flows[,scenario:="Single-operator"]
 nondecomposed.flows[,variable:=NULL]
 
 flow.data = rbind(decomposed.flows,nondecomposed.flows)
@@ -218,7 +218,7 @@ border.buses = rbind(border.buses[,.(Node = Node.From,Region = Region.From,Inter
                      border.buses[,.(Node = Node.To,Region = Region.To,Interface)])
 
 price.data = rbind(int.nondecomposed.price[,.(scenario,Node = name,time,value)],
-                  int.decomposed.price[,.(scenario = 'Decomposed',Node = name,time,value)])
+                  int.decomposed.price[,.(scenario = 'Multi-operator',Node = name,time,value)])
 
 price.data = merge(price.data,border.buses,
                   by = 'Node')
@@ -253,6 +253,17 @@ MSE.table = compare.table[abs(Price) < 100]
 MSE.table = MSE.table[,lapply(.SD, function(x) sum(x^2)),by = c('scenario'),
                         .SDcols = 'Price']
 
+# folded data for hexagon plot
+int.fold = copy(compare.table)
+# int.fold[,Flow:=ifelse(Flow*Price < 0,abs(Flow),(-1)*abs(Flow))]
+# int.fold[Price == 0,Flow:=0]
+# int.fold[,Price:=abs(Price)]
+
+fold.text = data.table(Interface = "1 - 2",
+                       scenario = c(rep('Single-operator',4),rep('Multi-operator',4)),
+                       x = rep(c(200,-250,-250,200),2),y = rep(c(75,75,-75,-75),2),
+                       text = c(rep(c('Counter-intuitive','Under-utilized'),4)))
+
 p1 <- ggplot() + geom_point(data = compare.table[abs(Price) < 100],
                            aes(x = Flow,y = Price,color = Interface),size = 0.3) + 
   scale_color_manual(values = color.code.1) + 
@@ -261,6 +272,22 @@ p1 <- ggplot() + geom_point(data = compare.table[abs(Price) < 100],
   facet_grid(scenario~Interface) + plot_theme + labs(x = 'Interchange (MW)',y = 'LMP difference (USD)') +
   theme(legend.position = 'none')
 
+int.fold$Interface = factor(int.fold$Interface,levels = names(color.code.1))
+fold.text$Interface = factor(fold.text$Interface,levels = names(color.code.1))
+fold.text$scenario = factor(fold.text$scenario,levels = scenario.order)
+
+p2 <- ggplot() + stat_binhex(data = int.fold[abs(Price) < 100],
+                  aes(x = Flow,y = Price,color = ..count..),binwidth = c(15,7.5)) + 
+  scale_fill_gradientn(name = "Hours",colours = c('gray80','lightpink','darkred'),
+                       guide = 'colourbar') + 
+  scale_color_gradientn(name = "Hours",colours = c('gray80','lightpink','darkred'),
+                        guide = 'colourbar') + 
+  geom_label(data = fold.text,aes(x = x,y = y,label = text),color = 'black',fill = 'lightblue',size = 2.4) + 
+  geom_vline(xintercept = 0,size = 0.01,color = 'black') +
+  geom_hline(yintercept = 0,size = 0.01,color = 'black') +
+  facet_grid(Interface~scenario) + plot_theme + theme(legend.title = element_text()) + 
+  labs(x = 'Interchange (MW)',y = 'LMP difference (USD)') 
+  
 compare.table[,c('quad.0','I','II','III','IV'):=0]
 compare.table[pct<0.01,quad.0:=1]
 compare.table[Price > 0 & Flow > 0 & quad.0 == 0,I:=1]
@@ -310,22 +337,23 @@ if(add.quadrants){
 overloading.table[,category:=gsub("AC_","Region ",category)]
 overloading.table[,category:=gsub("_AC","",category)]
 
-color.code.2 = c("Region 1" = "navyblue","Region 2" = "firebrick","Region 3" = "forestgreen",
+color.code.3 = c("Region 1" = "navyblue","Region 2" = "firebrick","Region 3" = "forestgreen",
                  "Interregion" = "goldenrod")
 
-p2 <- ggplot() + geom_jitter(data = overloading.table,aes(x = scenario,y = loading, color = category),
+p3 <- ggplot() + geom_jitter(data = overloading.table,aes(x = scenario,y = loading, color = category),
                            alpha = 0.2,size = 0.3,width = 0.4) + 
   geom_label(data = overloading.pct,aes(x = scenario,
   y = 175,label = paste0(overloaded,"% chance that a line overloads in any given interval")),
              fill = 'gray80') +
   geom_hline(yintercept = 100,color = 'black',linetype = 2,size = 1.2) +
-  scale_color_manual(values = color.code.2) + plot_theme + 
+  scale_color_manual(values = color.code.3) + plot_theme + 
   guides(color= guide_legend(override.aes = list(size=1.5)))
 
 
 setwd(wd)
-ggsave('RTS_efficiencies.png',p1,height = 5.5,width = 6.5)
-ggsave('RTS_overloading.png',p2,height = 5.5,width = 6.5)
-write.csv(quadrants,'RTS_efficiencies.csv',row.names = FALSE)
+ggsave('plots/RTS_efficiencies.png',p1,height = 5.5,width = 6.5)
+ggsave('plots/RTS_hex.png',p2,height = 5.5,width = 6.5)
+# ggsave('plots/RTS_overloading.png',p3,height = 5.5,width = 6.5)
+write.csv(quadrants,'plots/RTS_efficiencies.csv',row.names = FALSE)
 
 

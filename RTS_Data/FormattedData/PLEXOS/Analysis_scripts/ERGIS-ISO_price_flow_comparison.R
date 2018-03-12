@@ -12,6 +12,9 @@ source("source_scripts/plot_parameters.R")
 # Inputs ----
 # ----------------------------------------------------------------------- |
 
+xlim = c(-7000,7000)
+ylim = c(-200,200)
+
 solutions.dir <- "//nrelqnap01d/PLEXOS/Projects/ERGIS/ERGIS Solutions/c_RT_loVG"
 
 # map of ERGIS to desired region names
@@ -26,7 +29,7 @@ ERGIS.interfaces <- file.path("//plexossql/Data/bmcbenne/RTS-GMLC-geodecomp/RTS-
 ISO.data <- file.path("//plexossql/Data/bmcbenne/RTS-GMLC-geodecomp/RTS-GMLC",
                       "RTS_Data/FormattedData/PLEXOS/Analysis_scripts/data/real-world-iso-efficiency-data.csv")
 
-scenario.order = c('ISO data (\"Decomposed\")','ERGIS results (Nondecomposed)')
+scenario.order = c('ISO data (\"Multi-opt\")','ERGIS results (Single-opt)')
 
 # add colored quadrant percentages boxes
 add.quadrants = FALSE
@@ -160,7 +163,7 @@ int.comparison = data.table(melt(int.comparison, id.vars = c("time","var"),
 setnames(int.comparison,c('var','variable'),c('variable','Interface'))
 
 int.comparison = data.table(dcast(int.comparison,time + Interface ~ variable,value.var = 'value'))
-int.comparison[,scenario:='ERGIS results (Nondecomposed)']
+int.comparison[,scenario:='ERGIS results (Single-opt)']
 
 int.comparison = merge(int.comparison,int.region.price.pct,by = c('time','Interface'))
 
@@ -168,15 +171,9 @@ int.comparison = merge(int.comparison,int.region.price.pct,by = c('time','Interf
 # Calculations real data ----
 # ----------------------------------------------------------------------- |
 
-# Clayton's EIA scrubbed data
-ISO.data <- file.path("//plexossql/Data/bmcbenne/RTS-GMLC-geodecomp/RTS-GMLC",
-                      "RTS_Data/FormattedData/PLEXOS/Analysis_scripts/real-world-iso-efficiency-data.csv")
-
-ISO.data = fread(ISO.data)
-
 ISO.data = ISO.data[,.(time = timestamp,Interface = interface, Price = dLMP, 
                        pct = abs(dLMP)/(from.lmp/2 + to.lmp/2),
-                       Interchange = interfaceflows,scenario = "ISO data (\"Decomposed\")")]
+                       Interchange = interfaceflows,scenario = "ISO data (\"Multi-opt\")")]
 ISO.data[,Interface:=gsub("PJM-MISO","PJM - MISO",Interface)]
 ISO.data[,Interface:=gsub("PJM-NYISO","PJM - NYISO",Interface)]
 ISO.data[,Interface:=gsub("NYISO-ISONE","NYISO - ISO-NE",Interface)]
@@ -190,6 +187,11 @@ int.comparison = rbind(int.comparison[,.(Interface,Interchange,Price,scenario,pc
 # Plot ----
 # ----------------------------------------------------------------------- |
 
+outlier.data = int.comparison[Interchange < xlim[1] |
+                                Interchange > xlim[2] |
+                                Price < ylim[1] |
+                                Price > ylim[2]]
+
 int.comparison$scenario = factor(int.comparison$scenario,levels = scenario.order)
 
 p <- ggplot() + geom_point(data = int.comparison,aes(x = Interchange,y = Price,color = Interface),
@@ -198,18 +200,44 @@ p <- ggplot() + geom_point(data = int.comparison,aes(x = Interchange,y = Price,c
   geom_vline(xintercept = 0,size = 0.3,color = 'black') +
   geom_hline(yintercept = 0,size = 0.3,color = 'black') +
   facet_grid(scenario~Interface) + plot_theme + labs(x = 'Interchange (MW)',y = 'LMP difference (USD)') +
-  theme(legend.position = 'none')
+  theme(legend.position = 'none') + coord_cartesian(xlim = xlim,ylim = ylim) 
 
 int.comparison.iso = int.comparison[scenario == scenario.order[1]]
 int.comparison.ergis = int.comparison[scenario == scenario.order[2]]
 
-p1 <- ggplot() + geom_point(data = int.comparison.iso,aes(x = Interchange,y = Price,color = Interface),
+p1a <- ggplot() + geom_point(data = int.comparison.iso,aes(x = Interchange,y = Price,color = Interface),
                            size = 0.3,alpha = 0.4) + 
     scale_color_manual(values = color.code) + 
     geom_vline(xintercept = 0,size = 0.3,color = 'black') +
     geom_hline(yintercept = 0,size = 0.3,color = 'black') +
     facet_grid(Interface ~ .) + plot_theme + labs(x = 'Interchange (MW)',y = 'LMP difference (USD)') +
-    theme(legend.position = 'none') + coord_cartesian(xlim = c(-10000, 7500),ylim = c(-100,75)) 
+    theme(legend.position = 'none') + coord_cartesian(xlim = xlim,ylim = ylim) 
+
+int.fold.iso = copy(int.comparison.iso)
+# int.fold.iso[,Interchange:=ifelse(Interchange*Price < 0,abs(Interchange),(-1)*abs(Interchange))]
+# int.fold.iso[Price == 0,Interchange:=0]
+# int.fold.iso[,Price:=abs(Price)]
+
+fold.text = data.table(Interface = "PJM - MISO",
+                       x = c(4000,-4000,-4000,4000),
+                       y = c(150,150,-150,-150),
+                       text = rep(c('Counter-intuitive','Under-utilized'),2))
+
+int.fold.iso$Interface = factor(int.fold.iso$Interface,levels = interfaces.to.plot)
+fold.text$Interface = factor(fold.text$Interface,levels = interfaces.to.plot)
+
+p1b <- ggplot() + stat_binhex(data = int.fold.iso,
+                  aes(x = Interchange,y = Price,color = ..count..),binwidth = c(200,5)) + 
+  scale_fill_gradientn(name = "Hours",colours = c('gray80','lightpink','darkred'),
+                       guide = 'colourbar') + 
+  scale_color_gradientn(name = "Hours",colours = c('gray80','lightpink','darkred'),
+                        guide = 'colourbar') + 
+  geom_label(data = fold.text,aes(x = x,y = y,label = text),color = 'black',fill = 'lightblue',size = 2.4) + 
+  geom_vline(xintercept = 0,size = 0.01,color = 'black') +
+  geom_hline(yintercept = 0,size = 0.01,color = 'black') +
+  facet_grid(Interface ~ .) + plot_theme + theme(legend.title = element_text()) + 
+  labs(x = 'Interchange (MW)',y = 'LMP difference (USD)') +
+  coord_cartesian(xlim = xlim,ylim = ylim) 
 
 p2 <- ggplot() + geom_point(data = int.comparison.ergis,aes(x = Interchange,y = Price,color = Interface),
                             size = 0.3,alpha = 0.4) + 
@@ -217,7 +245,7 @@ p2 <- ggplot() + geom_point(data = int.comparison.ergis,aes(x = Interchange,y = 
     geom_vline(xintercept = 0,size = 0.3,color = 'black') +
     geom_hline(yintercept = 0,size = 0.3,color = 'black') +
     facet_grid(Interface ~ .) + plot_theme + labs(x = 'Interchange (MW)',y = 'LMP difference (USD)') +
-    theme(legend.position = 'none') + coord_cartesian(xlim = c(-10000, 7500),ylim = c(-100,75)) 
+    theme(legend.position = 'none') + coord_cartesian(xlim = xlim,ylim = ylim) 
 
 # add quadrants
 int.comparison[,c('quad.0','I','II','III','IV'):=0]
@@ -254,7 +282,7 @@ quadrants.ergis = quadrants[scenario == scenario.order[2]]
 
 # write quadrants csv before modifying for plot
 setwd(wd)
-write.csv(quadrants,'EI_efficiencies.csv',row.names = FALSE)
+write.csv(quadrants,'plots/EI_efficiencies.csv',row.names = FALSE)
 
 if(add.quadrants){
 
@@ -263,7 +291,7 @@ if(add.quadrants){
       scale_fill_manual(values = c('no' = 'gray80','somewhat' = 'skyblue3','yes' = 'goldenrod')) + 
       theme(legend.position = 'none')
     
-    p1 <- p1 + geom_label(data = quadrants.iso,aes(x = x,y = y,label = value,fill = efficient),
+    p1a <- p1a + geom_label(data = quadrants.iso,aes(x = x,y = y,label = value,fill = efficient),
                         color = 'black',size = 3) +
         scale_fill_manual(values = c('no' = 'gray80','somewhat' = 'skyblue3','yes' = 'goldenrod')) + 
         theme(legend.position = 'none')
@@ -275,33 +303,34 @@ if(add.quadrants){
 
 }else{
     
-    quadrants = quadrants[variable != 'quad.0' &
-                         Interface == unique(quadrants[,Interface])[1] &
-                         scenario == scenario.order[1]]
-    
-    quadrants.iso = quadrants.iso[variable != 'quad.0' &
-                        Interface == unique(quadrants[,Interface])[1]]
-    
-    quadrants.ergis = quadrants.ergis[variable != 'quad.0' &
-                        Interface == unique(quadrants[,Interface])[1]]
-    
-    p <- p + geom_label(data = quadrants,aes(x = x,y = y,label = variable),
-                        fill = 'gray80',color = 'black',size = 3) +
-        theme(legend.position = 'none')
-    
-    p1 <- p1 + geom_label(data = quadrants.iso,aes(x = x,y = y,label = variable),
-                        fill = 'gray80',color = 'black',size = 3) +
-        theme(legend.position = 'none')
-    
-    p2 <- p2 + geom_label(data = quadrants.ergis,aes(x = x,y = y,label = variable),
-                        fill = 'gray80',color = 'black',size = 3) +
-        theme(legend.position = 'none')
+    # quadrants = quadrants[variable != 'quad.0' &
+    #                      Interface == unique(quadrants[,Interface])[1] &
+    #                      scenario == scenario.order[1]]
+    # 
+    # quadrants.iso = quadrants.iso[variable != 'quad.0' &
+    #                     Interface == unique(quadrants[,Interface])[1]]
+    # 
+    # quadrants.ergis = quadrants.ergis[variable != 'quad.0' &
+    #                     Interface == unique(quadrants[,Interface])[1]]
+    # 
+    # p <- p + geom_label(data = quadrants,aes(x = x,y = y,label = variable),
+    #                     fill = 'gray80',color = 'black',size = 3) +
+    #     theme(legend.position = 'none')
+    # 
+    # p1 <- p1 + geom_label(data = quadrants.iso,aes(x = x,y = y,label = variable),
+    #                     fill = 'gray80',color = 'black',size = 3) +
+    #     theme(legend.position = 'none')
+    # 
+    # p2 <- p2 + geom_label(data = quadrants.ergis,aes(x = x,y = y,label = variable),
+    #                     fill = 'gray80',color = 'black',size = 3) +
+    #     theme(legend.position = 'none')
     
 }
 
 setwd(wd)
-ggsave('EI_efficiencies.png',p,height = 5.5,width = 6.5)
-ggsave('EI_efficiencies_ISO.png',p1,height = 5.5,width = 3.5)
-ggsave('EI_efficiencies_ERGIS.png',p2,height = 5.5,width = 3.5)
-
+ggsave('plots/EI_efficiencies.png',p,height = 5.5,width = 6.5)
+ggsave('plots/EI_efficiencies_ISO.png',p1a,height = 5.5,width = 3.5)
+ggsave('plots/EI_ISO_hex.png',p1b,height = 5.5,width = 3.5)
+ggsave('plots/EI_efficiencies_ERGIS.png',p2,height = 5.5,width = 3.5)
+write.csv(outlier.data,'plots/EI_outliers.csv',row.names = FALSE)
 
