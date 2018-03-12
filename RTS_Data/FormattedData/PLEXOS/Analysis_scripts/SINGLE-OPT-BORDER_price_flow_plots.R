@@ -16,7 +16,7 @@ xlim = c(-7000,7000)
 ylim = c(-200,200)
 
 # single-operator seams solution directory for price query
-solutions.dir <- "//nrelqnap01d/PLEXOS CEII/Projects/Interconnections_Seam_Plexos/bmcbenne"
+solutions.dir <- "//nrelqnap01d/PLEXOS CEII/Projects/Interconnections_Seam_Plexos/bmcbenne/02_06_2018"
 
 # Matpower flow outputs
 matpower.flows.file <- "//nrelqnap01d/PLEXOS/Projects/GMLC-MSPCM/SEAMS-data-nondecomposed/EI_SEAMS_flows.csv"
