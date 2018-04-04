@@ -259,10 +259,15 @@ int.comparison[,time:=NULL]
 # Plot ----
 # ----------------------------------------------------------------------- |
 
+# outlier data and ME table
 outlier.data = int.comparison[Interchange < xlim[1] |
                                 Interchange > xlim[2] |
                                 Price < ylim[1] |
                                 Price > ylim[2]]
+
+ME.table = int.comparison[abs(Price)<ylim[2]]
+ME.table = ME.table[,lapply(.SD, function(x) mean(abs(x))),by = c('Interface'),
+                    .SDcols = 'Price']
 
 int.fold = copy(int.comparison)
 # int.fold[,Interchange:=ifelse(Interchange*Price < 0,abs(Interchange),(-1)*abs(Interchange))]
@@ -314,6 +319,7 @@ quadrants = int.comparison[,lapply(.SD,mean),by = c('Interface'),
 quadrants = quadrants[,lapply(.SD,function(x) paste0(round(x*100,1),"%")),by = c('Interface'),
                       .SDcols = c('quad.0','I','II','III','IV')]
 
+stop()
 # write quadrants csv and plot
 setwd(wd)
 write.csv(quadrants,'plots/EI_multi-opt_efficiencies.csv',row.names = FALSE)

@@ -12,29 +12,32 @@ source("source_scripts/plot_parameters.R")
 # Inputs ----
 # ----------------------------------------------------------------------- |
 
+xlim = c(-400,400)
+ylim = c(-100,100)
+
 # decomposed RTS-GMLC runs
 decomposed.db <- c(file.path("//plexossql/Data/bmcbenne/RTS-GMLC-geodecomp/RTS-GMLC",
-                             "RTS_Data/FormattedData/PLEXOS/MIP_0.1/Model DAY_AHEAD_B1 Solution",
+                             "RTS_Data/FormattedData/PLEXOS/MIP_0.1_notx/Model DAY_AHEAD_B1 Solution",
                              "Model DAY_AHEAD_B1 Solution-rplexos.db"),
                    file.path("//plexossql/Data/bmcbenne/RTS-GMLC-geodecomp/RTS-GMLC",
-                             "RTS_Data/FormattedData/PLEXOS/MIP_0.1/Model DAY_AHEAD_B2 Solution",
+                             "RTS_Data/FormattedData/PLEXOS/MIP_0.1_notx/Model DAY_AHEAD_B2 Solution",
                              "Model DAY_AHEAD_B2 Solution-rplexos.db"),
                    file.path("//plexossql/Data/bmcbenne/RTS-GMLC-geodecomp/RTS-GMLC",
-                             "RTS_Data/FormattedData/PLEXOS/MIP_0.1/Model DAY_AHEAD_B3 Solution",
+                             "RTS_Data/FormattedData/PLEXOS/MIP_0.1_notx/Model DAY_AHEAD_B3 Solution",
                              "Model DAY_AHEAD_B3 Solution-rplexos.db"))
 
 # an undecomposed RTS-GMLC run
 nondecomposed.db <- file.path("//plexossql/Data/bmcbenne/RTS-GMLC-geodecomp/RTS-GMLC",
-                              "/RTS_Data/FormattedData/PLEXOS/MIP_0.1/Model DAY_AHEAD Solution",
+                              "/RTS_Data/FormattedData/PLEXOS/MIP_0.1_notx/Model DAY_AHEAD Solution",
                               "Model DAY_AHEAD Solution-rplexos.db")
 
 # matpower output with decomposed power flows
 decomposed.flows <- file.path("//nrelqnap01d/PLEXOS/Projects",
                               "GMLC-MSPCM/geo-decomp-matpower-solns",
-                              "flow_decomposed.csv")
+                              "flow_decomposed_notx.csv")
 nondecomposed.flows <- file.path("//nrelqnap01d/PLEXOS/Projects",
                               "GMLC-MSPCM/geo-decomp-matpower-solns",
-                              "flow_non-decomposed.csv")
+                              "flow_non-decomposed_notx.csv")
 
 network.table <- file.path("//plexossql/Data/bmcbenne/RTS-GMLC-geodecomp/RTS-GMLC/RTS_Data",
                         "SourceData/branch.csv")
@@ -248,9 +251,9 @@ compare.table[is.nan(pct),pct:=0]
 color.code.1 = c("1 - 2" = "navyblue","1 - 3" = "forestgreen","2 - 3" = "firebrick")
 compare.table$scenario = factor(compare.table$scenario,levels = scenario.order)
 
-# RMSE table
-MSE.table = compare.table[abs(Price) < 100]
-MSE.table = MSE.table[,lapply(.SD, function(x) sum(x^2)),by = c('scenario'),
+# ME table
+ME.table = compare.table[abs(Price) < 100]
+ME.table = ME.table[,lapply(.SD, function(x) mean(abs(x))),by = c('scenario'),
                         .SDcols = 'Price']
 
 # folded data for hexagon plot
@@ -276,6 +279,8 @@ int.fold$Interface = factor(int.fold$Interface,levels = names(color.code.1))
 fold.text$Interface = factor(fold.text$Interface,levels = names(color.code.1))
 fold.text$scenario = factor(fold.text$scenario,levels = scenario.order)
 
+stop()
+
 p2 <- ggplot() + stat_binhex(data = int.fold[abs(Price) < 100],
                   aes(x = Flow,y = Price,color = ..count..),binwidth = c(15,7.5)) + 
   scale_fill_gradientn(name = "Hours",colours = c('gray80','lightpink','darkred'),
@@ -286,7 +291,9 @@ p2 <- ggplot() + stat_binhex(data = int.fold[abs(Price) < 100],
   geom_vline(xintercept = 0,size = 0.01,color = 'black') +
   geom_hline(yintercept = 0,size = 0.01,color = 'black') +
   facet_grid(Interface~scenario) + plot_theme + theme(legend.title = element_text()) + 
-  labs(x = 'Interchange (MW)',y = 'LMP difference (USD)') 
+  labs(x = 'Interchange (MW)',y = 'LMP difference (USD)') + coord_cartesian(xlim = xlim,ylim = ylim)
+
+
   
 compare.table[,c('quad.0','I','II','III','IV'):=0]
 compare.table[pct<0.01,quad.0:=1]
@@ -349,11 +356,10 @@ p3 <- ggplot() + geom_jitter(data = overloading.table,aes(x = scenario,y = loadi
   scale_color_manual(values = color.code.3) + plot_theme + 
   guides(color= guide_legend(override.aes = list(size=1.5)))
 
-
 setwd(wd)
 ggsave('plots/RTS_efficiencies.png',p1,height = 5.5,width = 6.5)
 ggsave('plots/RTS_hex.png',p2,height = 5.5,width = 6.5)
-# ggsave('plots/RTS_overloading.png',p3,height = 5.5,width = 6.5)
+ggsave('plots/RTS_overloading.png',p3,height = 5.5,width = 6.5)
 write.csv(quadrants,'plots/RTS_efficiencies.csv',row.names = FALSE)
 
 

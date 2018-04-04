@@ -960,8 +960,6 @@ p
 
 ```
 
-
-
 # Unit commitment bar plot
 
 ```{r commit-barplot, include=FALSE,eval = TRUE, fig.width=3.5, fig.height=3.5}
@@ -999,7 +997,12 @@ int.gen[,value:=value * 8760]
 commit.changes = data.table(dcast(int.gen,category ~ variable,value.vars = 'value'))
 commit.changes[,y:=`Committed` + `Committed only by multi-operator` + `Committed only by single-operator`]
 commit.changes[,fraction:=paste0(as.character(round(100*(`Committed only by multi-operator` + 
-                                            `Committed only by single-operator`)/(`Committed`)),1),'%')]
+                                            `Committed only by single-operator`)/
+                                              (`Committed` + 
+                                               `Committed only by single-operator` +
+                                               `Committed only by multi-operator`)),1),'%')]
+
+commit.changes[,legend:='Fraction of \ncommitments \nwhich vary']
 
 color.code = c('Offline' = 'gray80',
                'Committed only by multi-operator' = 'firebrick',
@@ -1008,17 +1011,22 @@ color.code = c('Offline' = 'gray80',
 
 int.gen$variable = factor(int.gen$variable,levels = names(color.code))
 int.gen$category = factor(int.gen$category,levels = c('Nuclear','Coal','Gas','Oil'))
-int.gen[,x:='']
 
-p <- ggplot() + geom_bar(data = int.gen,aes(x = x,y = value,fill = variable),
+
+p <- ggplot() + geom_bar(data = int.gen,aes(x = category,y = value,fill = variable),
                          stat = 'identity',color = 'black') + 
-    coord_polar("y",start = 0) + facet_wrap(~category,scales = 'fixed') +
-    # geom_label(data = commit.changes,aes(x = category,y = y+300,label = fraction),size = 3,fill = 'gray80') +
+    # coord_polar("y",start = 0) + 
+    # facet_wrap(~category,scales = 'fixed') +
+    geom_label(data = commit.changes,aes(x = category,y = y+500,label = fraction,color = legend),
+               size = 3,fill = 'black',show.legend = FALSE) +
+    scale_color_manual(values = c('Fraction of \ncommitments \nwhich vary' = 'white')) +
     scale_fill_manual(values = color.code) + plot_theme + theme() +
     labs(x = "",y = "") + guides(fill = guide_legend(nrow = 4))  + plot_theme +
-    theme(legend.position = 'bottom',axis.text.x = element_blank(),axis.ticks = element_blank(),panel.grid  = element_blank())
+    theme(legend.position = 'bottom',
+          panel.grid  =    element_blank()) +
+  guides(color= guide_legend(override.aes = list(color='black')))
 
-ggsave("commit_barplot.png",p,height = 4.5,width = 3.5)
+ggsave("commit_barplot.png",p,height = 4,width = 3.5)
 
 ```
 

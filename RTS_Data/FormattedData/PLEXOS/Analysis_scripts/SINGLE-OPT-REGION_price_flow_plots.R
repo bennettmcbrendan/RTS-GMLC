@@ -13,16 +13,16 @@ source("source_scripts/plot_parameters.R")
 # ----------------------------------------------------------------------- |
 
 xlim = c(-7000,7000)
-ylim = c(-75,75)
+ylim = c(-200,200)
 
 # single-operator seams solution directory for price query
-solutions.dir <- "//nrelqnap02/PLEXOS CEII/Projects/Interconnections_Seam_Plexos/bmcbenne/02_06_2018"
+solutions.dir <- "//nrelqnap01d/PLEXOS CEII/Projects/Interconnections_Seam_Plexos/bmcbenne/03_09_2018"
 
 # Matpower flow outputs
-matpower.flows.file <- "//nrelqnap02/PLEXOS/Projects/GMLC-MSPCM/SEAMS-data-nondecomposed/EI_SEAMS_flows.csv"
+matpower.flows.file <- "//nrelqnap01d/PLEXOS/Projects/GMLC-MSPCM/SEAMS-data-nondecomposed/EI_SEAMS_flows.csv"
 
 # Node key file
-node.key.file <- "//nrelqnap02/PLEXOS/Projects/GMLC-MSPCM/SEAMS-data-decomposed-matpower/bus_id_map.csv"
+node.key.file <- "//nrelqnap01d/PLEXOS/Projects/GMLC-MSPCM/SEAMS-data-decomposed-matpower/bus_id_map.csv"
 
 # interface and area map
 SEAMS.interfaces <- file.path("//plexossql/Data/bmcbenne/RTS-GMLC-geodecomp/RTS-GMLC",
@@ -112,7 +112,7 @@ node.voltage = fread(node.voltage)
 
 if(TRUE){
     matpower.flows = fread(matpower.flows.file)
-    power.flows = copy(matpower.flows)[1:674,]
+    power.flows = copy(matpower.flows)[1:170,]
 }
 
 # ----------------------------------------------------------------------- |
@@ -159,16 +159,16 @@ for (i in 1:length(scenario.names)) {
 model.ends = parse_date_time(model.timesteps$end, orders = "ymd H:M:S")
 model.ends = model.ends - 3600*24
 
-# 1. interval node price
+# 1. interval region price
 
-interval.node.price <- data.table()
+interval.region.price <- data.table()
 for(i in 1:length(scenario.names)){
     print(i)
-    interval.node.price <- rbind(interval.node.price,
+    interval.region.price <- rbind(interval.region.price,
                                    expand_time(data.table(tbl(src_sqlite(solution.dbs[i]), 
                                     sql("SELECT key, name, category, time_from, time_to, value, property 
-                                    FROM Node_Price 
-                                    WHERE collection IS 'Node' AND 
+                                    FROM Region_Price 
+                                    WHERE collection IS 'Region' AND 
                                     property IS 'Price' AND
                                     phase_id IS 4")) %>% 
                                     dplyr::mutate(scenario = scenario.names[i]) %>% 
@@ -176,46 +176,10 @@ for(i in 1:length(scenario.names)){
 }
 
 # time decomposition - hard code
-int.node.price = copy(interval.node.price)
-int.node.price = int.node.price[!(day(time) %in% c(10,11))]
+int.region.price = copy(interval.region.price)
+int.region.price = int.region.price[!(day(time) %in% c(10,11))]
 
-# 2. interval generator pumping
-
-interval.gen.pump <- data.table()
-for(i in 1:length(scenario.names)){
-  print(i)
-  interval.gen.pump <- rbind(interval.gen.pump,
-                               expand_time(data.table(tbl(src_sqlite(solution.dbs[i]), 
-                                    sql("SELECT key, name, category, time_from, time_to, value, property, region 
-                                    FROM Generator_PumpLoad 
-                                    WHERE collection IS 'Generator' AND 
-                                    property IS 'Pump Load' AND
-                                    phase_id IS 4")) %>% 
-                                    dplyr::mutate(scenario = scenario.names[i]) %>% 
-                                    collect(n = Inf)),solution.dbs[i])[,time := fastPOSIXct(time, "UTC")][time <= model.ends[i]])
-}
-
-# time decomposition - hard code
-int.gen.pump = copy(interval.gen.pump)
-int.gen.pump = int.gen.pump[!(day(time) %in% c(10,11))]
-
-interval.region.load <- data.table()
-for(i in 1:length(scenario.names)){
-  print(i)
-  interval.region.load <- rbind(interval.region.load,
-                             expand_time(data.table(tbl(src_sqlite(solution.dbs[i]), 
-                                    sql("SELECT key, name, category, time_from, time_to, value, property 
-                                    FROM Region_Load 
-                                    WHERE collection IS 'Region' AND 
-                                    property IS 'Load' AND
-                                    phase_id IS 4")) %>% 
-                                    dplyr::mutate(scenario = scenario.names[i]) %>% 
-                                    collect(n = Inf)),solution.dbs[i])[,time := fastPOSIXct(time, "UTC")][time <= model.ends[i]])
-}
-
-# time decomposition - hard code
-int.region.load = copy(interval.region.load)
-int.region.load = int.region.load[!(day(time) %in% c(10,11))]
+stop()
 
 # ----------------------------------------------------------------------- |
 # Flows ----
@@ -273,38 +237,25 @@ power.flows.short[,var:= "Interchange"]
 # Price ----
 # ----------------------------------------------------------------------- |
 
-int.node.price[,Node:=tstrsplit(name,"_")[[1]]]
+int.region.price = merge(int.region.price,ISO.Region.key,
+                         by.x = 'name',
+                         by.y = 'Region')
 
-border.buses = merge(power.flow.nodes,SEAMS.interfaces,by = c('ISO.From','ISO.To'),
-                       all.x = TRUE)
-border.buses[is.na(Interface),c('ISO.From','ISO.To'):=.(ISO.To,ISO.From)]
-border.buses[is.na(Interface),c('Node.From','Node.To'):=.(Node.To,Node.From)]
-border.buses[is.na(Interface),c('Bus.From','Bus.To'):=.(Bus.To,Bus.From)]
-border.buses[,c("Interface","color"):=NULL]
-border.buses = merge(border.buses,SEAMS.interfaces,by = c('ISO.From','ISO.To'),
-                          all.x = TRUE)
+int.region.price = int.region.price[,lapply(.SD,mean),by = c('ISO','time'),
+                                    .SDcols = c('value')]
 
-int.region.price = merge(border.buses,
-                         int.node.price[,.(Node.From = Node,time,Price.From = value)],
-                         by = c('Node.From'),
-                         allow.cartesian = TRUE)
+int.region.price = data.table(dcast(int.region.price,time ~ ISO,value.var = 'value'))
 
-int.region.price = merge(int.region.price,
-                         int.node.price[,.(Node.To = Node,time,Price.To = value)],
-                         by = c('Node.To','time'))
-
-int.region.price = int.region.price[,lapply(.SD,mean),by = c('Interface','time'),
-                                    .SDcols = c('Price.From','Price.To')]
-
-int.region.price[,value:=Price.From - Price.To]
-int.region.price[,pct:=abs(Price.From - Price.To)/(Price.To/2 + Price.From/2)]
-
-int.region.price = data.table(dcast(int.region.price,time ~ Interface,value.var = c('value','pct')))
-names(int.region.price) = gsub('value_','',names(int.region.price))
+for(j in seq(length(interfaces.to.plot))){
+    
+    int.region.price[,eval(interfaces.to.plot[j]):=get(ISO.From[j]) - get(ISO.To[j])]
+    int.region.price[,eval(paste0(interfaces.to.plot[j],"_pct")):=abs(get(ISO.From[j]) - get(ISO.To[j]))/(get(ISO.From[j])/2 + get(ISO.To[j])/2)]
+    
+}
 
 # percentages
-int.region.price.pct = int.region.price[,.SD,.SDcols = c(paste0("pct_",interfaces.to.plot),'time')]
-names(int.region.price.pct) = sub("pct_","",names(int.region.price.pct))
+int.region.price.pct = int.region.price[,.SD,.SDcols = c(paste0(interfaces.to.plot,"_pct"),'time')]
+names(int.region.price.pct) = sub("_pct","",names(int.region.price.pct))
 int.region.price.pct = data.table(melt(int.region.price.pct,id.vars = c('time'),
                                        measure.vars = interfaces.to.plot))
 setnames(int.region.price.pct,c('variable','value'),c('Interface','pct'))
@@ -341,15 +292,10 @@ int.comparison = merge(int.comparison,int.region.price.pct,by = c('Period','Inte
 # Plot ----
 # ----------------------------------------------------------------------- |
 
-# outlier data and ME table
 outlier.data = int.comparison[Interchange < xlim[1] |
                               Interchange > xlim[2] |
                               Price < ylim[1] |
                               Price > ylim[2]]
-
-ME.table = int.comparison[abs(Price)<ylim[2]]
-ME.table = ME.table[,lapply(.SD, function(x) mean(abs(x))),by = c('Interface'),
-                    .SDcols = 'Price']
 
 int.fold = copy(int.comparison)
 # int.fold[,Interchange:=ifelse(Interchange*Price < 0,abs(Interchange),(-1)*abs(Interchange))]
@@ -358,7 +304,7 @@ int.fold = copy(int.comparison)
 
 fold.text = data.table(Interface = "PJM - MISO",
                        x = c(4000,-4000,-4000,4000),
-                       y = c(60,60,-60,-60),
+                       y = c(150,150,-150,-150),
                        text = rep(c('Counter-intuitive','Under-utilized'),2))
 
 options(scipen = 9999)
@@ -374,7 +320,7 @@ int.fold$Interface = factor(int.fold$Interface,levels = interfaces.to.plot)
 fold.text$Interface = factor(fold.text$Interface,levels = interfaces.to.plot)
 
 p2 <- ggplot() + stat_binhex(data = int.fold,
-                             aes(x = Interchange,y = Price,color = ..count..),binwidth = c(200,3)) + 
+                             aes(x = Interchange,y = Price,color = ..count..),binwidth = c(200,5)) + 
   scale_fill_gradientn(name = "Hours",colours = c('gray80','lightpink','darkred'),
                        guide = 'colourbar') + 
   scale_color_gradientn(name = "Hours",colours = c('gray80','lightpink','darkred'),
@@ -402,7 +348,7 @@ quadrants = quadrants[,lapply(.SD,function(x) paste0(round(x*100,1),"%")),by = c
 
 # write quadrants csv and plot
 setwd(wd)
-write.csv(quadrants,'plots/EI_single-opt-border_efficiencies.csv',row.names = FALSE)
-ggsave('plots/EI_single-opt-border_efficiencies.png',p1,height = 5.5,width = 3.5)
-ggsave('plots/EI_single-opt_hex.png',p2,height = 5.5,width = 3.5)
-write.csv(outlier.data,'plots/EI_single-opt-border_outliers.csv',row.names = FALSE)
+# write.csv(quadrants,'plots/EI_single-opt-border_efficiencies.csv',row.names = FALSE)
+# ggsave('plots/EI_single-opt-border_efficiencies.png',p1,height = 5.5,width = 3.5)
+ggsave('plots/EI_single-opt-REGION_hex.png',p2,height = 5.5,width = 3.5)
+# write.csv(outlier.data,'plots/EI_single-opt-border_outliers.csv',row.names = FALSE)
