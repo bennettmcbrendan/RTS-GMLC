@@ -210,7 +210,10 @@ gen.rt.vg.fixed = src.timeseries_pointers[( grepl('hydro',Object,ignore.case = T
 gen.da.vg = src.timeseries_pointers[( grepl('wind',Object,ignore.case = T) | grepl('_pv',Object,ignore.case = T) | grepl('csp',Object,ignore.case = T) | grepl('rtpv',Object,ignore.case = T) ) & Simulation == 'DAY_AHEAD' & Parameter == 'PMax MW',.(Generator = Object, Rating = `Data File`,scenario = "RE: DA",scenario.cat = "Object properties")]
 gen.rt.vg = src.timeseries_pointers[( grepl('wind',Object,ignore.case = T) | grepl('_pv',Object,ignore.case = T) | grepl('csp',Object,ignore.case = T) | grepl('rtpv',Object,ignore.case = T) ) & Simulation == 'REAL_TIME' & Parameter == 'PMax MW',.(Generator = Object, Rating = `Data File`,scenario = "RE: RT",scenario.cat = "Object properties")]
 
-storage.csp = src.timeseries_pointers[grepl('csp',Object,ignore.case = T) & Simulation == 'DAY_AHEAD' & Parameter == 'Natural_Inflow',.(Storage = Object, `Natural Inflow` = `Data File`,scenario = "RE: DA",scenario.cat = "Object properties")]
+storage.da.csp = src.timeseries_pointers[grepl('csp',Object,ignore.case = T) & Simulation == 'DAY_AHEAD' & Parameter == 'Natural_Inflow',.(Storage = Object, `Natural Inflow` = `Data File`,scenario = "RE: DA",scenario.cat = "Object properties")]
+storage.rt.csp = src.timeseries_pointers[grepl('csp',Object,ignore.case = T) & Simulation == 'REAL_TIME' & Parameter == 'Natural_Inflow',.(Storage = Object, `Natural Inflow` = `Data File`,scenario = "RE: RT",scenario.cat = "Object properties")]
+storage.csp = rbind(storage.da.csp,storage.rt.csp)
+rm(storage.da.csp,storage.rt.csp)
 
 all.tabs = c(all.tabs,"gen.da.vg.fixed","gen.rt.vg.fixed","gen.da.vg","gen.rt.vg","storage.csp")
 
@@ -230,7 +233,7 @@ all.tabs = c(all.tabs, "storage.data","storage.props.rt")
 # Data Files
 data.file.data = unique(src.timeseries_pointers[,.(`Data File`, category = 'Time series',Filename = paste0("../",`File Path`))])
 
-data.file.redispatch = data.file.data[!grepl('Reserves|DAY_AHEAD',Filename)]
+data.file.redispatch = data.file.data[!grepl('Reserves|DAY_AHEAD|Natural_Inflow',Filename)]
 data.file.redispatch = merge(data.file.redispatch,
                              CJ(data.file.redispatch[,`Data File`],
                                 seq(24)),
