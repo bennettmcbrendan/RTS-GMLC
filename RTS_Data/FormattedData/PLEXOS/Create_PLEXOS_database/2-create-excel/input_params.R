@@ -13,7 +13,9 @@ objects.list <- list(
     "region.data.csv",
     "zone.data.csv",
     "storage.data.csv",
-    "reserve.data.csv"
+    "reserve.data.csv",
+    c("data.file.data.csv", datafile.col = c('Filename')),
+    'timeslice.data.csv'
 )
 
 # add memberships between objects
