@@ -14,8 +14,8 @@ objects.list <- list(
     "zone.data.csv",
     "storage.data.csv",
     "reserve.data.csv",
-    c("data.file.data.csv", datafile.col = c('Filename')),
-    'timeslice.data.csv'
+    c("data.file.data.csv", datafile.col = c('Filename'), pattern.col = c('Pattern')),
+    c('timeslice.data.csv', pattern.col = c('Pattern'))
 )
 
 # add memberships between objects
@@ -49,7 +49,10 @@ object.property.list <- list(
     
     # reserve filepointers
     list("reserve.provisions.csv",datafile.col = c('Min Provision')),
-    list("reserve.provisions.rt.csv",datafile.col = c('Min Provision'))
+    list("reserve.provisions.rt.csv",datafile.col = c('Min Provision')),
+    
+    # redispatch-specific
+    "REDISPATCH_generator_scenarios.csv"
 
 )
 

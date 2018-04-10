@@ -1,0 +1,3 @@
+Generator,Units,Fixed Load Penalty,scenario,scenario.cat
+313_STORAGE_1,0,,Turn off pumped storage,Redispatch
+212_CSP_1,,10,Redispatch CSP,Redispatch
