@@ -262,6 +262,7 @@ for(j in 0:11){
     if(j==11){timeslice.data[,Pattern:=paste0(Pattern,'P',Index+24*j)]}
 }
 timeslice.data[,Index:=NULL]
+timeslice.data[,scenario:='Real time update']
 all.tabs = c(all.tabs, "timeslice.data")
 
 for (tab in all.tabs) {
