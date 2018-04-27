@@ -187,30 +187,30 @@ setnames(reserve.memberships,'Generator','Generators_Generator')
 rm(reserve.map)
 
 reserve.provisions = src.timeseries_pointers[Simulation=='DAY_AHEAD' & Object %in% unique(src.reserves$`Reserve Product`),
-                        .(Reserve = Object,`Min Provision` = `Data File`)]
+                        .(Reserve = Object,`Min Provision` = paste0('../',`Data File`))]
 
 reserve.provisions.rt = src.timeseries_pointers[Simulation=='REAL_TIME' & Object %in% unique(src.reserves$`Reserve Product`),
-                                                .(Reserve = Object,`Min Provision` = `Data File`,
+                                                .(Reserve = Object,`Min Provision` = paste0('../',`Data File`),
                                                 scenario = 'RT Run',scenario.cat = "Object properties")]
 all.tabs <- c(all.tabs, "reserve.data","reserve.memberships","reserve.enable","reserve.provisions","reserve.provisions.rt")
 
 # load
 region.load.da = data.table(unique(src.bus[,.(Region = Area)]), 
-                            src.timeseries_pointers[Object == 'Load' & Simulation == 'DAY_AHEAD',.(Load = `Data File`)],
+                            src.timeseries_pointers[Object == 'Load' & Simulation == 'DAY_AHEAD',.(Load = paste0('../',`Data File`))],
                             scenario = "Load: DA",scenario.cat = "Object properties")
 region.load.rt = data.table(unique(src.bus[,.(Region = Area)]), 
-                            src.timeseries_pointers[Object == 'Load' & Simulation == 'REAL_TIME',.(Load = `Data File`)],
+                            src.timeseries_pointers[Object == 'Load' & Simulation == 'REAL_TIME',.(Load = paste0('../',`Data File`))],
                             scenario = "Load: RT",scenario.cat = "Object properties")
 all.tabs = c(all.tabs,"region.load.da","region.load.rt" )
 
 # VG
-gen.da.vg.fixed = src.timeseries_pointers[( grepl('hydro',Object,ignore.case = T) | grepl('rtpv',Object,ignore.case = T) ) & Simulation == 'DAY_AHEAD' & Parameter == 'PMax MW',.(Generator = Object, `Fixed Load` = `Data File`,scenario = "RE: DA",scenario.cat = "Object properties")]
-gen.rt.vg.fixed = src.timeseries_pointers[( grepl('hydro',Object,ignore.case = T) | grepl('rtpv',Object,ignore.case = T) ) & Simulation == 'REAL_TIME' & Parameter == 'PMax MW',.(Generator = Object, `Fixed Load` = `Data File`,scenario = "RE: RT",scenario.cat = "Object properties")]
+gen.da.vg.fixed = src.timeseries_pointers[( grepl('hydro',Object,ignore.case = T) | grepl('rtpv',Object,ignore.case = T) ) & Simulation == 'DAY_AHEAD' & Parameter == 'PMax MW',.(Generator = Object, `Fixed Load` = paste0('../',`Data File`),scenario = "RE: DA",scenario.cat = "Object properties")]
+gen.rt.vg.fixed = src.timeseries_pointers[( grepl('hydro',Object,ignore.case = T) | grepl('rtpv',Object,ignore.case = T) ) & Simulation == 'REAL_TIME' & Parameter == 'PMax MW',.(Generator = Object, `Fixed Load` = paste0('../',`Data File`),scenario = "RE: RT",scenario.cat = "Object properties")]
 
-gen.da.vg = src.timeseries_pointers[( grepl('wind',Object,ignore.case = T) | grepl('_pv',Object,ignore.case = T) | grepl('csp',Object,ignore.case = T) | grepl('rtpv',Object,ignore.case = T) ) & Simulation == 'DAY_AHEAD' & Parameter == 'PMax MW',.(Generator = Object, Rating = `Data File`,scenario = "RE: DA",scenario.cat = "Object properties")]
-gen.rt.vg = src.timeseries_pointers[( grepl('wind',Object,ignore.case = T) | grepl('_pv',Object,ignore.case = T) | grepl('csp',Object,ignore.case = T) | grepl('rtpv',Object,ignore.case = T) ) & Simulation == 'REAL_TIME' & Parameter == 'PMax MW',.(Generator = Object, Rating = `Data File`,scenario = "RE: RT",scenario.cat = "Object properties")]
+gen.da.vg = src.timeseries_pointers[( grepl('wind',Object,ignore.case = T) | grepl('_pv',Object,ignore.case = T) | grepl('csp',Object,ignore.case = T) | grepl('rtpv',Object,ignore.case = T) ) & Simulation == 'DAY_AHEAD' & Parameter == 'PMax MW',.(Generator = Object, Rating = paste0('../',`Data File`),scenario = "RE: DA",scenario.cat = "Object properties")]
+gen.rt.vg = src.timeseries_pointers[( grepl('wind',Object,ignore.case = T) | grepl('_pv',Object,ignore.case = T) | grepl('csp',Object,ignore.case = T) | grepl('rtpv',Object,ignore.case = T) ) & Simulation == 'REAL_TIME' & Parameter == 'PMax MW',.(Generator = Object, Rating = paste0('../',`Data File`),scenario = "RE: RT",scenario.cat = "Object properties")]
 
-storage.csp = src.timeseries_pointers[grepl('csp',Object,ignore.case = T) & Simulation == 'DAY_AHEAD' & Parameter == 'Natural_Inflow',.(Storage = Object, `Natural Inflow` = `Data File`,scenario = "RE: DA",scenario.cat = "Object properties")]
+storage.csp = src.timeseries_pointers[grepl('csp',Object,ignore.case = T) & Simulation == 'DAY_AHEAD' & Parameter == 'Natural_Inflow',.(Storage = Object, `Natural Inflow` = paste0('../',`Data File`),scenario = "RE: DA",scenario.cat = "Object properties")]
 
 all.tabs = c(all.tabs,"gen.da.vg.fixed","gen.rt.vg.fixed","gen.da.vg","gen.rt.vg","storage.csp")
 
@@ -226,19 +226,6 @@ storage.data[grepl('CSP',Storage),category:='CSP Storage']
 storage.props.rt = src.storage[,.(Storage = `Storage`,`Enforce Bounds`= 0,`End Effects Method` = 1,scenario = "RT Run",scenario.cat = "Object properties")]
 
 all.tabs = c(all.tabs, "storage.data","storage.props.rt")
-
-# Data Files
-data.file.data = unique(src.timeseries_pointers[,.(`Data File`, category = 'Time series',Filename = paste0("../",`File Path`))])
-all.tabs = c(all.tabs, "data.file.data")
-
-# Time slices
-timeslice.data = data.table(Index = seq(24))
-timeslice.data[,Timeslice := paste0("T_",Index)]
-timeslice.data[,Pattern:=""]
-for(j in 0:11){
-    if(j<11){timeslice.data[,Pattern:=paste0(Pattern,'P',Index+24*j,';')]}
-    if(j==11){timeslice.data[,Pattern:=paste0(Pattern,'P',Index+24*j)]}
-}
 
 for (tab in all.tabs) {
   
