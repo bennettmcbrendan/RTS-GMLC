@@ -1,4 +1,4 @@
-names,DAY_AHEAD,notes,REAL_TIME,notes,REAL_TIME_UPDATE,notes
+names,DAY_AHEAD,notes,REAL_TIME,notes,REAL_TIME_UPDATING,notes
 category,,,,,,
 /START ATTRIBUTES,,,,,,
 Periods per Day,24,interval is hrs,288,interval is 5min,288,interval is 5min

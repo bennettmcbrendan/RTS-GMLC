@@ -1,4 +1,1 @@
-parent.model,child.model,filepointer.scenario,datafileobj.scenario
-DAY_AHEAD,REAL_TIME,RT Filepointers,RT Run
-DAY_AHEAD,REAL_TIME_UPDATE,RT Update Filepointers,RT Run
-DAY_AHEAD,REAL_TIME_REDISPATCH,RT Redispatch Filepointers,RT Run
+parent.model,child.model,filepointer.scenario,datafileobj.scenarioDAY_AHEAD,REAL_TIME,RT Filepointers,RT Run

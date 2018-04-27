@@ -229,37 +229,16 @@ all.tabs = c(all.tabs, "storage.data","storage.props.rt")
 
 # Data Files
 data.file.data = unique(src.timeseries_pointers[,.(`Data File`, category = 'Time series',Filename = paste0("../",`File Path`))])
-
-data.file.redispatch = data.file.data[!grepl('Reserves|DAY_AHEAD',Filename)]
-data.file.redispatch = merge(data.file.redispatch,
-                             CJ(data.file.redispatch[,`Data File`],
-                                seq(24)),
-                             by.x = 'Data File',
-                             by.y = 'V1',
-                             allow.cartesian = TRUE)
-data.file.redispatch[,Filename := gsub('.csv','',Filename)]
-data.file.redispatch[,Filename := paste0(Filename,'_',V2,'.csv')]
-data.file.redispatch[,Pattern := paste0('T_',V2)]
-data.file.redispatch[,V2 := NULL]
-data.file.redispatch[,c('scenario','scenario.cat'):=.('Real time update','Redispatch')]
-
-data.file.data = rbind(data.file.data[,c('Pattern','scenario','scenario.cat'):=.('','','')],
-                       data.file.redispatch)
-
 all.tabs = c(all.tabs, "data.file.data")
-rm(data.file.redispatch)
 
 # Time slices
 timeslice.data = data.table(Index = seq(24))
 timeslice.data[,Timeslice := paste0("T_",Index)]
-timeslice.data[,Include:=-1]
 timeslice.data[,Pattern:=""]
 for(j in 0:11){
     if(j<11){timeslice.data[,Pattern:=paste0(Pattern,'P',Index+24*j,';')]}
     if(j==11){timeslice.data[,Pattern:=paste0(Pattern,'P',Index+24*j)]}
 }
-timeslice.data[,Index:=NULL]
-all.tabs = c(all.tabs, "timeslice.data")
 
 for (tab in all.tabs) {
   
