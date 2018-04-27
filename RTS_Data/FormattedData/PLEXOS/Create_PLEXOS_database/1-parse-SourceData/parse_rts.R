@@ -233,7 +233,7 @@ all.tabs = c(all.tabs, "storage.data","storage.props.rt")
 # Data Files
 data.file.data = unique(src.timeseries_pointers[,.(`Data File`, category = 'Time series',Filename = paste0("../",`File Path`))])
 
-data.file.redispatch = data.file.data[!grepl('Reserves|DAY_AHEAD|Natural_Inflow',Filename)]
+data.file.redispatch = data.file.data[!grepl('Reserves|DAY_AHEAD|Natural_Inflow|HYDRO',Filename)]
 data.file.redispatch = merge(data.file.redispatch,
                              CJ(data.file.redispatch[,`Data File`],
                                 seq(24)),
@@ -258,7 +258,7 @@ timeslice.data[,Timeslice := paste0("T_",Index)]
 timeslice.data[,Include:=-1]
 timeslice.data[,Pattern:=""]
 for(j in 0:11){
-    if(j<11){timeslice.data[,Pattern:=paste0(Pattern,'P',Index+24*j,';')]}
+    if(j<11){timeslice.data[,Pattern:=paste0(Pattern,'P',Index+24*j,',')]}
     if(j==11){timeslice.data[,Pattern:=paste0(Pattern,'P',Index+24*j)]}
 }
 timeslice.data[,Index:=NULL]
