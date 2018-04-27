@@ -100,6 +100,7 @@ generator.data = src.gen[,.(Generator = `GEN UID`,
                             `Min Up Time` = `Min Up Time Hr`,
                             `Min Stable Level` = `PMin MW`
                             )]
+generator.data[Generator == "313_STORAGE_1",Units:=0]
 all.tabs = c(all.tabs,"generator.data")
 
 # generator-storage memberships
@@ -225,7 +226,9 @@ storage.rt.csp = src.timeseries_pointers[grepl('csp',Object,ignore.case = T) & S
 storage.csp = rbind(storage.da.csp,storage.rt.csp)
 rm(storage.da.csp,storage.rt.csp)
 
-all.tabs = c(all.tabs,"gen.da.vg.fixed","gen.rt.vg.fixed","gen.da.vg","gen.rt.vg","storage.csp")
+redispatch.csp = data.table(Generator = '212_CSP_1',`Fixed Load Penalty` = 10,scenario = 'Redispatch CSP',scenario.cat = 'Redispatch')
+
+all.tabs = c(all.tabs,"gen.da.vg.fixed","gen.rt.vg.fixed","gen.da.vg","gen.rt.vg","storage.csp","redispatch.csp")
 
 # CSP and pumped storage
 storage.data = src.storage[,.(Storage = `Storage`,
@@ -236,7 +239,7 @@ storage.data = src.storage[,.(Storage = `Storage`,
                              `End Effects Method` = c(1,2,2),
                              `Max Spill` = 1e+30)]
 storage.data[grepl('CSP',Storage),category:='CSP Storage']
-storage.props.rt = src.storage[,.(Storage = `Storage`,`Enforce Bounds`= 0,`End Effects Method` = 1,scenario = "RT Run",scenario.cat = "Object properties")]
+storage.props.rt = src.storage[,.(Storage = `Storage`,`End Effects Method` = 1,scenario = "RT Run",scenario.cat = "Object properties")]
 
 generator.start.energy = src.storage[!is.na(`Start Energy`),.(Storage,
                                                             Generator = `GEN UID`,

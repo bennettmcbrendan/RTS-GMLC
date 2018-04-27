@@ -1,18 +1,19 @@
-names,DAY_AHEAD,REAL_TIME
-category,,
-/START ATTRIBUTES,,
-Random Number Seed,10,10
-/START MEMBERSHIPS,,
-Horizon,DAY_AHEAD,REAL_TIME
-Transmission,Tx - All lines,Tx - All lines
-PASA,,
-ST Schedule,ST Nodal,ST Nodal
-MT Schedule,,
-Production,Production MIP,Production MIP
-Performance,Xpress-MP 0.1 MIP,Xpress-MP 0.1 MIP
-Report,Default Report_flatFiles,Default Report
-Diagnostic,,
-/START SCENARIOS,,
-,Load: DA,Load: RT
-,RE: DA,RE: RT
-,Gen Outages,
+names,DAY_AHEAD,REAL_TIME_12,REAL_TIME_24,REAL_TIME_12_REDISPATCH,REAL_TIME_24_REDISPATCH
+category,,,,,
+/START ATTRIBUTES,,,,,
+Random Number Seed,10,10,10,10,10
+/START MEMBERSHIPS,,,,,
+Horizon,DAY_AHEAD,REAL_TIME_12,REAL_TIME_24,REAL_TIME_12,REAL_TIME_24
+Transmission,Tx - All lines,Tx - All lines,Tx - All lines,Tx - All lines,Tx - All lines
+PASA,,,,,
+ST Schedule,ST Nodal,ST Nodal,ST Nodal,ST Nodal,ST Nodal
+MT Schedule,,,,,
+Production,Production MIP,Production MIP,Production MIP,Production MIP,Production MIP
+Performance,Xpress-MP 0.1 MIP,Xpress-MP 0.1 MIP,Xpress-MP 0.1 MIP,Xpress-MP 0.1 MIP,Xpress-MP 0.1 MIP
+Report,Default Report_flatFiles,Default Report,Default Report,Default Report,Default Report
+Diagnostic,,,,,
+/START SCENARIOS,,,,,
+,Load: DA,Load: RT,Load: RT,Load: RT,Load: RT
+,RE: DA,RE: RT,RE: RT,RE: RT,RE: RT
+,Gen Outages,,,,
+,,,,Redispatch CSP,Redispatch CSP

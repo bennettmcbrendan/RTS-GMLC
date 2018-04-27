@@ -43,6 +43,7 @@ object.property.list <- list(
     list("gen.efficiency.data.csv",band.col = c("Band")),
     "storage.props.rt.csv",
     list("generator.start.energy.csv",parent.col = "Generator",collection = "Head Storage"),
+    "redispatch.csp.csv",
 
     # reserve properties
     "reserve.enable.csv",
