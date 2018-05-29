@@ -49,7 +49,10 @@ object.property.list <- list(
     
     # reserve filepointers
     list("reserve.provisions.csv",datafile.col = c('Min Provision')),
-    list("reserve.provisions.rt.csv",datafile.col = c('Min Provision'))
+    list("reserve.provisions.rt.csv",datafile.col = c('Min Provision')),
+    
+    # storage redispatch scenarios
+    'generator_units.csv'
 
 )
 
