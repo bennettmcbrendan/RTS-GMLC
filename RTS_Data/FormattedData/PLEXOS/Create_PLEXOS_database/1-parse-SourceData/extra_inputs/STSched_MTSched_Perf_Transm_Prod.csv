@@ -110,8 +110,8 @@ Xpress-MP 0T MIP,Performance,SOLVER,2,selects Xpress-MP
 Xpress-MP 0T MIP,Performance,MIP Relative Gap,0,
 Xpress-MP 0T MIP,Performance,Small MIP Relative Gap,0,
 Xpress-MP 0T MIP,Performance,MIP Maximum Threads,4,"Could revise later. Loads computer less, Greg Brinkman says higher numbers don't help runtime much."
-Xpress-MP 0T MIP,Performance,Small MIP Max Time,120,Maximum time before each ST step times out for small problems
-Xpress-MP 0T MIP,Performance,MIP Max Time,120,Maximum time before each ST step times out for large problems
+Xpress-MP 0T MIP,Performance,Small MIP Max Time,240,Maximum time before each ST step times out for small problems
+Xpress-MP 0T MIP,Performance,MIP Max Time,240,Maximum time before each ST step times out for large problems
 Tx - All lines,Transmission,MVA Base,100,default
 Tx - All lines,Transmission,Losses Enabled,0,
 Tx - All lines,Transmission,OPF Method,1,Fixed shift factor. (Variable = 0)
