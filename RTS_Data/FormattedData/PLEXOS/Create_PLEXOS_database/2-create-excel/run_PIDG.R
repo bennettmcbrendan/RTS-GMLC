@@ -18,7 +18,7 @@ inputfiles.dir <- '../1-parse-SourceData/outputs'
 input.params <- 'input_params.R'
 
 # name of output workbook
-output.wb.name <- "../rts_PLEXOS.xlsx"
+output.wb.name <- "../rts_PLEXOS_cross.xlsx"
 export.wb <- TRUE
 
 # check data and save summary plots

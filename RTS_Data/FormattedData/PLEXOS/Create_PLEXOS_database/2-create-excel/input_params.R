@@ -52,7 +52,9 @@ object.property.list <- list(
     list("reserve.provisions.rt.csv",datafile.col = c('Min Provision')),
     
     # storage redispatch scenarios
-    'generator_units.csv'
+    'generator_units.csv',
+    'generator_scenarios.csv',
+    'storage_scenarios.csv'
 
 )
 
@@ -64,7 +66,7 @@ generic.import.files <- c(
 
 # compact generic files format (different file for each object type)
 compact.generic.import.files <- list(
-    c("import_models.csv", "model"),
+    c("import_models_mip-storage-cross.csv", "model"),
     c("import_horizons.csv", "horizon")
 )
 
