@@ -1,0 +1,4 @@
+branch,From Bus,To Bus,R,X,B,Cont Rating,LTE Rating,STE Rating,Perm OutRate,Duration,Tr Ratio,Tran OutRate,Length,buses
+12,1,2,,,,1175,,,,,,,,
+31,3,1,,,,600,,,,,,,,
+32,3,2,,,,500,,,,,,,,

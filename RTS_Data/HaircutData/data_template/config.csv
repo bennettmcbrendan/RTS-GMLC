@@ -1,0 +1,2 @@
+,number of busses,number of scenarios,horizon length,weight,capacity reserves,system reserves,loss of load cost,system overload cost,total expansion capacity,total annual load,VG penetration,max load
+parameters,3,24,1,8784,0.15,160,10000,500,8191.835957,37655798.9,30%,8191.835957
