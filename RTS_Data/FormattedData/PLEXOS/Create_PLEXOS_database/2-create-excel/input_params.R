@@ -52,11 +52,12 @@ object.property.list <- list(
     list("reserve.provisions.rt.csv",datafile.col = c('Min Provision')),
     
     # storage redispatch scenarios
-    'generator_units.csv',
+    'fuel_prices.csv',
     'generator_scenarios.csv',
-    'storage_scenarios.csv',
-    'fuel_prices.csv'
-
+    'generator_units_low.csv',
+    'pump_scenarios.csv',
+    'region_scenarios.csv',
+    'storage_scenarios.csv'
 )
 
 # define as many files as needed for generic imports
