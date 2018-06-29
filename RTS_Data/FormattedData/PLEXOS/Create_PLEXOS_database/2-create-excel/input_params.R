@@ -54,9 +54,8 @@ object.property.list <- list(
     # storage redispatch scenarios
     'fuel_prices.csv',
     'generator_scenarios.csv',
-    'generator_units_low.csv',
+    'generator_units.csv',
     'pump_scenarios.csv',
-    'region_scenarios.csv',
     'storage_scenarios.csv'
 )
 

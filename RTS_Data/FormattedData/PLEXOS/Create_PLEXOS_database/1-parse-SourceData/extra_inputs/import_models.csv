@@ -15,8 +15,7 @@ Diagnostic,,,,,,
 /START SCENARIOS,,,,,,
 ,Load: DA,Load: RT,Load: DA,Load: RT,Load: DA,Load: RT
 ,RE: DA,RE: RT,RE: DA,RE: RT,RE: DA,RE: RT
-,Fix capacity low,Fix capacity low,Fix capacity low,Fix capacity low,Fix capacity low,Fix capacity low
+,Fix capacity,Fix capacity,Fix capacity,Fix capacity,Fix capacity,Fix capacity
 ,Increase oil price,Increase oil price,Increase oil price,Increase oil price,Increase oil price,Increase oil price
-,Decrease reported VoLL,Decrease reported VoLL,Decrease reported VoLL,Decrease reported VoLL,Decrease reported VoLL,Decrease reported VoLL
 ,Gen Outages,,Gen Outages,,Gen Outages,
 ,,,,,Storage - 100kW,Storage - 100kW

@@ -1,13 +1,13 @@
-Generator,Start Cost,Shutdown Cost,scenario
-101_CT_1,517.47,517.47,Increase oil price
-101_CT_2,517.47,517.47,Increase oil price
-102_CT_1,517.47,517.47,Increase oil price
-102_CT_2,517.47,517.47,Increase oil price
-201_CT_1,517.47,517.47,Increase oil price
-201_CT_2,517.47,517.47,Increase oil price
-202_CT_1,517.47,517.47,Increase oil price
-202_CT_2,517.47,517.47,Increase oil price
-301_CT_1,517.47,517.47,Increase oil price
-301_CT_2,517.47,517.47,Increase oil price
-302_CT_1,517.47,517.47,Increase oil price
-302_CT_2,517.47,517.47,Increase oil price
+Generator,Start Cost,Shutdown Cost,Max Capacity,scenario
+101_CT_1,517.47,517.47,,Increase oil price
+101_CT_2,517.47,517.47,,Increase oil price
+102_CT_1,517.47,517.47,,Increase oil price
+102_CT_2,517.47,517.47,,Increase oil price
+201_CT_1,517.47,517.47,,Increase oil price
+201_CT_2,517.47,517.47,,Increase oil price
+202_CT_1,517.47,517.47,,Increase oil price
+202_CT_2,517.47,517.47,,Increase oil price
+301_CT_1,517.47,517.47,1000,Increase oil price
+301_CT_2,517.47,517.47,,Increase oil price
+302_CT_1,517.47,517.47,,Increase oil price
+302_CT_2,517.47,517.47,,Increase oil price

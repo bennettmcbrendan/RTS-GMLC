@@ -6,11 +6,11 @@ Date From,43831,1/1/2024,43831,1/1/2024,43831,1/1/2024,44013,7/1/2024
 Step Count,1,,1,,1,,1,
 Step Type,4,year,4,year,4,year,3,month
 Chrono Date From,43831,1/1/2024,43831,1/1/2024,44013,7/1/2024,44013,7/1/2024
-Chrono Step Count,365,,105120,,30,,8640,
+Chrono Step Count,365,,105120,,31,,8640,
 Chrono Step Type,2,daily,0,minute,2,daily,0,minute
 Chrono At a Time,1,,5,,1,,5,
-Chrono Period To,24,,11,,24,,11,
+Chrono Period To,24,,47,,24,,47,
 Look-ahead Indicator,-1,Turn on lookahead,-1,Turn on lookahead,-1,Turn on lookahead,-1,Turn on lookahead
 Look-ahead Periods per Day,24,1-hour resolution,288,5-minute resolution,24,1-hour resolution,288,5-minute resolution
 Look-ahead Type,1,day,0,interval,1,day,0,interval
-Look-ahead At a Time,1,1 day,11,11 intervals,1,1 day,11,11 intervals
+Look-ahead At a Time,1,1 day,47,47 intervals,1,1 day,47,47 intervals
