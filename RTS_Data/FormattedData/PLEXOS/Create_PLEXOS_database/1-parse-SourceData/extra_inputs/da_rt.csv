@@ -1,4 +1,5 @@
 parent.model,child.model,filepointer.scenario,datafileobj.scenario
 DAY_AHEAD,REAL_TIME,RT Filepointers,RT Run
 DAY_AHEAD_JULY,REAL_TIME_JULY,RT Filepointers July,RT Run
-DAY_AHEAD_JULY 100kW,REAL_TIME_JULY 100kW,RT Filepointers July 100kW,RT Run
+DAY_AHEAD_JULY 100kW_4HR,REAL_TIME_JULY 100kW_4HR,RT Filepointers July 100kW 4hr,RT Run
+DAY_AHEAD_JULY 100kW_2HR,REAL_TIME_JULY 100kW_2HR,RT Filepointers July 100kW 2hr,RT Run

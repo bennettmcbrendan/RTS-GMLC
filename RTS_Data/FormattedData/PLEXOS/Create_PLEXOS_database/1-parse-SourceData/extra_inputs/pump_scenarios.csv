@@ -1,6 +1,7 @@
 Generator,category,Units,Max Capacity,Pump Load,Max Ramp Up,Max Ramp Down,scenario,scenario.cat
 313_STORAGE_1,Storage,1,1,1,1,1,Storage - 1MW,Storage redispatch
-313_STORAGE_1,Storage,1,0.1,0.1,0.1,0.1,Storage - 100kW,Storage redispatch
+313_STORAGE_1,Storage,1,0.1,0.1,0.1,0.1,Storage - 100kW - 4hr,Storage redispatch
+313_STORAGE_1,Storage,1,0.1,0.1,0.1,0.1,Storage - 100kW - 2hr,Storage redispatch
 313_STORAGE_1,Storage,1,0.01,0.01,0.01,0.01,Storage - 10kW,Storage redispatch
 313_STORAGE_1,Storage,1,0.003,0.003,0.003,0.003,Storage - 3kW,Storage redispatch
 313_STORAGE_1,Storage,1,0.001,0.001,0.001,0.001,Storage - 1kW,Storage redispatch

@@ -1,21 +1,21 @@
-names,DAY_AHEAD,REAL_TIME,DAY_AHEAD_JULY,REAL_TIME_JULY,DAY_AHEAD_JULY 100kW,REAL_TIME_JULY 100kW
-category,,,,,,
-/START ATTRIBUTES,,,,,,
-Random Number Seed,10,10,10,10,10,10
-/START MEMBERSHIPS,,,,,,
-Horizon,DAY_AHEAD,REAL_TIME,DAY_AHEAD_JULY,REAL_TIME_JULY,DAY_AHEAD_JULY,REAL_TIME_JULY
-Transmission,Tx - No lines,Tx - No lines,Tx - No lines,Tx - No lines,Tx - No lines,Tx - No lines
-PASA,,,,,,
-ST Schedule,ST Nodal,ST Nodal,ST Nodal,ST Nodal,ST Nodal,ST Nodal
-MT Schedule,,,,,,
-Production,Production MIP LA,Production MIP LA,Production MIP LA,Production MIP LA,Production MIP LA,Production MIP LA
-Performance,Xpress-MP 0 MIP,Xpress-MP 0 MIP,Xpress-MP 0 MIP,Xpress-MP 0 MIP,Xpress-MP 0 MIP,Xpress-MP 0 MIP
-Report,Default Report_flatFiles,Default Report,Default Report_flatFiles,Default Report,Default Report_flatFiles,Default Report
-Diagnostic,,,,,,
-/START SCENARIOS,,,,,,
-,Load: DA,Load: RT,Load: DA,Load: RT,Load: DA,Load: RT
-,RE: DA,RE: RT,RE: DA,RE: RT,RE: DA,RE: RT
-,Fix capacity,Fix capacity,Fix capacity,Fix capacity,Fix capacity,Fix capacity
-,Increase oil price,Increase oil price,Increase oil price,Increase oil price,Increase oil price,Increase oil price
-,Gen Outages,,Gen Outages,,Gen Outages,
-,,,,,Storage - 100kW,Storage - 100kW
+names,DAY_AHEAD,REAL_TIME,DAY_AHEAD_JULY,REAL_TIME_JULY,DAY_AHEAD_JULY 100kW_4HR,REAL_TIME_JULY 100kW_4HR,DAY_AHEAD_JULY 100kW_2HR,REAL_TIME_JULY 100kW_2HR
+category,,,,,,,,
+/START ATTRIBUTES,,,,,,,,
+Random Number Seed,10,10,10,10,10,10,10,10
+/START MEMBERSHIPS,,,,,,,,
+Horizon,DAY_AHEAD,REAL_TIME,DAY_AHEAD_JULY,REAL_TIME_JULY,DAY_AHEAD_JULY,REAL_TIME_JULY,DAY_AHEAD_JULY,REAL_TIME_JULY
+Transmission,Tx - No lines,Tx - No lines,Tx - No lines,Tx - No lines,Tx - No lines,Tx - No lines,Tx - No lines,Tx - No lines
+PASA,,,,,,,,
+ST Schedule,ST Nodal,ST Nodal,ST Nodal,ST Nodal,ST Nodal,ST Nodal,ST Nodal,ST Nodal
+MT Schedule,,,,,,,,
+Production,Production MIP LA,Production MIP LA,Production MIP LA,Production MIP LA,Production MIP LA,Production MIP LA,Production MIP LA,Production MIP LA
+Performance,Xpress-MP 0 MIP,Xpress-MP 0 MIP,Xpress-MP 0 MIP,Xpress-MP 0 MIP,Xpress-MP 0 MIP,Xpress-MP 0 MIP,Xpress-MP 0 MIP,Xpress-MP 0 MIP
+Report,Default Report_flatFiles,Default Report,Default Report_flatFiles,Default Report,Default Report_flatFiles,Default Report,Default Report_flatFiles,Default Report
+Diagnostic,,,,,,,,
+/START SCENARIOS,,,,,,,,
+,Load: DA,Load: RT,Load: DA,Load: RT,Load: DA,Load: RT,Load: DA,Load: RT
+,RE: DA,RE: RT,RE: DA,RE: RT,RE: DA,RE: RT,RE: DA,RE: RT
+,Fix capacity,Fix capacity,Fix capacity,Fix capacity,Fix capacity,Fix capacity,Fix capacity,Fix capacity
+,Increase oil price,Increase oil price,Increase oil price,Increase oil price,Increase oil price,Increase oil price,Increase oil price,Increase oil price
+,Gen Outages,,Gen Outages,,Gen Outages,,Gen Outages,
+,,,,,Storage - 100kW - 4hr,Storage - 100kW - 4hr,Storage - 100kW - 2hr,Storage - 100kW - 2hr
