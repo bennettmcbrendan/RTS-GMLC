@@ -56,7 +56,8 @@ object.property.list <- list(
     'generator_scenarios.csv',
     'generator_units.csv',
     'pump_scenarios.csv',
-    'storage_scenarios.csv'
+    'storage_scenarios.csv',
+    list('region_scenarios.csv',datafile.col = c('Load'))
 )
 
 # define as many files as needed for generic imports

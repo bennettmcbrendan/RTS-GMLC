@@ -1,4 +1,7 @@
-Region,VoLL,scenario
-1,2000,Decrease reported VoLL
-2,2000,Decrease reported VoLL
-3,2000,Decrease reported VoLL
+Region,Load,scenario,scenario.cat
+1,../../timeseries_data_files/Load/REAL_TIME_regional_Load_HIGH.csv,Load: RT HIGH,Object properties
+2,../../timeseries_data_files/Load/REAL_TIME_regional_Load_HIGH.csv,Load: RT HIGH,Object properties
+3,../../timeseries_data_files/Load/REAL_TIME_regional_Load_HIGH.csv,Load: RT HIGH,Object properties
+1,../../timeseries_data_files/Load/REAL_TIME_regional_Load_LOW.csv,Load: RT LOW,Object properties
+2,../../timeseries_data_files/Load/REAL_TIME_regional_Load_LOW.csv,Load: RT LOW,Object properties
+3,../../timeseries_data_files/Load/REAL_TIME_regional_Load_LOW.csv,Load: RT LOW,Object properties
