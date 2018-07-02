@@ -1,4 +1,6 @@
 Storage,category,Max Volume,Initial Volume,scenario,scenario.cat
+313_HEAD_STORAGE,Storage,0.04,0.02,Storage - 10MW,Storage redispatch
+313_TAIL_STORAGE,Storage,0.04,0.02,Storage - 10MW,Storage redispatch
 313_HEAD_STORAGE,Storage,0.004,0.002,Storage - 1MW,Storage redispatch
 313_TAIL_STORAGE,Storage,0.004,0.002,Storage - 1MW,Storage redispatch
 313_HEAD_STORAGE,Storage,0.0004,0.0002,Storage - 100kW - 4hr,Storage redispatch
