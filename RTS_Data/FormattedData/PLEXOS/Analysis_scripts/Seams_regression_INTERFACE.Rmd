@@ -36,6 +36,8 @@ knitr::opts_chunk$set(echo=FALSE, comment=NA, warning=FALSE, message=FALSE, incl
 solutions.dir.single = params$Solutions.directory.single
 solutions.dir.multi = params$Solutions.directory.multi
 
+voltage.threshold <- 220
+
 
 ```
 
