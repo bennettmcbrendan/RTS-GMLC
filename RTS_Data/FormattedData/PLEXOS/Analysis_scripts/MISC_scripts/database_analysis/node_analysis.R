@@ -1,5 +1,5 @@
 
-wd = "//plexossql/Data/bmcbenne/RTS-GMLC-geodecomp/RTS-GMLC/RTS_Data/FormattedData/PLEXOS/Analysis_scripts/plots"
+wd = ""
 setwd(wd)
 
 node.files = list.files()[grepl('-buses-',list.files())]
@@ -21,7 +21,7 @@ node.table[,scenario:=tstrsplit(scenario,"_")[[2]]]
 node.table[,scenario:=gsub(".csv","",scenario)]
 
 node.table = unique(node.table[,.(Node,Interface,Voltage,scenario,type)])
-stop()
+
 node.table.join = merge(node.table[scenario == "OLD"],
                         node.table[scenario == "220"],
                         by = c('Node','Interface','Voltage','type'),
