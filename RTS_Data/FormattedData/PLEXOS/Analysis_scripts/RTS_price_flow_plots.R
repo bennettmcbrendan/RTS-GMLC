@@ -6,7 +6,7 @@ pacman::p_load(rplexos, RSQLite, magrittr, dplyr, lubridate,
 
 wd = dirname(parent.frame(2)$ofile)
 setwd(wd)
-source("../source_scripts/plot_parameters.R")
+source("source_scripts/plot_parameters.R")
 
 # ----------------------------------------------------------------------- |
 # Inputs ----
@@ -16,9 +16,9 @@ xlim = c(-600,600)
 ylim = c(-100,100)
 
 # decomposed RTS-GMLC runs
-solution.dbs <- c(file.path("//plexossql/Data/bmcbenne/RTS-GMLC-geodecomp/RTS-GMLC/RTS_Data/FormattedData/PLEXOS",
+solution.dbs <- c(file.path("//nrelqnap02/PLEXOS CEII/Projects/Interconnections_Seam_Plexos/Continental/geodecomp_compare/RTS-GMLC",
                              "Model REAL_TIME_C_FIX Solution/Model REAL_TIME_C_FIX Solution-rplexos.db"),
-                 file.path("//plexossql/Data/bmcbenne/RTS-GMLC-geodecomp/RTS-GMLC/RTS_Data/FormattedData/PLEXOS",
+                 file.path("//nrelqnap02/PLEXOS CEII/Projects/Interconnections_Seam_Plexos/Continental/geodecomp_compare/RTS-GMLC",
                            "Model REAL_TIME_FIX Solution/Model REAL_TIME_FIX Solution-rplexos.db"))
 
 # interface.table <- data.table(Interface = rep('1 - 2',3),
@@ -250,4 +250,10 @@ quadrants[,Agreement := I + III]
 quadrants = quadrants[,lapply(.SD,function(x) paste0(round(x*100,1),"%")),by = c('Interface','scenario'),
                       .SDcols = c('quad.0','I','II','III','IV','Disagreement','Agreement')]
 
+# ----------------------------------------------------------------------- |
+# Write out ----
+# ----------------------------------------------------------------------- |
 
+ggsave("plots_RTS/rts-price-flow.png",p1,height = 4.5,width = 3.5)
+write.csv(quadrants,'plots_RTS/rts-efficiency-data.csv',row.names = FALSE)
+write.csv(int.stat.center,'plots_RTS/rts-avg-price-diff.csv',row.names = FALSE)

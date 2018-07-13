@@ -10,7 +10,7 @@ params:
   Solutions.directory:
     label: Pick directory with solutions (this should be fullpathto..HERE/Model ..
       Solution/.db)
-    value: //plexossql/Data/bmcbenne/RTS-GMLC-geodecomp/RTS-GMLC/RTS_Data/FormattedData/PLEXOS/All_75_100
+    value: //nrelqnap02/PLEXOS CEII/Projects/Interconnections_Seam_Plexos/Continental/geodecomp_compare/RTS-GMLC
 ---
 
 ```{r setOptions, echo=FALSE, warning=FALSE, message=FALSE, error=FALSE, cache=FALSE}
@@ -37,8 +37,8 @@ solutions.dir = params$Solutions.directory
 # input solution folders and scenario names ----
 #------------------------------------------------------------------------------|
 
-solution.names = c('Model REAL_TIME_FIXALL Solution',
-                  'Model REAL_TIME_C_FIXALL Solution')
+solution.names = c('Model REAL_TIME_FIX Solution',
+                  'Model REAL_TIME_C_FIX Solution')
 
 scenario.names = c('Nondecomposed','Decomposed')
 

@@ -1,5 +1,5 @@
 ---
-title: "RTS-GMLc Geo Decomp Analysis"
+title: "RTS-GMLC Geo Decomp Analysis"
 author: "Created by: National Renewable Energy Laboratory (NREL)"
 date: "`r format(Sys.time(), '%d %B %Y')`"
 output: 
@@ -10,7 +10,7 @@ params:
   Solutions.directory:
     label: Pick directory with solutions (this should be fullpathto..HERE/Model ..
       Solution/.db)
-    value: //plexossql/Data/bmcbenne/RTS-GMLC-geodecomp/RTS-GMLC/RTS_Data/FormattedData/PLEXOS
+    value: //nrelqnap02/PLEXOS CEII/Projects/Interconnections_Seam_Plexos/Continental/geodecomp_compare/RTS-GMLC
 ---
 
 ```{r setOptions, echo=FALSE, warning=FALSE, message=FALSE, error=FALSE, cache=FALSE}
@@ -795,7 +795,7 @@ for(i in 1:length(scenario.names.all)){
 ```{r metrics-table-print, include=TRUE,eval = TRUE, fig.width=3.5, fig.height=3.5}
 
 kable(metrics.table)
-write.csv(metrics.table,paste0('plots_RTS/metrics_table.csv'),row.names = FALSE)
+# write.csv(metrics.table,paste0('plots_RTS/metrics_table.csv'),row.names = FALSE)
 
 ```
 
@@ -898,10 +898,10 @@ rm(fuel.data,gen.map,gen.cost.data.base)
 
 ```
 
-```{r ccommit-circle-plot-print, include=TRUE,eval = TRUE, fig.width = 3.5, fig.height=3.5}
+```{r commit-circle-plot-print, include=TRUE,eval = TRUE, fig.width = 3.5, fig.height=3.5}
 
 p
-ggsave('commit-plot.png',p,height = 2.75,width = 3.5,dpi = 600)
+ggsave('plots_RTS/commit-plot.png',p,height = 2.75,width = 3.5,dpi = 600)
 
 
 ```

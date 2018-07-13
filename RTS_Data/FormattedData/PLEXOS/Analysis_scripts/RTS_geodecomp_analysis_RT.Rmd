@@ -1,5 +1,5 @@
 ---
-title: "RTS-GMLc Geo Decomp Analysis"
+title: "RTS-GMLC Geo Decomp Analysis"
 author: "Created by: National Renewable Energy Laboratory (NREL)"
 date: "`r format(Sys.time(), '%d %B %Y')`"
 output: 
@@ -10,7 +10,7 @@ params:
   Solutions.directory:
     label: Pick directory with solutions (this should be fullpathto..HERE/Model ..
       Solution/.db)
-    value: //plexossql/Data/bmcbenne/RTS-GMLC-geodecomp/RTS-GMLC/RTS_Data/FormattedData/PLEXOS
+    value: //nrelqnap02/PLEXOS CEII/Projects/Interconnections_Seam_Plexos/Continental/geodecomp_compare/RTS-GMLC
 ---
 
 ```{r setOptions, echo=FALSE, warning=FALSE, message=FALSE, error=FALSE, cache=FALSE}
