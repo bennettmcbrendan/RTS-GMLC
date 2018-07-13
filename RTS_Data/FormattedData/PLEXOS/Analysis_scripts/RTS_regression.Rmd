@@ -1,0 +1,365 @@
+---
+title: "RTS-GMLc Geo Decomp Analysis"
+author: "Created by: National Renewable Energy Laboratory (NREL)"
+date: "`r format(Sys.time(), '%d %B %Y')`"
+output: 
+  html_document: 
+    css: custom.css
+    toc: yes
+params:
+  Solutions.directory:
+    label: Pick directory with solutions (this should be fullpathto..HERE/Model ..
+      Solution/.db)
+    value: //plexossql/Data/bmcbenne/RTS-GMLC-geodecomp/RTS-GMLC/RTS_Data/FormattedData/PLEXOS/All_75_100
+---
+
+```{r setOptions, echo=FALSE, warning=FALSE, message=FALSE, error=FALSE, cache=FALSE}
+# %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+# Set up default options for chunks, turn off error or warning messages
+# load packages
+
+pacman::p_load(gridExtra, rgdal, ggmap, Cairo, rgeos, maptools, lubridate, plyr, gdata, stringr, tidyr, rplexos, RSQLite, magrittr, dbplyr, lubridate, rmarkdown, scales, cowplot, data.table, fasttime,Hmisc, plotly, xtable, knitr, rmarkdown,grid,dplyr)
+
+# temporary
+fig.path.name = ""
+
+knitr::opts_chunk$set(echo=FALSE, comment=NA, warning=FALSE, message=FALSE, include=TRUE,
+                      fig.path=fig.path.name, fig.ext=c('png','svg','emf'), cache = F,dpi = 600)
+
+solutions.dir = params$Solutions.directory
+
+```
+
+
+```{r query-inputs}
+
+#------------------------------------------------------------------------------|
+# input solution folders and scenario names ----
+#------------------------------------------------------------------------------|
+
+solution.names = c('Model REAL_TIME_FIXALL Solution',
+                  'Model REAL_TIME_C_FIXALL Solution')
+
+scenario.names = c('Nondecomposed','Decomposed')
+
+scenario.colors <- c("Nondecomposed" = "#969696", 
+                     "Decomposed" = "steelblue")
+
+# # process plexos solutions with rplexos if not already done so ----
+solution.paths <- sapply(solution.names, function(x) file.path(solutions.dir,x))
+
+solution.dbs <- sapply(solution.paths, function(x){
+  file.path(x, list.files(x, pattern = "-rplexos.db"))})
+
+print(paste("solution dbs exist?", file.exists(solution.dbs)))
+# paths to decomposed -rplexos.db
+
+# set column names for query tables
+column.names <- c("scenario", "collection", 
+                  "property", "unit", "name", "parent", 
+                  "category", "time", "value")
+
+#------------------------------------------------------------------------------|
+# define sql query functions ----
+#------------------------------------------------------------------------------|
+
+# expand_time function
+expand_time = function(data, db.path, phaseid = 4, look.ahead = 0) {
+  setnames(data, "time_from", "time")
+  data$time = ymd_hms(data$time)
+  datadt = data.table(data, key = "key,time")
+  
+  # get time from database being queried
+  timedt = data.table(tbl(src_sqlite(db.path), sql("SELECT * FROM time")) %>% 
+                        filter(phase_id == phaseid) %>% collect())
+  timedt$time = ymd_hms(timedt$time)  #R format time
+  
+  # drop extra look ahead days
+  keep.days = unique(timedt[,.(day = floor_date(time, unit = "day"))])
+  keep.days = keep.days[1:(nrow(keep.days) - look.ahead)]
+  timedt = timedt[floor_date(time, unit = "day") %in% keep.days$day,]
+  
+  # Expand data
+  cj2 = CJ(key = unique(datadt$key), time = timedt$time)
+  cj3 = datadt[cj2, roll = TRUE]
+  
+  # Restore timezone (UTC)
+  attributes(cj3$time) = attributes(timedt$time)
+  cj3 = cj3[, `:=`(time_to, NULL)]
+  
+  cj3
+}
+
+# error handling function
+error_handler <- function(query){
+  result <- tryCatch(query,error = function(cond) { return('ERROR') } )
+  if(class(result)[1] != "character"){
+    if(nrow(result) == 0) {result <- 'ERROR'}
+  }
+  return(result)
+}
+
+theme_set(theme_bw())
+
+# size of text in plots
+large.text.size <- 7.875
+small.text.size <- 6.87495
+text.plot = 11*(0.75)
+
+# plot theme
+plot_theme <- 
+    theme(legend.key = element_rect(color = "grey80", size = 0.8), 
+          legend.key.size = grid::unit(1.0, "lines"),
+          legend.text = element_text(size = small.text.size), 
+          legend.title = element_blank(), 
+          axis.text = element_text(size = small.text.size), 
+          axis.text.x = element_text(size = small.text.size),
+          axis.title = element_text(size = large.text.size, face = "bold"),
+          axis.title.x= element_text(size=large.text.size, vjust = 1.2, face = "bold"),
+          axis.title.y = element_text(size=large.text.size, vjust = 1.2, face = "bold"),
+          strip.text = element_text(size=small.text.size),
+          panel.spacing = unit(0.5, "lines"))
+
+```
+
+
+```{r queries, eval = TRUE}
+
+# if you have problems with query only taking first 100,000 lines, get latest version of Rcpp, dbplyr and dplyr.
+# think it also may help to load dbplyr before dplyr
+
+
+# interface.table <- data.table(Interface = rep('1 - 2',3),
+#                               Line = c('AB1','AB2','AB3'),
+#                               Node.From = c('107','113','123'),
+#                               Region.From = c('1'),
+#                               Node.To = c('203','215','217'),
+#                               Region.To = c('2'),
+#                               Coefficient = c(1,1,1))
+
+interface.table <- data.table(Interface = rep('1 - 3',2),
+                              Line = c('CA-1','113_316_1'),
+                              Node.From = c('121','113'),
+                              Region.From = c('1','1'),
+                              Node.To = c('325','316'),
+                              Region.To = c('3','3'),
+                              Coefficient = c(-1,1))
+
+# interface.table <- data.table(Interface = rep('2 - 3',1),
+#                               Line = c('CB-1'),
+#                               Node.From = c('223'),
+#                               Region.From = c('2'),
+#                               Node.To = c('318'),
+#                               Region.To = c('3'),
+#                               Coefficient = c(-1))
+
+node.names = c(unique(interface.table[,Node.From]),
+               unique(interface.table[,Node.To]))
+
+line.names = unique(interface.table[,Line])
+
+# 1. interval node price
+interval.node.price <- data.table()
+
+for(i in 1:length(scenario.names)){
+  print(i)
+  interval.node.price <- rbind(interval.node.price,
+                              expand_time(data.table(tbl(src_sqlite(solution.dbs[i]), 
+                                sql("SELECT key, name, parent, category, time_from, time_to, value, property 
+                                FROM Node_Price 
+                                WHERE collection IS 'Node' AND 
+                                property IS 'Price' AND
+                                phase_id IS 4")) %>% 
+                                filter(name %in% node.names) %>%
+                                dplyr::mutate(scenario = scenario.names[i]) %>% 
+                                collect(n = Inf)),solution.dbs[i]))
+}
+
+int.node.price = copy(interval.node.price)[!(month(time) == 12 & day(time) == 31)]
+
+# 2. interval line flow
+interval.line.flow <- data.table()
+
+for(i in 1:length(scenario.names)){
+  print(i)
+  interval.line.flow <- rbind(interval.line.flow,
+                               expand_time(data.table(tbl(src_sqlite(solution.dbs[i]), 
+                                sql("SELECT key, name, parent, category, time_from, time_to, value, property 
+                                FROM Line_Flow 
+                                WHERE collection IS 'Line' AND 
+                                property IS 'Flow' AND
+                                phase_id IS 4")) %>% 
+                                dplyr::mutate(scenario = scenario.names[i]) %>% 
+                                collect(n = Inf)),solution.dbs[i]))
+}
+
+int.line.flow = copy(interval.line.flow)[!(month(time) == 12 & day(time) == 31)]
+
+# 3. interval region load
+interval.region.load <- data.table()
+
+for(i in 1:length(scenario.names)){
+  print(i)
+  interval.region.load <- rbind(interval.region.load,
+                               expand_time(data.table(tbl(src_sqlite(solution.dbs[i]), 
+                                sql("SELECT key, name, parent, category, time_from, time_to, value, property 
+                                FROM Region_Load 
+                                WHERE collection IS 'Region' AND 
+                                property IS 'Load' AND
+                                phase_id IS 4")) %>% 
+                                dplyr::mutate(scenario = scenario.names[i]) %>% 
+                                collect(n = Inf)),solution.dbs[i]))
+}
+
+int.region.load = copy(interval.region.load)[!(month(time) == 12 & day(time) == 31)]
+
+# 4. line limits
+    line.limits <- data.table()
+    
+    for(i in 1:length(scenario.names)){
+            line.limits <- error_handler(rbind(line.limits,
+                                        data.table(tbl(src_sqlite(solution.dbs[i]), 
+                                        sql("SELECT * FROM year WHERE collection IS 
+                                        'Line' AND property IS 'Export Limit'")) %>% 
+                                        filter(phase_id == 4) %>% select(one_of(column.names[-1])) %>% 
+                                        dplyr::mutate(scenario = scenario.names[i]) %>% 
+                                        collect(n = Inf))))
+    }
+    
+    for(i in 1:length(scenario.names)){
+            line.limits <- error_handler(rbind(line.limits,
+                                        data.table(tbl(src_sqlite(solution.dbs[i]), 
+                                        sql("SELECT * FROM year WHERE collection IS 
+                                        'Line' AND property IS 'Import Limit'")) %>% 
+                                        filter(phase_id == 4) %>% select(one_of(column.names[-1])) %>% 
+                                        dplyr::mutate(scenario = scenario.names[i]) %>% 
+                                        collect(n = Inf))))
+    }
+    
+    line.limits = data.table(dcast(line.limits,scenario + name + category ~ property,value.var = 'value'))
+    
+# 5. interval hours congested
+    
+    int.line.congest = merge(int.line.flow,
+                             line.limits,
+                             by = c('name','category','scenario'))
+    
+    int.line.congest[,congest:=0]
+    int.line.congest[value<0.999*`Import Limit` | value>0.999*`Export Limit`,congest:=1]
+    
+    int.line.congest = int.line.congest[,.(name,category,scenario,time,congest)]
+    
+    int.line.congest[,congest.max:=max(congest),by = c('name')]
+    int.line.congest = int.line.congest[congest.max>0]
+    
+    int.line.congest = data.table(dcast(int.line.congest,scenario + time ~ name,
+                                    value.var = c('congest')))
+
+    
+
+```
+
+# Regression
+
+```{r regression,include = FALSE,eval = TRUE}
+
+# ----------------------------------------------------------------------- |
+# Reformat flows ----
+# ----------------------------------------------------------------------- |
+
+int.line.flow = int.line.flow[name %in% line.names]
+
+int.flow = merge(int.line.flow[,.(Line = name,scenario,time,Interchange = value)],
+                      interface.table,
+                      by = c('Line'))
+
+int.flow[,Interchange:=Interchange * Coefficient]
+
+int.flow = int.flow[,lapply(.SD,sum),by = c('scenario','Interface','time'),
+                    .SDcols = c('Interchange')]
+
+# ----------------------------------------------------------------------- |
+# Reformat price ----
+# ----------------------------------------------------------------------- |
+
+int.price = merge(int.node.price[,.(Node.From = name,scenario,time,Price.From = value)],
+                  interface.table,
+                  by = c('Node.From'))
+
+int.price = merge(int.node.price[,.(Node.To = name,scenario,time,Price.To = value)],
+                  int.price,
+                  by = c('Node.To','scenario','time'))
+
+int.price = int.price[,lapply(.SD,mean),by = c('scenario','Interface','time'),
+                      .SDcols = c('Price.From','Price.To')]
+
+int.price[,Price:=Price.From - Price.To]
+
+int.price[,c('Price.From','Price.To'):=NULL]
+
+# ----------------------------------------------------------------------- |
+# Reformat load ----
+# ----------------------------------------------------------------------- |
+
+int.load = merge(int.region.load[,.(Region.From = name,scenario,time,Load.From = value)],
+                  interface.table,
+                  by = c('Region.From'))
+
+int.load = merge(int.region.load[,.(Region.To = name,scenario,time,Load.To = value)],
+                  int.load,
+                  by = c('Region.To','scenario','time'))
+
+int.load = unique(int.load[,.(scenario,time,Interface,Load.From,Load.To)])
+
+int.load[,Load.From.P2:=shift(Load.From,2,type = "lead"),by = c('scenario')]
+int.load[,Load.From.P1:=shift(Load.From,1,type = "lead"),by = c('scenario')]
+int.load[,Load.From.N2:=shift(Load.From,2,type = "lag"),by = c('scenario')]
+int.load[,Load.From.N1:=shift(Load.From,1,type = "lag"),by = c('scenario')]
+
+int.load[,Load.To.P2:=shift(Load.To,2,type = "lead"),by = c('scenario')]
+int.load[,Load.To.P1:=shift(Load.To,1,type = "lead"),by = c('scenario')]
+int.load[,Load.To.N2:=shift(Load.To,2,type = "lag"),by = c('scenario')]
+int.load[,Load.To.N1:=shift(Load.To,1,type = "lag"),by = c('scenario')]
+
+int.load = int.load[!is.na(Load.From.P2) & !is.na(Load.From.N2)]
+
+# ----------------------------------------------------------------------- |
+# Combine ----
+# ----------------------------------------------------------------------- |
+
+int.comparison = merge(int.flow,int.price,
+                       by = c('scenario','Interface','time'))
+
+# int.comparison = merge(int.comparison,int.load,
+#                        by = c('scenario','Interface','time'))
+
+int.comparison[,Price:=abs(Price)]
+
+# ----------------------------------------------------------------------- |
+# Add congestion ----
+# ----------------------------------------------------------------------- |
+
+int.comparison = merge(int.comparison,int.line.congest,by = c('scenario','time'))
+
+int.comparison[,scenario:=ifelse(scenario == 'Nondecomposed',0,1)]
+
+# ----------------------------------------------------------------------- |
+# Dummy terms ----
+# ----------------------------------------------------------------------- |
+
+dummy.columns = names(int.comparison)[!(names(int.comparison) %in% c('scenario','time','Interface','Price','Interchange'))]
+
+int.comparison[,paste0(dummy.columns,'_scenario'):=lapply(.SD,function(x) x*scenario),
+               by = c('scenario'),.SDcols = c(dummy.columns)]
+
+# ----------------------------------------------------------------------- |
+# Do regression ----
+# ----------------------------------------------------------------------- |
+
+reg.table = copy(int.comparison)[,c('time','Interface','Interchange'):=NULL]
+reg = lm(Price~ .,data = reg.table)
+
+```
+
+
+

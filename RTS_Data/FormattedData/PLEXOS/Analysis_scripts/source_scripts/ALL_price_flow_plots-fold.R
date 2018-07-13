@@ -11,18 +11,18 @@ folded_price_flow_plots = function(plot.data = data.table(),
     
     # C. price-flow plot
     xlim.fold = c(0,7000)
-    ylim.fold = c(-100,100)
+    ylim.fold = c(-125,125)
     
     plot.text.fold = data.table(Interface = "PJM - MISO",
                            x = c(3500,3500),
                            y = c(70,-70),
-                           text = c('Under-utilized','Counterintuitive'))
+                           text = c('Agreement','Disagreement'))
     
     int.fold$Interface = factor(int.fold$Interface,levels = interfaces.to.plot)
     plot.text.fold$Interface = factor(plot.text.fold$Interface,levels = interfaces.to.plot)
     
     p <- ggplot() + stat_binhex(data = int.fold,
-                                 aes(x = Interchange,y = Price,color = ..density..*100,fill = ..density..*100),
+                                 aes(x = Interchange,y = Price.Fold,color = ..density..*100,fill = ..density..*100),
                                  binwidth = c(100,3)) + 
         scale_fill_gradientn(name = "Pct.",colours = c('gray80','gray20','black'),
                              guide = 'colourbar') + 

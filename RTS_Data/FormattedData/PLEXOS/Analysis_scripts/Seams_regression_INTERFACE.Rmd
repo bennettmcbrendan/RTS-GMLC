@@ -1,0 +1,586 @@
+---
+title: "RTS-GMLc Geo Decomp Analysis"
+author: "Created by: National Renewable Energy Laboratory (NREL)"
+date: "`r format(Sys.time(), '%d %B %Y')`"
+output: 
+  html_document: 
+    css: custom.css
+    toc: yes
+params:
+  Solutions.directory.single:
+    label: Pick directory with solutions (this should be fullpathto..HERE/Model ..
+      Solution/.db)
+    value: //nrelqnap02/PLEXOS CEII/Projects/Interconnections_Seam_Plexos/Continental/geodecomp_compare/SO/old results
+  Solutions.directory.multi:
+    label: Pick directory with solutions (this should be fullpathto..HERE/Model ..
+      Solution/.db)
+    value: //nrelqnap02/PLEXOS CEII/Projects/Interconnections_Seam_Plexos/Continental/geodecomp_compare/stage_C/old results
+
+---
+
+```{r setOptions, echo=FALSE, warning=FALSE, message=FALSE, error=FALSE, cache=FALSE}
+# %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+# Set up default options for chunks, turn off error or warning messages
+# load packages
+
+    # temporary
+    output.dir <- "//plexossql/Data/bmcbenne/RTS-GMLC-geodecomp/RTS-GMLC/RTS_Data/FormattedData/PLEXOS/Analysis_scripts/plots_SEAMS"
+    fig.path.name <- output.dir
+    output.file = "SEAMS_geodecomp_analysis"
+
+pacman::p_load(gridExtra, rgdal, ggmap, Cairo, rgeos, maptools, lubridate, plyr, gdata, stringr, tidyr, rplexos, RSQLite, magrittr, dbplyr, lubridate, rmarkdown, scales, cowplot, data.table, fasttime,Hmisc, plotly, xtable, knitr, rmarkdown,grid,dplyr)
+
+knitr::opts_chunk$set(echo=FALSE, comment=NA, warning=FALSE, message=FALSE, include=TRUE,
+                      fig.path=fig.path.name, fig.ext=c('png','svg','emf'), cache = F,dpi = 600)
+
+solutions.dir.single = params$Solutions.directory.single
+solutions.dir.multi = params$Solutions.directory.multi
+
+
+```
+
+
+```{r price-flow-inputs}
+
+    # interface and area map
+    SEAMS.interfaces <- file.path("//plexossql/Data/bmcbenne/RTS-GMLC-geodecomp/RTS-GMLC",
+                                  "RTS_Data/FormattedData/PLEXOS/Analysis_scripts/SEAMS_database/EI_interfaces.csv")
+    
+    SEAMS.regions <- file.path("//plexossql/Data/bmcbenne/RTS-GMLC-geodecomp/RTS-GMLC",
+                               "RTS_Data/FormattedData/PLEXOS/Analysis_scripts/SEAMS_database/SEAMS_regions.csv")
+    
+    border.tx.buses.from <- file.path("//plexossql/Data/bmcbenne/RTS-GMLC-geodecomp/RTS-GMLC",
+                            "RTS_Data/FormattedData/PLEXOS/Analysis_scripts/SEAMS_database/border_transformer_nodes_from.csv")
+    
+    border.tx.buses.to <- file.path("//plexossql/Data/bmcbenne/RTS-GMLC-geodecomp/RTS-GMLC",
+                            "RTS_Data/FormattedData/PLEXOS/Analysis_scripts/SEAMS_database/border_transformer_nodes_to.csv")
+    
+    node.voltage <- file.path("//plexossql/Data/bmcbenne/RTS-GMLC-geodecomp/RTS-GMLC",
+                                "/RTS_Data/FormattedData/PLEXOS/Analysis_scripts/SEAMS_database/node_voltage.csv")
+    
+    interface.limits <- file.path("//plexossql/Data/bmcbenne/RTS-GMLC-geodecomp/RTS-GMLC",
+                                "/RTS_Data/FormattedData/PLEXOS/Analysis_scripts/SEAMS_database/Interface_Lookup.csv")
+    
+    # ----------------------------------------------------------------------- |
+    # Region region key ----
+    # ----------------------------------------------------------------------- |
+    
+    ISO.Region.key = fread(SEAMS.regions)
+    
+    # ----------------------------------------------------------------------- |
+    # Plot inputs ----
+    # ----------------------------------------------------------------------- |
+    
+    SEAMS.interfaces = fread(SEAMS.interfaces)
+    interfaces.to.plot = SEAMS.interfaces[,Interface]
+    ISO.From = SEAMS.interfaces[,ISO.From]
+    ISO.To = SEAMS.interfaces[,ISO.To]
+    color.code = SEAMS.interfaces[,color]
+    names(color.code) = interfaces.to.plot
+    
+    border.tx.buses.from = fread(border.tx.buses.from)[,Node.From:=tstrsplit(Node.From,'_')[[1]]]
+    border.tx.buses.to = fread(border.tx.buses.to)[,Node.To:=tstrsplit(Node.To,'_')[[1]]]
+    
+    # N/A voltage nodes are all western interconnection
+    node.voltage = fread(node.voltage)[!(Voltage == "#N/A"),.(Node,Voltage = as.numeric(Voltage))]
+    node.voltage[,Node:=tstrsplit(Node,"_")[[1]]]
+    
+    interface.limits = unique(fread(interface.limits)[,.(Interface,Category,`Max Flow`,`Min Flow`)])
+    interface.limits = interface.limits[Category == "EI_Interface"]
+    
+    
+
+```
+
+
+```{r query-inputs}
+
+#------------------------------------------------------------------------------|
+# input solution folders and scenario names ----
+#------------------------------------------------------------------------------|
+
+solution.dbs.single = c("Model so_2024_EI_01 Solution-rplexos.db",
+                        "Model so_2024_EI_07 Solution-rplexos.db",
+                        "Model so_2024_EI_13 Solution-rplexos.db",    
+                        "Model so_2024_EI_19 Solution-rplexos.db",
+                        "Model so_2024_EI_25 Solution-rplexos.db",
+                        "Model so_2024_EI_31 Solution-rplexos.db",
+                        "Model so_2024_EI_37 Solution-rplexos.db",
+                        "Model so_2024_EI_43 Solution-rplexos.db")
+
+solution.dbs.multi = c("Model c_2024_EI_01 Solution-rplexos.db",
+                       "Model c_2024_EI_07 Solution-rplexos.db",
+                       "Model c_2024_EI_13 Solution-rplexos.db",
+                       "Model c_2024_EI_19 Solution-rplexos.db",
+                       "Model c_2024_EI_25 Solution-rplexos.db",
+                       "Model c_2024_EI_31 Solution-rplexos.db",
+                       "Model c_2024_EI_37 Solution-rplexos.db",
+                       "Model c_2024_EI_43 Solution-rplexos.db")
+
+scenario.names = c(rep('Nondecomposed',8),
+                   rep('Decomposed',8))
+
+scenario.colors <- c("Nondecomposed" = "#969696", 
+                     "Decomposed" = "steelblue")
+
+# # process plexos solutions with rplexos if not already done so ----
+solution.dbs = c(file.path(solutions.dir.single,solution.dbs.single),
+                  file.path(solutions.dir.multi,solution.dbs.multi))
+
+print(paste("solution dbs exist?", file.exists(solution.dbs)))
+# paths to decomposed -rplexos.db
+
+#------------------------------------------------------------------------------|
+# define sql query functions ----
+#------------------------------------------------------------------------------|
+
+# expand_time function
+expand_time = function(data, db.path, phaseid = 4, look.ahead = 0) {
+  setnames(data, "time_from", "time")
+  data$time = ymd_hms(data$time)
+  datadt = data.table(data, key = "key,time")
+  
+  # get time from database being queried
+  timedt = data.table(tbl(src_sqlite(db.path), sql("SELECT * FROM time")) %>% 
+                        filter(phase_id == phaseid) %>% collect())
+  timedt$time = ymd_hms(timedt$time)  #R format time
+  
+  # drop extra look ahead days
+  keep.days = unique(timedt[,.(day = floor_date(time, unit = "day"))])
+  keep.days = keep.days[1:(nrow(keep.days) - look.ahead)]
+  timedt = timedt[floor_date(time, unit = "day") %in% keep.days$day,]
+  
+  # Expand data
+  cj2 = CJ(key = unique(datadt$key), time = timedt$time)
+  cj3 = datadt[cj2, roll = TRUE]
+  
+  # Restore timezone (UTC)
+  attributes(cj3$time) = attributes(timedt$time)
+  cj3 = cj3[, `:=`(time_to, NULL)]
+  
+  cj3
+}
+
+# error handling function
+error_handler <- function(query){
+  result <- tryCatch(query,error = function(cond) { return('ERROR') } )
+  if(class(result)[1] != "character"){
+    if(nrow(result) == 0) {result <- 'ERROR'}
+  }
+  return(result)
+}
+
+theme_set(theme_bw())
+
+# size of text in plots
+large.text.size <- 7.875
+small.text.size <- 6.87495
+text.plot = 11*(0.75)
+
+# plot theme
+plot_theme <- 
+    theme(legend.key = element_rect(color = "grey80", size = 0.8), 
+          legend.key.size = grid::unit(1.0, "lines"),
+          legend.text = element_text(size = small.text.size), 
+          legend.title = element_blank(), 
+          axis.text = element_text(size = small.text.size), 
+          axis.text.x = element_text(size = small.text.size),
+          axis.title = element_text(size = large.text.size, face = "bold"),
+          axis.title.x= element_text(size=large.text.size, vjust = 1.2, face = "bold"),
+          axis.title.y = element_text(size=large.text.size, vjust = 1.2, face = "bold"),
+          strip.text = element_text(size=small.text.size),
+          panel.spacing = unit(0.5, "lines"))
+
+```
+
+
+```{r queries, eval = TRUE}
+
+# if you have problems with query only taking first 100,000 lines, get latest version of Rcpp, dbplyr and dplyr.
+# think it also may help to load dbplyr before dplyr
+
+# mechanism to remove look-ahead from queries
+    model.timesteps = data.table()
+    for (i in 1:length(scenario.names)) {
+        model.timesteps = rbind(model.timesteps, 
+                                data.table(tbl(src_sqlite(solution.dbs[i]),
+                                               sql("SELECT phase_id, min(time) start, max(time) end, count(time) count FROM 
+                                                   time GROUP BY phase_id")) %>% 
+                                               filter(phase_id == 4) %>% 
+                                               select(start, end, count) %>% 
+                                               collect(n = Inf) ))
+    }
+    
+    # grab end dates for each partition - needed for regional DA queries
+    model.starts = parse_date_time(model.timesteps$start, orders = "ymd H:M:S")
+    model.ends = parse_date_time(model.timesteps$end, orders = "ymd H:M:S")
+    
+    for(jj in seq(length(scenario.names))){
+      if(scenario.names[jj] == 'Decomposed'){
+          model.starts[jj] = model.starts[jj] + 3600*24
+          model.ends[jj] = model.ends[jj] - 3600*24
+      }else{
+          model.starts[jj] = model.starts[jj] + 3600*24
+          model.ends[jj] = model.ends[jj] - 3600*48
+      }
+    }
+
+    
+    print(paste0('model starts - ',model.starts))
+    print(paste0('model ends - ',model.ends))
+
+    # 1. interval node price
+    
+    interval.node.price <- data.table()
+    for(i in 1:length(scenario.names)){
+        print(i)
+        interval.node.price <- rbind(interval.node.price,
+                                       expand_time(data.table(tbl(src_sqlite(solution.dbs[i]), 
+                                        sql("SELECT key, name, category, time_from, time_to, value, property
+                                        FROM Node_Price 
+                                        WHERE collection IS 'Node' AND 
+                                        property IS 'Price' AND
+                                        phase_id IS 4")) %>% 
+                                        dplyr::mutate(scenario = scenario.names[i]) %>% 
+                                        collect(n = Inf)),
+                          solution.dbs[i])[,time := fastPOSIXct(time, "UTC")][time <= model.ends[i] & time >= model.starts[i]])
+    }
+    
+    # copy table and get node number
+    int.node.price = copy(interval.node.price)
+    node.table = unique(int.node.price[,.(name)])
+    node.table[,Node:=tstrsplit(name,'_')[[1]]]
+    int.node.price = merge(int.node.price,node.table,by = c('name'))
+    rm(node.table)
+    
+    # 2. interval Region.Region net interchange
+    
+    interval.region.NI <- data.table()
+    for(i in 1:length(scenario.names)){
+      print(i)
+      interval.region.NI <- rbind(interval.region.NI,
+                                  expand_time(data.table(tbl(src_sqlite(solution.dbs[i]), 
+                                  sql("SELECT key, name, parent, category, time_from, time_to, value, property 
+                                  FROM RegionRegions_NetInterchange 
+                                  WHERE collection IS 'Region.Regions' AND 
+                                  property IS 'Net Interchange' AND
+                                  phase_id IS 4")) %>% 
+                                  dplyr::mutate(scenario = scenario.names[i]) %>% 
+                                  collect(n = Inf)),
+                          solution.dbs[i])[,time := fastPOSIXct(time, "UTC")][time <= model.ends[i] & time >= model.starts[i]])
+    }
+    
+    # copy table
+    int.region.NI = copy(interval.region.NI)
+
+    # 3. line names
+    
+    # assumes lines do not change between solution.dbs
+    line.names <- data.table()
+    for(i in 1:1){
+    
+      line.names <- unique(rbind(line.names,
+                                  unique(data.table(tbl(src_sqlite(solution.dbs[i]), 
+                                  sql("SELECT name 
+                                  FROM Line_Flow 
+                                  WHERE collection IS 'Line' AND 
+                                  property IS 'Flow' AND
+                                  phase_id IS 4")) %>% 
+                                  collect(n = Inf)))))
+    }
+    
+    # 4. interval interface flow
+    interfaces.unenforced = c('CENTRL_NORTH','MHK VL_NORTH','NPCC_CAPITL','Quebec_NORTH','VT_NORTH','0_NPCC','0_SEMASS')
+    
+    interval.interface.flow <- data.table()
+    for(i in 1:length(scenario.names)){
+        print(i)
+        interval.interface.flow <- rbind(interval.interface.flow,
+                                       expand_time(data.table(tbl(src_sqlite(solution.dbs[i]), 
+                                        sql("SELECT key, name, category, time_from, time_to, value, property
+                                        FROM Interface_Flow 
+                                        WHERE collection IS 'Interface' AND 
+                                        property IS 'Flow' AND
+                                        phase_id IS 4")) %>% 
+                                        dplyr::mutate(scenario = scenario.names[i]) %>% 
+                                        collect(n = Inf)),
+                          solution.dbs[i])[,time := fastPOSIXct(time, "UTC")][time <= model.ends[i] & time >= model.starts[i]])
+    }
+    
+    # copy table and get node number
+    int.interface.flow = copy(interval.interface.flow)
+    int.interface.flow = int.interface.flow[!(name %in% interfaces.unenforced)]
+    
+
+```
+
+# Regression
+
+```{r regression,include = FALSE,eval = TRUE}
+
+# ----------------------------------------------------------------------- |
+# Price ----
+# ----------------------------------------------------------------------- |
+    
+line.names[,Node.From:=tstrsplit(name,'_')[[1]]]
+line.names[,Node.To:=tstrsplit(name,'_')[[2]]]
+    
+# ASSUMPTION - node category names are equivalent to region names
+node.key = unique(int.node.price[,.(node = Node,Region = category)])
+node.key = merge(node.key,ISO.Region.key,by = c('Region'))
+    
+border.buses = merge(line.names,
+                       node.key[,.(Node.From = node,ISO.From = ISO)],
+                       by = c('Node.From'))
+    
+border.buses = merge(border.buses,
+                       node.key[,.(Node.To = node,ISO.To = ISO)],
+                       by = c('Node.To'))
+    
+border.buses = border.buses[!(ISO.From == ISO.To)]
+    
+border.buses = merge(border.buses,SEAMS.interfaces,by = c('ISO.From','ISO.To'),
+                         all.x = TRUE)
+    
+border.buses[is.na(Interface),c('ISO.From','ISO.To'):=.(ISO.To,ISO.From)]
+border.buses[is.na(Interface),c('Node.From','Node.To'):=.(Node.To,Node.From)]
+border.buses[,c("Interface","color"):=NULL]
+border.buses = merge(border.buses,SEAMS.interfaces,by = c('ISO.From','ISO.To'),
+                         all.x = TRUE)
+    
+border.buses.from = unique(border.buses[,.(ISO.From,Node.From,Interface)])
+border.buses.to = unique(border.buses[,.(ISO.To,Node.To,Interface)])
+border.buses.from = rbind(border.buses.from,border.tx.buses.from)
+border.buses.to = rbind(border.buses.to,border.tx.buses.to)
+    
+border.buses.from = merge(border.buses.from,node.voltage[,.(Node.From = Node,Voltage)],
+                              by = c('Node.From'))
+border.buses.to = merge(border.buses.to,node.voltage[,.(Node.To = Node,Voltage)],
+                          by = c('Node.To'))
+border.buses.from = unique(border.buses.from[Voltage >= voltage.threshold])
+border.buses.to = unique(border.buses.to[Voltage >= voltage.threshold])
+
+int.region.from.price = merge(border.buses.from,
+                             int.node.price[,.(Node.From = Node,scenario,time,Price.From = value)],
+                             by = c('Node.From'),
+                             allow.cartesian = TRUE)
+    
+int.region.to.price = merge(unique(border.buses.to),
+                             int.node.price[,.(Node.To = Node,scenario,time,Price.To = value)],
+                             by = c('Node.To'))
+    
+int.region.from.price = int.region.from.price[,lapply(.SD,mean),by = c('Interface','time','scenario'),
+                                        .SDcols = c('Price.From')]
+    
+int.region.to.price = int.region.to.price[,lapply(.SD,mean),by = c('Interface','time','scenario'),
+                                        .SDcols = c('Price.To')]
+    
+int.region.price = merge(int.region.from.price,int.region.to.price,
+                             by = c('Interface','time','scenario'))
+    
+int.region.price[,value:=Price.From - Price.To]
+
+int.region.price = data.table(dcast(int.region.price,scenario + time ~ Interface,value.var = c('value')))
+int.region.price[,var:='Price']
+    
+month.day.price = unique(int.region.price[,.(month = month(time),day = day(time))])
+# change from time to period
+time.key = data.table(time = sort(unique(int.region.price[,time])),
+                          Period = seq(length(unique(int.region.price[,time]))))
+int.region.price = merge(int.region.price,time.key,by = c('time'))
+int.region.price[,time:=NULL]
+
+# ----------------------------------------------------------------------- |
+# Flow ----
+# ----------------------------------------------------------------------- |
+    
+setnames(int.region.NI,c('parent','name'),c('Region.From','Region.To'))
+int.region.NI = merge(int.region.NI,
+                          ISO.Region.key[,.(Region.From = Region,ISO.From = ISO)],
+                          by = 'Region.From')
+    
+int.region.NI = merge(int.region.NI,
+                          ISO.Region.key[,.(Region.To = Region,ISO.To = ISO)],
+                          by = 'Region.To')
+    
+int.region.NI = int.region.NI[,lapply(.SD,sum),by = c('ISO.From','ISO.To','scenario','time'),.SDcols = 'value']
+    
+int.region.NI[,Interface:=paste0(ISO.From," - ",ISO.To)]
+int.region.NI = merge(int.region.NI,SEAMS.interfaces,by = c('ISO.From','ISO.To','Interface'))
+int.region.NI = data.table(dcast(int.region.NI,scenario + time ~ Interface,value.var = 'value'))
+int.region.NI[,var:= "Interchange"]
+    
+month.day.NI = unique(int.region.NI[,.(month = month(time),day = day(time))])
+    
+int.region.NI = merge(int.region.NI,time.key,by = c('time'))
+int.region.NI[,time:=NULL]
+    
+int.region.NI = int.region.NI[,.SD,.SDcols = names(int.region.price)]
+
+# ----------------------------------------------------------------------- |
+# Congestion ----
+# ----------------------------------------------------------------------- |
+
+int.congest = merge(int.interface.flow[,.(Interface = name,scenario,time,value)],
+                    interface.limits,
+                    by = c('Interface'))
+
+int.congest[,c('forward','back'):=0]
+int.congest[value<0.999*`Min Flow` ,back:=1]
+int.congest[value>0.999*`Max Flow`,forward:=1]
+
+int.congest = int.congest[,.(Interface,Category,scenario,time,forward,back)]
+
+int.congest = data.table(melt(int.congest,id.vars = c('Interface','Category','scenario','time'),
+                                        measure.vars = c('forward','back')))
+
+int.congest[,Interface:=paste0(Interface,' - ',variable)]
+int.congest[,variable:=NULL]
+
+int.congest[,congest.max:=max(value),by = c('Interface')]
+int.congest = int.congest[congest.max>0]
+
+int.congest = data.table(dcast(int.congest,scenario + time ~ Interface,
+                          value.var = c('value')))
+
+int.congest = merge(int.congest,time.key,by = c('time'))
+int.congest[,time:=NULL]
+    
+# ----------------------------------------------------------------------- |
+# Reformat load ----
+# ----------------------------------------------------------------------- |
+
+if(FALSE){
+
+int.load = merge(int.region.load[,.(Region.From = name,scenario,time,Load.From = value)],
+                  interface.table,
+                  by = c('Region.From'))
+
+int.load = merge(int.region.load[,.(Region.To = name,scenario,time,Load.To = value)],
+                  int.load,
+                  by = c('Region.To','scenario','time'))
+
+int.load = unique(int.load[,.(scenario,time,Interface,Load.From,Load.To)])
+
+int.load[,Load.From.P2:=shift(Load.From,2,type = "lead"),by = c('scenario')]
+int.load[,Load.From.P1:=shift(Load.From,1,type = "lead"),by = c('scenario')]
+int.load[,Load.From.N2:=shift(Load.From,2,type = "lag"),by = c('scenario')]
+int.load[,Load.From.N1:=shift(Load.From,1,type = "lag"),by = c('scenario')]
+
+int.load[,Load.To.P2:=shift(Load.To,2,type = "lead"),by = c('scenario')]
+int.load[,Load.To.P1:=shift(Load.To,1,type = "lead"),by = c('scenario')]
+int.load[,Load.To.N2:=shift(Load.To,2,type = "lag"),by = c('scenario')]
+int.load[,Load.To.N1:=shift(Load.To,1,type = "lag"),by = c('scenario')]
+
+int.load = int.load[!is.na(Load.From.P2) & !is.na(Load.From.N2)]
+
+}
+
+# ----------------------------------------------------------------------- |
+# Combine ----
+# ----------------------------------------------------------------------- |
+    
+int.comparison = rbind(int.region.NI,int.region.price)
+    
+int.comparison = data.table(melt(int.comparison, id.vars = c("scenario","Period","var"),
+                                     measure.vars = interfaces.to.plot))
+    
+setnames(int.comparison,c('var','variable'),c('variable','Interface'))
+    
+int.comparison = data.table(dcast(int.comparison,scenario + Period + Interface ~ variable,value.var = 'value'))
+    
+# ----------------------------------------------------------------------- |
+# Add congestion ----
+# ----------------------------------------------------------------------- |
+
+int.comparison = merge(int.comparison,int.congest,by = c('scenario','Period'))
+
+int.comparison[,scenario:=ifelse(scenario == 'Nondecomposed',0,1)]
+
+# ----------------------------------------------------------------------- |
+# Dummy terms ----
+# ----------------------------------------------------------------------- |
+
+dummy.columns = names(int.comparison)[!(names(int.comparison) %in% c('scenario','Period','Interface','Price','Interchange'))]
+
+int.comparison[,paste0(dummy.columns,'_scenario'):=lapply(.SD,function(x) x*scenario),
+               by = c('scenario'),.SDcols = c(dummy.columns)]
+
+# ----------------------------------------------------------------------- |
+# Do regression ----
+# ----------------------------------------------------------------------- |
+
+int.comparison[,Price:=abs(Price)]
+
+reg.table.pjm.nyiso = int.comparison[Interface == "PJM - NYISO"][,c('Period','Interface','Interchange'):=NULL]
+
+reg.table.pjm.miso = int.comparison[Interface == "PJM - MISO"][,c('Period','Interface','Interchange'):=NULL]
+
+reg.table.nyiso.ne = int.comparison[Interface == "NYISO - ISO-NE"][,c('Period','Interface','Interchange'):=NULL]
+
+reg.pjm.nyiso = lm(Price~ .,data = reg.table.pjm.nyiso)
+reg.pjm.miso = lm(Price~ .,data = reg.table.pjm.miso)
+reg.nyiso.ne = lm(Price~ .,data = reg.table.nyiso.ne)
+
+
+```
+
+
+# Mapping
+
+```{r mapping,include = FALSE,eval = TRUE}
+
+int.map.copy = copy(int.map)
+
+int.map[,Price:=abs(Price)]
+
+
+
+int.map = data.table(dcast(int.map,Interface + time ~ scenario,
+                           value.var = c('Interchange','Price')))
+
+int.map[,Interchange:=Interchange_Decomposed - Interchange_Nondecomposed]
+int.map[,Price:=Price_Decomposed - Price_Nondecomposed]
+
+# center of mass
+int.map.center = int.map[,lapply(.SD,mean),by = c('Interface'),
+                         .SDcols = c('Interchange','Price','Interchange_Decomposed','Price_Decomposed',
+                                     'Interchange_Nondecomposed','Price_Nondecomposed')]
+
+# squared distance from center
+int.map.squared = copy(int.map)
+
+int.map.squared[,Interchange_Decomposed:=(Interchange_Decomposed - mean(Interchange_Decomposed))^2]
+int.map.squared[,Interchange_Nondecomposed :=(Interchange_Nondecomposed - mean(Interchange_Nondecomposed))^2]
+int.map.squared[,Price_Decomposed:=(Price_Decomposed - mean(Price_Decomposed))^2]
+int.map.squared[,Price_Nondecomposed:=(Price_Nondecomposed - mean(Price_Nondecomposed))^2]
+
+int.map.squared = int.map.squared[,lapply(.SD,mean),by = c('Interface'),
+                .SDcols = c('Interchange_Decomposed','Interchange_Nondecomposed','Price_Decomposed','Price_Nondecomposed')]
+
+# vector field
+p <- ggplot(data=int.map, aes(x=Interchange_Nondecomposed, y=Price_Nondecomposed)) + 
+      geom_segment(aes(xend=Interchange_Nondecomposed + Interchange, yend=Price_Nondecomposed + Price), 
+      arrow = arrow(length = unit(0.3,"cm")),color = 'firebrick') + 
+      plot_theme + labs(x = 'Interchange difference (MW)',y = 'Absolute price difference ($/MWh)')
+
+ggsave('arrow_diagram.png',p,height = 4,width = 5)
+
+
+# KDE
+library(plotly)
+library(MASS)
+
+kd <- kde2d(int.map$Interchange_Nondecomposed, int.map$Price_Nondecomposed, 
+            n = 50,lims = c(-600,600,-1,25))
+
+p <- plot_ly(x = kd$x, y = kd$y, z = kd$z) %>% add_surface()
+
+htmlwidgets::saveWidget(p, "kde.html")
+
+ggsave('kde.png',p,height = 5,width = 6.5)
+
+
+```
+
+

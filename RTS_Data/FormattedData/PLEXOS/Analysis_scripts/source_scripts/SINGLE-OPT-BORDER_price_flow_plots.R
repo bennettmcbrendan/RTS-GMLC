@@ -1,5 +1,5 @@
 
-SINGLE_OPT_BORDER_price_flow_plots = function(voltage.threshold = 0){
+SINGLE_OPT_BORDER_price_flow_plots = function(voltage.threshold = 220){
 
     pacman::p_load(rplexos, RSQLite, magrittr, dplyr, lubridate, 
                    rmarkdown, scales, cowplot, data.table, fasttime,
@@ -16,7 +16,7 @@ SINGLE_OPT_BORDER_price_flow_plots = function(voltage.threshold = 0){
     # ----------------------------------------------------------------------- |
     
     xlim = c(-7000,7000)
-    ylim = c(-100,100)
+    ylim = c(-125,125)
     
     # single-operator seams solution directory for price query
     solutions.dir <- "//nrelqnap02/PLEXOS CEII/Projects/Interconnections_Seam_Plexos/Continental/geodecomp_compare/SO/old results"
@@ -222,10 +222,14 @@ SINGLE_OPT_BORDER_price_flow_plots = function(voltage.threshold = 0){
     int.region.price = merge(int.region.from.price,int.region.to.price,
                              by = c('Interface','time'))
     
-    int.region.price[,value:=Price.From - Price.To]
-    int.region.price[,pct:=abs(Price.From - Price.To)/(Price.To/2 + Price.From/2)]
+    int.region.price[,value:=Price.To - Price.From]
+    int.region.price[,pct:=abs(Price.To - Price.From)/(Price.To/2 + Price.From/2)]
     
-    int.region.price = data.table(dcast(int.region.price,time ~ Interface,value.var = c('value','pct')))
+    int.region.price = data.table(melt(int.region.price,id.vars = c('Interface','time'),
+                           measure.vars = c('value','pct')))
+    int.region.price[,Interface:=paste0(variable,'_',Interface)]
+    int.region.price = data.table(dcast(int.region.price,time ~ Interface,value.var = c('value')))
+ 
     names(int.region.price) = gsub('value_','',names(int.region.price))
     
     # percentages
@@ -301,19 +305,52 @@ SINGLE_OPT_BORDER_price_flow_plots = function(voltage.threshold = 0){
                                   Price < ylim[1] |
                                   Price > ylim[2]]
     
-    # B. ME table
-    ME.table = int.comparison[abs(Price)<ylim[2]]
-    ME.table = ME.table[,lapply(.SD, function(x) mean(abs(x))),by = c('Interface'),
-                        .SDcols = 'Price']
+    # B. statistics
+    int.stat = copy(int.comparison)
     
-    ME.table.all = copy(int.comparison)
-    ME.table.all = ME.table.all[,lapply(.SD, function(x) mean(abs(x))),by = c('Interface'),
-                                .SDcols = 'Price']
+    int.stat[,Price:=abs(Price)]
+    
+    # center of mass
+    int.stat.center = int.stat[,lapply(.SD,mean),by = c('Interface'),
+                               .SDcols = c('Interchange','Price')]
+    
+    # squared distance from center
+    int.stat.squared = copy(int.stat)
+    
+    int.stat.squared[,`Interchange` :=(`Interchange` - mean(`Interchange`))^2]
+    int.stat.squared[,`Price` :=(`Price` - mean(`Price`))^2]
+    
+    int.stat.squared = int.stat.squared[,lapply(.SD,mean),by = c('Interface'),
+                                        .SDcols = c('Interchange','Price')]
+    
+    # regression
+    trend.line = data.table(Interface = interfaces.to.plot)
+    
+    for(jj in seq(length(interfaces.to.plot))){
+      
+      trend.line[Interface == interfaces.to.plot[jj],
+                 c('intercept','slope'):=as.list(coef(lm(Price~Interchange,data = int.comparison[Interface == interfaces.to.plot[jj]])))]
+      
+    }
+    
+    trend.endpoints = copy(int.comparison)
+    trend.endpoints[,x:=min(Interchange),by = c('Interface')]
+    trend.endpoints[,xend:=max(Interchange),by = c('Interface')]
+    trend.endpoints = unique(trend.endpoints[,.(Interface,x,xend)])
+    trend.endpoints[,x:=x+xlim[1]/8]
+    trend.endpoints[,xend:=xend+xlim[2]/8]
+    
+    trend.line = merge(trend.line,trend.endpoints,by = c('Interface'))
+    trend.line[,y:=intercept + slope * x]
+    trend.line[,yend:=intercept + slope * xend]
+    
+    rm(trend.endpoints)
+    
     # C. price-flow plot
     plot.text = data.table(Interface = "PJM - MISO",
                            x = c(4000,-4000,-4000,4000),
                            y = c(70,70,-70,-70),
-                           text = rep(c('Counter-intuitive','Under-utilized'),2))
+                           text = rep(c('Agreement','Disagreement'),2))
     
     int.comparison$Interface = factor(int.comparison$Interface,levels = interfaces.to.plot)
     plot.text$Interface = factor(plot.text$Interface,levels = interfaces.to.plot)
@@ -321,16 +358,18 @@ SINGLE_OPT_BORDER_price_flow_plots = function(voltage.threshold = 0){
     p1 <- ggplot() + stat_binhex(data = int.comparison,
                                  aes(x = Interchange,y = Price,color = ..density..*100,fill = ..density..*100),
                                  binwidth = c(200,3)) + 
-        scale_fill_gradientn(name = "Pct.",colours = c('gray90','lightpink','darkred'),
+        scale_fill_gradientn(name = "(%)",colours = c('gray80','gray20','black'),
                              guide = 'colourbar') + 
-        scale_color_gradientn(name = "Pct.",colours = c('gray90','lightpink','darkred'),
+        scale_color_gradientn(name = "(%)",colours = c('gray80','gray20','black'),
                               guide = 'colourbar') + 
-        geom_label(data = plot.text,aes(x = x,y = y,label = text),color = 'black',fill = 'lightblue',size = 2.4) + 
+        geom_label(data = plot.text,aes(x = x,y = y,label = text),color = 'black',fill = 'wheat2',size = 2.4) + 
         geom_vline(xintercept = 0,size = 0.01,color = 'black') +
         geom_hline(yintercept = 0,size = 0.01,color = 'black') +
+        # geom_segment(data = trend.line,aes(x = x,xend = xend,y = y,yend = yend),color = 'firebrick',linetype = 1,size = 1) + 
         facet_grid(Interface ~ .) + plot_theme + theme(legend.title = element_text()) + 
         labs(x = 'Interchange (MW)',y = 'LMP difference (USD)') +
-        coord_cartesian(xlim = xlim,ylim = ylim) 
+        coord_cartesian(xlim = xlim,ylim = ylim) +
+        theme(strip.background = element_rect(fill = "wheat2"))
     
     p2 <- folded_price_flow_plots(plot.data = copy(int.comparison),
                                   interfaces.to.plot = interfaces.to.plot)
@@ -348,11 +387,11 @@ SINGLE_OPT_BORDER_price_flow_plots = function(voltage.threshold = 0){
     quadrants = quadrants[,lapply(.SD,mean),by = c('Interface'),
                           .SDcols = c('quad.0','I','II','III','IV')]
     
-    quadrants[,Underutilized := II + IV]
-    quadrants[,Counterintuitive := I + III]
+    quadrants[,Disagreement := II + IV]
+    quadrants[,Agreement := I + III]
     
     quadrants = quadrants[,lapply(.SD,function(x) paste0(round(x*100,1),"%")),by = c('Interface'),
-                          .SDcols = c('quad.0','I','II','III','IV','Underutilized','Counterintuitive')]
+                          .SDcols = c('quad.0','I','II','III','IV','Disagreement','Agreement')]
     
     # write quadrants csv and plot
     setwd(wd)
@@ -360,8 +399,8 @@ SINGLE_OPT_BORDER_price_flow_plots = function(voltage.threshold = 0){
     # ggsave(paste0('plots/EI_single-opt-border_hex_',tag,'.png'),p,height = 5.5,width = 3.5)
     # write.csv(outlier.data,paste0('plots/EI_single-opt-border_outliers',tag,'.csv'),row.names = FALSE)
     output.list = list(plot.data = int.comparison,p1 = p1,p2 = p2,outlier.data = outlier.data,quadrants = quadrants,
-                       border.buses.from = border.buses.from,border.buses.to = border.buses.to,ME.table = ME.table,
-                       ME.table.all = ME.table.all)
+                       border.buses.from = border.buses.from,border.buses.to = border.buses.to,
+                       stat.center = int.stat.center,stat.squared = int.stat.squared,trend.line = trend.line)
     return(output.list)
     
 }

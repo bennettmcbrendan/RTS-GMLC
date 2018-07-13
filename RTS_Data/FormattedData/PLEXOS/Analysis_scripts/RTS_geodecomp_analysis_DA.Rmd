@@ -10,7 +10,7 @@ params:
   Solutions.directory:
     label: Pick directory with solutions (this should be fullpathto..HERE/Model ..
       Solution/.db)
-    value: //plexossql/Data/bmcbenne/RTS-GMLC-geodecomp/RTS-GMLC/RTS_Data/FormattedData/PLEXOS/05_03_18
+    value: //plexossql/Data/bmcbenne/RTS-GMLC-geodecomp/RTS-GMLC/RTS_Data/FormattedData/PLEXOS
 ---
 
 ```{r setOptions, echo=FALSE, warning=FALSE, message=FALSE, error=FALSE, cache=FALSE}
@@ -18,6 +18,9 @@ params:
 # Set up default options for chunks, turn off error or warning messages
 # load packages
 pacman::p_load(gridExtra, rgdal, ggmap, Cairo, rgeos, maptools, lubridate, plyr, gdata, stringr, tidyr, rplexos, RSQLite, magrittr, dbplyr, lubridate, rmarkdown, scales, cowplot, data.table, fasttime,Hmisc, plotly, xtable, knitr, rmarkdown,grid,dplyr)
+
+# temporary
+fig.path.name = ""
 
 knitr::opts_chunk$set(echo=FALSE, comment=NA, warning=FALSE, message=FALSE, include=TRUE,
                       fig.path=fig.path.name, fig.ext=c('png','svg','emf'), cache = F,dpi = 600)
@@ -869,14 +872,24 @@ color.code = c('Nuclear' = 'firebrick',
                'Oil CT' = 'darkorange2',
                 'Oil ST' = 'orchid4')
 
-comp.table$category = factor(comp.table$category, levels = rev(names(color.code)))
+shape.code = c('Nuclear' = 0,
+               'Coal' = 1,
+               'Gas CC' = 2,
+               'Gas CT' = 3,
+               'Oil CT' = 4,
+               'Oil ST' = 5)
 
-p <- ggplot() + geom_point(data = comp.table,aes(x = var.cost,y = Fraction,color = category,size = Cap),alpha = 0.7) +
+comp.table$category = factor(comp.table$category, levels = rev(names(shape.code)))
+
+p <- ggplot() + geom_point(data = comp.table,aes(x = var.cost,y = Fraction,shape = category),
+                           alpha = 0.6,size = 1.5,color = 'navyblue',stroke = 1) +
     geom_hline(yintercept = 0,size = 0.2) + geom_vline(xintercept = 0,size = 0.2) + 
-    scale_color_manual(values = color.code) +
-    scale_size_continuous(labels = c('100 MW','200 MW','300 MW','400 MW'),breaks = c(100,200,300,400)) +
-    guides(colour = guide_legend(override.aes = list(size=3.5),order = 1),
-           size = guide_legend(order = 2)) + 
+    scale_shape_manual(values = shape.code) +
+    # scale_color_manual(values = color.code) +
+    # scale_size_continuous(labels = c('100 MW','200 MW','300 MW','400 MW'),breaks = c(100,200,300,400)) +
+    guides(# colour = guide_legend(override.aes = list(size=3.5),order = 1),
+           # size = guide_legend(order = 2),
+           shape = guide_legend(override.aes = list(size = 3.5,order = 1))) + 
     plot_theme + 
     labs(x = "Variable cost ($/MWh)",y = c("UC change with multi-opt (%)"))
 
@@ -885,78 +898,11 @@ rm(fuel.data,gen.map,gen.cost.data.base)
 
 ```
 
-```{r commit-barplot-print, include=TRUE,eval = TRUE, fig.width = 3.5, fig.height=3.5}
+```{r ccommit-circle-plot-print, include=TRUE,eval = TRUE, fig.width = 3.5, fig.height=3.5}
 
 p
-# ggsave('commit-plot.png',p,height = 2.75,width = 3.5,dpi = 600)
+ggsave('commit-plot.png',p,height = 2.75,width = 3.5,dpi = 600)
 
 
 ```
-
-# Starts table
-
-```{r starts-table, include=FALSE,eval = TRUE, fig.width=3.5, fig.height=3.5}
-
-
-int.gen = rbind(interval.decomposed.generation[region == scenario & 
-                                                   grepl('Nuclear|Coal|Gas|Oil',category),
-                                               .(scenario = 'Decomposed',time,name,category,region,value)],
-                
-                interval.nondecomposed.generation[grepl('Nuclear|Coal|Gas|Oil',category),
-                                                  .(scenario = 'Non-decomposed',time,name,category,region,value)])
-
-int.gen[value>0.0001,value:=1]
-int.gen[,value.shift:=shift(value,type = 'lead'),by = c('name','category','scenario')]
-int.gen = int.gen[!is.na(value.shift)]
-int.gen[,start:=ifelse(value.shift-value == 1,1,0)]
-
-# int.gen[grepl('Oil',category),category:='Oil']
-# int.gen[grepl('Gas',category),category:='Gas']
-
-starts.table = int.gen[,lapply(.SD,sum),by = c('scenario','category','name'),
-                       .SDcols = c('start')]
-starts.table = starts.table[,lapply(.SD,mean),by = c('scenario','category'),
-                            .SDcols = c('start')]
-
-starts.table = data.table(dcast(starts.table,category ~ scenario,value.var = 'start'))
-starts.table[,diff:=round(Decomposed - `Non-decomposed`)]
-starts.table[,legend:='Average difference in starts']
-
-```
-
-```{r starts-table-print, include=TRUE,eval = TRUE, fig.width=3.5, fig.height=3.5}
-
-kable(starts.table)
-write.csv(starts.table,paste0('plots_RTS/starts_table.csv'),row.names = FALSE)
-
-```
-
-# Generation table
-
-```{r generation-table, include=FALSE,eval = TRUE, fig.width=3.5, fig.height=3.5}
-
-
-options(scipen = 999)
-
-int.gen = rbind(interval.decomposed.generation[region == scenario & 
-                                                   grepl('Nuclear|Coal|Gas|Oil',category),
-                                               .(scenario = 'Decomposed',time,name,category,region,value)],
-                
-                interval.nondecomposed.generation[grepl('Nuclear|Coal|Gas|Oil',category),
-                                                  .(scenario = 'Non-decomposed',time,name,category,region,value)])
-
-int.gen = int.gen[,lapply(.SD,function(x) sum(x)/1000), by = c('category','scenario'),.SDcols = c('value')]
-
-gen.table = data.table(dcast(int.gen,category~scenario,value.var = c('value')))
-gen.table[,diff:=100*(Decomposed - `Non-decomposed`)/`Non-decomposed`]
-
-```
-
-```{r generation-table-print, include=TRUE,eval = TRUE, fig.width=3.5, fig.height=3.5}
-
-kable(gen.table)
-write.csv(gen.table,paste0('plots_RTS/gen_table.csv'),row.names = FALSE)
-
-```
-
 
