@@ -1,0 +1,6 @@
+"category","Decomposed","Non-decomposed","diff","legend"
+"Coal",7.45454545454545,6.81818181818182,1,"Average difference in starts"
+"Gas CC",33.4,32.9,0,"Average difference in starts"
+"Gas CT",27.8888888888889,18.1111111111111,10,"Average difference in starts"
+"Nuclear",6,6,0,"Average difference in starts"
+"Oil CT",152.1,205.5,-53,"Average difference in starts"
