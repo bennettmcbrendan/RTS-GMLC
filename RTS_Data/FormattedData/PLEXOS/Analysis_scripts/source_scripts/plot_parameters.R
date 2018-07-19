@@ -47,7 +47,7 @@ error_handler <- function(query){
 theme_set(theme_bw())
 
 # size of text in plots
-large.text.size <- 10.5
+large.text.size <- 7.875
 small.text.size <- 9.1666
 text.plot = 11
 

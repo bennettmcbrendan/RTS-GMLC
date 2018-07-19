@@ -3,7 +3,7 @@
 # Setup ----
 # -----------------------------------------------------------------------------|
 
-pacman::p_load(rplexos,dplyr,RSQLite,lubridate, data.table)
+pacman::p_load(rplexos,dplyr,RSQLite,lubridate, data.table,ggplot2)
 
 wd = "//plexossql/Data/bmcbenne/RTS-GMLC-geodecomp/RTS-GMLC/RTS_Data/FormattedData/PLEXOS/Analysis_scripts"
 setwd(wd)
@@ -21,8 +21,8 @@ render.RTS.analysis = FALSE
 
 real.iso.output = REAL_ISO_price_flow_plots()
 
-ggsave(paste0("plots_SEAMS/EI-ISO-hex_",voltage,".png"),real.iso.output[["p1"]],height = 5,width = 3.5)
-ggsave(paste0("plots_SEAMS/EI-ISO-fold_",voltage,".png"),real.iso.output[["p2"]],height = 5,width = 3.5)
+ggsave(paste0("plots_SEAMS/EI-ISO-hex_",voltage,".png"),real.iso.output[["p1"]],height = 4.25,width = 3.5)
+ggsave(paste0("plots_SEAMS/EI-ISO-fold_",voltage,".png"),real.iso.output[["p2"]],height = 4.25,width = 3.5)
 write.csv(real.iso.output[["plot.data"]],paste0("plots_SEAMS/EI-ISO-plot-data_",voltage,".csv"),row.names = FALSE)
 write.csv(real.iso.output[["outlier.data"]],paste0("plots_SEAMS/EI-ISO-outlier-data_",voltage,".csv"),row.names = FALSE)
 write.csv(real.iso.output[["quadrants"]],paste0("plots_SEAMS/EI-ISO-efficiency-data_",voltage,".csv"),row.names = FALSE)
@@ -36,8 +36,8 @@ write.csv(real.iso.output[["trend.line"]],paste0("plots_SEAMS/EI-ISO-trend-line_
 
 single.opt.output = SINGLE_OPT_BORDER_price_flow_plots()
 
-ggsave(paste0("plots_SEAMS/EI-single-opt-hex_",voltage,".png"),single.opt.output[["p1"]],height = 5,width = 3.5)
-ggsave(paste0("plots_SEAMS/EI-single-opt-fold_",voltage,".png"),single.opt.output[["p2"]],height = 5,width = 3.5)
+ggsave(paste0("plots_SEAMS/EI-single-opt-hex_",voltage,".png"),single.opt.output[["p1"]],height = 4.25,width = 3.5)
+ggsave(paste0("plots_SEAMS/EI-single-opt-fold_",voltage,".png"),single.opt.output[["p2"]],height = 4.25,width = 3.5)
 write.csv(single.opt.output[["border.buses.from"]],paste0("plots_SEAMS/EI-single-opt-border-buses-from_",voltage,".csv"),row.names = FALSE)
 write.csv(single.opt.output[["border.buses.to"]],paste0("plots_SEAMS/EI-single-opt-border-buses-to_",voltage,".csv"),row.names = FALSE)
 write.csv(single.opt.output[["plot.data"]],paste0("plots_SEAMS/EI-single-opt-plot-data_",voltage,".csv"),row.names = FALSE)
@@ -53,8 +53,8 @@ write.csv(single.opt.output[["trend.line"]],paste0("plots_SEAMS/EI-single-opt-tr
 
 multi.opt.output = MULTI_OPT_BORDER_price_flow_plots()
     
-ggsave(paste0("plots_SEAMS/EI-multi-opt-hex_",voltage,".png"),multi.opt.output[["p1"]],height = 5,width = 3.5)
-ggsave(paste0("plots_SEAMS/EI-multi-opt-fold_",voltage,".png"),multi.opt.output[["p2"]],height = 5,width = 3.5)
+ggsave(paste0("plots_SEAMS/EI-multi-opt-hex_",voltage,".png"),multi.opt.output[["p1"]],height = 4.25,width = 3.5)
+ggsave(paste0("plots_SEAMS/EI-multi-opt-fold_",voltage,".png"),multi.opt.output[["p2"]],height = 4.25,width = 3.5)
 write.csv(multi.opt.output[["border.buses.from"]],paste0("plots_SEAMS/EI-multi-opt-border-buses-from_",voltage,".csv"),row.names = FALSE)
 write.csv(multi.opt.output[["border.buses.to"]],paste0("plots_SEAMS/EI-multi-opt-border-buses-to_",voltage,".csv"),row.names = FALSE)
 write.csv(multi.opt.output[["plot.data"]],paste0("plots_SEAMS/EI-multi-opt-plot-data_",voltage,".csv"),row.names = FALSE)
@@ -84,8 +84,8 @@ p1 <- folded_price_flow_plots(plot.data = copy(opt.data),
 
 p1 <- p1 + facet_grid(Interface ~ scenario)
 
-ggsave('plots_SEAMS/price-flow-combine-fold.png',p1,height = 5,width = 7,dpi = 600)
-ggsave('plots_SEAMS/price-flow-combine-fold.emf',p1,height = 5,width = 7,dpi = 600)
+ggsave('plots_SEAMS/price-flow-combine-fold.png',p1,height = 4.5,width = 7,dpi = 600)
+ggsave('plots_SEAMS/price-flow-combine-fold.emf',p1,height = 4.5,width = 7,dpi = 600)
 
 # -----------------------------------------------------------------------------|
 # SEAMS - UNFOLDED PRICE-FLOW PLOT ----
@@ -121,8 +121,8 @@ p2 <- ggplot() + stat_binhex(data = opt.data,
 
 p2 <- p2 + facet_grid(Interface ~ scenario)
 
-ggsave('plots_SEAMS/price-flow-combine-unfold.png',p2,height = 5,width = 7,dpi = 600)
-ggsave('plots_SEAMS/price-flow-combine-unfold.emf',p2,height = 5,width = 7,dpi = 400)
+ggsave('plots_SEAMS/price-flow-combine-unfold.png',p2,height = 4.5,width = 7,dpi = 600)
+ggsave('plots_SEAMS/price-flow-combine-unfold.emf',p2,height = 4.5,width = 7,dpi = 400)
 
 # -----------------------------------------------------------------------------|
 # RTS - Analysis ----

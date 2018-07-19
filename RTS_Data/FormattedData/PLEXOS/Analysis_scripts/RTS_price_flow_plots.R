@@ -254,6 +254,6 @@ quadrants = quadrants[,lapply(.SD,function(x) paste0(round(x*100,1),"%")),by = c
 # Write out ----
 # ----------------------------------------------------------------------- |
 
-ggsave("plots_RTS/rts-price-flow.png",p1,height = 4.5,width = 3.5)
+ggsave("plots_RTS/rts-price-flow.png",p1,height = 4,width = 3.5)
 write.csv(quadrants,'plots_RTS/rts-efficiency-data.csv',row.names = FALSE)
 write.csv(int.stat.center,'plots_RTS/rts-avg-price-diff.csv',row.names = FALSE)

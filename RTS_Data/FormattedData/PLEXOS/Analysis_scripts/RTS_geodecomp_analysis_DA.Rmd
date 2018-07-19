@@ -901,7 +901,7 @@ rm(fuel.data,gen.map,gen.cost.data.base)
 ```{r commit-circle-plot-print, include=TRUE,eval = TRUE, fig.width = 3.5, fig.height=3.5}
 
 p
-ggsave('plots_RTS/commit-plot.png',p,height = 2.75,width = 3.5,dpi = 600)
+ggsave('plots_RTS/commit-plot.png',p,height = 2.5,width = 3.5,dpi = 600)
 
 
 ```

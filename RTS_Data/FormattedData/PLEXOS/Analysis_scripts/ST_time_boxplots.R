@@ -56,7 +56,7 @@ ST.times.table = ST.times.table[,lapply(.SD,mean),by = c('model'),
 # --------------------------------------------------- |
 
 # size of text in plots
-large.text.size <- 10.5
+large.text.size <- 7.875
 small.text.size <- 9.1666
 text.plot = 11
 
@@ -96,6 +96,6 @@ p <- ggplot(data = ST.times,aes(x = Integers,y = time,group = Integers,color = R
 
 
 
-ggsave('ST-time-hpc.emf',p,height = 4,width = 3.5,dpi=600)
+ggsave('ST-time-hpc.emf',p,height = 3.5,width = 3.5,dpi=600)
 
 
